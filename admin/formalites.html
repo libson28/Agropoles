@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme National de Développement des Agropoles du Sénégal - Formalités</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .sidebar-fixed {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .content-scrollable {
+            overflow-y: auto;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .content-scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-scrollable::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .hidden-tab {
+            display: none;
+        }
+        
+        .dashboard-full {
+            width: 100%;
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-container {
+            max-width: 600px;
+            width: 90%;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body class="font-roboto bg-gray-50 overflow-hidden">
+    
+    <!-- MODAL POPUP pour la gestion de formalité -->
+    <div id="formalite-modal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-container bg-white rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+            <div class="bg-primary px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="ri-file-copy-line text-white text-2xl"></i>
+                    <h3 class="text-white font-poppins font-semibold text-lg" id="modal-title">Détail de la demande</h3>
+                </div>
+                <button onclick="closeModal()" class="text-white hover:text-gray-200 transition">
+                    <i class="ri-close-line text-2xl"></i>
+                </button>
+            </div>
+            <div class="p-6 max-h-[70vh] overflow-y-auto">
+                <!-- Informations demandeur -->
+                <div class="mb-6 pb-4 border-b border-gray-100">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <img id="modal-user-img" src="" alt="Profil" class="w-16 h-16 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-poppins font-semibold text-gray-900 text-lg" id="modal-user-name">-</h4>
+                            <p class="text-gray-500 text-sm" id="modal-user-email">-</p>
+                            <p class="text-gray-500 text-sm" id="modal-user-region">-</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Détails de la demande -->
+                <div class="mb-6">
+                    <h4 class="font-inter font-semibold text-gray-800 mb-3">Informations de la demande</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-xs text-gray-500">Type de document</p>
+                            <p class="font-medium text-gray-900" id="modal-doc-type">-</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Date de dépôt</p>
+                            <p class="font-medium text-gray-900" id="modal-date">-</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Statut actuel</p>
+                            <p id="modal-status-badge" class="inline-block px-3 py-1 rounded-full text-sm font-medium">-</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Numéro de dossier</p>
+                            <p class="font-medium text-gray-900" id="modal-dossier">-</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Documents joints -->
+                <div class="mb-6">
+                    <h4 class="font-inter font-semibold text-gray-800 mb-3">Documents joints</h4>
+                    <div class="space-y-2" id="modal-documents-list">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-file-pdf-line text-red-500 text-xl"></i>
+                                <span class="text-sm text-gray-700">certificat_phytosanitaire.pdf</span>
+                            </div>
+                            <button class="text-primary hover:text-green-700"><i class="ri-eye-line"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Historique du workflow -->
+                <div class="mb-6">
+                    <h4 class="font-inter font-semibold text-gray-800 mb-3">Suivi du traitement</h4>
+                    <div class="space-y-3" id="modal-timeline">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                <i class="ri-check-line text-green-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900 text-sm">Dépôt de la demande</p>
+                                <p class="text-xs text-gray-500">15 avril 2026 - 09:30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Commentaire admin -->
+                <div class="mb-6">
+                    <label class="block font-inter font-medium text-gray-700 mb-2">Commentaire (optionnel)</label>
+                    <textarea id="modal-comment" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary text-sm" placeholder="Ajouter un commentaire sur cette demande..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Actions selon le statut -->
+            <div class="bg-gray-50 px-6 py-4 flex justify-end space-x-3" id="modal-actions">
+                <button onclick="closeModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Administration Page - Full width layout with fixed sidebar -->
+    <div class="flex h-screen w-full">
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar-fixed w-72 lg:w-80 flex-shrink-0 bg-white border-r border-gray-100 shadow-sm z-10">
+            <div class="flex flex-col h-full">
+                <div class="p-5 border-b border-gray-100">
+                    <div class="flex items-center justify-center">
+                        <img src="logo.png" alt="Logo Agropoles" class="w-full max-w-[180px] h-auto object-contain mx-auto">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-[-10px] font-roboto">Projet des agropoles du sénégal</p>
+                </div>
+                
+                <nav class="flex-1 p-3 sidebar-scroll overflow-y-auto">
+                    <div class="space-y-1.5">
+                        <a href="#" onclick="switchAdminTab('overview', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-dashboard-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Vue d'ensemble</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('users', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-user-settings-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Utilisateurs</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('formalites', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Formalités</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Workflows</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('content', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Contenu</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('analytics', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-bar-chart-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Analytics</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('settings', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-settings-3-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Paramètres</span>
+                        </a>
+                    </div>
+                </nav>
+                
+                <div class="mt-auto border-t border-gray-100 pt-4 pb-5 px-3">
+                    <div>
+                        <a href="#" onclick="handleLogout(event);" class="flex items-center px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition group cursor-pointer">
+                            <i class="ri-logout-box-r-line mr-3 text-red-500 group-hover:text-red-700 transition text-lg"></i>
+                            <span class="font-inter text-sm font-medium">Déconnexion</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 content-scrollable overflow-y-auto bg-gray-50">
+            <div class="dashboard-full px-4 sm:px-6 lg:px-8 py-6">
+                
+                <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
+                        <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
+                            <i class="ri-notification-line text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div>
+                                <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
+                                <div class="font-roboto text-sm text-gray-600">Administrateur</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="admin-formalites" class="admin-tab-content">
+                    <div class="space-y-8">
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Formalités</h2>
+                                <p class="font-roboto text-gray-600 mt-1">Suivi des demandes de documents et certifications des utilisateurs</p>
+                            </div>
+                            <button class="px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm cursor-pointer" onclick="exportFormalitesData()">
+                                <i class="ri-download-line mr-2"></i>Exporter
+                            </button>
+                        </div>
+
+                        <div class="grid md:grid-cols-4 gap-6">
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg"><i class="ri-file-list-line text-blue-600 text-xl"></i></div>
+                                    <span class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">Nouvelles</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">24</div>
+                                <div class="font-roboto text-gray-600 text-sm">Demandes en attente</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg"><i class="ri-time-line text-orange-600 text-xl"></i></div>
+                                    <span class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">En cours</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">18</div>
+                                <div class="font-roboto text-gray-600 text-sm">Mises en étude</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg"><i class="ri-check-double-line text-purple-600 text-xl"></i></div>
+                                    <span class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">Validées</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">156</div>
+                                <div class="font-roboto text-gray-600 text-sm">Demandes acceptées</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-red-100 rounded-lg"><i class="ri-close-circle-line text-red-600 text-xl"></i></div>
+                                    <span class="text-sm font-roboto text-red-600 bg-red-50 px-2 py-1 rounded">Rejetées</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">12</div>
+                                <div class="font-roboto text-gray-600 text-sm">Demandes refusées</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div class="grid md:grid-cols-4 gap-4">
+                                <div class="relative">
+                                    <input type="text" placeholder="Rechercher..." class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg text-sm">
+                                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2"><i class="ri-search-line text-gray-400"></i></div>
+                                </div>
+                                <select class="px-4 py-3 border border-gray-300 rounded-lg text-sm">
+                                    <option>Tous les types</option>
+                                    <option>Certificat Phytosanitaire</option>
+                                    <option>Agrément Transformation</option>
+                                </select>
+                                <select class="px-4 py-3 border border-gray-300 rounded-lg text-sm">
+                                    <option>Tous les statuts</option>
+                                    <option>En attente</option>
+                                    <option>Mise en étude</option>
+                                    <option>Acceptée</option>
+                                </select>
+                                <select class="px-4 py-3 border border-gray-300 rounded-lg text-sm">
+                                    <option>Toutes les régions</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50">
+                                        <tr><th class="text-left px-6 py-4">Demandeur</th><th class="text-left px-6 py-4">Type</th><th class="text-left px-6 py-4">Date</th><th class="text-left px-6 py-4">Statut</th><th class="text-left px-6 py-4">Actions</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b hover:bg-gray-50"><td class="px-6 py-4"><div class="flex items-center space-x-3"><img src="data:image/jpeg;base64,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" class="w-10 h-10 rounded-full object-cover"><div><div class="font-medium">Mamadou Dieng</div><div class="text-sm text-gray-500">mamadou.dieng@email.com</div></div></div></td><td class="px-6 py-4"><span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Certificat Phytosanitaire</span></td><td class="px-6 py-4">15 avril 2026</td><td class="px-6 py-4"><span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">En attente</span></td><td class="px-6 py-4"><button class="text-primary hover:text-green-700 p-1" onclick="openFormaliteModal('pending')"><i class="ri-eye-line text-lg"></i></button></td></tr>
+                                        <tr class="border-b hover:bg-gray-50"><td class="px-6 py-4"><div class="flex items-center space-x-3"><img src="data:image/jpeg;base64,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" class="w-10 h-10 rounded-full object-cover"><div><div class="font-medium">Aissatou Sow</div><div class="text-sm text-gray-500">aissatou.sow@email.com</div></div></div></td><td class="px-6 py-4"><span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Agrément Transformation</span></td><td class="px-6 py-4">10 avril 2026</td><td class="px-6 py-4"><span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">Mise en étude</span></td><td class="px-6 py-4"><button class="text-primary hover:text-green-700 p-1" onclick="openFormaliteModal('study')"><i class="ri-eye-line text-lg"></i></button></td></tr>
+                                        <tr class="border-b hover:bg-gray-50"><td class="px-6 py-4"><div class="flex items-center space-x-3"><img src="data:image/jpeg;base64,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" class="w-10 h-10 rounded-full object-cover"><div><div class="font-medium">Oumar Fall</div><div class="text-sm text-gray-500">oumar.fall@email.com</div></div></div></td><td class="px-6 py-4"><span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Licence Export</span></td><td class="px-6 py-4">05 avril 2026</td><td class="px-6 py-4"><span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Acceptée</span></td><td class="px-6 py-4"><button class="text-primary hover:text-green-700 p-1" onclick="openFormaliteModal('accepted')"><i class="ri-eye-line text-lg"></i></button></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="admin-overview" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-dashboard-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Vue d'ensemble</h3></div></div>
+                <div id="admin-users" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-user-settings-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Gestion Utilisateurs</h3></div></div>
+                <div id="admin-workflows" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-flow-chart text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Workflows</h3></div></div>
+                <div id="admin-content" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-file-copy-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Gestion Contenu</h3></div></div>
+                <div id="admin-analytics" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-bar-chart-2-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Analytics</h3></div></div>
+                <div id="admin-settings" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-settings-3-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Paramètres</h3></div></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentRequestId = null;
+        let currentStatus = null;
+
+        function switchAdminTab(tabName, event) {
+            if (event) event.preventDefault();
+            document.querySelectorAll('[id^="admin-"]').forEach(el => el.classList.add('hidden-tab'));
+            document.getElementById(`admin-${tabName}`).classList.remove('hidden-tab');
+            document.querySelectorAll('.admin-sidebar-link').forEach(link => {
+                link.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                link.classList.add('text-gray-700', 'hover:bg-gray-50');
+            });
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                event.currentTarget.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            }
+        }
+
+        function handleLogout(event) {
+            event.preventDefault();
+            if (confirm('Déconnexion ?')) alert('Déconnecté');
+        }
+
+        function exportFormalitesData() { alert('Export en cours...'); }
+
+        function openFormaliteModal(status) {
+            currentStatus = status;
+            const modal = document.getElementById('formalite-modal');
+            const actionsDiv = document.getElementById('modal-actions');
+            
+            // Remplir avec des données fictives selon le statut
+            document.getElementById('modal-user-name').innerText = status === 'pending' ? 'Mamadou Dieng' : (status === 'study' ? 'Aissatou Sow' : 'Oumar Fall');
+            document.getElementById('modal-user-email').innerText = status === 'pending' ? 'mamadou.dieng@email.com' : (status === 'study' ? 'aissatou.sow@email.com' : 'oumar.fall@email.com');
+            document.getElementById('modal-user-region').innerText = status === 'pending' ? 'Saint-Louis' : (status === 'study' ? 'Dakar' : 'Thiès');
+            document.getElementById('modal-user-img').src = 'data:image/jpeg;base64,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';
+            document.getElementById('modal-doc-type').innerText = status === 'pending' ? 'Certificat Phytosanitaire' : (status === 'study' ? 'Agrément Transformation' : 'Licence Export');
+            document.getElementById('modal-date').innerText = status === 'pending' ? '15 avril 2026' : (status === 'study' ? '10 avril 2026' : '05 avril 2026');
+            document.getElementById('modal-dossier').innerText = `AG-${Math.floor(10000 + Math.random() * 90000)}`;
+            
+            const statusBadge = document.getElementById('modal-status-badge');
+            if (status === 'pending') {
+                statusBadge.className = 'inline-block px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium';
+                statusBadge.innerText = 'En attente';
+            } else if (status === 'study') {
+                statusBadge.className = 'inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium';
+                statusBadge.innerText = 'Mise en étude';
+            } else {
+                statusBadge.className = 'inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium';
+                statusBadge.innerText = 'Acceptée';
+            }
+            
+            // Timeline
+            const timeline = document.getElementById('modal-timeline');
+            if (status === 'pending') {
+                timeline.innerHTML = `<div class="flex items-start space-x-3"><div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><i class="ri-check-line text-green-600"></i></div><div><p class="font-medium text-sm">Dépôt de la demande</p><p class="text-xs text-gray-500">15 avril 2026 - 09:30</p></div></div>
+                                      <div class="flex items-start space-x-3 opacity-60"><div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"><i class="ri-time-line text-gray-400"></i></div><div><p class="font-medium text-sm">En attente de validation</p><p class="text-xs text-gray-500">En cours...</p></div></div>`;
+            } else if (status === 'study') {
+                timeline.innerHTML = `<div class="flex items-start space-x-3"><div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><i class="ri-check-line text-green-600"></i></div><div><p class="font-medium text-sm">Dépôt de la demande</p><p class="text-xs text-gray-500">10 avril 2026 - 08:15</p></div></div>
+                                      <div class="flex items-start space-x-3"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center"><i class="ri-file-search-line text-blue-600"></i></div><div><p class="font-medium text-sm">Mise en étude technique</p><p class="text-xs text-gray-500">12 avril 2026 - 14:20</p></div></div>
+                                      <div class="flex items-start space-x-3 opacity-60"><div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"><i class="ri-time-line text-gray-400"></i></div><div><p class="font-medium text-sm">En attente de décision finale</p><p class="text-xs text-gray-500">En cours...</p></div></div>`;
+            } else {
+                timeline.innerHTML = `<div class="flex items-start space-x-3"><div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><i class="ri-check-line text-green-600"></i></div><div><p class="font-medium text-sm">Dépôt de la demande</p><p class="text-xs text-gray-500">5 avril 2026 - 10:00</p></div></div>
+                                      <div class="flex items-start space-x-3"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center"><i class="ri-file-search-line text-blue-600"></i></div><div><p class="font-medium text-sm">Étude validée</p><p class="text-xs text-gray-500">10 avril 2026 - 11:30</p></div></div>
+                                      <div class="flex items-start space-x-3"><div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><i class="ri-check-double-line text-green-600"></i></div><div><p class="font-medium text-sm">Document délivré</p><p class="text-xs text-gray-500">14 avril 2026 - 09:00</p></div></div>`;
+            }
+            
+            // Actions buttons
+            if (status === 'pending') {
+                actionsDiv.innerHTML = `
+                    <button onclick="closeModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Annuler</button>
+                    <button onclick="processAccept()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-700 transition"><i class="ri-check-line mr-1"></i>Accepter la demande</button>
+                `;
+            } else if (status === 'study') {
+                actionsDiv.innerHTML = `
+                    <button onclick="closeModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Annuler</button>
+                    <button onclick="processReject()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"><i class="ri-close-line mr-1"></i>Rejeter</button>
+                    <button onclick="processAccept()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-700 transition"><i class="ri-check-line mr-1"></i>Valider et délivrer</button>
+                `;
+            } else {
+                actionsDiv.innerHTML = `<button onclick="closeModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Fermer</button>`;
+            }
+            
+            modal.classList.add('active');
+        }
+        
+        function processAccept() {
+            const comment = document.getElementById('modal-comment').value;
+            if (confirm(`Valider cette demande ? ${comment ? 'Commentaire: ' + comment : ''}`)) {
+                alert('✅ Demande acceptée avec succès ! Le document sera délivré à l\'utilisateur.');
+                closeModal();
+                location.reload();
+            }
+        }
+        
+        function processReject() {
+            const comment = document.getElementById('modal-comment').value;
+            if (confirm(`Rejeter cette demande ? ${comment ? 'Motif: ' + comment : 'Aucun motif fourni'}`)) {
+                alert('❌ Demande rejetée. L\'utilisateur en sera informé.');
+                closeModal();
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('formalite-modal').classList.remove('active');
+            document.getElementById('modal-comment').value = '';
+        }
+        
+        function closeModalOnOverlay(event) {
+            if (event.target === document.getElementById('formalite-modal')) closeModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[id^="admin-"]').forEach(el => el.classList.add('hidden-tab'));
+            document.getElementById('admin-formalites').classList.remove('hidden-tab');
+        });
+    </script>
+</body>
+
+</html>

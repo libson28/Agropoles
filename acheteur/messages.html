@@ -31,6 +31,9 @@
 </head>
 
 <body class="font-roboto bg-white">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
     <section class="pt-16 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center justify-between mb-8">
@@ -39,7 +42,7 @@
                     <p class="font-roboto text-gray-600 mt-1">Échangez avec les producteurs et gérez vos discussions</p>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20buyer%20portrait%2C%20confident%20female%20food%20purchasing%20manager%2C%20professional%20headshot&width=100&height=100&seq=buyer-profile001&orientation=squarish"
+                    <img src="https://www.shutterstock.com/image-photo/portrait-business-black-woman-confidence-260nw-2679319753.jpg"
                         alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
                     <div>
                         <div class="font-inter font-medium text-gray-900">Marième Ndiaye</div>
@@ -66,80 +69,113 @@
                     class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Favoris</a>
             </div>
 
-            <div class="grid md:grid-cols-4 gap-8 h-auto md:h-[34rem]">
+             <div class="grid md:grid-cols-4 gap-8 h-auto md:h-96">
                 <div class="bg-white rounded-xl shadow-sm">
                     <div class="p-4 border-b border-gray-200">
-                        <h3 class="font-inter font-semibold text-gray-900">Conversations</h3>
+                        <h3 class="font-inter font-semibold text-gray-900">Messages</h3>
                     </div>
-                    <div class="overflow-y-auto h-[28rem]">
-                        <div class="conversation-item p-4 border-b border-gray-100 bg-primary text-white cursor-pointer"
+                    <div class="overflow-y-auto h-80">
+                        <div class="conversation-item p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer active bg-primary text-white"
                             onclick="selectConversation(this)">
-                            <div class="font-roboto text-sm font-medium">Ferme Niayes Plus</div>
-                            <div class="font-roboto text-xs opacity-80 mt-1">Commande prête à expédier</div>
+                            <div class="flex items-center space-x-3">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20portrait%2C%20confident%20female%20agricultural%20entrepreneur%2C%20smiling%20professional%20headshot&width=100&height=100&seq=contact001&orientation=squarish"
+                                    alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                                <div class="flex-1">
+                                    <div class="font-roboto text-sm font-medium">Fatou Diallo</div>
+                                    <div class="font-roboto text-xs truncate opacity-80">Intéressée par vos tomates...
+                                    </div>
+                                </div>
+                                <div class="text-xs opacity-70">14:30</div>
+                            </div>
                         </div>
                         <div class="conversation-item p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
                             onclick="selectConversation(this)">
-                            <div class="font-roboto text-sm font-medium text-gray-900">Verger Casamance</div>
-                            <div class="font-roboto text-xs text-gray-500 mt-1">Disponibilité mangues bio</div>
+                            <div class="flex items-center space-x-3">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20male%20entrepreneur%20portrait%2C%20confident%20businessman%20in%20agricultural%20sector%2C%20professional%20headshot&width=100&height=100&seq=contact002&orientation=squarish"
+                                    alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                                <div class="flex-1">
+                                    <div class="font-roboto text-gray-900 text-sm font-medium">Ibrahim Sarr</div>
+                                    <div class="font-roboto text-gray-500 text-xs truncate">Commande de 500kg...</div>
+                                </div>
+                                <div class="text-xs text-gray-400">12:15</div>
+                            </div>
                         </div>
-                        <div class="conversation-item p-4 hover:bg-gray-50 cursor-pointer" onclick="selectConversation(this)">
-                            <div class="font-roboto text-sm font-medium text-gray-900">Agro Vallée Nord</div>
-                            <div class="font-roboto text-xs text-gray-500 mt-1">Devis mis à jour</div>
+                        <div class="conversation-item p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
+                            onclick="selectConversation(this)">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20female%20agricultural%20specialist%20portrait%2C%20confident%20woman%20in%20agriculture%2C%20professional%20headshot&width=100&height=100&seq=contact003&orientation=squarish"
+                                    alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                                <div class="flex-1">
+                                    <div class="font-roboto text-gray-900 text-sm font-medium">Aïssa Ndiaye</div>
+                                    <div class="font-roboto text-gray-500 text-xs truncate">Formation disponible...
+                                    </div>
+                                </div>
+                                <div class="text-xs text-gray-400">Hier</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="md:col-span-3 bg-white rounded-xl shadow-sm flex flex-col mt-6 md:mt-0">
                     <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-                        <div>
-                            <div class="font-inter font-semibold text-gray-900">Ferme Niayes Plus</div>
-                            <div class="font-roboto text-green-600 text-xs">En ligne</div>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20portrait%2C%20confident%20female%20agricultural%20entrepreneur%2C%20smiling%20professional%20headshot&width=100&height=100&seq=contact004&orientation=squarish"
+                                alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div>
+                                <div class="font-inter font-semibold text-gray-900">Fatou Diallo</div>
+                                <div class="font-roboto text-green-600 text-xs">En ligne</div>
+                            </div>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-primary">
-                                <i class="ri-phone-line"></i>
-                            </button>
-                            <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-primary">
-                                <i class="ri-video-line"></i>
-                            </button>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"><i
+                                    class="ri-phone-line"></i></button>
+                            <button
+                                class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"><i
+                                    class="ri-video-line"></i></button>
                         </div>
                     </div>
-                    <div class="flex-1 p-4 overflow-y-auto">
+                    <div class="flex-1 p-4 overflow-y-auto" id="chat-messages">
                         <div class="space-y-4">
                             <div class="flex justify-start">
                                 <div class="max-w-xs bg-gray-100 rounded-lg px-4 py-2">
-                                    <div class="font-roboto text-gray-900 text-sm">Bonjour Marième, votre commande de
-                                        tomates sera chargée ce soir.</div>
-                                    <div class="font-roboto text-gray-500 text-xs mt-1">10:15</div>
+                                    <div class="font-roboto text-gray-900 text-sm">Bonjour Amadou, j'ai vu vos tomates
+                                        sur la plateforme. Sont-elles encore disponibles ?</div>
+                                    <div class="font-roboto text-gray-500 text-xs mt-1">14:25</div>
                                 </div>
                             </div>
                             <div class="flex justify-end">
                                 <div class="max-w-xs bg-primary text-white rounded-lg px-4 py-2">
-                                    <div class="font-roboto text-sm">Parfait, merci. Pouvez-vous confirmer l'heure de
-                                        livraison demain matin ?</div>
-                                    <div class="font-roboto text-green-200 text-xs mt-1">10:19</div>
+                                    <div class="font-roboto text-white text-sm">Bonjour Fatou ! Oui, j'ai encore 500kg
+                                        de tomates fraîches disponibles.</div>
+                                    <div class="font-roboto text-green-200 text-xs mt-1">14:27</div>
                                 </div>
                             </div>
                             <div class="flex justify-start">
                                 <div class="max-w-xs bg-gray-100 rounded-lg px-4 py-2">
-                                    <div class="font-roboto text-gray-900 text-sm">Oui, arrivée prévue à 8h30 à Dakar.
-                                    </div>
-                                    <div class="font-roboto text-gray-500 text-xs mt-1">10:21</div>
+                                    <div class="font-roboto text-gray-900 text-sm">Parfait ! Quel est votre prix au kilo
+                                        ? Et pouvez-vous livrer à Dakar ?</div>
+                                    <div class="font-roboto text-gray-500 text-xs mt-1">14:28</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="max-w-xs bg-primary text-white rounded-lg px-4 py-2">
+                                    <div class="font-roboto text-white text-sm">Le prix est de 800 FCFA/kg. Pour la
+                                        livraison à Dakar, c'est possible avec un supplément de 15,000 FCFA.</div>
+                                    <div class="font-roboto text-green-200 text-xs mt-1">14:30</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="p-4 border-t border-gray-200">
                         <div class="flex items-center space-x-4">
-                            <button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
-                                <i class="ri-attachment-line"></i>
-                            </button>
+                            <button
+                                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"><i
+                                    class="ri-attachment-line"></i></button>
                             <input type="text" placeholder="Tapez votre message..."
                                 class="flex-1 px-4 py-2 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
                             <button
-                                class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
-                                <i class="ri-send-plane-line"></i>
-                            </button>
+                                class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap"><i
+                                    class="ri-send-plane-line"></i></button>
                         </div>
                     </div>
                 </div>

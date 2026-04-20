@@ -5,7 +5,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <title>Programme National de Développement des Agropoles du Sénégal - Analytics</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,435 +43,592 @@
         }
     </script>
     <style>
-        :where([class^="ri-"])::before {
-            content: "\f3c2";
+        /* Full height layout - dashboard takes entire viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Fix sidebar during scroll */
+        .sidebar-fixed {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Custom scrollbar for sidebar (subtle) */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Content area scrollable */
+        .content-scrollable {
+            overflow-y: auto;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .content-scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-scrollable::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .hidden-tab {
+            display: none;
+        }
+        
+        .dashboard-full {
+            width: 100%;
+        }
+
+        .logo-placeholder {
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 
-<body class="font-roboto bg-white">
-   
-    <!-- Administration Page -->
-    <section id="administration-page" class="pt-16 bg-gray-50 min-h-screen ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <!-- Administration Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
-                    <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+<body class="font-roboto bg-gray-50 overflow-hidden">
+    <!-- Administration Page - Full width & height layout with fixed sidebar -->
+    <div class="flex h-screen w-full">
+        
+        <!-- SIDEBAR: Fixed on scroll, light & spacious, takes full height -->
+        <aside class="sidebar-fixed w-72 lg:w-80 flex-shrink-0 bg-white border-r border-gray-100 shadow-sm z-10">
+            <div class="flex flex-col h-full">
+                <!-- Sidebar header with LOGO (exactly as requested) -->
+                <div class="p-5 border-b border-gray-100">
+                    <div class="flex items-center justify-center">
+                        <img src="logo.png" 
+                             alt="Logo Agropoles" 
+                             class="logo-placeholder w-full max-w-[180px] h-auto object-contain mx-auto">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-[-10px] font-roboto">Projet des agropoles du sénégal</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
-                        <i class="ri-notification-line text-xl"></i>
-                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
-                    <div class="flex items-center space-x-3">
-                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
-                            alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
-                        <div>
-                            <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
-                            <div class="font-roboto text-sm text-gray-600">Administrateur</div>
-                        </div>
+                
+                <!-- Navigation items - light & spacious -->
+                <nav class="flex-1 p-3 sidebar-scroll overflow-y-auto">
+                    <div class="space-y-1.5">
+                        <a href="#" onclick="switchAdminTab('overview', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-dashboard-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Vue d'ensemble</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('users', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-user-settings-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Utilisateurs</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('users', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-user-settings-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Formalités</span>
+                        </a>
+                        
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Workflows</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Contenu</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
+                            <i class="ri-bar-chart-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Analytics</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('settings', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-settings-3-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Paramètres</span>
+                        </a>
+                    </div>
+                </nav>
+                
+                <!-- SECTION EN BAS (bottom:0) : Aide & Support + Déconnexion -->
+                <div class="mt-auto border-t border-gray-100 pt-4 pb-5 px-3">
+                  
+                    <!-- Bouton Déconnexion -->
+                    <div>
+                        <a href="#" onclick="handleLogout(event);" 
+                           class="flex items-center px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition group cursor-pointer">
+                            <i class="ri-logout-box-r-line mr-3 text-red-500 group-hover:text-red-700 transition text-lg"></i>
+                            <span class="font-inter text-sm font-medium">Déconnexion</span>
+                        </a>
                     </div>
                 </div>
             </div>
+        </aside>
 
-            <!-- Administration Navigation -->
-            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
-                <a href="statistique.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Vue d'ensemble</a>
-                <a href="utilisateurs.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Utilisateurs</a>
-                <a href="workflows.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Workflows</a>
-                <a href="contenu.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Contenu</a>
-                <a href="analytics.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap cursor-pointer">Analytics</a>
-                <a href="parametres.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Paramètres</a>
-            </div>
-<div id="admin-analytics" class="admin-tab-content">
-                <div class="space-y-8">
-                    <!-- Analytics Header -->
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-2xl font-poppins font-semibold text-primary">Analytics & Reporting</h2>
-                            <p class="font-roboto text-gray-600 mt-1">Statistiques globales de la production et des
-                                revenus nationaux</p>
-                        </div>
-                        <div class="flex space-x-3">
-                            <select
-                                class="px-4 py-2 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8">
-                                <option value="30d">30 derniers jours</option>
-                                <option value="90d">3 derniers mois</option>
-                                <option value="1y">Cette année</option>
-                            </select>
-                            <button
-                                class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
-                                <i class="ri-download-line mr-2"></i>Exporter rapport
-                            </button>
-                        </div>
+        <!-- MAIN CONTENT AREA - Scrollable, takes full remaining width -->
+        <main class="flex-1 content-scrollable overflow-y-auto bg-gray-50">
+            <div class="dashboard-full px-4 sm:px-6 lg:px-8 py-6">
+                
+                <!-- Administration Header -->
+                <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
+                        <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
                     </div>
-
-                    <!-- National Production Overview -->
-                    <div class="grid md:grid-cols-4 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg">
-                                    <i class="ri-plant-line text-green-600 text-xl"></i>
-                                </div>
-                                <span
-                                    class="text-sm font-roboto text-green-600 bg-green-50 px-2 py-1 rounded">+12.5%</span>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">487,000T</div>
-                            <div class="font-roboto text-gray-600 text-sm">Production totale</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg">
-                                    <i class="ri-money-dollar-circle-line text-blue-600 text-xl"></i>
-                                </div>
-                                <span
-                                    class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">+8.2%</span>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">156Md</div>
-                            <div class="font-roboto text-gray-600 text-sm">Revenus agricoles (FCFA)</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg">
-                                    <i class="ri-global-line text-purple-600 text-xl"></i>
-                                </div>
-                                <span
-                                    class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">+15.8%</span>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">28Md</div>
-                            <div class="font-roboto text-gray-600 text-sm">Exportations (FCFA)</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg">
-                                    <i class="ri-group-line text-orange-600 text-xl"></i>
-                                </div>
-                                <span
-                                    class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">+3.4%</span>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">89,500</div>
-                            <div class="font-roboto text-gray-600 text-sm">Emplois créés</div>
-                        </div>
-                    </div>
-
-                    <!-- Charts Grid -->
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Production par Filière</h3>
-                            <div id="production-by-sector-chart" class="h-64"></div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Évolution des Revenus</h3>
-                            <div id="revenue-evolution-chart" class="h-64"></div>
-                        </div>
-                    </div>
-
-                    <!-- Regional Analysis -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Analyse Régionale</h3>
-                        <div class="overflow-x-auto">
-                            <table class="w-full">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Région</th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Production
-                                            (T)</th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Revenus (M
-                                            FCFA)</th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Producteurs
-                                        </th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Évolution
-                                        </th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Performance
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white">
-                                    <tr class="border-b border-gray-100">
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900 font-medium">Saint-Louis</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">78,540</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">23,450</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">2,456</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">+15.2%</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
-                                                    <div class="w-14 h-2 bg-green-500 rounded-full"></div>
-                                                </div>
-                                                <span class="font-roboto text-gray-600 text-sm">87%</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100">
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900 font-medium">Thiès</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">65,230</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">19,580</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">1,892</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">+12.8%</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
-                                                    <div class="w-12 h-2 bg-blue-500 rounded-full"></div>
-                                                </div>
-                                                <span class="font-roboto text-gray-600 text-sm">78%</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100">
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900 font-medium">Kolda</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">45,680</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">15,230</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">1,234</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">+8.5%</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
-                                                    <div class="w-10 h-2 bg-orange-500 rounded-full"></div>
-                                                </div>
-                                                <span class="font-roboto text-gray-600 text-sm">65%</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100">
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900 font-medium">Dakar</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">32,450</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">12,890</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">856</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">+5.2%</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
-                                                    <div class="w-8 h-2 bg-purple-500 rounded-full"></div>
-                                                </div>
-                                                <span class="font-roboto text-gray-600 text-sm">52%</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Platform Metrics -->
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Métriques Plateforme</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Sessions mensuelles</span>
-                                    <span class="font-roboto text-gray-900 font-medium">125,400</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Pages vues</span>
-                                    <span class="font-roboto text-gray-900 font-medium">456,780</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Durée moyenne</span>
-                                    <span class="font-roboto text-gray-900 font-medium">8min 32s</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Taux de rebond</span>
-                                    <span class="font-roboto text-gray-900 font-medium">24.5%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Transactions</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Volume mensuel</span>
-                                    <span class="font-roboto text-gray-900 font-medium">18,945</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Valeur moyenne</span>
-                                    <span class="font-roboto text-gray-900 font-medium">25,780 FCFA</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Taux de succès</span>
-                                    <span class="font-roboto text-gray-900 font-medium">96.8%</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Commissions</span>
-                                    <span class="font-roboto text-gray-900 font-medium">1.2M FCFA</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Services Publics</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Dossiers traités</span>
-                                    <span class="font-roboto text-gray-900 font-medium">2,456</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Délai moyen</span>
-                                    <span class="font-roboto text-gray-900 font-medium">4.2 jours</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Satisfaction</span>
-                                    <span class="font-roboto text-gray-900 font-medium">94%</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="font-roboto text-gray-600">Taxes collectées</span>
-                                    <span class="font-roboto text-gray-900 font-medium">145M FCFA</span>
-                                </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
+                            <i class="ri-notification-line text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
+                                alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div>
+                                <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
+                                <div class="font-roboto text-sm text-gray-600">Administrateur</div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- TAB CONTENT: Analytics (active par défaut sur cette page) -->
+                <div id="admin-analytics" class="admin-tab-content">
+                    <div class="space-y-8">
+                        <!-- Analytics Header -->
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-2xl font-poppins font-semibold text-primary">Analytics & Reporting</h2>
+                                <p class="font-roboto text-gray-600 mt-1">Statistiques globales de la production et des
+                                    revenus nationaux</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <select
+                                    class="px-4 py-2 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8">
+                                    <option value="30d">30 derniers jours</option>
+                                    <option value="90d">3 derniers mois</option>
+                                    <option value="1y">Cette année</option>
+                                </select>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
+                                    <i class="ri-download-line mr-2"></i>Exporter rapport
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- National Production Overview -->
+                        <div class="grid md:grid-cols-4 gap-6">
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg">
+                                        <i class="ri-plant-line text-green-600 text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-roboto text-green-600 bg-green-50 px-2 py-1 rounded">+12.5%</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">487,000T</div>
+                                <div class="font-roboto text-gray-600 text-sm">Production totale</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg">
+                                        <i class="ri-money-dollar-circle-line text-blue-600 text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">+8.2%</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">156Md</div>
+                                <div class="font-roboto text-gray-600 text-sm">Revenus agricoles (FCFA)</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg">
+                                        <i class="ri-global-line text-purple-600 text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">+15.8%</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">28Md</div>
+                                <div class="font-roboto text-gray-600 text-sm">Exportations (FCFA)</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg">
+                                        <i class="ri-group-line text-orange-600 text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">+3.4%</span>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">89,500</div>
+                                <div class="font-roboto text-gray-600 text-sm">Emplois créés</div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Grid -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Production par Filière</h3>
+                                <div id="production-by-sector-chart" class="h-64"></div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Évolution des Revenus</h3>
+                                <div id="revenue-evolution-chart" class="h-64"></div>
+                            </div>
+                        </div>
+
+                        <!-- Regional Analysis -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Analyse Régionale</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Région</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Production (T)</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Revenus (M FCFA)</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Producteurs</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Évolution</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Performance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        <tr class="border-b border-gray-100">
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900 font-medium">Saint-Louis</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">78,540</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">23,450</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">2,456</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">+15.2%</span>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
+                                                        <div class="w-14 h-2 bg-green-500 rounded-full"></div>
+                                                    </div>
+                                                    <span class="font-roboto text-gray-600 text-sm">87%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100">
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900 font-medium">Thiès</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">65,230</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">19,580</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">1,892</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">+12.8%</span>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
+                                                        <div class="w-12 h-2 bg-blue-500 rounded-full"></div>
+                                                    </div>
+                                                    <span class="font-roboto text-gray-600 text-sm">78%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100">
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900 font-medium">Kolda</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">45,680</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">15,230</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">1,234</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <span class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">+8.5%</span>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
+                                                        <div class="w-10 h-2 bg-orange-500 rounded-full"></div>
+                                                    </div>
+                                                    <span class="font-roboto text-gray-600 text-sm">65%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100">
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900 font-medium">Dakar</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">32,450</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">12,890</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">856</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">+5.2%</span>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="w-16 h-2 bg-gray-200 rounded-full mr-2">
+                                                        <div class="w-8 h-2 bg-purple-500 rounded-full"></div>
+                                                    </div>
+                                                    <span class="font-roboto text-gray-600 text-sm">52%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Platform Metrics -->
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Métriques Plateforme</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Sessions mensuelles</span>
+                                        <span class="font-roboto text-gray-900 font-medium">125,400</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Pages vues</span>
+                                        <span class="font-roboto text-gray-900 font-medium">456,780</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Durée moyenne</span>
+                                        <span class="font-roboto text-gray-900 font-medium">8min 32s</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Taux de rebond</span>
+                                        <span class="font-roboto text-gray-900 font-medium">24.5%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Transactions</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Volume mensuel</span>
+                                        <span class="font-roboto text-gray-900 font-medium">18,945</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Valeur moyenne</span>
+                                        <span class="font-roboto text-gray-900 font-medium">25,780 FCFA</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Taux de succès</span>
+                                        <span class="font-roboto text-gray-900 font-medium">96.8%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Commissions</span>
+                                        <span class="font-roboto text-gray-900 font-medium">1.2M FCFA</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Services Publics</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Dossiers traités</span>
+                                        <span class="font-roboto text-gray-900 font-medium">2,456</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Délai moyen</span>
+                                        <span class="font-roboto text-gray-900 font-medium">4.2 jours</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Satisfaction</span>
+                                        <span class="font-roboto text-gray-900 font-medium">94%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-roboto text-gray-600">Taxes collectées</span>
+                                        <span class="font-roboto text-gray-900 font-medium">145M FCFA</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autres tabs cachés (pour la navigation) -->
+                <div id="admin-overview" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-dashboard-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Vue d'ensemble</h3>
+                        <p class="text-gray-500 mt-2">Tableau de bord principal.</p>
+                    </div>
+                </div>
+                <div id="admin-users" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-user-settings-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Utilisateurs</h3>
+                        <p class="text-gray-500 mt-2">Module de gestion avancée des utilisateurs.</p>
+                    </div>
+                </div>
+                <div id="admin-workflows" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-flow-chart text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Workflows</h3>
+                        <p class="text-gray-500 mt-2">Supervision et configuration des processus métier.</p>
+                    </div>
+                </div>
+                <div id="admin-content" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
+                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                    </div>
+                </div>
+                <div id="admin-settings" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-settings-3-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Paramètres</h3>
+                        <p class="text-gray-500 mt-2">Configuration générale, rôles et permissions.</p>
+                    </div>
+                </div>
             </div>
+        </main>
+    </div>
 
-            <!-- Settings Tab -->
-        </div>
-    </section>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
     <script>
-        // JavaScript functions for the administration page
-        function showPage(pageId) {
-            // Hide all pages
-            document.getElementById('accueil').classList.add('hidden');
-            document.getElementById('apropos-page').classList.add('hidden');
-            document.getElementById('services-page').classList.add('hidden');
-            document.getElementById('administration-page').classList.add('hidden');
-            document.getElementById('contact-page').classList.add('hidden');
-
-            // Show selected page
-            if (pageId) {
-                document.getElementById(pageId).classList.remove('hidden');
+        // Initialize ECharts for Analytics page
+        function initAnalyticsCharts() {
+            if (typeof echarts === 'undefined') return;
+            
+            const sectorChartEl = document.getElementById('production-by-sector-chart');
+            const revenueChartEl = document.getElementById('revenue-evolution-chart');
+            
+            if (sectorChartEl) {
+                const sectorChart = echarts.init(sectorChartEl);
+                sectorChart.setOption({
+                    animation: false,
+                    tooltip: { trigger: 'axis' },
+                    legend: { orient: 'vertical', left: 'left', data: ['Production (T)'] },
+                    xAxis: { type: 'category', data: ['Arachide', 'Millet', 'Maïs', 'Riz', 'Maraîchage'] },
+                    yAxis: { type: 'value', name: 'Tonnes' },
+                    series: [{
+                        type: 'bar',
+                        data: [125000, 98000, 87000, 112000, 65000],
+                        itemStyle: { color: '#2E7D32', borderRadius: [8, 8, 0, 0] }
+                    }]
+                });
+                window.addEventListener('resize', () => sectorChart.resize());
+            }
+            
+            if (revenueChartEl) {
+                const revenueChart = echarts.init(revenueChartEl);
+                revenueChart.setOption({
+                    animation: false,
+                    tooltip: { trigger: 'axis' },
+                    xAxis: { type: 'category', data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'] },
+                    yAxis: { type: 'value', name: 'Milliards FCFA' },
+                    series: [{
+                        type: 'line',
+                        smooth: true,
+                        data: [12.4, 13.8, 14.2, 15.6, 16.8, 18.2],
+                        lineStyle: { color: '#66BB6A', width: 3 },
+                        areaStyle: { color: 'rgba(102, 187, 106, 0.1)' }
+                    }]
+                });
+                window.addEventListener('resize', () => revenueChart.resize());
             }
         }
 
-        function showHomePage() {
-            showPage(null);
-            document.getElementById('accueil').classList.remove('hidden');
-        }
-
-        function showAdminTab(tabName) {
-            // Hide all admin tabs
-            const tabs = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
-            tabs.forEach(tab => {
-                document.getElementById(`admin-${tab}`).classList.add('hidden');
+        // Navigation entre tabs
+        function switchAdminTab(tabName, event) {
+            if (event && event.preventDefault) event.preventDefault();
+            
+            const tabContents = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
+            tabContents.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
             });
-
-            // Show selected tab
-            document.getElementById(`admin-${tabName}`).classList.remove('hidden');
-
-            // Update tab buttons
-            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('text-gray-600', 'hover:bg-gray-50');
+            
+            const activeTab = document.getElementById(`admin-${tabName}`);
+            if (activeTab) activeTab.classList.remove('hidden-tab');
+            
+            const allLinks = document.querySelectorAll('.admin-sidebar-link');
+            allLinks.forEach(link => {
+                link.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                link.classList.add('text-gray-700', 'hover:bg-gray-50');
             });
-            event.target.classList.add('bg-primary', 'text-white');
-            event.target.classList.remove('text-gray-600', 'hover:bg-gray-50');
+            
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                event.currentTarget.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            }
         }
+        
+        // Déconnexion
+        function handleLogout(event) {
+            if (event && event.preventDefault) event.preventDefault();
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                alert('Déconnexion réussie.');
+                console.log('Utilisateur déconnecté');
+            }
+        }
+        
+        // Fonctions legacy pour compatibilité
+        function showPage(pageId) {}
+        function showHomePage() {}
+        function viewUserDetails(userId) { console.log('Viewing user details:', userId); }
+        function editUserRole(userId) { console.log('Editing user role:', userId); }
+        function suspendUser(userId) { console.log('Suspending user:', userId); }
+        function deleteUser(userId) { console.log('Deleting user:', userId); }
+        function reactivateUser(userId) { console.log('Reactivating user:', userId); }
+        function editWorkflow(workflowId) { console.log('Editing workflow:', workflowId); }
+        function viewWorkflowStats(workflowId) { console.log('Viewing workflow stats:', workflowId); }
+        function viewArticle(articleId) { console.log('Viewing article:', articleId); }
+        function editArticle(articleId) { console.log('Editing article:', articleId); }
+        function deleteArticle(articleId) { console.log('Deleting article:', articleId); }
+        function publishArticle(articleId) { console.log('Publishing article:', articleId); }
+        function openCreateUserModal() { console.log('Opening create user modal'); }
+        function openCreateWorkflowModal() { console.log('Opening create workflow modal'); }
+        function openCreateArticleModal() { console.log('Opening create article modal'); }
 
-        // User management functions
-        function viewUserDetails(userId) {
-            console.log('Viewing user details for:', userId);
-        }
-
-        function editUserRole(userId) {
-            console.log('Editing user role for:', userId);
-        }
-
-        function suspendUser(userId) {
-            console.log('Suspending user:', userId);
-        }
-
-        function deleteUser(userId) {
-            console.log('Deleting user:', userId);
-        }
-
-        function reactivateUser(userId) {
-            console.log('Reactivating user:', userId);
-        }
-
-        // Workflow management functions
-        function editWorkflow(workflowId) {
-            console.log('Editing workflow:', workflowId);
-        }
-
-        function viewWorkflowStats(workflowId) {
-            console.log('Viewing workflow stats:', workflowId);
-        }
-
-        // Content management functions
-        function viewArticle(articleId) {
-            console.log('Viewing article:', articleId);
-        }
-
-        function editArticle(articleId) {
-            console.log('Editing article:', articleId);
-        }
-
-        function deleteArticle(articleId) {
-            console.log('Deleting article:', articleId);
-        }
-
-        function publishArticle(articleId) {
-            console.log('Publishing article:', articleId);
-        }
-
-        // Modal functions
-        function openCreateUserModal() {
-            console.log('Opening create user modal');
-        }
-
-        function openCreateWorkflowModal() {
-            console.log('Opening create workflow modal');
-        }
-
-        function openCreateArticleModal() {
-            console.log('Opening create article modal');
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            initAnalyticsCharts();
+            
+            // S'assurer que tous les autres tabs sont cachés, analytics visible
+            const tabsExceptAnalytics = ['overview', 'users', 'workflows', 'content', 'settings'];
+            tabsExceptAnalytics.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
+            });
+            const analyticsEl = document.getElementById('admin-analytics');
+            if (analyticsEl) analyticsEl.classList.remove('hidden-tab');
+        });
     </script>
 </body>
 
 </html>
-

@@ -5,7 +5,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <title>Programme National de Développement des Agropoles du Sénégal - Gestion Utilisateurs</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,501 +43,535 @@
         }
     </script>
     <style>
-        :where([class^="ri-"])::before {
-            content: "\f3c2";
+        /* Full height layout - dashboard takes entire viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Fix sidebar during scroll */
+        .sidebar-fixed {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Custom scrollbar for sidebar (subtle) */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Content area scrollable */
+        .content-scrollable {
+            overflow-y: auto;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .content-scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-scrollable::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .hidden-tab {
+            display: none;
+        }
+        
+        .dashboard-full {
+            width: 100%;
+        }
+
+        .logo-placeholder {
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 
-<body class="font-roboto bg-white">
-   
-    <!-- Administration Page -->
-    <section id="administration-page" class="pt-16 bg-gray-50 min-h-screen ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <!-- Administration Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
-                    <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+<body class="font-roboto bg-gray-50 overflow-hidden">
+    <!-- Administration Page - Full width & height layout with fixed sidebar -->
+    <div class="flex h-screen w-full">
+        
+        <!-- SIDEBAR: Fixed on scroll, light & spacious, takes full height -->
+        <aside class="sidebar-fixed w-72 lg:w-80 flex-shrink-0 bg-white border-r border-gray-100 shadow-sm z-10">
+            <div class="flex flex-col h-full">
+                <!-- Sidebar header with LOGO -->
+                <div class="p-5 border-b border-gray-100">
+                    <div class="flex items-center justify-center">
+                        <img src="logo.png" 
+                             alt="Logo Agropoles" 
+                             class="logo-placeholder w-full max-w-[180px] h-auto object-contain mx-auto">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-[-10px] font-roboto">Projet des agropoles du sénégal</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
-                        <i class="ri-notification-line text-xl"></i>
-                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
-                    <div class="flex items-center space-x-3">
-                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
-                            alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
-                        <div>
-                            <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
-                            <div class="font-roboto text-sm text-gray-600">Administrateur</div>
-                        </div>
+                
+                <!-- Navigation items - light & spacious -->
+                <nav class="flex-1 p-3 sidebar-scroll overflow-y-auto">
+                    <div class="space-y-1.5">
+                        <a href="#" onclick="switchAdminTab('overview', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-dashboard-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Vue d'ensemble</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('users', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
+                            <i class="ri-user-settings-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Utilisateurs</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Formalités</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Workflows</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Contenu</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-bar-chart-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Analytics</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('settings', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-settings-3-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Paramètres</span>
+                        </a>
+                    </div>
+                </nav>
+                
+                <!-- SECTION EN BAS (bottom:0) : Aide & Support + Déconnexion -->
+                <div class="mt-auto border-t border-gray-100 pt-4 pb-5 px-3">
+                    
+                    <!-- Bouton Déconnexion -->
+                    <div>
+                        <a href="#" onclick="handleLogout(event);" 
+                           class="flex items-center px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition group cursor-pointer">
+                            <i class="ri-logout-box-r-line mr-3 text-red-500 group-hover:text-red-700 transition text-lg"></i>
+                            <span class="font-inter text-sm font-medium">Déconnexion</span>
+                        </a>
                     </div>
                 </div>
             </div>
+        </aside>
 
-            <!-- Administration Navigation -->
-            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
-                <a href="statistique.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Vue d'ensemble</a>
-                <a href="utilisateurs.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap cursor-pointer">Gestion Utilisateurs</a>
-                <a href="workflows.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Workflows</a>
-                <a href="contenu.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Contenu</a>
-                <a href="analytics.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Analytics</a>
-                <a href="parametres.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Paramètres</a>
-            </div>
-<div id="admin-users" class="admin-tab-content">
-                <div class="space-y-8">
-                    <!-- Users Management Header -->
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Utilisateurs</h2>
-                            <p class="font-roboto text-gray-600 mt-1">Modération des comptes, rôles et permissions</p>
-                        </div>
-                        <button
-                            class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer"
-                            onclick="openCreateUserModal()">
-                            <i class="ri-user-add-line mr-2"></i>Nouvel utilisateur
+        <!-- MAIN CONTENT AREA - Scrollable, takes full remaining width -->
+        <main class="flex-1 content-scrollable overflow-y-auto bg-gray-50">
+            <div class="dashboard-full px-4 sm:px-6 lg:px-8 py-6">
+                
+                <!-- Administration Header -->
+                <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
+                        <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
+                            <i class="ri-notification-line text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
                         </button>
-                    </div>
-
-                    <!-- Users Stats -->
-                    <div class="grid md:grid-cols-5 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div
-                                class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-user-line text-green-600 text-xl"></i>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
+                                alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div>
+                                <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
+                                <div class="font-roboto text-sm text-gray-600">Administrateur</div>
                             </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">8,456</div>
-                            <div class="font-roboto text-gray-600 text-sm">Producteurs</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-shopping-cart-line text-blue-600 text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,134</div>
-                            <div class="font-roboto text-gray-600 text-sm">Acheteurs</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div
-                                class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-settings-line text-purple-600 text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">1,247</div>
-                            <div class="font-roboto text-gray-600 text-sm">Transformateurs</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div
-                                class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-tools-line text-orange-600 text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">567</div>
-                            <div class="font-roboto text-gray-600 text-sm">Prestataires</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div class="w-12 h-12 flex items-center justify-center bg-red-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-shield-user-line text-red-600 text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">89</div>
-                            <div class="font-roboto text-gray-600 text-sm">Administrateurs</div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Users Search and Filters -->
-                    <div class="bg-white rounded-xl shadow-sm p-6">
-                        <div class="grid md:grid-cols-4 gap-4 mb-6">
-                            <div class="relative">
-                                <input type="text" placeholder="Rechercher un utilisateur..."
-                                    class="w-full px-4 py-3 pr-12 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary"
-                                    id="users-search">
-                                <div
-                                    class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center">
-                                    <i class="ri-search-line text-gray-400"></i>
+                <!-- TAB CONTENT: Gestion Utilisateurs (active par défaut sur cette page) -->
+                <div id="admin-users" class="admin-tab-content">
+                    <div class="space-y-8">
+                        <!-- Users Management Header -->
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Utilisateurs</h2>
+                                <p class="font-roboto text-gray-600 mt-1">Modération des comptes, rôles et permissions</p>
+                            </div>
+                            <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="openCreateUserModal()">
+                                <i class="ri-user-add-line mr-2"></i>Nouvel utilisateur
+                            </button>
+                        </div>
+
+                        <!-- Users Stats -->
+                        <div class="grid md:grid-cols-5 gap-6">
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-user-line text-green-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">8,456</div>
+                                <div class="font-roboto text-gray-600 text-sm">Producteurs</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-shopping-cart-line text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,134</div>
+                                <div class="font-roboto text-gray-600 text-sm">Acheteurs</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-settings-line text-purple-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">1,247</div>
+                                <div class="font-roboto text-gray-600 text-sm">Transformateurs</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-tools-line text-orange-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">567</div>
+                                <div class="font-roboto text-gray-600 text-sm">Prestataires</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-red-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-shield-user-line text-red-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">89</div>
+                                <div class="font-roboto text-gray-600 text-sm">Administrateurs</div>
+                            </div>
+                        </div>
+
+                        <!-- Users Search and Filters -->
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div class="grid md:grid-cols-4 gap-4 mb-6">
+                                <div class="relative">
+                                    <input type="text" placeholder="Rechercher un utilisateur..." class="w-full px-4 py-3 pr-12 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary" id="users-search">
+                                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center">
+                                        <i class="ri-search-line text-gray-400"></i>
+                                    </div>
+                                </div>
+                                <select class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8" id="role-filter">
+                                    <option value="">Tous les rôles</option>
+                                    <option value="producteur">Producteurs</option>
+                                    <option value="acheteur">Acheteurs</option>
+                                    <option value="transformateur">Transformateurs</option>
+                                    <option value="prestataire">Prestataires</option>
+                                    <option value="admin">Administrateurs</option>
+                                </select>
+                                <select class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8" id="status-filter">
+                                    <option value="">Tous les statuts</option>
+                                    <option value="active">Actifs</option>
+                                    <option value="inactive">Inactifs</option>
+                                    <option value="suspended">Suspendus</option>
+                                    <option value="pending">En attente</option>
+                                </select>
+                                <select class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8" id="region-filter-admin">
+                                    <option value="">Toutes les régions</option>
+                                    <option value="dakar">Dakar</option>
+                                    <option value="thies">Thiès</option>
+                                    <option value="saint-louis">Saint-Louis</option>
+                                    <option value="kolda">Kolda</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-wrap justify-between items-center gap-4">
+                                <div class="text-sm font-roboto text-gray-600">
+                                    <span id="users-results-count">15,847</span> utilisateurs trouvés
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
+                                        <i class="ri-download-line mr-2"></i>Exporter
+                                    </button>
+                                    <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
+                                        <i class="ri-mail-send-line mr-2"></i>Email groupé
+                                    </button>
                                 </div>
                             </div>
-                            <select
-                                class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
-                                id="role-filter">
-                                <option value="">Tous les rôles</option>
-                                <option value="producteur">Producteurs</option>
-                                <option value="acheteur">Acheteurs</option>
-                                <option value="transformateur">Transformateurs</option>
-                                <option value="prestataire">Prestataires</option>
-                                <option value="admin">Administrateurs</option>
-                            </select>
-                            <select
-                                class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
-                                id="status-filter">
-                                <option value="">Tous les statuts</option>
-                                <option value="active">Actifs</option>
-                                <option value="inactive">Inactifs</option>
-                                <option value="suspended">Suspendus</option>
-                                <option value="pending">En attente</option>
-                            </select>
-                            <select
-                                class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
-                                id="region-filter-admin">
-                                <option value="">Toutes les régions</option>
-                                <option value="dakar">Dakar</option>
-                                <option value="thies">Thiès</option>
-                                <option value="saint-louis">Saint-Louis</option>
-                                <option value="kolda">Kolda</option>
-                            </select>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <div class="text-sm font-roboto text-gray-600">
-                                <span id="users-results-count">15,847</span> utilisateurs trouvés
+
+                        <!-- Users Table -->
+                        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">
+                                                <input type="checkbox" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
+                                            </th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Utilisateur</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Rôle</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Statut</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Région</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Inscription</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Dernière activité</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="px-6 py-4">
+                                                <input type="checkbox" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20farmer%20portrait%2C%20confident%20male%20agriculturist%2C%20smiling%20farmer%20in%20agricultural%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=user-admin001&orientation=squarish" alt="Utilisateur" class="w-10 h-10 rounded-full object-cover object-top">
+                                                    <div>
+                                                        <div class="font-roboto text-gray-900 font-medium">Amadou Sy</div>
+                                                        <div class="font-roboto text-gray-500 text-sm">amadou.sy@email.com</div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Producteur</span>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">Saint-Louis</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">15 mars 2023</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">Il y a 2h</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-primary hover:text-green-800 transition-colors font-inter text-sm cursor-pointer" onclick="viewUserDetails('amadou-sy')"><i class="ri-eye-line"></i></button>
+                                                    <button class="text-blue-600 hover:text-blue-800 transition-colors font-inter text-sm cursor-pointer" onclick="editUserRole('amadou-sy')"><i class="ri-edit-line"></i></button>
+                                                    <button class="text-yellow-600 hover:text-yellow-800 transition-colors font-inter text-sm cursor-pointer" onclick="suspendUser('amadou-sy')"><i class="ri-pause-line"></i></button>
+                                                    <button class="text-red-600 hover:text-red-800 transition-colors font-inter text-sm cursor-pointer" onclick="deleteUser('amadou-sy')"><i class="ri-delete-bin-line"></i></button>
+                                                </div>
+                                             </div>
+                                         </div>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="px-6 py-4">
+                                                <input type="checkbox" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20portrait%2C%20confident%20female%20agricultural%20entrepreneur%2C%20smiling%20professional%20headshot&width=100&height=100&seq=user-admin002&orientation=squarish" alt="Utilisateur" class="w-10 h-10 rounded-full object-cover object-top">
+                                                    <div>
+                                                        <div class="font-roboto text-gray-900 font-medium">Fatou Diallo</div>
+                                                        <div class="font-roboto text-gray-500 text-sm">fatou.diallo@email.com</div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">Acheteur</span>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">Dakar</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">28 jan 2024</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">Il y a 5h</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-primary hover:text-green-800 transition-colors font-inter text-sm cursor-pointer" onclick="viewUserDetails('fatou-diallo')"><i class="ri-eye-line"></i></button>
+                                                    <button class="text-blue-600 hover:text-blue-800 transition-colors font-inter text-sm cursor-pointer" onclick="editUserRole('fatou-diallo')"><i class="ri-edit-line"></i></button>
+                                                    <button class="text-yellow-600 hover:text-yellow-800 transition-colors font-inter text-sm cursor-pointer" onclick="suspendUser('fatou-diallo')"><i class="ri-pause-line"></i></button>
+                                                    <button class="text-red-600 hover:text-red-800 transition-colors font-inter text-sm cursor-pointer" onclick="deleteUser('fatou-diallo')"><i class="ri-delete-bin-line"></i></button>
+                                                </div>
+                                             </div>
+                                         </div>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="px-6 py-4">
+                                                <input type="checkbox" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20male%20entrepreneur%20portrait%2C%20confident%20businessman%20in%20agricultural%20sector%2C%20professional%20headshot&width=100&height=100&seq=user-admin003&orientation=squarish" alt="Utilisateur" class="w-10 h-10 rounded-full object-cover object-top">
+                                                    <div>
+                                                        <div class="font-roboto text-gray-900 font-medium">Ibrahim Sarr</div>
+                                                        <div class="font-roboto text-gray-500 text-sm">ibrahim.sarr@email.com</div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">Transformateur</span>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm font-medium rounded-full">Suspendu</span>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">Thiès</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">12 nov 2023</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">Il y a 3j</div>
+                                             </div>
+                                             <td class="px-6 py-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-primary hover:text-green-800 transition-colors font-inter text-sm cursor-pointer" onclick="viewUserDetails('ibrahim-sarr')"><i class="ri-eye-line"></i></button>
+                                                    <button class="text-blue-600 hover:text-blue-800 transition-colors font-inter text-sm cursor-pointer" onclick="editUserRole('ibrahim-sarr')"><i class="ri-edit-line"></i></button>
+                                                    <button class="text-green-600 hover:text-green-800 transition-colors font-inter text-sm cursor-pointer" onclick="reactivateUser('ibrahim-sarr')"><i class="ri-play-line"></i></button>
+                                                    <button class="text-red-600 hover:text-red-800 transition-colors font-inter text-sm cursor-pointer" onclick="deleteUser('ibrahim-sarr')"><i class="ri-delete-bin-line"></i></button>
+                                                </div>
+                                             </div>
+                                         </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="flex space-x-2">
-                                <button
-                                    class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
-                                    <i class="ri-download-line mr-2"></i>Exporter
-                                </button>
-                                <button
-                                    class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
-                                    <i class="ri-mail-send-line mr-2"></i>Email groupé
-                                </button>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="flex flex-wrap justify-center items-center gap-4">
+                            <button class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">
+                                <i class="ri-arrow-left-line mr-2"></i>Précédent
+                            </button>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="w-10 h-10 bg-primary text-white !rounded-button font-medium cursor-pointer">1</button>
+                                <button class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors cursor-pointer">2</button>
+                                <button class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors cursor-pointer">3</button>
+                                <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
+                                <button class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors cursor-pointer">125</button>
                             </div>
+                            <button class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">
+                                Suivant<i class="ri-arrow-right-line ml-2"></i>
+                            </button>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Users Table -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">
-                                            <input type="checkbox"
-                                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
-                                        </th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Utilisateur
-                                        </th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Rôle</th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Statut</th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Région</th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Inscription
-                                        </th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Dernière
-                                            activité</th>
-                                        <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Actions
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white">
-                                    <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                        <td class="px-6 py-4">
-                                            <input type="checkbox"
-                                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center space-x-3">
-                                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20farmer%20portrait%2C%20confident%20male%20agriculturist%2C%20smiling%20farmer%20in%20agricultural%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=user-admin001&orientation=squarish"
-                                                    alt="Utilisateur"
-                                                    class="w-10 h-10 rounded-full object-cover object-top">
-                                                <div>
-                                                    <div class="font-roboto text-gray-900 font-medium">Amadou Sy</div>
-                                                    <div class="font-roboto text-gray-500 text-sm">amadou.sy@email.com
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Producteur</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">Saint-Louis</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">15 mars 2023</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">Il y a 2h</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex space-x-2">
-                                                <button
-                                                    class="text-primary hover:text-green-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="viewUserDetails('amadou-sy')">
-                                                    <i class="ri-eye-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-blue-600 hover:text-blue-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="editUserRole('amadou-sy')">
-                                                    <i class="ri-edit-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-yellow-600 hover:text-yellow-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="suspendUser('amadou-sy')">
-                                                    <i class="ri-pause-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-red-600 hover:text-red-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="deleteUser('amadou-sy')">
-                                                    <i class="ri-delete-bin-line"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                        <td class="px-6 py-4">
-                                            <input type="checkbox"
-                                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center space-x-3">
-                                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20portrait%2C%20confident%20female%20agricultural%20entrepreneur%2C%20smiling%20professional%20headshot&width=100&height=100&seq=user-admin002&orientation=squarish"
-                                                    alt="Utilisateur"
-                                                    class="w-10 h-10 rounded-full object-cover object-top">
-                                                <div>
-                                                    <div class="font-roboto text-gray-900 font-medium">Fatou Diallo
-                                                    </div>
-                                                    <div class="font-roboto text-gray-500 text-sm">
-                                                        fatou.diallo@email.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">Acheteur</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">Dakar</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">28 jan 2024</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">Il y a 5h</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex space-x-2">
-                                                <button
-                                                    class="text-primary hover:text-green-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="viewUserDetails('fatou-diallo')">
-                                                    <i class="ri-eye-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-blue-600 hover:text-blue-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="editUserRole('fatou-diallo')">
-                                                    <i class="ri-edit-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-yellow-600 hover:text-yellow-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="suspendUser('fatou-diallo')">
-                                                    <i class="ri-pause-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-red-600 hover:text-red-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="deleteUser('fatou-diallo')">
-                                                    <i class="ri-delete-bin-line"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                        <td class="px-6 py-4">
-                                            <input type="checkbox"
-                                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center space-x-3">
-                                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20male%20entrepreneur%20portrait%2C%20confident%20businessman%20in%20agricultural%20sector%2C%20professional%20headshot&width=100&height=100&seq=user-admin003&orientation=squarish"
-                                                    alt="Utilisateur"
-                                                    class="w-10 h-10 rounded-full object-cover object-top">
-                                                <div>
-                                                    <div class="font-roboto text-gray-900 font-medium">Ibrahim Sarr
-                                                    </div>
-                                                    <div class="font-roboto text-gray-500 text-sm">
-                                                        ibrahim.sarr@email.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">Transformateur</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm font-medium rounded-full">Suspendu</span>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">Thiès</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">12 nov 2023</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="font-roboto text-gray-900">Il y a 3j</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex space-x-2">
-                                                <button
-                                                    class="text-primary hover:text-green-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="viewUserDetails('ibrahim-sarr')">
-                                                    <i class="ri-eye-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-blue-600 hover:text-blue-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="editUserRole('ibrahim-sarr')">
-                                                    <i class="ri-edit-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-green-600 hover:text-green-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="reactivateUser('ibrahim-sarr')">
-                                                    <i class="ri-play-line"></i>
-                                                </button>
-                                                <button
-                                                    class="text-red-600 hover:text-red-800 transition-colors font-inter text-sm cursor-pointer"
-                                                    onclick="deleteUser('ibrahim-sarr')">
-                                                    <i class="ri-delete-bin-line"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <!-- Autres tabs cachés (pour la navigation) -->
+                <div id="admin-overview" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-dashboard-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Vue d'ensemble</h3>
+                        <p class="text-gray-500 mt-2">Tableau de bord principal.</p>
                     </div>
-
-                    <!-- Pagination -->
-                    <div class="flex justify-center items-center space-x-4">
-                        <button
-                            class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">
-                            <i class="ri-arrow-left-line mr-2"></i>Précédent
-                        </button>
-                        <div class="flex space-x-2">
-                            <button
-                                class="w-10 h-10 bg-primary text-white !rounded-button font-medium cursor-pointer">1</button>
-                            <button
-                                class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors cursor-pointer">2</button>
-                            <button
-                                class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors cursor-pointer">3</button>
-                            <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
-                            <button
-                                class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors cursor-pointer">125</button>
-                        </div>
-                        <button
-                            class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">
-                            Suivant<i class="ri-arrow-right-line ml-2"></i>
-                        </button>
+                </div>
+                <div id="admin-workflows" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-flow-chart text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Workflows</h3>
+                        <p class="text-gray-500 mt-2">Supervision et configuration des processus métier.</p>
+                    </div>
+                </div>
+                <div id="admin-content" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
+                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                    </div>
+                </div>
+                <div id="admin-analytics" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-bar-chart-2-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Analytics</h3>
+                        <p class="text-gray-500 mt-2">Statistiques détaillées et KPIs de la plateforme.</p>
+                    </div>
+                </div>
+                <div id="admin-settings" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-settings-3-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Paramètres</h3>
+                        <p class="text-gray-500 mt-2">Configuration générale, rôles et permissions.</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Workflows Management Tab -->
-        </div>
-    </section>
+        </main>
+    </div>
 
     <script>
-        // JavaScript functions for the administration page
-        function showPage(pageId) {
-            // Hide all pages
-            document.getElementById('accueil').classList.add('hidden');
-            document.getElementById('apropos-page').classList.add('hidden');
-            document.getElementById('services-page').classList.add('hidden');
-            document.getElementById('administration-page').classList.add('hidden');
-            document.getElementById('contact-page').classList.add('hidden');
-
-            // Show selected page
-            if (pageId) {
-                document.getElementById(pageId).classList.remove('hidden');
+        // Navigation entre tabs
+        function switchAdminTab(tabName, event) {
+            if (event && event.preventDefault) event.preventDefault();
+            
+            const tabContents = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
+            tabContents.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
+            });
+            
+            const activeTab = document.getElementById(`admin-${tabName}`);
+            if (activeTab) activeTab.classList.remove('hidden-tab');
+            
+            const allLinks = document.querySelectorAll('.admin-sidebar-link');
+            allLinks.forEach(link => {
+                link.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                link.classList.add('text-gray-700', 'hover:bg-gray-50');
+            });
+            
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                event.currentTarget.classList.add('bg-primary', 'text-white', 'shadow-sm');
             }
         }
-
-        function showHomePage() {
-            showPage(null);
-            document.getElementById('accueil').classList.remove('hidden');
+        
+        // Déconnexion
+        function handleLogout(event) {
+            if (event && event.preventDefault) event.preventDefault();
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                alert('Déconnexion réussie.');
+                console.log('Utilisateur déconnecté');
+            }
         }
+        
+        // Fonctions de gestion utilisateurs
+        function viewUserDetails(userId) { console.log('Viewing user details:', userId); alert('Détails utilisateur: ' + userId); }
+        function editUserRole(userId) { console.log('Editing user role:', userId); alert('Modification rôle: ' + userId); }
+        function suspendUser(userId) { console.log('Suspending user:', userId); if(confirm('Suspendre cet utilisateur ?')) alert('Utilisateur suspendu: ' + userId); }
+        function deleteUser(userId) { console.log('Deleting user:', userId); if(confirm('Supprimer cet utilisateur ?')) alert('Utilisateur supprimé: ' + userId); }
+        function reactivateUser(userId) { console.log('Reactivating user:', userId); alert('Utilisateur réactivé: ' + userId); }
+        function openCreateUserModal() { console.log('Opening create user modal'); alert('Créer un nouvel utilisateur'); }
+        
+        // Fonctions legacy pour compatibilité
+        function showPage(pageId) {}
+        function showHomePage() {}
+        function editWorkflow(workflowId) { console.log('Editing workflow:', workflowId); }
+        function viewWorkflowStats(workflowId) { console.log('Viewing workflow stats:', workflowId); }
+        function viewArticle(articleId) { console.log('Viewing article:', articleId); }
+        function editArticle(articleId) { console.log('Editing article:', articleId); }
+        function deleteArticle(articleId) { console.log('Deleting article:', articleId); }
+        function publishArticle(articleId) { console.log('Publishing article:', articleId); }
+        function openCreateWorkflowModal() { console.log('Opening create workflow modal'); }
+        function openCreateArticleModal() { console.log('Opening create article modal'); }
 
-        function showAdminTab(tabName) {
-            // Hide all admin tabs
-            const tabs = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
-            tabs.forEach(tab => {
-                document.getElementById(`admin-${tab}`).classList.add('hidden');
+        document.addEventListener('DOMContentLoaded', function () {
+            // S'assurer que tous les autres tabs sont cachés, users visible
+            const tabsExceptUsers = ['overview', 'workflows', 'content', 'analytics', 'settings'];
+            tabsExceptUsers.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
             });
-
-            // Show selected tab
-            document.getElementById(`admin-${tabName}`).classList.remove('hidden');
-
-            // Update tab buttons
-            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('text-gray-600', 'hover:bg-gray-50');
-            });
-            event.target.classList.add('bg-primary', 'text-white');
-            event.target.classList.remove('text-gray-600', 'hover:bg-gray-50');
-        }
-
-        // User management functions
-        function viewUserDetails(userId) {
-            console.log('Viewing user details for:', userId);
-        }
-
-        function editUserRole(userId) {
-            console.log('Editing user role for:', userId);
-        }
-
-        function suspendUser(userId) {
-            console.log('Suspending user:', userId);
-        }
-
-        function deleteUser(userId) {
-            console.log('Deleting user:', userId);
-        }
-
-        function reactivateUser(userId) {
-            console.log('Reactivating user:', userId);
-        }
-
-        // Workflow management functions
-        function editWorkflow(workflowId) {
-            console.log('Editing workflow:', workflowId);
-        }
-
-        function viewWorkflowStats(workflowId) {
-            console.log('Viewing workflow stats:', workflowId);
-        }
-
-        // Content management functions
-        function viewArticle(articleId) {
-            console.log('Viewing article:', articleId);
-        }
-
-        function editArticle(articleId) {
-            console.log('Editing article:', articleId);
-        }
-
-        function deleteArticle(articleId) {
-            console.log('Deleting article:', articleId);
-        }
-
-        function publishArticle(articleId) {
-            console.log('Publishing article:', articleId);
-        }
-
-        // Modal functions
-        function openCreateUserModal() {
-            console.log('Opening create user modal');
-        }
-
-        function openCreateWorkflowModal() {
-            console.log('Opening create workflow modal');
-        }
-
-        function openCreateArticleModal() {
-            console.log('Opening create article modal');
-        }
+            const usersEl = document.getElementById('admin-users');
+            if (usersEl) usersEl.classList.remove('hidden-tab');
+        });
     </script>
 </body>
 
 </html>
-

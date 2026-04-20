@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -43,393 +43,503 @@
         }
     </script>
     <style>
-        :where([class^="ri-"])::before {
-            content: "\f3c2";
+        /* Full height layout - dashboard takes entire viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Fix sidebar during scroll */
+        .sidebar-fixed {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Custom scrollbar for sidebar (subtle) */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Content area scrollable */
+        .content-scrollable {
+            overflow-y: auto;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        /* Hide scrollbar for cleaner look on content (optional) */
+        .content-scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-scrollable::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .hidden-tab {
+            display: none;
+        }
+        
+        /* Ensure full width dashboard */
+        .dashboard-full {
+            width: 100%;
+        }
+
+        /* Logo placeholder styles */
+        .logo-placeholder {
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 
-<body class="font-roboto bg-white">
-   
-    <!-- Administration Page -->
-    <section id="administration-page" class="pt-16 bg-gray-50 min-h-screen ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <!-- Administration Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
-                    <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+<body class="font-roboto bg-gray-50 overflow-hidden">
+    <!-- Administration Page - Full width & height layout with fixed sidebar -->
+    <div class="flex h-screen w-full">
+        
+        <!-- SIDEBAR: Fixed on scroll, light & spacious, takes full height -->
+        <aside class="sidebar-fixed w-72 lg:w-80 flex-shrink-0 bg-white border-r border-gray-100 shadow-sm z-10">
+            <div class="flex flex-col h-full">
+                <!-- Sidebar header with LOGO placeholder (replaces "Navigation Admin") -->
+                <div class="p-5 border-b border-gray-100">
+                    <div class="flex items-center justify-center">
+                        <!-- Logo image placeholder - vous pouvez remplacer src par votre propre logo -->
+                        <img src="logo.png" 
+                             alt="Logo Agropoles" 
+                             class="logo-placeholder w-full max-w-[180px] h-auto object-contain mx-auto">
+                    </div>
+                    <!-- Petit texte optionnel sous le logo (très léger) -->
+                    <p class="text-center text-xs text-gray-500 mt-[-10px] font-roboto">Projet des agropoles du sénégal</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
-                        <i class="ri-notification-line text-xl"></i>
-                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
-                    <div class="flex items-center space-x-3">
-                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
-                            alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
-                        <div>
-                            <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
-                            <div class="font-roboto text-sm text-gray-600">Administrateur</div>
-                        </div>
+                
+                <!-- Navigation items - very light, spacious, with icons, scrollable if needed -->
+                <nav class="flex-1 p-3 sidebar-scroll overflow-y-auto">
+                    <div class="space-y-1.5">
+                        <a href="#" onclick="switchAdminTab('overview', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
+                            <i class="ri-dashboard-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Vue d'ensemble</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('users', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-user-settings-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Utilisateurs</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Formalités</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Workflows</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Contenu</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-bar-chart-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Analytics</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('settings', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-settings-3-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Paramètres</span>
+                        </a>
+                    </div>
+                </nav>
+                
+                <!-- SECTION EN BAS (bottom:0) : Aide & Support + Déconnexion -->
+                <div class="mt-auto border-t border-gray-100 pt-4 pb-5 px-3">
+                   
+                    <!-- Bouton Déconnexion -->
+                    <div>
+                        <a href="#" onclick="handleLogout(event);" 
+                           class="flex items-center px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition group cursor-pointer">
+                            <i class="ri-logout-box-r-line mr-3 text-red-500 group-hover:text-red-700 transition text-lg"></i>
+                            <span class="font-inter text-sm font-medium">Déconnexion</span>
+                        </a>
                     </div>
                 </div>
             </div>
+        </aside>
 
-            <!-- Administration Navigation -->
-            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
-                <a href="statistique.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap cursor-pointer">Vue d'ensemble</a>
-                <a href="utilisateurs.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Utilisateurs</a>
-                <a href="workflows.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Workflows</a>
-                <a href="contenu.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Contenu</a>
-                <a href="analytics.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Analytics</a>
-                <a href="parametres.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Paramètres</a>
-            </div>
-<div id="admin-overview" class="admin-tab-content">
-                <!-- Key Metrics -->
-                <div class="grid md:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg">
-                                <i class="ri-user-line text-primary text-xl"></i>
-                            </div>
-                            <span class="text-sm font-roboto text-green-600 bg-green-50 px-2 py-1 rounded">+8.5%</span>
-                        </div>
-                        <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">15,847</div>
-                        <div class="font-roboto text-gray-600 text-sm">Utilisateurs actifs</div>
+        <!-- MAIN CONTENT AREA - Scrollable, takes full remaining width -->
+        <main class="flex-1 content-scrollable overflow-y-auto bg-gray-50">
+            <div class="dashboard-full px-4 sm:px-6 lg:px-8 py-6">
+                
+                <!-- Administration Header (exactly as original) -->
+                <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
+                        <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center justify-between mb-4">
-                            <div
-                                class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-10 rounded-lg">
-                                <i class="ri-file-list-line text-secondary text-xl"></i>
+                    <div class="flex items-center space-x-4">
+                        <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
+                            <i class="ri-notification-line text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
+                                alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div>
+                                <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
+                                <div class="font-roboto text-sm text-gray-600">Administrateur</div>
                             </div>
-                            <span class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">156 en
-                                cours</span>
                         </div>
-                        <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,456</div>
-                        <div class="font-roboto text-gray-600 text-sm">Dossiers traités</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg">
-                                <i class="ri-shopping-cart-line text-blue-600 text-xl"></i>
-                            </div>
-                            <span class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">Ce
-                                mois</span>
-                        </div>
-                        <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">18,945</div>
-                        <div class="font-roboto text-gray-600 text-sm">Transactions</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg">
-                                <i class="ri-money-dollar-circle-line text-purple-600 text-xl"></i>
-                            </div>
-                            <span
-                                class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">Volume</span>
-                        </div>
-                        <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">487M</div>
-                        <div class="font-roboto text-gray-600 text-sm">FCFA échangés</div>
                     </div>
                 </div>
 
-                <!-- Charts and Analytics -->
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Évolution des Inscriptions</h3>
-                        <div id="users-growth-chart" class="h-64"></div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Production Nationale par Région
-                        </h3>
-                        <div id="production-by-region-chart" class="h-64"></div>
-                    </div>
-                </div>
-
-                <!-- Recent Activities and System Status -->
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900">Activités Récentes</h3>
-                            <button
-                                class="text-primary font-inter text-sm hover:text-green-800 transition-colors cursor-pointer">Voir
-                                tout</button>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full">
-                                    <i class="ri-user-add-line text-green-600 text-sm"></i>
+                <!-- TAB CONTENT: Vue d'ensemble (overview) - full width layout preserved -->
+                <div id="admin-overview" class="admin-tab-content">
+                    <!-- Key Metrics - Full width grid -->
+                    <div class="grid md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg">
+                                    <i class="ri-user-line text-primary text-xl"></i>
                                 </div>
-                                <div class="flex-1">
-                                    <div class="font-roboto text-gray-900 text-sm">Nouveau producteur inscrit</div>
-                                    <div class="font-roboto text-gray-500 text-xs mt-1">Amadou Fall - Ferme Bio Thiès -
-                                        Il y a 15 min</div>
-                                </div>
+                                <span class="text-sm font-roboto text-green-600 bg-green-50 px-2 py-1 rounded">+8.5%</span>
                             </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
-                                    <i class="ri-file-check-line text-blue-600 text-sm"></i>
+                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">15,847</div>
+                            <div class="font-roboto text-gray-600 text-sm">Utilisateurs actifs</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-10 rounded-lg">
+                                    <i class="ri-file-list-line text-secondary text-xl"></i>
                                 </div>
-                                <div class="flex-1">
-                                    <div class="font-roboto text-gray-900 text-sm">Certificat phytosanitaire validé
+                                <span class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">156 en cours</span>
+                            </div>
+                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,456</div>
+                            <div class="font-roboto text-gray-600 text-sm">Dossiers traités</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg">
+                                    <i class="ri-shopping-cart-line text-blue-600 text-xl"></i>
+                                </div>
+                                <span class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">Ce mois</span>
+                            </div>
+                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">18,945</div>
+                            <div class="font-roboto text-gray-600 text-sm">Transactions</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg">
+                                    <i class="ri-money-dollar-circle-line text-purple-600 text-xl"></i>
+                                </div>
+                                <span class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">Volume</span>
+                            </div>
+                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">487M</div>
+                            <div class="font-roboto text-gray-600 text-sm">FCFA échangés</div>
+                        </div>
+                    </div>
+
+                    <!-- Charts and Analytics - Full width responsive -->
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Évolution des Inscriptions</h3>
+                            <div id="users-growth-chart" class="h-64"></div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Production Nationale par Région</h3>
+                            <div id="production-by-region-chart" class="h-64"></div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities and System Status - Full width -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900">Activités Récentes</h3>
+                                <button class="text-primary font-inter text-sm hover:text-green-800 transition-colors cursor-pointer">Voir tout</button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full">
+                                        <i class="ri-user-add-line text-green-600 text-sm"></i>
                                     </div>
-                                    <div class="font-roboto text-gray-500 text-xs mt-1">#FRA-2024-189 - Dr. Dieng - Il y
-                                        a 32 min</div>
+                                    <div class="flex-1">
+                                        <div class="font-roboto text-gray-900 text-sm">Nouveau producteur inscrit</div>
+                                        <div class="font-roboto text-gray-500 text-xs mt-1">Amadou Fall - Ferme Bio Thiès - Il y a 15 min</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
-                                    <i class="ri-shopping-bag-line text-purple-600 text-sm"></i>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                        <i class="ri-file-check-line text-blue-600 text-sm"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="font-roboto text-gray-900 text-sm">Certificat phytosanitaire validé</div>
+                                        <div class="font-roboto text-gray-500 text-xs mt-1">#FRA-2024-189 - Dr. Dieng - Il y a 32 min</div>
+                                    </div>
                                 </div>
-                                <div class="flex-1">
-                                    <div class="font-roboto text-gray-900 text-sm">Grosse transaction marketplace</div>
-                                    <div class="font-roboto text-gray-500 text-xs mt-1">2.5T tomates - 2.1M FCFA - Il y
-                                        a 1h</div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
+                                        <i class="ri-shopping-bag-line text-purple-600 text-sm"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="font-roboto text-gray-900 text-sm">Grosse transaction marketplace</div>
+                                        <div class="font-roboto text-gray-500 text-xs mt-1">2.5T tomates - 2.1M FCFA - Il y a 1h</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="w-8 h-8 flex items-center justify-center bg-orange-100 rounded-full">
-                                    <i class="ri-alert-line text-orange-600 text-sm"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="font-roboto text-gray-900 text-sm">Signalement utilisateur</div>
-                                    <div class="font-roboto text-gray-500 text-xs mt-1">Vendeur suspect - À modérer - Il
-                                        y a 2h</div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-orange-100 rounded-full">
+                                        <i class="ri-alert-line text-orange-600 text-sm"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="font-roboto text-gray-900 text-sm">Signalement utilisateur</div>
+                                        <div class="font-roboto text-gray-500 text-xs mt-1">Vendeur suspect - À modérer - Il y a 2h</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900">État du Système</h3>
-                            <span
-                                class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Opérationnel</span>
-                        </div>
-                        <div class="space-y-6">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <div class="font-roboto text-gray-900 font-medium">Serveurs API</div>
-                                    <div class="font-roboto text-gray-600 text-sm">Réponse moyenne: 120ms</div>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                    <span class="font-roboto text-green-600 text-sm font-medium">Optimal</span>
-                                </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900">État du Système</h3>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Opérationnel</span>
                             </div>
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <div class="font-roboto text-gray-900 font-medium">Base de données</div>
-                                    <div class="font-roboto text-gray-600 text-sm">Utilisation: 67%</div>
+                            <div class="space-y-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="font-roboto text-gray-900 font-medium">Serveurs API</div>
+                                        <div class="font-roboto text-gray-600 text-sm">Réponse moyenne: 120ms</div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                        <span class="font-roboto text-green-600 text-sm font-medium">Optimal</span>
+                                    </div>
                                 </div>
-                                <div class="flex items-center">
-                                    <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                    <span class="font-roboto text-green-600 text-sm font-medium">Normal</span>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="font-roboto text-gray-900 font-medium">Base de données</div>
+                                        <div class="font-roboto text-gray-600 text-sm">Utilisation: 67%</div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                        <span class="font-roboto text-green-600 text-sm font-medium">Normal</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <div class="font-roboto text-gray-900 font-medium">Stockage</div>
-                                    <div class="font-roboto text-gray-600 text-sm">Espace libre: 2.4TB</div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="font-roboto text-gray-900 font-medium">Stockage</div>
+                                        <div class="font-roboto text-gray-600 text-sm">Espace libre: 2.4TB</div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                        <span class="font-roboto text-yellow-600 text-sm font-medium">Surveillance</span>
+                                    </div>
                                 </div>
-                                <div class="flex items-center">
-                                    <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                                    <span class="font-roboto text-yellow-600 text-sm font-medium">Surveillance</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <div class="font-roboto text-gray-900 font-medium">Paiements</div>
-                                    <div class="font-roboto text-gray-600 text-sm">Passerelle sécurisée</div>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                    <span class="font-roboto text-green-600 text-sm font-medium">Actif</span>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="font-roboto text-gray-900 font-medium">Paiements</div>
+                                        <div class="font-roboto text-gray-600 text-sm">Passerelle sécurisée</div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                        <span class="font-roboto text-green-600 text-sm font-medium">Actif</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Users Management Tab -->
-        </div>
-</section>
+                <!-- Other tabs placeholder: Gestion Utilisateurs, Workflows, Contenu, Analytics, Paramètres -->
+                <div id="admin-users" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-user-settings-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Utilisateurs</h3>
+                        <p class="text-gray-500 mt-2">Module de gestion avancée des utilisateurs (intégration prévue).</p>
+                    </div>
+                </div>
+                <div id="admin-workflows" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-flow-chart text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Workflows</h3>
+                        <p class="text-gray-500 mt-2">Supervision et configuration des processus métier.</p>
+                    </div>
+                </div>
+                <div id="admin-content" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
+                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                    </div>
+                </div>
+                <div id="admin-analytics" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-bar-chart-2-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Analytics</h3>
+                        <p class="text-gray-500 mt-2">Statistiques détaillées et KPIs de la plateforme.</p>
+                    </div>
+                </div>
+                <div id="admin-settings" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-settings-3-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Paramètres</h3>
+                        <p class="text-gray-500 mt-2">Configuration générale, rôles et permissions.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
     <script>
+        // Initialize ECharts for Overview tab
         function initAdminOverviewCharts() {
             if (typeof echarts === 'undefined') return;
-
             const usersGrowthEl = document.getElementById('users-growth-chart');
             const productionRegionEl = document.getElementById('production-by-region-chart');
-
             if (usersGrowthEl) {
                 const usersGrowthChart = echarts.init(usersGrowthEl);
                 usersGrowthChart.setOption({
                     animation: false,
                     grid: { top: 20, right: 20, bottom: 40, left: 50 },
-                    xAxis: {
-                        type: 'category',
-                        data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun']
-                    },
-                    yAxis: {
-                        type: 'value'
-                    },
+                    xAxis: { type: 'category', data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'] },
+                    yAxis: { type: 'value' },
                     series: [{
-                        type: 'line',
-                        smooth: true,
-                        data: [1840, 2210, 2480, 2860, 3310, 3890],
-                        showSymbol: false,
-                        lineStyle: { color: '#2E7D32', width: 3 },
-                        itemStyle: { color: '#2E7D32' },
-                        areaStyle: {
-                            color: {
-                                type: 'linear',
-                                x: 0, y: 0, x2: 0, y2: 1,
-                                colorStops: [
-                                    { offset: 0, color: 'rgba(46, 125, 50, 0.28)' },
-                                    { offset: 1, color: 'rgba(46, 125, 50, 0.05)' }
-                                ]
-                            }
-                        }
+                        type: 'line', smooth: true, data: [1840, 2210, 2480, 2860, 3310, 3890],
+                        showSymbol: false, lineStyle: { color: '#2E7D32', width: 3 },
+                        areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(46, 125, 50, 0.28)' }, { offset: 1, color: 'rgba(46, 125, 50, 0.05)' }] } }
                     }]
                 });
-
                 window.addEventListener('resize', () => usersGrowthChart.resize());
             }
-
             if (productionRegionEl) {
                 const productionRegionChart = echarts.init(productionRegionEl);
                 productionRegionChart.setOption({
                     animation: false,
                     grid: { top: 20, right: 20, bottom: 40, left: 50 },
-                    xAxis: {
-                        type: 'category',
-                        data: ['Saint-Louis', 'Thiès', 'Kaolack', 'Kolda', 'Matam']
-                    },
-                    yAxis: {
-                        type: 'value'
-                    },
-                    series: [{
-                        type: 'bar',
-                        data: [320, 280, 240, 190, 150],
-                        barWidth: '45%',
-                        itemStyle: {
-                            color: '#66BB6A',
-                            borderRadius: [8, 8, 0, 0]
-                        }
-                    }]
+                    xAxis: { type: 'category', data: ['Saint-Louis', 'Thiès', 'Kaolack', 'Kolda', 'Matam'] },
+                    yAxis: { type: 'value' },
+                    series: [{ type: 'bar', data: [320, 280, 240, 190, 150], barWidth: '45%', itemStyle: { color: '#66BB6A', borderRadius: [8, 8, 0, 0] } }]
                 });
-
                 window.addEventListener('resize', () => productionRegionChart.resize());
             }
         }
 
-        // JavaScript functions for the administration page
-        function showPage(pageId) {
-            // Hide all pages
-            document.getElementById('accueil').classList.add('hidden');
-            document.getElementById('apropos-page').classList.add('hidden');
-            document.getElementById('services-page').classList.add('hidden');
-            document.getElementById('administration-page').classList.add('hidden');
-            document.getElementById('contact-page').classList.add('hidden');
-
-            // Show selected page
-            if (pageId) {
-                document.getElementById(pageId).classList.remove('hidden');
+        // Function to switch between admin tabs (sidebar navigation)
+        function switchAdminTab(tabName, event) {
+            if (event && event.preventDefault) event.preventDefault();
+            // Hide all admin tab content containers
+            const tabContents = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
+            tabContents.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) {
+                    el.classList.add('hidden-tab');
+                }
+            });
+            // Show selected tab content
+            const activeTab = document.getElementById(`admin-${tabName}`);
+            if (activeTab) {
+                activeTab.classList.remove('hidden-tab');
+            }
+            // Update sidebar link active state
+            const allLinks = document.querySelectorAll('.admin-sidebar-link');
+            allLinks.forEach(link => {
+                link.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                link.classList.add('text-gray-700', 'hover:bg-gray-50');
+            });
+            if (event && event.currentTarget) {
+                const activeLink = event.currentTarget;
+                activeLink.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                activeLink.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            }
+            // If switching to overview, ensure charts are initialized and resized
+            if (tabName === 'overview') {
+                setTimeout(() => {
+                    if (typeof echarts !== 'undefined') {
+                        const usersChartDom = document.getElementById('users-growth-chart');
+                        const prodChartDom = document.getElementById('production-by-region-chart');
+                        if (usersChartDom && prodChartDom) {
+                            let usersChart = echarts.getInstanceByDom(usersChartDom);
+                            let prodChart = echarts.getInstanceByDom(prodChartDom);
+                            if (!usersChart || !prodChart) {
+                                initAdminOverviewCharts();
+                            } else {
+                                usersChart.resize();
+                                prodChart.resize();
+                            }
+                        }
+                    }
+                }, 100);
             }
         }
 
-        function showHomePage() {
-            showPage(null);
-            document.getElementById('accueil').classList.remove('hidden');
+        // Fonction de déconnexion
+        function handleLogout(event) {
+            if (event && event.preventDefault) event.preventDefault();
+            // Simulation de déconnexion : affichage d'une alerte de confirmation
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                // Redirection vers la page d'accueil ou page de connexion
+                // Pour l'exemple, on recharge simplement la page ou on redirige
+                alert('Déconnexion réussie. Vous allez être redirigé vers la page d\'accueil.');
+                // Ici vous pouvez rediriger vers la page de login ou l'accueil
+                // window.location.href = '/index.html';
+                // Pour la démonstration, on peut simplement afficher un message
+                console.log('Utilisateur déconnecté');
+            }
         }
 
-        function showAdminTab(tabName) {
-            // Hide all admin tabs
-            const tabs = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
-            tabs.forEach(tab => {
-                document.getElementById(`admin-${tab}`).classList.add('hidden');
-            });
-
-            // Show selected tab
-            document.getElementById(`admin-${tabName}`).classList.remove('hidden');
-
-            // Update tab buttons
-            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('text-gray-600', 'hover:bg-gray-50');
-            });
-            event.target.classList.add('bg-primary', 'text-white');
-            event.target.classList.remove('text-gray-600', 'hover:bg-gray-50');
-        }
-
-        // User management functions
-        function viewUserDetails(userId) {
-            console.log('Viewing user details for:', userId);
-        }
-
-        function editUserRole(userId) {
-            console.log('Editing user role for:', userId);
-        }
-
-        function suspendUser(userId) {
-            console.log('Suspending user:', userId);
-        }
-
-        function deleteUser(userId) {
-            console.log('Deleting user:', userId);
-        }
-
-        function reactivateUser(userId) {
-            console.log('Reactivating user:', userId);
-        }
-
-        // Workflow management functions
-        function editWorkflow(workflowId) {
-            console.log('Editing workflow:', workflowId);
-        }
-
-        function viewWorkflowStats(workflowId) {
-            console.log('Viewing workflow stats:', workflowId);
-        }
-
-        // Content management functions
-        function viewArticle(articleId) {
-            console.log('Viewing article:', articleId);
-        }
-
-        function editArticle(articleId) {
-            console.log('Editing article:', articleId);
-        }
-
-        function deleteArticle(articleId) {
-            console.log('Deleting article:', articleId);
-        }
-
-        function publishArticle(articleId) {
-            console.log('Publishing article:', articleId);
-        }
-
-        // Modal functions
-        function openCreateUserModal() {
-            console.log('Opening create user modal');
-        }
-
-        function openCreateWorkflowModal() {
-            console.log('Opening create workflow modal');
-        }
-
-        function openCreateArticleModal() {
-            console.log('Opening create article modal');
-        }
+        // Legacy functions for compatibility
+        function viewUserDetails(userId) { console.log('Viewing user details:', userId); }
+        function editUserRole(userId) { console.log('Editing user role:', userId); }
+        function suspendUser(userId) { console.log('Suspending user:', userId); }
+        function deleteUser(userId) { console.log('Deleting user:', userId); }
+        function reactivateUser(userId) { console.log('Reactivating user:', userId); }
+        function editWorkflow(workflowId) { console.log('Editing workflow:', workflowId); }
+        function viewWorkflowStats(workflowId) { console.log('Viewing workflow stats:', workflowId); }
+        function viewArticle(articleId) { console.log('Viewing article:', articleId); }
+        function editArticle(articleId) { console.log('Editing article:', articleId); }
+        function deleteArticle(articleId) { console.log('Deleting article:', articleId); }
+        function publishArticle(articleId) { console.log('Publishing article:', articleId); }
+        function openCreateUserModal() { console.log('Opening create user modal'); }
+        function openCreateWorkflowModal() { console.log('Opening create workflow modal'); }
+        function openCreateArticleModal() { console.log('Opening create article modal'); }
 
         document.addEventListener('DOMContentLoaded', function () {
             initAdminOverviewCharts();
+            // Ensure first tab is properly active: overview by default
+            const defaultLink = document.querySelector('.admin-sidebar-link');
+            if (defaultLink && !defaultLink.classList.contains('bg-primary')) {
+                defaultLink.classList.add('bg-primary', 'text-white', 'shadow-sm');
+                defaultLink.classList.remove('text-gray-700', 'hover:bg-gray-50');
+            }
+            // Hide all tab contents except overview initially
+            const tabsExceptOverview = ['users', 'workflows', 'content', 'analytics', 'settings'];
+            tabsExceptOverview.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
+            });
+            const overviewEl = document.getElementById('admin-overview');
+            if (overviewEl) overviewEl.classList.remove('hidden-tab');
         });
     </script>
 </body>
 
 </html>
-

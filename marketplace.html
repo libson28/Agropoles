@@ -555,6 +555,10 @@
         });
     </script>
 
+     <div class="pattern">
+            <img src="./dashUser/pattern.png" alt="" style="width: 100%; height: 40px; top:0;">
+        </div>
+
     <!-- Marketplace Page -->
     <section id="marketplace-page" class="pt-16 py-20 bg-white ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1080,26 +1084,28 @@
                 </div>
             </div>
 
-            <!-- Marketplace Statistics -->
-            <div class="grid md:grid-cols-4 gap-6 mb-12">
-                <div class="bg-gradient-to-br from-primary to-secondary p-6 rounded-xl text-white text-center">
-                    <div class="text-3xl font-poppins font-bold mb-2">2,456</div>
-                    <div class="font-roboto text-green-100">Produits disponibles</div>
+            <div class="flex justify-center items-center space-x-4">
+                <button
+                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <i class="ri-arrow-left-line mr-2"></i>Précédent
+                </button>
+                <div class="flex space-x-2">
+                    <button class="w-10 h-10 bg-primary text-white !rounded-button font-medium">1</button>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">2</button>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">3</button>
+                    <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">31</button>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                    <div class="text-3xl font-poppins font-bold text-primary mb-2">847</div>
-                    <div class="font-roboto text-gray-600">Producteurs actifs</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                    <div class="text-3xl font-poppins font-bold text-primary mb-2">15,680</div>
-                    <div class="font-roboto text-gray-600">Transactions ce mois</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                    <div class="text-3xl font-poppins font-bold text-primary mb-2">24h</div>
-                    <div class="font-roboto text-gray-600">Livraison moyenne</div>
-                </div>
+                <button
+                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    Suivant<i class="ri-arrow-right-line ml-2"></i>
+                </button>
             </div>
 
+           <br><br>
             <!-- Featured Producers -->
             <div class="mb-16">
                 <div class="flex items-center justify-between mb-8">
@@ -1244,26 +1250,7 @@
             </div>
 
             <!-- Pagination -->
-            <div class="flex justify-center items-center space-x-4">
-                <button
-                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
-                    <i class="ri-arrow-left-line mr-2"></i>Précédent
-                </button>
-                <div class="flex space-x-2">
-                    <button class="w-10 h-10 bg-primary text-white !rounded-button font-medium">1</button>
-                    <button
-                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">2</button>
-                    <button
-                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">3</button>
-                    <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
-                    <button
-                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">31</button>
-                </div>
-                <button
-                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
-                    Suivant<i class="ri-arrow-right-line ml-2"></i>
-                </button>
-            </div>
+            
         </div>
     </section>
 

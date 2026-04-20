@@ -5,7 +5,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <title>Programme National de Développement des Agropoles du Sénégal - Workflows</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,254 +43,393 @@
         }
     </script>
     <style>
-        :where([class^="ri-"])::before {
-            content: "\f3c2";
+        /* Full height layout - dashboard takes entire viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Fix sidebar during scroll */
+        .sidebar-fixed {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Custom scrollbar for sidebar (subtle) */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Content area scrollable */
+        .content-scrollable {
+            overflow-y: auto;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .content-scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-scrollable::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .hidden-tab {
+            display: none;
+        }
+        
+        .dashboard-full {
+            width: 100%;
+        }
+
+        .logo-placeholder {
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 
-<body class="font-roboto bg-white">
-   
-    <!-- Administration Page -->
-    <section id="administration-page" class="pt-16 bg-gray-50 min-h-screen ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <!-- Administration Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
-                    <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+<body class="font-roboto bg-gray-50 overflow-hidden">
+    <!-- Administration Page - Full width & height layout with fixed sidebar -->
+    <div class="flex h-screen w-full">
+        
+        <!-- SIDEBAR: Fixed on scroll, light & spacious, takes full height -->
+        <aside class="sidebar-fixed w-72 lg:w-80 flex-shrink-0 bg-white border-r border-gray-100 shadow-sm z-10">
+            <div class="flex flex-col h-full">
+                <!-- Sidebar header with LOGO -->
+                <div class="p-5 border-b border-gray-100">
+                    <div class="flex items-center justify-center">
+                        <img src="logo.png" 
+                             alt="Logo Agropoles" 
+                             class="logo-placeholder w-full max-w-[180px] h-auto object-contain mx-auto">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-[-10px] font-roboto">Projet des agropoles du sénégal</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
-                        <i class="ri-notification-line text-xl"></i>
-                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
-                    <div class="flex items-center space-x-3">
-                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
-                            alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
-                        <div>
-                            <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
-                            <div class="font-roboto text-sm text-gray-600">Administrateur</div>
-                        </div>
+                
+                <!-- Navigation items - light & spacious -->
+                <nav class="flex-1 p-3 sidebar-scroll overflow-y-auto">
+                    <div class="space-y-1.5">
+                        <a href="#" onclick="switchAdminTab('overview', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-dashboard-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Vue d'ensemble</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('users', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-user-settings-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Utilisateurs</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Formalités</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Workflows</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Contenu</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-bar-chart-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Analytics</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('settings', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-settings-3-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Paramètres</span>
+                        </a>
+                    </div>
+                </nav>
+                
+                <!-- SECTION EN BAS (bottom:0) : Aide & Support + Déconnexion -->
+                <div class="mt-auto border-t border-gray-100 pt-4 pb-5 px-3">
+                    
+                    <!-- Bouton Déconnexion -->
+                    <div>
+                        <a href="#" onclick="handleLogout(event);" 
+                           class="flex items-center px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition group cursor-pointer">
+                            <i class="ri-logout-box-r-line mr-3 text-red-500 group-hover:text-red-700 transition text-lg"></i>
+                            <span class="font-inter text-sm font-medium">Déconnexion</span>
+                        </a>
                     </div>
                 </div>
             </div>
+        </aside>
 
-            <!-- Administration Navigation -->
-            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
-                <a href="statistique.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Vue d'ensemble</a>
-                <a href="utilisateurs.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Utilisateurs</a>
-                <a href="workflows.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap cursor-pointer">Workflows</a>
-                <a href="contenu.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Contenu</a>
-                <a href="analytics.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Analytics</a>
-                <a href="parametres.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Paramètres</a>
-            </div>
-<div id="admin-workflows" class="admin-tab-content">
-                <div class="space-y-8">
-                    <!-- Workflows Header -->
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Workflows</h2>
-                            <p class="font-roboto text-gray-600 mt-1">Configuration des processus de validation des
-                                formalités</p>
-                        </div>
-                        <button
-                            class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer"
-                            onclick="openCreateWorkflowModal()">
-                            <i class="ri-flow-chart mr-2"></i>Nouveau workflow
+        <!-- MAIN CONTENT AREA - Scrollable, takes full remaining width -->
+        <main class="flex-1 content-scrollable overflow-y-auto bg-gray-50">
+            <div class="dashboard-full px-4 sm:px-6 lg:px-8 py-6">
+                
+                <!-- Administration Header -->
+                <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
+                        <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
+                            <i class="ri-notification-line text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
                         </button>
-                    </div>
-
-                    <!-- Workflows Overview -->
-                    <div class="grid md:grid-cols-4 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-flow-chart text-blue-600 text-xl"></i>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
+                                alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div>
+                                <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
+                                <div class="font-roboto text-sm text-gray-600">Administrateur</div>
                             </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">12</div>
-                            <div class="font-roboto text-gray-600 text-sm">Workflows actifs</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div
-                                class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-check-double-line text-green-600 text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,456</div>
-                            <div class="font-roboto text-gray-600 text-sm">Processus traités</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div
-                                class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-time-line text-orange-600 text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">4.2j</div>
-                            <div class="font-roboto text-gray-600 text-sm">Délai moyen</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
-                            <div
-                                class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg mx-auto mb-4">
-                                <i class="ri-percent-line text-purple-600 text-xl"></i>
-                            </div>
-                            <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">94%</div>
-                            <div class="font-roboto text-gray-600 text-sm">Taux de succès</div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Workflows List -->
-                    <div class="grid md:grid-cols-2 gap-8">
+                <!-- TAB CONTENT: Workflows (active par défaut sur cette page) -->
+                <div id="admin-workflows" class="admin-tab-content">
+                    <div class="space-y-8">
+                        <!-- Workflows Header -->
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Workflows</h2>
+                                <p class="font-roboto text-gray-600 mt-1">Configuration des processus de validation des formalités</p>
+                            </div>
+                            <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="openCreateWorkflowModal()">
+                                <i class="ri-flow-chart mr-2"></i>Nouveau workflow
+                            </button>
+                        </div>
+
+                        <!-- Workflows Overview -->
+                        <div class="grid md:grid-cols-4 gap-6">
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-flow-chart text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">12</div>
+                                <div class="font-roboto text-gray-600 text-sm">Workflows actifs</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-check-double-line text-green-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,456</div>
+                                <div class="font-roboto text-gray-600 text-sm">Processus traités</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-time-line text-orange-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">4.2j</div>
+                                <div class="font-roboto text-gray-600 text-sm">Délai moyen</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg mx-auto mb-4">
+                                    <i class="ri-percent-line text-purple-600 text-xl"></i>
+                                </div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">94%</div>
+                                <div class="font-roboto text-gray-600 text-sm">Taux de succès</div>
+                            </div>
+                        </div>
+
+                        <!-- Workflows List -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-white rounded-xl shadow-sm p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 class="text-lg font-inter font-semibold text-gray-900">Certificats Phytosanitaires</h3>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
+                                </div>
+                                <div class="space-y-4 mb-6">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                                <span class="text-blue-600 font-medium text-sm">1</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Réception dossier</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Automatique</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                                <span class="text-blue-600 font-medium text-sm">2</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Vérification documents</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Agent DPV</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                                <span class="text-blue-600 font-medium text-sm">3</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Inspection terrain</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Inspecteur</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                                                <span class="text-blue-600 font-medium text-sm">4</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Validation finale</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Superviseur</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="text-sm">
+                                        <div class="font-roboto text-gray-600">Délai standard:</div>
+                                        <div class="font-roboto text-primary font-medium">5-7 jours</div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="font-roboto text-gray-600">Coût:</div>
+                                        <div class="font-roboto text-primary font-medium">15,000 FCFA</div>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <button class="flex-1 px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="editWorkflow('phytosanitaire')">
+                                        <i class="ri-edit-line mr-2"></i>Modifier
+                                    </button>
+                                    <button class="flex-1 px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="viewWorkflowStats('phytosanitaire')">
+                                        <i class="ri-bar-chart-line mr-2"></i>Statistiques
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-xl shadow-sm p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 class="text-lg font-inter font-semibold text-gray-900">Agréments Transformation</h3>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
+                                </div>
+                                <div class="space-y-4 mb-6">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
+                                                <span class="text-purple-600 font-medium text-sm">1</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Dépôt demande</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Demandeur</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
+                                                <span class="text-purple-600 font-medium text-sm">2</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Étude technique</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Ingénieur</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
+                                                <span class="text-purple-600 font-medium text-sm">3</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Visite site</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Commission</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
+                                                <span class="text-purple-600 font-medium text-sm">4</span>
+                                            </div>
+                                            <span class="font-roboto text-gray-700 text-sm">Délivrance agrément</span>
+                                        </div>
+                                        <span class="font-roboto text-gray-500 text-xs">Directeur</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="text-sm">
+                                        <div class="font-roboto text-gray-600">Délai standard:</div>
+                                        <div class="font-roboto text-primary font-medium">10-15 jours</div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="font-roboto text-gray-600">Coût:</div>
+                                        <div class="font-roboto text-primary font-medium">50,000 FCFA</div>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <button class="flex-1 px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="editWorkflow('agrement')">
+                                        <i class="ri-edit-line mr-2"></i>Modifier
+                                    </button>
+                                    <button class="flex-1 px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="viewWorkflowStats('agrement')">
+                                        <i class="ri-bar-chart-line mr-2"></i>Statistiques
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Workflow Performance -->
                         <div class="bg-white rounded-xl shadow-sm p-6">
-                            <div class="flex items-center justify-between mb-6">
-                                <h3 class="text-lg font-inter font-semibold text-gray-900">Certificats Phytosanitaires
-                                </h3>
-                                <span
-                                    class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
-                            </div>
-                            <div class="space-y-4 mb-6">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
-                                            <span class="text-blue-600 font-medium text-sm">1</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Réception dossier</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Automatique</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
-                                            <span class="text-blue-600 font-medium text-sm">2</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Vérification documents</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Agent DPV</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
-                                            <span class="text-blue-600 font-medium text-sm">3</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Inspection terrain</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Inspecteur</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
-                                            <span class="text-blue-600 font-medium text-sm">4</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Validation finale</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Superviseur</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="text-sm">
-                                    <div class="font-roboto text-gray-600">Délai standard:</div>
-                                    <div class="font-roboto text-primary font-medium">5-7 jours</div>
-                                </div>
-                                <div class="text-sm">
-                                    <div class="font-roboto text-gray-600">Coût:</div>
-                                    <div class="font-roboto text-primary font-medium">15,000 FCFA</div>
-                                </div>
-                            </div>
-                            <div class="flex space-x-3">
-                                <button
-                                    class="flex-1 px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap cursor-pointer"
-                                    onclick="editWorkflow('phytosanitaire')">
-                                    <i class="ri-edit-line mr-2"></i>Modifier
-                                </button>
-                                <button
-                                    class="flex-1 px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer"
-                                    onclick="viewWorkflowStats('phytosanitaire')">
-                                    <i class="ri-bar-chart-line mr-2"></i>Statistiques
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-xl shadow-sm p-6">
-                            <div class="flex items-center justify-between mb-6">
-                                <h3 class="text-lg font-inter font-semibold text-gray-900">Agréments Transformation</h3>
-                                <span
-                                    class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
-                            </div>
-                            <div class="space-y-4 mb-6">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div
-                                            class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
-                                            <span class="text-purple-600 font-medium text-sm">1</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Dépôt demande</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Demandeur</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div
-                                            class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
-                                            <span class="text-purple-600 font-medium text-sm">2</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Étude technique</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Ingénieur</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div
-                                            class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
-                                            <span class="text-purple-600 font-medium text-sm">3</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Visite site</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Commission</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div
-                                            class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
-                                            <span class="text-purple-600 font-medium text-sm">4</span>
-                                        </div>
-                                        <span class="font-roboto text-gray-700 text-sm">Délivrance agrément</span>
-                                    </div>
-                                    <span class="font-roboto text-gray-500 text-xs">Directeur</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="text-sm">
-                                    <div class="font-roboto text-gray-600">Délai standard:</div>
-                                    <div class="font-roboto text-primary font-medium">10-15 jours</div>
-                                </div>
-                                <div class="text-sm">
-                                    <div class="font-roboto text-gray-600">Coût:</div>
-                                    <div class="font-roboto text-primary font-medium">50,000 FCFA</div>
-                                </div>
-                            </div>
-                            <div class="flex space-x-3">
-                                <button
-                                    class="flex-1 px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap cursor-pointer"
-                                    onclick="editWorkflow('agrement')">
-                                    <i class="ri-edit-line mr-2"></i>Modifier
-                                </button>
-                                <button
-                                    class="flex-1 px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer"
-                                    onclick="viewWorkflowStats('agrement')">
-                                    <i class="ri-bar-chart-line mr-2"></i>Statistiques
-                                </button>
-                            </div>
+                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Performance des Workflows</h3>
+                            <div id="workflow-performance-chart" class="h-64"></div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Workflow Performance -->
-                    <div class="bg-white rounded-xl shadow-sm p-6">
-                        <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Performance des Workflows</h3>
-                        <div id="workflow-performance-chart" class="h-64"></div>
+                <!-- Autres tabs cachés (pour la navigation) -->
+                <div id="admin-overview" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-dashboard-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Vue d'ensemble</h3>
+                        <p class="text-gray-500 mt-2">Tableau de bord principal.</p>
+                    </div>
+                </div>
+                <div id="admin-users" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-user-settings-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Utilisateurs</h3>
+                        <p class="text-gray-500 mt-2">Module de gestion avancée des utilisateurs.</p>
+                    </div>
+                </div>
+                <div id="admin-content" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
+                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                    </div>
+                </div>
+                <div id="admin-analytics" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-bar-chart-2-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Analytics</h3>
+                        <p class="text-gray-500 mt-2">Statistiques détaillées et KPIs de la plateforme.</p>
+                    </div>
+                </div>
+                <div id="admin-settings" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-settings-3-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Paramètres</h3>
+                        <p class="text-gray-500 mt-2">Configuration générale, rôles et permissions.</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Content Management Tab -->
-        </div>
-</section>
+        </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
     <script>
@@ -303,149 +442,86 @@
             const workflowPerformanceChart = echarts.init(workflowPerformanceEl);
             workflowPerformanceChart.setOption({
                 animation: false,
-                tooltip: {
-                    trigger: 'axis'
-                },
-                legend: {
-                    bottom: 0
-                },
+                tooltip: { trigger: 'axis' },
+                legend: { bottom: 0, data: ['Temps moyen (jours)', 'Taux de validation (%)'] },
                 grid: { top: 20, right: 20, bottom: 50, left: 50 },
-                xAxis: {
-                    type: 'category',
-                    data: ['Phyto', 'Agrément', 'Licence', 'Transport']
-                },
-                yAxis: {
-                    type: 'value'
-                },
+                xAxis: { type: 'category', data: ['Phyto', 'Agrément', 'Licence', 'Transport'] },
+                yAxis: [{ type: 'value', name: 'Jours' }, { type: 'value', name: 'Pourcentage (%)' }],
                 series: [
-                    {
-                        name: 'Temps moyen (jours)',
-                        type: 'bar',
-                        data: [6, 12, 9, 4],
-                        itemStyle: {
-                            color: '#2E7D32',
-                            borderRadius: [6, 6, 0, 0]
-                        }
-                    },
-                    {
-                        name: 'Taux de validation (%)',
-                        type: 'line',
-                        smooth: true,
-                        data: [92, 84, 88, 96],
-                        showSymbol: false,
-                        lineStyle: { color: '#57B5E7', width: 3 },
-                        itemStyle: { color: '#57B5E7' }
-                    }
+                    { name: 'Temps moyen (jours)', type: 'bar', data: [6, 12, 9, 4], itemStyle: { color: '#2E7D32', borderRadius: [6, 6, 0, 0] } },
+                    { name: 'Taux de validation (%)', type: 'line', smooth: true, data: [92, 84, 88, 96], yAxisIndex: 1, showSymbol: false, lineStyle: { color: '#57B5E7', width: 3 }, itemStyle: { color: '#57B5E7' } }
                 ]
             });
-
             window.addEventListener('resize', () => workflowPerformanceChart.resize());
         }
 
-        // JavaScript functions for the administration page
-        function showPage(pageId) {
-            // Hide all pages
-            document.getElementById('accueil').classList.add('hidden');
-            document.getElementById('apropos-page').classList.add('hidden');
-            document.getElementById('services-page').classList.add('hidden');
-            document.getElementById('administration-page').classList.add('hidden');
-            document.getElementById('contact-page').classList.add('hidden');
-
-            // Show selected page
-            if (pageId) {
-                document.getElementById(pageId).classList.remove('hidden');
+        // Navigation entre tabs
+        function switchAdminTab(tabName, event) {
+            if (event && event.preventDefault) event.preventDefault();
+            
+            const tabContents = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
+            tabContents.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
+            });
+            
+            const activeTab = document.getElementById(`admin-${tabName}`);
+            if (activeTab) activeTab.classList.remove('hidden-tab');
+            
+            const allLinks = document.querySelectorAll('.admin-sidebar-link');
+            allLinks.forEach(link => {
+                link.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                link.classList.add('text-gray-700', 'hover:bg-gray-50');
+            });
+            
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                event.currentTarget.classList.add('bg-primary', 'text-white', 'shadow-sm');
             }
         }
-
-        function showHomePage() {
-            showPage(null);
-            document.getElementById('accueil').classList.remove('hidden');
+        
+        // Déconnexion
+        function handleLogout(event) {
+            if (event && event.preventDefault) event.preventDefault();
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                alert('Déconnexion réussie.');
+                console.log('Utilisateur déconnecté');
+            }
         }
-
-        function showAdminTab(tabName) {
-            // Hide all admin tabs
-            const tabs = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
-            tabs.forEach(tab => {
-                document.getElementById(`admin-${tab}`).classList.add('hidden');
-            });
-
-            // Show selected tab
-            document.getElementById(`admin-${tabName}`).classList.remove('hidden');
-
-            // Update tab buttons
-            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('text-gray-600', 'hover:bg-gray-50');
-            });
-            event.target.classList.add('bg-primary', 'text-white');
-            event.target.classList.remove('text-gray-600', 'hover:bg-gray-50');
-        }
-
-        // User management functions
-        function viewUserDetails(userId) {
-            console.log('Viewing user details for:', userId);
-        }
-
-        function editUserRole(userId) {
-            console.log('Editing user role for:', userId);
-        }
-
-        function suspendUser(userId) {
-            console.log('Suspending user:', userId);
-        }
-
-        function deleteUser(userId) {
-            console.log('Deleting user:', userId);
-        }
-
-        function reactivateUser(userId) {
-            console.log('Reactivating user:', userId);
-        }
-
-        // Workflow management functions
-        function editWorkflow(workflowId) {
-            console.log('Editing workflow:', workflowId);
-        }
-
-        function viewWorkflowStats(workflowId) {
-            console.log('Viewing workflow stats:', workflowId);
-        }
-
-        // Content management functions
-        function viewArticle(articleId) {
-            console.log('Viewing article:', articleId);
-        }
-
-        function editArticle(articleId) {
-            console.log('Editing article:', articleId);
-        }
-
-        function deleteArticle(articleId) {
-            console.log('Deleting article:', articleId);
-        }
-
-        function publishArticle(articleId) {
-            console.log('Publishing article:', articleId);
-        }
-
-        // Modal functions
-        function openCreateUserModal() {
-            console.log('Opening create user modal');
-        }
-
-        function openCreateWorkflowModal() {
-            console.log('Opening create workflow modal');
-        }
-
-        function openCreateArticleModal() {
-            console.log('Opening create article modal');
-        }
+        
+        // Fonctions de gestion workflows
+        function editWorkflow(workflowId) { console.log('Editing workflow:', workflowId); alert('Modification du workflow: ' + workflowId); }
+        function viewWorkflowStats(workflowId) { console.log('Viewing workflow stats:', workflowId); alert('Statistiques du workflow: ' + workflowId); }
+        function openCreateWorkflowModal() { console.log('Opening create workflow modal'); alert('Créer un nouveau workflow'); }
+        
+        // Fonctions legacy pour compatibilité
+        function showPage(pageId) {}
+        function showHomePage() {}
+        function viewUserDetails(userId) { console.log('Viewing user details:', userId); }
+        function editUserRole(userId) { console.log('Editing user role:', userId); }
+        function suspendUser(userId) { console.log('Suspending user:', userId); }
+        function deleteUser(userId) { console.log('Deleting user:', userId); }
+        function reactivateUser(userId) { console.log('Reactivating user:', userId); }
+        function viewArticle(articleId) { console.log('Viewing article:', articleId); }
+        function editArticle(articleId) { console.log('Editing article:', articleId); }
+        function deleteArticle(articleId) { console.log('Deleting article:', articleId); }
+        function publishArticle(articleId) { console.log('Publishing article:', articleId); }
+        function openCreateUserModal() { console.log('Opening create user modal'); }
+        function openCreateArticleModal() { console.log('Opening create article modal'); }
 
         document.addEventListener('DOMContentLoaded', function () {
             initWorkflowPerformanceChart();
+            
+            // S'assurer que tous les autres tabs sont cachés, workflows visible
+            const tabsExceptWorkflows = ['overview', 'users', 'content', 'analytics', 'settings'];
+            tabsExceptWorkflows.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
+            });
+            const workflowsEl = document.getElementById('admin-workflows');
+            if (workflowsEl) workflowsEl.classList.remove('hidden-tab');
         });
     </script>
 </body>
 
 </html>
-

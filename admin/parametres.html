@@ -5,7 +5,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <title>Programme National de Développement des Agropoles du Sénégal - Paramètres</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,424 +43,513 @@
         }
     </script>
     <style>
-        :where([class^="ri-"])::before {
-            content: "\f3c2";
+        /* Full height layout - dashboard takes entire viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Fix sidebar during scroll */
+        .sidebar-fixed {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Custom scrollbar for sidebar (subtle) */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Content area scrollable */
+        .content-scrollable {
+            overflow-y: auto;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .content-scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-scrollable::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .hidden-tab {
+            display: none;
+        }
+        
+        .dashboard-full {
+            width: 100%;
+        }
+
+        .logo-placeholder {
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 
-<body class="font-roboto bg-white">
-   
-    <!-- Administration Page -->
-    <section id="administration-page" class="pt-16 bg-gray-50 min-h-screen ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <!-- Administration Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
-                    <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+<body class="font-roboto bg-gray-50 overflow-hidden">
+    <!-- Administration Page - Full width & height layout with fixed sidebar -->
+    <div class="flex h-screen w-full">
+        
+        <!-- SIDEBAR: Fixed on scroll, light & spacious, takes full height -->
+        <aside class="sidebar-fixed w-72 lg:w-80 flex-shrink-0 bg-white border-r border-gray-100 shadow-sm z-10">
+            <div class="flex flex-col h-full">
+                <!-- Sidebar header with LOGO -->
+                <div class="p-5 border-b border-gray-100">
+                    <div class="flex items-center justify-center">
+                        <img src="logo.png" 
+                             alt="Logo Agropoles" 
+                             class="logo-placeholder w-full max-w-[180px] h-auto object-contain mx-auto">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-[-10px] font-roboto">Projet des agropoles du sénégal</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
-                        <i class="ri-notification-line text-xl"></i>
-                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
-                    <div class="flex items-center space-x-3">
-                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
-                            alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
-                        <div>
-                            <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
-                            <div class="font-roboto text-sm text-gray-600">Administrateur</div>
-                        </div>
+                
+                <!-- Navigation items - light & spacious -->
+                <nav class="flex-1 p-3 sidebar-scroll overflow-y-auto">
+                    <div class="space-y-1.5">
+                        <a href="#" onclick="switchAdminTab('overview', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-dashboard-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Vue d'ensemble</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('users', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-user-settings-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Utilisateurs</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('formalites', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Formalités</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-flow-chart text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Workflows</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-file-copy-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Gestion Contenu</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-bar-chart-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Analytics</span>
+                        </a>
+                        <a href="#" onclick="switchAdminTab('settings', event); return false;" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
+                            <i class="ri-settings-3-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Paramètres</span>
+                        </a>
+                    </div>
+                </nav>
+                
+                <!-- SECTION EN BAS (bottom:0) : Aide & Support + Déconnexion -->
+                <div class="mt-auto border-t border-gray-100 pt-4 pb-5 px-3">
+                   
+                    <div>
+                        <a href="#" onclick="handleLogout(event);" 
+                           class="flex items-center px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition group cursor-pointer">
+                            <i class="ri-logout-box-r-line mr-3 text-red-500 group-hover:text-red-700 transition text-lg"></i>
+                            <span class="font-inter text-sm font-medium">Déconnexion</span>
+                        </a>
                     </div>
                 </div>
             </div>
+        </aside>
 
-            <!-- Administration Navigation -->
-            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
-                <a href="statistique.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Vue d'ensemble</a>
-                <a href="utilisateurs.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Utilisateurs</a>
-                <a href="workflows.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Workflows</a>
-                <a href="contenu.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Gestion Contenu</a>
-                <a href="analytics.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap cursor-pointer">Analytics</a>
-                <a href="parametres.html" class="admin-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap cursor-pointer">Paramètres</a>
-            </div>
-<div id="admin-settings" class="admin-tab-content">
-                <div class="space-y-8">
-                    <!-- Settings Header -->
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-2xl font-poppins font-semibold text-primary">Paramètres Système</h2>
-                            <p class="font-roboto text-gray-600 mt-1">Configuration générale de la plateforme</p>
-                        </div>
-                        <button
-                            class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
-                            <i class="ri-save-line mr-2"></i>Sauvegarder
+        <!-- MAIN CONTENT AREA - Scrollable, takes full remaining width -->
+        <main class="flex-1 content-scrollable overflow-y-auto bg-gray-50">
+            <div class="dashboard-full px-4 sm:px-6 lg:px-8 py-6">
+                
+                <!-- Administration Header -->
+                <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-poppins font-bold text-primary">Administration</h1>
+                        <p class="font-roboto text-gray-600 mt-1">Pilotage et gestion de la plateforme Agropoles</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="relative p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer">
+                            <i class="ri-notification-line text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
                         </button>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20administrator%20portrait%2C%20confident%20male%20government%20official%2C%20administrative%20director%20in%20office%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=admin-profile001&orientation=squarish"
+                                alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div>
+                                <div class="font-inter font-medium text-gray-900">Dr. Moussa Baldé</div>
+                                <div class="font-roboto text-sm text-gray-600">Administrateur</div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Settings Categories -->
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <!-- General Settings -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Paramètres Généraux</h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Nom de la
-                                        plateforme</label>
-                                    <input type="text" value="Programme National Agropoles"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Email
-                                        administrateur</label>
-                                    <input type="email" value="admin@agropoles.sn"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Fuseau
-                                        horaire</label>
-                                    <select
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
-                                        <option>GMT (Greenwich Mean Time)</option>
-                                        <option>GMT+1 (Heure de Paris)</option>
-                                        <option>GMT-5 (Heure de New York)</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Langue par
-                                        défaut</label>
-                                    <select
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
-                                        <option>Français</option>
-                                        <option>Anglais</option>
-                                        <option>Wolof</option>
-                                    </select>
-                                </div>
+                <!-- TAB CONTENT: Paramètres (active par défaut sur cette page) -->
+                <div id="admin-settings" class="admin-tab-content">
+                    <div class="space-y-8">
+                        <!-- Settings Header -->
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-2xl font-poppins font-semibold text-primary">Paramètres Système</h2>
+                                <p class="font-roboto text-gray-600 mt-1">Configuration générale de la plateforme</p>
                             </div>
+                            <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="saveSettings()">
+                                <i class="ri-save-line mr-2"></i>Sauvegarder
+                            </button>
                         </div>
 
-                        <!-- Security Settings -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Sécurité</h3>
-                            <div class="space-y-6">
-                                <div class="flex items-center justify-between">
+                        <!-- Settings Categories -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- General Settings -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Paramètres Généraux</h3>
+                                <div class="space-y-6">
                                     <div>
-                                        <div class="font-roboto text-gray-900 font-medium">Authentification à 2 facteurs
-                                        </div>
-                                        <div class="font-roboto text-gray-600 text-sm">Sécurité renforcée pour les
-                                            administrateurs</div>
-                                    </div>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div
-                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <div class="font-roboto text-gray-900 font-medium">Connexions simultanées</div>
-                                        <div class="font-roboto text-gray-600 text-sm">Limiter les sessions multiples
-                                        </div>
-                                    </div>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer">
-                                        <div
-                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
-                                        </div>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Durée de session
-                                        (minutes)</label>
-                                    <input type="number" value="120"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Tentatives de
-                                        connexion max</label>
-                                    <input type="number" value="5"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Email Settings -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Configuration Email</h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Serveur SMTP</label>
-                                    <input type="text" value="smtp.agropoles.sn"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block font-inter font-medium text-gray-700 mb-2">Port</label>
-                                        <input type="number" value="587"
-                                            class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Nom de la plateforme</label>
+                                        <input type="text" value="Programme National Agropoles" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
                                     </div>
                                     <div>
-                                        <label class="block font-inter font-medium text-gray-700 mb-2">Sécurité</label>
-                                        <select
-                                            class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
-                                            <option>TLS</option>
-                                            <option>SSL</option>
-                                            <option>None</option>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Email administrateur</label>
+                                        <input type="email" value="admin@agropoles.sn" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Fuseau horaire</label>
+                                        <select class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                            <option>GMT (Greenwich Mean Time)</option>
+                                            <option selected>GMT+1 (Heure de Paris)</option>
+                                            <option>GMT-5 (Heure de New York)</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Langue par défaut</label>
+                                        <select class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                            <option selected>Français</option>
+                                            <option>Anglais</option>
+                                            <option>Wolof</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Email
-                                        expéditeur</label>
-                                    <input type="email" value="noreply@agropoles.sn"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <div class="font-roboto text-gray-900 font-medium">Notifications automatiques
+                            </div>
+
+                            <!-- Security Settings -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Sécurité</h3>
+                                <div class="space-y-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-roboto text-gray-900 font-medium">Authentification à 2 facteurs</div>
+                                            <div class="font-roboto text-gray-600 text-sm">Sécurité renforcée pour les administrateurs</div>
                                         </div>
-                                        <div class="font-roboto text-gray-600 text-sm">Emails de confirmation et alertes
-                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
                                     </div>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div
-                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-roboto text-gray-900 font-medium">Connexions simultanées</div>
+                                            <div class="font-roboto text-gray-600 text-sm">Limiter les sessions multiples</div>
                                         </div>
-                                    </label>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Durée de session (minutes)</label>
+                                        <input type="number" value="120" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Tentatives de connexion max</label>
+                                        <input type="number" value="5" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Payment Settings -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Paramètres de Paiement</h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Commission plateforme
-                                        (%)</label>
-                                    <input type="number" value="2.5" step="0.1"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Seuil minimum
-                                        transaction (FCFA)</label>
-                                    <input type="number" value="5000"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div class="flex items-center justify-between">
+                            <!-- Email Settings -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Configuration Email</h3>
+                                <div class="space-y-6">
                                     <div>
-                                        <div class="font-roboto text-gray-900 font-medium">Orange Money</div>
-                                        <div class="font-roboto text-gray-600 text-sm">Service de paiement mobile</div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Serveur SMTP</label>
+                                        <input type="text" value="smtp.agropoles.sn" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
                                     </div>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div
-                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block font-inter font-medium text-gray-700 mb-2">Port</label>
+                                            <input type="number" value="587" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
                                         </div>
-                                    </label>
-                                </div>
-                                <div class="flex items-center justify-between">
+                                        <div>
+                                            <label class="block font-inter font-medium text-gray-700 mb-2">Sécurité</label>
+                                            <select class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                                <option selected>TLS</option>
+                                                <option>SSL</option>
+                                                <option>None</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div>
-                                        <div class="font-roboto text-gray-900 font-medium">Free Money</div>
-                                        <div class="font-roboto text-gray-600 text-sm">Transfert d'argent mobile</div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Email expéditeur</label>
+                                        <input type="email" value="noreply@agropoles.sn" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
                                     </div>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div
-                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-roboto text-gray-900 font-medium">Notifications automatiques</div>
+                                            <div class="font-roboto text-gray-600 text-sm">Emails de confirmation et alertes</div>
                                         </div>
-                                    </label>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Workflow Settings -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Workflows par Défaut</h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Délai d'approbation
-                                        automatique (jours)</label>
-                                    <input type="number" value="15"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Niveau
-                                        d'escalade</label>
-                                    <select
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
-                                        <option>Agent → Superviseur → Directeur</option>
-                                        <option>Agent → Directeur</option>
-                                        <option>Superviseur → Directeur</option>
-                                    </select>
-                                </div>
-                                <div class="flex items-center justify-between">
+                            <!-- Payment Settings -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Paramètres de Paiement</h3>
+                                <div class="space-y-6">
                                     <div>
-                                        <div class="font-roboto text-gray-900 font-medium">Notifications automatiques
-                                        </div>
-                                        <div class="font-roboto text-gray-600 text-sm">Alertes de délais et échéances
-                                        </div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Commission plateforme (%)</label>
+                                        <input type="number" value="2.5" step="0.1" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
                                     </div>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div
-                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Seuil minimum transaction (FCFA)</label>
+                                        <input type="number" value="5000" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-roboto text-gray-900 font-medium">Orange Money</div>
+                                            <div class="font-roboto text-gray-600 text-sm">Service de paiement mobile</div>
                                         </div>
-                                    </label>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-roboto text-gray-900 font-medium">Free Money</div>
+                                            <div class="font-roboto text-gray-600 text-sm">Transfert d'argent mobile</div>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Backup Settings -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Sauvegardes</h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Fréquence de
-                                        sauvegarde</label>
-                                    <select
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
-                                        <option>Quotidienne</option>
-                                        <option>Hebdomadaire</option>
-                                        <option>Mensuelle</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block font-inter font-medium text-gray-700 mb-2">Rétention
-                                        (jours)</label>
-                                    <input type="number" value="30"
-                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                                </div>
-                                <div class="flex items-center justify-between">
+                            <!-- Workflow Settings -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Workflows par Défaut</h3>
+                                <div class="space-y-6">
                                     <div>
-                                        <div class="font-roboto text-gray-900 font-medium">Sauvegarde automatique</div>
-                                        <div class="font-roboto text-gray-600 text-sm">Sauvegarde programmée</div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Délai d'approbation automatique (jours)</label>
+                                        <input type="number" value="15" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
                                     </div>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div
-                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Niveau d'escalade</label>
+                                        <select class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                            <option selected>Agent → Superviseur → Directeur</option>
+                                            <option>Agent → Directeur</option>
+                                            <option>Superviseur → Directeur</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-roboto text-gray-900 font-medium">Notifications automatiques</div>
+                                            <div class="font-roboto text-gray-600 text-sm">Alertes de délais et échéances</div>
                                         </div>
-                                    </label>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="pt-4">
-                                    <button
-                                        class="w-full px-4 py-3 bg-blue-600 text-white !rounded-button hover:bg-blue-700 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
-                                        <i class="ri-download-cloud-line mr-2"></i>Créer une sauvegarde maintenant
-                                    </button>
+                            </div>
+
+                            <!-- Backup Settings -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Sauvegardes</h3>
+                                <div class="space-y-6">
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Fréquence de sauvegarde</label>
+                                        <select class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                            <option selected>Quotidienne</option>
+                                            <option>Hebdomadaire</option>
+                                            <option>Mensuelle</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2">Rétention (jours)</label>
+                                        <input type="number" value="30" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-roboto text-gray-900 font-medium">Sauvegarde automatique</div>
+                                            <div class="font-roboto text-gray-600 text-sm">Sauvegarde programmée</div>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="pt-4">
+                                        <button class="w-full px-4 py-3 bg-blue-600 text-white !rounded-button hover:bg-blue-700 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="createBackup()">
+                                            <i class="ri-download-cloud-line mr-2"></i>Créer une sauvegarde maintenant
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Autres tabs cachés (pour la navigation) -->
+                <div id="admin-overview" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-dashboard-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Vue d'ensemble</h3>
+                        <p class="text-gray-500 mt-2">Tableau de bord principal.</p>
+                    </div>
+                </div>
+                <div id="admin-users" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-user-settings-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Utilisateurs</h3>
+                        <p class="text-gray-500 mt-2">Module de gestion avancée des utilisateurs.</p>
+                    </div>
+                </div>
+                <div id="admin-formalites" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Formalités</h3>
+                        <p class="text-gray-500 mt-2">Gestion des demandes de documents et certifications.</p>
+                    </div>
+                </div>
+                <div id="admin-workflows" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-flow-chart text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Workflows</h3>
+                        <p class="text-gray-500 mt-2">Supervision et configuration des processus métier.</p>
+                    </div>
+                </div>
+                <div id="admin-content" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
+                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                    </div>
+                </div>
+                <div id="admin-analytics" class="admin-tab-content hidden-tab">
+                    <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                        <i class="ri-bar-chart-2-line text-5xl text-primary/50 mb-4 inline-block"></i>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Analytics</h3>
+                        <p class="text-gray-500 mt-2">Statistiques détaillées et KPIs de la plateforme.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </main>
+    </div>
 
     <script>
-        // JavaScript functions for the administration page
-        function showPage(pageId) {
-            // Hide all pages
-            document.getElementById('accueil').classList.add('hidden');
-            document.getElementById('apropos-page').classList.add('hidden');
-            document.getElementById('services-page').classList.add('hidden');
-            document.getElementById('administration-page').classList.add('hidden');
-            document.getElementById('contact-page').classList.add('hidden');
-
-            // Show selected page
-            if (pageId) {
-                document.getElementById(pageId).classList.remove('hidden');
+        // Navigation entre tabs
+        function switchAdminTab(tabName, event) {
+            if (event && event.preventDefault) event.preventDefault();
+            
+            const tabContents = ['overview', 'users', 'formalites', 'workflows', 'content', 'analytics', 'settings'];
+            tabContents.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
+            });
+            
+            const activeTab = document.getElementById(`admin-${tabName}`);
+            if (activeTab) activeTab.classList.remove('hidden-tab');
+            
+            const allLinks = document.querySelectorAll('.admin-sidebar-link');
+            allLinks.forEach(link => {
+                link.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                link.classList.add('text-gray-700', 'hover:bg-gray-50');
+            });
+            
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                event.currentTarget.classList.add('bg-primary', 'text-white', 'shadow-sm');
             }
         }
-
-        function showHomePage() {
-            showPage(null);
-            document.getElementById('accueil').classList.remove('hidden');
+        
+        // Déconnexion
+        function handleLogout(event) {
+            if (event && event.preventDefault) event.preventDefault();
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                alert('Déconnexion réussie.');
+                console.log('Utilisateur déconnecté');
+            }
         }
+        
+        // Sauvegarde des paramètres
+        function saveSettings() {
+            alert('Paramètres sauvegardés avec succès !');
+        }
+        
+        // Création de sauvegarde
+        function createBackup() {
+            alert('Création de la sauvegarde en cours...');
+        }
+        
+        // Fonctions legacy pour compatibilité
+        function showPage(pageId) {}
+        function showHomePage() {}
+        function editWorkflow(workflowId) { console.log('Editing workflow:', workflowId); }
+        function viewWorkflowStats(workflowId) { console.log('Viewing workflow stats:', workflowId); }
+        function viewArticle(articleId) { console.log('Viewing article:', articleId); }
+        function editArticle(articleId) { console.log('Editing article:', articleId); }
+        function deleteArticle(articleId) { console.log('Deleting article:', articleId); }
+        function publishArticle(articleId) { console.log('Publishing article:', articleId); }
+        function openCreateUserModal() { console.log('Opening create user modal'); }
+        function openCreateWorkflowModal() { console.log('Opening create workflow modal'); }
+        function openCreateArticleModal() { console.log('Opening create article modal'); }
+        function viewUserDetails(userId) { console.log('Viewing user details:', userId); }
+        function editUserRole(userId) { console.log('Editing user role:', userId); }
+        function suspendUser(userId) { console.log('Suspending user:', userId); }
+        function deleteUser(userId) { console.log('Deleting user:', userId); }
+        function reactivateUser(userId) { console.log('Reactivating user:', userId); }
 
-        function showAdminTab(tabName) {
-            // Hide all admin tabs
-            const tabs = ['overview', 'users', 'workflows', 'content', 'analytics', 'settings'];
-            tabs.forEach(tab => {
-                document.getElementById(`admin-${tab}`).classList.add('hidden');
+        document.addEventListener('DOMContentLoaded', function () {
+            // S'assurer que settings est visible
+            const tabsExceptSettings = ['overview', 'users', 'formalites', 'workflows', 'content', 'analytics'];
+            tabsExceptSettings.forEach(tab => {
+                const el = document.getElementById(`admin-${tab}`);
+                if (el) el.classList.add('hidden-tab');
             });
-
-            // Show selected tab
-            document.getElementById(`admin-${tabName}`).classList.remove('hidden');
-
-            // Update tab buttons
-            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('text-gray-600', 'hover:bg-gray-50');
-            });
-            event.target.classList.add('bg-primary', 'text-white');
-            event.target.classList.remove('text-gray-600', 'hover:bg-gray-50');
-        }
-
-        // User management functions
-        function viewUserDetails(userId) {
-            console.log('Viewing user details for:', userId);
-        }
-
-        function editUserRole(userId) {
-            console.log('Editing user role for:', userId);
-        }
-
-        function suspendUser(userId) {
-            console.log('Suspending user:', userId);
-        }
-
-        function deleteUser(userId) {
-            console.log('Deleting user:', userId);
-        }
-
-        function reactivateUser(userId) {
-            console.log('Reactivating user:', userId);
-        }
-
-        // Workflow management functions
-        function editWorkflow(workflowId) {
-            console.log('Editing workflow:', workflowId);
-        }
-
-        function viewWorkflowStats(workflowId) {
-            console.log('Viewing workflow stats:', workflowId);
-        }
-
-        // Content management functions
-        function viewArticle(articleId) {
-            console.log('Viewing article:', articleId);
-        }
-
-        function editArticle(articleId) {
-            console.log('Editing article:', articleId);
-        }
-
-        function deleteArticle(articleId) {
-            console.log('Deleting article:', articleId);
-        }
-
-        function publishArticle(articleId) {
-            console.log('Publishing article:', articleId);
-        }
-
-        // Modal functions
-        function openCreateUserModal() {
-            console.log('Opening create user modal');
-        }
-
-        function openCreateWorkflowModal() {
-            console.log('Opening create workflow modal');
-        }
-
-        function openCreateArticleModal() {
-            console.log('Opening create article modal');
-        }
+            const settingsEl = document.getElementById('admin-settings');
+            if (settingsEl) settingsEl.classList.remove('hidden-tab');
+        });
     </script>
 </body>
 
 </html>
-
