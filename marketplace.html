@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="font-roboto bg-white">
+   
+    <script id="smooth-scroll">
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        const headerHeight = 64;
+                        const targetPosition = targetSection.offsetTop - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script id="mobile-menu">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.querySelector('[data-mobile-menu-button]');
+            const mobileMenu = document.querySelector('[data-mobile-menu]');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script id="page-navigation">
+        function showPage(pageId) {
+            const pages = ['apropos-page', 'services-page', 'annuaire-page', 'actualites-page', 'contact-page', 'connexion-page', 'inscription-page', 'dashboard-page', 'guichet-unique-page', 'marketplace-page'];
+            const homeSections = ['accueil', 'services', 'apropos', 'actualites', 'contact'];
+            homeSections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.style.display = 'none';
+                }
+            });
+            pages.forEach(id => {
+                const page = document.getElementById(id);
+                if (page) {
+                    page.classList.add('hidden');
+                }
+            });
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (pageId === 'dashboard-page') {
+                    setTimeout(initCharts, 100);
+                }
+            }
+        }
+        function showHomePage() {
+            const pages = ['apropos-page', 'services-page', 'annuaire-page', 'actualites-page', 'contact-page', 'connexion-page', 'inscription-page', 'dashboard-page', 'marketplace-page'];
+            const homeSections = ['accueil', 'services', 'apropos', 'actualites', 'contact'];
+            pages.forEach(id => {
+                const page = document.getElementById(id);
+                if (page) {
+                    page.classList.add('hidden');
+                }
+            });
+            homeSections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.style.display = 'block';
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <script id="directory-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('search-input');
+            const categoryFilter = document.getElementById('category-filter');
+            const regionFilter = document.getElementById('region-filter');
+            const sectorFilter = document.getElementById('sector-filter');
+            const resultsCount = document.getElementById('results-count');
+            const gridView = document.getElementById('grid-view');
+            const listView = document.getElementById('list-view');
+            const directoryGrid = document.getElementById('directory-grid');
+            if (searchInput && categoryFilter && regionFilter && sectorFilter) {
+                function updateResults() {
+                    let count = 847;
+                    if (searchInput.value.trim()) count = Math.floor(Math.random() * 50) + 10;
+                    if (categoryFilter.value) count = Math.floor(count * 0.6);
+                    if (regionFilter.value) count = Math.floor(count * 0.4);
+                    if (sectorFilter.value) count = Math.floor(count * 0.3);
+                    if (resultsCount) resultsCount.textContent = count;
+                }
+                searchInput.addEventListener('input', updateResults);
+                categoryFilter.addEventListener('change', updateResults);
+                regionFilter.addEventListener('change', updateResults);
+                sectorFilter.addEventListener('change', updateResults);
+            }
+            if (gridView && listView && directoryGrid) {
+                gridView.addEventListener('click', function () {
+                    gridView.classList.add('bg-primary', 'text-white');
+                    gridView.classList.remove('border', 'border-gray-300', 'text-gray-700');
+                    listView.classList.remove('bg-primary', 'text-white');
+                    listView.classList.add('border', 'border-gray-300', 'text-gray-700');
+                    directoryGrid.className = 'grid md:grid-cols-2 lg:grid-cols-3 gap-8';
+                });
+                listView.addEventListener('click', function () {
+                    listView.classList.add('bg-primary', 'text-white');
+                    listView.classList.remove('border', 'border-gray-300', 'text-gray-700');
+                    gridView.classList.remove('bg-primary', 'text-white');
+                    gridView.classList.add('border', 'border-gray-300', 'text-gray-700');
+                    directoryGrid.className = 'grid grid-cols-1 gap-4';
+                });
+            }
+        });
+    </script>
+    <script id="news-functionality">
+        function filterNews(category) {
+            const articles = document.querySelectorAll('[data-category]');
+            const buttons = document.querySelectorAll('[onclick^="filterNews"]');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+                btn.classList.add('border', 'border-gray-300', 'text-gray-700');
+            });
+            event.target.classList.add('bg-primary', 'text-white');
+            event.target.classList.remove('border', 'border-gray-300', 'text-gray-700');
+            if (category === 'all') {
+                articles.forEach(article => article.style.display = 'block');
+            } else {
+                articles.forEach(article => {
+                    if (article.dataset.category === category) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            }
+        }
+        function toggleFaq(button) {
+            const answer = button.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        function togglePassword(inputId, button) {
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'ri-eye-line text-gray-400';
+            } else {
+                input.type = 'password';
+                icon.className = 'ri-eye-off-line text-gray-400';
+            }
+        }
+    </script>
+    <script id="dashboard-functionality">
+        function showDashboardTab(tabName) {
+            const tabs = ['overview', 'profile', 'payments', 'messages', 'marketplace'];
+            const tabBtns = document.querySelectorAll('.dashboard-tab-btn');
+            const tabContents = document.querySelectorAll('.dashboard-tab-content');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+                btn.classList.add('text-gray-600');
+            });
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+            event.target.classList.add('bg-primary', 'text-white');
+            event.target.classList.remove('text-gray-600');
+            const targetTab = document.getElementById(`dashboard-${tabName}`);
+            if (targetTab) {
+                targetTab.classList.remove('hidden');
+            }
+            if (tabName === 'overview') {
+                setTimeout(initCharts, 100);
+            }
+        }
+        function initCharts() {
+            if (typeof echarts !== 'undefined') {
+                const productionChart = echarts.init(document.getElementById('production-chart'));
+                const salesChart = echarts.init(document.getElementById('sales-chart'));
+                const productionOption = {
+                    animation: false,
+                    grid: { top: 20, right: 20, bottom: 40, left: 60 },
+                    xAxis: {
+                        type: 'category',
+                        data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data: [1200, 1800, 2100, 2450, 2200, 2600],
+                        type: 'line',
+                        smooth: true,
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0, y: 0, x2: 0, y2: 1,
+                                colorStops: [
+                                    { offset: 0, color: 'rgba(87, 181, 231, 0.3)' },
+                                    { offset: 1, color: 'rgba(87, 181, 231, 0.05)' }
+                                ]
+                            }
+                        },
+                        lineStyle: { color: 'rgba(87, 181, 231, 1)', width: 3 },
+                        itemStyle: { color: 'rgba(87, 181, 231, 1)' },
+                        showSymbol: false
+                    }]
+                };
+                const salesOption = {
+                    animation: false,
+                    grid: { top: 20, right: 20, bottom: 20, left: 20 },
+                    series: [{
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        data: [
+                            { value: 45, name: 'Tomates', itemStyle: { color: 'rgba(87, 181, 231, 1)' } },
+                            { value: 30, name: 'Oignons', itemStyle: { color: 'rgba(141, 211, 199, 1)' } },
+                            { value: 15, name: 'Salade', itemStyle: { color: 'rgba(251, 191, 114, 1)' } },
+                            { value: 10, name: 'Autres', itemStyle: { color: 'rgba(252, 141, 98, 1)' } }
+                        ],
+                        label: { show: true, formatter: '{b}: {c}%' },
+                        emphasis: { itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0, 0, 0, 0.5)' } }
+                    }]
+                };
+                productionChart.setOption(productionOption);
+                salesChart.setOption(salesOption);
+            }
+        }
+        function selectConversation(element, contactId) {
+            const conversations = document.querySelectorAll('.conversation-item');
+            conversations.forEach(conv => conv.classList.remove('active', 'bg-primary', 'text-white'));
+            element.classList.add('active', 'bg-primary', 'text-white');
+        }
+        function openProductModal() {
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                    successMessage.textContent = 'Connexion réussie !';
+                    document.body.appendChild(successMessage);
+                    setTimeout(() => {
+                        document.body.removeChild(successMessage);
+                        showPage('dashboard-page');
+                    }, 2000);
+                });
+                // Marketplace functionality
+                const marketplaceSearch = document.getElementById('marketplace-search');
+                const categoryFilterMp = document.getElementById('category-filter-mp');
+                const regionFilterMp = document.getElementById('region-filter-mp');
+                const priceFilter = document.getElementById('price-filter');
+                const availabilityFilter = document.getElementById('availability-filter');
+                const marketplaceResultsCount = document.getElementById('marketplace-results-count');
+                const gridViewMp = document.getElementById('grid-view-mp');
+                const listViewMp = document.getElementById('list-view-mp');
+                const marketplaceProducts = document.getElementById('marketplace-products');
+
+                if (marketplaceSearch && categoryFilterMp && regionFilterMp && priceFilter) {
+                    function updateMarketplaceResults() {
+                        let count = 247;
+                        if (marketplaceSearch.value.trim()) count = Math.floor(Math.random() * 50) + 10;
+                        if (categoryFilterMp.value) count = Math.floor(count * 0.7);
+                        if (regionFilterMp.value) count = Math.floor(count * 0.5);
+                        if (priceFilter.value) count = Math.floor(count * 0.6);
+                        if (availabilityFilter.value) count = Math.floor(count * 0.4);
+                        if (marketplaceResultsCount) marketplaceResultsCount.textContent = count;
+                    }
+
+                    marketplaceSearch.addEventListener('input', updateMarketplaceResults);
+                    categoryFilterMp.addEventListener('change', updateMarketplaceResults);
+                    regionFilterMp.addEventListener('change', updateMarketplaceResults);
+                    priceFilter.addEventListener('change', updateMarketplaceResults);
+                    availabilityFilter.addEventListener('change', updateMarketplaceResults);
+                }
+
+                if (gridViewMp && listViewMp && marketplaceProducts) {
+                    gridViewMp.addEventListener('click', function () {
+                        gridViewMp.classList.add('bg-primary', 'text-white');
+                        gridViewMp.classList.remove('border', 'border-gray-300', 'text-gray-700');
+                        listViewMp.classList.remove('bg-primary', 'text-white');
+                        listViewMp.classList.add('border', 'border-gray-300', 'text-gray-700');
+                        marketplaceProducts.className = 'grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12';
+                    });
+
+                    listViewMp.addEventListener('click', function () {
+                        listViewMp.classList.add('bg-primary', 'text-white');
+                        listViewMp.classList.remove('border', 'border-gray-300', 'text-gray-700');
+                        gridViewMp.classList.remove('bg-primary', 'text-white');
+                        gridViewMp.classList.add('border', 'border-gray-300', 'text-gray-700');
+                        marketplaceProducts.className = 'grid grid-cols-1 gap-4 mb-12';
+                    });
+                }
+            }
+
+        function openProductDetails(productId) {
+            const modal = document.getElementById('product-details-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeProductDetails() {
+            const modal = document.getElementById('product-details-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
+    <script id="auth-functionality">
+        function openNewApplicationModal() {
+            const modal = document.getElementById('new-application-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        }
+        function closeNewApplicationModal() {
+            const modal = document.getElementById('new-application-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+        function closeApplicationDetailsModal() {
+            const modal = document.getElementById('application-details-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+        function viewApplication(reference) {
+            const modal = document.getElementById('application-details-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                const refElement = document.getElementById('app-reference');
+                if (refElement) {
+                    refElement.textContent = '#' + reference;
+                }
+            }
+        }
+        function startApplication(type) {
+            const typeMapping = {
+                'phytosanitaire': 'Certificat Phytosanitaire',
+                'agrement': 'Agrément Transformation',
+                'bio': 'Certificat Bio',
+                'licence': 'Licence d\'Exploitation',
+                'transport': 'Autorisation Transport',
+                'pesticides': 'Autorisation Pesticides'
+            };
+            const modal = document.getElementById('new-application-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                const typeSelect = modal.querySelector('select[name="application_type"]');
+                if (typeSelect) {
+                    typeSelect.value = type;
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const userTypeButtons = document.querySelectorAll('.user-type-btn');
+            const selectedUserTypeInput = document.getElementById('selected-user-type');
+            userTypeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    userTypeButtons.forEach(btn => {
+                        btn.classList.remove('border-primary', 'bg-primary', 'bg-opacity-10');
+                        btn.classList.add('border-gray-300');
+                    });
+                    this.classList.remove('border-gray-300');
+                    this.classList.add('border-primary', 'bg-primary', 'bg-opacity-10');
+                    if (selectedUserTypeInput) {
+                        selectedUserTypeInput.value = this.dataset.type;
+                    }
+                });
+            });
+            const messageTextarea = document.querySelector('textarea[name="message"]');
+            const messageCount = document.getElementById('message-count');
+            if (messageTextarea && messageCount) {
+                messageTextarea.addEventListener('input', function () {
+                    const length = this.value.length;
+                    messageCount.textContent = length;
+                    if (length > 500) {
+                        this.value = this.value.substring(0, 500);
+                        messageCount.textContent = '500';
+                    }
+                });
+            }
+            const registerForm = document.getElementById('register-form');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const userType = selectedUserTypeInput ? selectedUserTypeInput.value : '';
+                    if (!userType) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                        errorMessage.textContent = 'Veuillez sélectionner un type de profil';
+                        document.body.appendChild(errorMessage);
+                        setTimeout(() => {
+                            document.body.removeChild(errorMessage);
+                        }, 3000);
+                        return;
+                    }
+                    const password = this.querySelector('[name="password"]').value;
+                    const confirmPassword = this.querySelector('[name="confirm_password"]').value;
+                    if (password !== confirmPassword) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                        errorMessage.textContent = 'Les mots de passe ne correspondent pas';
+                        document.body.appendChild(errorMessage);
+                        setTimeout(() => {
+                            document.body.removeChild(errorMessage);
+                        }, 3000);
+                        return;
+                    }
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                    successMessage.textContent = 'Compte créé avec succès !';
+                    document.body.appendChild(successMessage);
+                    setTimeout(() => {
+                        document.body.removeChild(successMessage);
+                        showPage('connexion-page');
+                    }, 2000);
+                });
+            }
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const inputs = this.querySelectorAll('input[required], textarea[required], select[required]');
+                    let isValid = true;
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.classList.add('border-red-500');
+                        } else {
+                            input.classList.remove('border-red-500');
+                        }
+                    });
+                    if (isValid) {
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                        successMessage.textContent = 'Votre message a été envoyé avec succès !';
+                        document.body.appendChild(successMessage);
+                        setTimeout(() => {
+                            document.body.removeChild(successMessage);
+                        }, 3000);
+                        this.reset();
+                    }
+                });
+            }
+            const newApplicationForm = document.getElementById('new-application-form');
+            if (newApplicationForm) {
+                const descriptionTextarea = newApplicationForm.querySelector('textarea[name="description"]');
+                const descriptionCount = document.getElementById('description-count');
+                if (descriptionTextarea && descriptionCount) {
+                    descriptionTextarea.addEventListener('input', function () {
+                        const length = this.value.length;
+                        descriptionCount.textContent = length;
+                        if (length > 500) {
+                            this.value = this.value.substring(0, 500);
+                            descriptionCount.textContent = '500';
+                        }
+                    });
+                }
+                newApplicationForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const inputs = this.querySelectorAll('input[required], textarea[required], select[required]');
+                    let isValid = true;
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.classList.add('border-red-500');
+                        } else {
+                            input.classList.remove('border-red-500');
+                        }
+                    });
+                    if (isValid) {
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                        successMessage.textContent = 'Votre demande a été soumise avec succès !';
+                        document.body.appendChild(successMessage);
+                        setTimeout(() => {
+                            document.body.removeChild(successMessage);
+                            closeNewApplicationModal();
+                        }, 3000);
+                        this.reset();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Marketplace Page -->
+    <section id="marketplace-page" class="pt-16 py-20 bg-white ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-poppins font-bold text-primary mb-6">Marketplace Agricole</h1>
+                <p class="text-xl font-roboto text-gray-600 max-w-4xl mx-auto">
+                    Plateforme B2B de transactions agricoles connectant directement producteurs, transformateurs et
+                    distributeurs pour des échanges commerciaux efficaces.
+                </p>
+            </div>
+
+            <!-- Search and Filters Bar -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-12">
+                <div class="grid md:grid-cols-5 gap-4 mb-6">
+                    <div class="relative">
+                        <input type="text" placeholder="Rechercher un produit..."
+                            class="w-full px-4 py-3 pr-12 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary"
+                            id="marketplace-search">
+                        <div
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center">
+                            <i class="ri-search-line text-gray-400"></i>
+                        </div>
+                    </div>
+                    <select
+                        class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                        id="category-filter-mp">
+                        <option value="">Toutes les catégories</option>
+                        <option value="legumes">Légumes</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="cereales">Céréales</option>
+                        <option value="tubercules">Tubercules</option>
+                        <option value="legumineuses">Légumineuses</option>
+                    </select>
+                    <select
+                        class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                        id="region-filter-mp">
+                        <option value="">Toutes les régions</option>
+                        <option value="dakar">Dakar</option>
+                        <option value="thies">Thiès</option>
+                        <option value="saint-louis">Saint-Louis</option>
+                        <option value="kolda">Kolda</option>
+                        <option value="sedhiou">Sédhiou</option>
+                        <option value="matam">Matam</option>
+                    </select>
+                    <select
+                        class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                        id="price-filter">
+                        <option value="">Tous les prix</option>
+                        <option value="0-500">0 - 500 FCFA/kg</option>
+                        <option value="500-1000">500 - 1,000 FCFA/kg</option>
+                        <option value="1000-2000">1,000 - 2,000 FCFA/kg</option>
+                        <option value="2000+">Plus de 2,000 FCFA/kg</option>
+                    </select>
+                    <select
+                        class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                        id="availability-filter">
+                        <option value="">Toute disponibilité</option>
+                        <option value="stock">En stock</option>
+                        <option value="low-stock">Stock faible</option>
+                        <option value="pre-order">Pré-commande</option>
+                    </select>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="text-sm font-roboto text-gray-600">
+                        <span id="marketplace-results-count">247</span> produits trouvés
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="font-roboto text-sm text-gray-600">Trier par:</span>
+                            <select
+                                class="px-3 py-2 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                                id="sort-filter">
+                                <option value="recent">Plus récents</option>
+                                <option value="price-asc">Prix croissant</option>
+                                <option value="price-desc">Prix décroissant</option>
+                                <option value="quantity">Quantité disponible</option>
+                                <option value="rating">Mieux notés</option>
+                            </select>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="px-4 py-2 bg-primary text-white !rounded-button font-inter text-sm hover:bg-green-800 transition-colors whitespace-nowrap"
+                                id="grid-view-mp">
+                                <i class="ri-grid-line mr-2"></i>Grille
+                            </button>
+                            <button
+                                class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button font-inter text-sm hover:bg-gray-50 transition-colors whitespace-nowrap"
+                                id="list-view-mp">
+                                <i class="ri-list-check mr-2"></i>Liste
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="marketplace-products" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                    onclick="openProductDetails('tomates-bio')">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20organic%20red%20tomatoes%2C%20premium%20quality%20tomatoes%2C%20bright%20red%20ripe%20tomatoes%20display%2C%20professional%20agricultural%20product%20photography%2C%20clean%20background&width=400&height=250&seq=mp-tomato001&orientation=landscape"
+                            alt="Tomates Bio" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded-full">Bio</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2 py-1 bg-white bg-opacity-90 text-gray-700 text-xs font-medium rounded-full">En
+                                stock</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Tomates Bio</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.8</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Tomates biologiques cultivées sans pesticides,
+                            région de Thiès</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-primary text-xl">850 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 50kg • 500kg disponibles</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Thiès</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>Ferme Sénégal Bio</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                Négocier
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                                Commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                    onclick="openProductDetails('oignons-vallée')">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20white%20onions%20pile%2C%20quality%20onions%20from%20Senegal%20valley%2C%20agricultural%20produce%20display%2C%20professional%20product%20photography%2C%20clean%20background&width=400&height=250&seq=mp-onion001&orientation=landscape"
+                            alt="Oignons de la Vallée" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 left-3">
+                            <span
+                                class="px-2 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">Terroir</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">Stock
+                                faible</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Oignons de la Vallée</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.6</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Oignons blancs de qualité supérieure, vallée
+                            du fleuve Sénégal</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-primary text-xl">650 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 25kg • 120kg disponibles</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Saint-Louis</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>Coop. Rizicole</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                Négocier
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                                Commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                    onclick="openProductDetails('mangues-kent')">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20ripe%20mangoes%20kent%20variety%2C%20tropical%20fruit%20display%2C%20premium%20quality%20mangoes%2C%20agricultural%20product%20photography%2C%20clean%20background&width=400&height=250&seq=mp-mango001&orientation=landscape"
+                            alt="Mangues Kent" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 left-3">
+                            <span
+                                class="px-2 py-1 bg-purple-500 text-white text-xs font-medium rounded-full">Premium</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2 py-1 bg-white bg-opacity-90 text-gray-700 text-xs font-medium rounded-full">En
+                                stock</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Mangues Kent</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.9</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Mangues Kent mûres à point, idéales pour
+                            l'export et transformation</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-primary text-xl">1,200 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 100kg • 800kg disponibles</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Kolda</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>Agro-Fruits SA</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                Négocier
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                                Commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                    onclick="openProductDetails('riz-parfumé')">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Premium%20white%20rice%20grains%2C%20quality%20rice%20from%20Senegal%2C%20agricultural%20cereal%20product%20display%2C%20professional%20photography%2C%20clean%20background&width=400&height=250&seq=mp-rice001&orientation=landscape"
+                            alt="Riz Parfumé" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 left-3">
+                            <span
+                                class="px-2 py-1 bg-yellow-500 text-white text-xs font-medium rounded-full">Nouveau</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2 py-1 bg-white bg-opacity-90 text-gray-700 text-xs font-medium rounded-full">En
+                                stock</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Riz Parfumé</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.7</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Riz blanc de qualité supérieure, production
+                            locale certifiée</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-primary text-xl">450 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 50kg • 2T disponibles</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Saint-Louis</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>SAED</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                Négocier
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                                Commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20carrots%20bundle%2C%20organic%20orange%20carrots%2C%20quality%20root%20vegetables%20display%2C%20agricultural%20product%20photography%2C%20clean%20background&width=400&height=250&seq=mp-carrot001&orientation=landscape"
+                            alt="Carottes Bio" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded-full">Bio</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2 py-1 bg-white bg-opacity-90 text-gray-700 text-xs font-medium rounded-full">En
+                                stock</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Carottes Bio</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.5</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Carottes biologiques fraîches, idéales pour
+                            transformation</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-primary text-xl">750 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 30kg • 300kg disponibles</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Thiès</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>Bio Garden</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                Négocier
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                                Commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 6 -->
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20green%20lettuce%20leaves%2C%20organic%20salad%20vegetables%2C%20quality%20lettuce%20display%2C%20agricultural%20product%20photography%2C%20clean%20background&width=400&height=250&seq=mp-lettuce001&orientation=landscape"
+                            alt="Salade Verte" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full">Épuisé</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Salade Verte</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.3</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Salade fraîche cultivée localement, production
+                            périurbaine</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-gray-400 text-xl">400 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 10kg • Rupture de stock</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Dakar</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>Ferme Urbaine</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-gray-300 text-gray-500 !rounded-button cursor-not-allowed font-inter text-sm whitespace-nowrap">
+                                Rupture
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-gray-300 text-gray-500 !rounded-button cursor-not-allowed font-inter text-sm whitespace-nowrap">
+                                Notifier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 7 -->
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20sweet%20potatoes%2C%20orange%20sweet%20potatoes%20display%2C%20quality%20tubers%2C%20agricultural%20root%20vegetables%2C%20professional%20product%20photography&width=400&height=250&seq=mp-sweetpotato001&orientation=landscape"
+                            alt="Patates Douces" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Pré-commande</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Patates Douces</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.4</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Patates douces de calibre export, disponibles
+                            en avril 2024</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-primary text-xl">350 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 100kg • Récolte prochaine</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Kolda</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>Producteurs Unis</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                Réserver
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-blue-600 text-white !rounded-button hover:bg-blue-700 transition-colors font-inter text-sm whitespace-nowrap">
+                                Pré-commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 8 -->
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20peanuts%20groundnuts%20display%2C%20quality%20peanuts%20from%20Senegal%2C%20agricultural%20nuts%20product%20photography%2C%20clean%20background&width=400&height=250&seq=mp-peanut001&orientation=landscape"
+                            alt="Arachides Décortiquées" class="w-full h-48 object-cover object-top">
+                        <div class="absolute top-3 left-3">
+                            <span
+                                class="px-2 py-1 bg-orange-500 text-white text-xs font-medium rounded-full">Export</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span
+                                class="px-2 py-1 bg-white bg-opacity-90 text-gray-700 text-xs font-medium rounded-full">En
+                                stock</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-inter font-semibold text-gray-900 text-lg">Arachides Décortiquées</h3>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.8</span>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Arachides décortiquées qualité export, taux
+                            d'humidité optimal</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="font-poppins font-bold text-primary text-xl">1,800 FCFA/kg</div>
+                                <div class="font-roboto text-gray-500 text-sm">Min. 500kg • 5T disponibles</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-map-pin-line mr-1"></i>
+                                <span>Kaffrine</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="ri-user-line mr-1"></i>
+                                <span>SONACOS</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="flex-1 px-3 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                Négocier
+                            </button>
+                            <button
+                                class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                                Commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketplace Statistics -->
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="bg-gradient-to-br from-primary to-secondary p-6 rounded-xl text-white text-center">
+                    <div class="text-3xl font-poppins font-bold mb-2">2,456</div>
+                    <div class="font-roboto text-green-100">Produits disponibles</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                    <div class="text-3xl font-poppins font-bold text-primary mb-2">847</div>
+                    <div class="font-roboto text-gray-600">Producteurs actifs</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                    <div class="text-3xl font-poppins font-bold text-primary mb-2">15,680</div>
+                    <div class="font-roboto text-gray-600">Transactions ce mois</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                    <div class="text-3xl font-poppins font-bold text-primary mb-2">24h</div>
+                    <div class="font-roboto text-gray-600">Livraison moyenne</div>
+                </div>
+            </div>
+
+            <!-- Featured Producers -->
+            <div class="mb-16">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-3xl font-poppins font-semibold text-primary">Producteurs Vedettes</h2>
+                    <button class="text-primary font-inter hover:text-green-800 transition-colors">Voir tous →</button>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <img src="https://readdy.ai/api/search-image?query=Successful%20African%20farmer%20portrait%2C%20confident%20agricultural%20entrepreneur%2C%20modern%20farming%20background%2C%20professional%20photography&width=200&height=200&seq=producer001&orientation=squarish"
+                            alt="Producteur" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover object-top">
+                        <h4 class="font-inter font-semibold text-gray-900 mb-2">Ferme Bio Sénégal</h4>
+                        <div class="flex items-center justify-center space-x-1 mb-3">
+                            <div class="flex space-x-1">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                            </div>
+                            <span class="font-roboto text-sm text-gray-600">4.8</span>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-4">Spécialisé dans les légumes biologiques. +15
+                            ans d'expérience.</p>
+                        <div class="flex items-center justify-between text-sm mb-4">
+                            <div>
+                                <div class="font-roboto font-medium text-gray-900">Thiès</div>
+                                <div class="font-roboto text-gray-500">45 produits</div>
+                            </div>
+                            <div>
+                                <div class="font-roboto font-medium text-gray-900">856</div>
+                                <div class="font-roboto text-gray-500">transactions</div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                            Voir les produits
+                        </button>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20agricultural%20cooperative%20group%2C%20farming%20community%20leaders%2C%20agricultural%20business%20professionals%2C%20modern%20setting&width=200&height=200&seq=producer002&orientation=squarish"
+                            alt="Coopérative" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover object-top">
+                        <h4 class="font-inter font-semibold text-gray-900 mb-2">Coop. Rizicole du Fleuve</h4>
+                        <div class="flex items-center justify-center space-x-1 mb-3">
+                            <div class="flex space-x-1">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-gray-300 text-sm"></i>
+                            </div>
+                            <span class="font-roboto text-sm text-gray-600">4.6</span>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-4">Production de riz et oignons de la vallée. 200
+                            membres actifs.</p>
+                        <div class="flex items-center justify-between text-sm mb-4">
+                            <div>
+                                <div class="font-roboto font-medium text-gray-900">Saint-Louis</div>
+                                <div class="font-roboto text-gray-500">12 produits</div>
+                            </div>
+                            <div>
+                                <div class="font-roboto font-medium text-gray-900">1,245</div>
+                                <div class="font-roboto text-gray-500">transactions</div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                            Voir les produits
+                        </button>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <img src="https://readdy.ai/api/search-image?query=Modern%20agricultural%20company%20facility%2C%20agro-industrial%20processing%20plant%2C%20professional%20agricultural%20business%2C%20clean%20industrial%20setting&width=200&height=200&seq=producer003&orientation=squarish"
+                            alt="Agro-Fruits" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover object-top">
+                        <h4 class="font-inter font-semibold text-gray-900 mb-2">Agro-Fruits SA</h4>
+                        <div class="flex items-center justify-center space-x-1 mb-3">
+                            <div class="flex space-x-1">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                            </div>
+                            <span class="font-roboto text-sm text-gray-600">4.9</span>
+                        </div>
+                        <p class="font-roboto text-gray-600 text-sm mb-4">Export de fruits tropicaux. Certification
+                            internationale bio.</p>
+                        <div class="flex items-center justify-between text-sm mb-4">
+                            <div>
+                                <div class="font-roboto font-medium text-gray-900">Kolda</div>
+                                <div class="font-roboto text-gray-500">8 produits</div>
+                            </div>
+                            <div>
+                                <div class="font-roboto font-medium text-gray-900">2,103</div>
+                                <div class="font-roboto text-gray-500">transactions</div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                            Voir les produits
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="bg-gray-50 rounded-xl p-12 mb-16">
+                <h2 class="text-3xl font-poppins font-semibold text-primary mb-12 text-center">Comment Fonctionne Notre
+                    Marketplace</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-xl">1</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Parcourir</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Découvrez les produits disponibles avec nos filtres
+                            avancés</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-xl">2</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Négocier</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Contactez directement les producteurs pour négocier
+                            prix et quantités</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-xl">3</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Commander</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Passez votre commande avec paiement sécurisé
+                            intégré</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-xl">4</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Recevoir</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Livraison rapide avec traçabilité complète de vos
+                            produits</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center items-center space-x-4">
+                <button
+                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <i class="ri-arrow-left-line mr-2"></i>Précédent
+                </button>
+                <div class="flex space-x-2">
+                    <button class="w-10 h-10 bg-primary text-white !rounded-button font-medium">1</button>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">2</button>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">3</button>
+                    <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">31</button>
+                </div>
+                <button
+                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    Suivant<i class="ri-arrow-right-line ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Modal -->
+    <div id="product-details-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-inter font-semibold text-gray-900">Détail du Produit</h3>
+                    <button onclick="closeProductDetails()"
+                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Product Images -->
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=Fresh%20organic%20red%20tomatoes%20close-up%2C%20premium%20quality%20tomatoes%2C%20professional%20product%20photography%2C%20detailed%20view%2C%20clean%20background&width=600&height=400&seq=product-detail001&orientation=landscape"
+                            alt="Tomates Bio" class="w-full h-80 object-cover object-top rounded-lg mb-4"
+                            id="main-product-image">
+                        <div class="grid grid-cols-4 gap-2">
+                            <img src="https://readdy.ai/api/search-image?query=Fresh%20organic%20tomatoes%20field%20view%2C%20tomato%20plantation%2C%20agricultural%20farming%20scene%2C%20natural%20setting&width=150&height=100&seq=product-thumb001&orientation=landscape"
+                                alt="Vue champ"
+                                class="w-full h-20 object-cover object-top rounded cursor-pointer hover:opacity-75 transition-opacity">
+                            <img src="https://readdy.ai/api/search-image?query=Tomato%20quality%20analysis%2C%20agricultural%20certification%2C%20product%20quality%20check%2C%20professional%20inspection&width=150&height=100&seq=product-thumb002&orientation=landscape"
+                                alt="Certification"
+                                class="w-full h-20 object-cover object-top rounded cursor-pointer hover:opacity-75 transition-opacity">
+                            <img src="https://readdy.ai/api/search-image?query=Tomato%20packaging%20process%2C%20agricultural%20product%20packaging%2C%20quality%20control%2C%20professional%20packaging%20facility&width=150&height=100&seq=product-thumb003&orientation=landscape"
+                                alt="Conditionnement"
+                                class="w-full h-20 object-cover object-top rounded cursor-pointer hover:opacity-75 transition-opacity">
+                            <img src="https://readdy.ai/api/search-image?query=Agricultural%20transport%20truck%2C%20farm%20logistics%2C%20product%20delivery%20vehicle%2C%20professional%20agricultural%20transport&width=150&height=100&seq=product-thumb004&orientation=landscape"
+                                alt="Livraison"
+                                class="w-full h-20 object-cover object-top rounded cursor-pointer hover:opacity-75 transition-opacity">
+                        </div>
+                    </div>
+                    <!-- Product Information -->
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h2 class="text-2xl font-poppins font-bold text-gray-900">Tomates Bio Premium</h2>
+                                <div class="flex items-center space-x-2">
+                                    <span
+                                        class="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-full">Bio</span>
+                                    <span
+                                        class="px-3 py-1 bg-blue-500 text-white text-sm font-medium rounded-full">Certifié</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="flex items-center">
+                                    <i class="ri-star-fill text-yellow-400"></i>
+                                    <i class="ri-star-fill text-yellow-400"></i>
+                                    <i class="ri-star-fill text-yellow-400"></i>
+                                    <i class="ri-star-fill text-yellow-400"></i>
+                                    <i class="ri-star-fill text-yellow-400"></i>
+                                    <span class="font-roboto text-sm text-gray-600 ml-2">4.8 (156 avis)</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="ri-map-pin-line mr-1"></i>
+                                    <span>Thiès, Sénégal</span>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-poppins font-bold text-primary mb-2">850 FCFA/kg</div>
+                            <div class="flex items-center space-x-4 text-sm text-gray-600 mb-6">
+                                <div>Commande minimum: <span class="font-medium text-gray-900">50 kg</span></div>
+                                <div>Stock disponible: <span class="font-medium text-green-600">500 kg</span></div>
+                            </div>
+                        </div>
+                        <!-- Producer Info -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-center space-x-4">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20farmer%20portrait%2C%20confident%20agricultural%20producer%2C%20organic%20farming%20specialist%2C%20professional%20headshot&width=100&height=100&seq=producer-detail001&orientation=squarish"
+                                    alt="Producteur" class="w-16 h-16 rounded-full object-cover object-top">
+                                <div class="flex-1">
+                                    <h4 class="font-inter font-semibold text-gray-900">Ferme Bio Sénégal</h4>
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <div class="flex space-x-1">
+                                            <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                            <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                            <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                            <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                            <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                        </div>
+                                        <span class="font-roboto text-sm text-gray-600">4.8</span>
+                                    </div>
+                                    <div class="font-roboto text-sm text-gray-600">Membre depuis 2019 • 856 transactions
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button
+                                        class="px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                        <i class="ri-message-line mr-2"></i>Contacter
+                                    </button>
+                                    <button
+                                        class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap">
+                                        Voir profil
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div>
+                            <h4 class="font-inter font-semibold text-gray-900 mb-3">Description</h4>
+                            <p class="font-roboto text-gray-600 text-sm leading-relaxed">
+                                Tomates biologiques cultivées sans pesticides chimiques dans notre exploitation de 15
+                                hectares à Thiès. Variété Roma parfaite pour la transformation et la consommation
+                                fraîche. Récoltées à maturité optimale et conditionnées dans des caisses de 20 kg pour
+                                préserver la fraîcheur. Certification bio officielle et traçabilité complète depuis la
+                                plantation.
+                            </p>
+                        </div>
+                        <!-- Technical Specifications -->
+                        <div>
+                            <h4 class="font-inter font-semibold text-gray-900 mb-3">Caractéristiques</h4>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="font-roboto text-gray-600">Variété:</span>
+                                    <span class="font-roboto text-gray-900 font-medium">Roma Bio</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-roboto text-gray-600">Calibre:</span>
+                                    <span class="font-roboto text-gray-900 font-medium">60-80mm</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-roboto text-gray-600">Conditionnement:</span>
+                                    <span class="font-roboto text-gray-900 font-medium">Caisses 20kg</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-roboto text-gray-600">Conservation:</span>
+                                    <span class="font-roboto text-gray-900 font-medium">7-10 jours</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-roboto text-gray-600">Récolte:</span>
+                                    <span class="font-roboto text-gray-900 font-medium">Mars 2024</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-roboto text-gray-600">Certification:</span>
+                                    <span class="font-roboto text-gray-900 font-medium">Bio EU/USDA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Order Form -->
+                        <div class="bg-primary bg-opacity-5 p-4 rounded-lg">
+                            <h4 class="font-inter font-semibold text-gray-900 mb-4">Passer une commande</h4>
+                            <form class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2 text-sm">Quantité
+                                            (kg)</label>
+                                        <input type="number" min="50" value="50"
+                                            class="w-full px-3 py-2 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block font-inter font-medium text-gray-700 mb-2 text-sm">Prix
+                                            total</label>
+                                        <div
+                                            class="px-3 py-2 bg-gray-100 border border-gray-300 !rounded-button text-sm font-medium text-gray-900">
+                                            42,500 FCFA
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block font-inter font-medium text-gray-700 mb-2 text-sm">Date de
+                                        livraison souhaitée</label>
+                                    <input type="date"
+                                        class="w-full px-3 py-2 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                                </div>
+                                <div>
+                                    <label class="block font-inter font-medium text-gray-700 mb-2 text-sm">Instructions
+                                        spéciales</label>
+                                    <textarea rows="2"
+                                        class="w-full px-3 py-2 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm resize-none"
+                                        placeholder="Conditionnement spécial, horaires de livraison..."></textarea>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <button type="button"
+                                        class="flex-1 px-4 py-3 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm whitespace-nowrap">
+                                        <i class="ri-message-line mr-2"></i>Négocier le prix
+                                    </button>
+                                    <button type="submit"
+                                        class="flex-1 px-4 py-3 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">
+                                        <i class="ri-shopping-cart-line mr-2"></i>Ajouter au panier
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="product-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-inter font-semibold text-gray-900">Ajouter un Produit</h3>
+                    <button onclick="closeProductModal()"
+                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Nom du produit</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Catégorie</label>
+                            <select
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                <option>Choisir une catégorie</option>
+                                <option>Légumes</option>
+                                <option>Fruits</option>
+                                <option>Céréales</option>
+                                <option>Tubercules</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-inter font-medium text-gray-700 mb-2">Description</label>
+                        <textarea rows="4"
+                            class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm resize-none"></textarea>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Prix (FCFA/kg)</label>
+                            <input type="number"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Quantité (kg)</label>
+                            <input type="number"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Unité</label>
+                            <select
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                <option>kg</option>
+                                <option>pièce</option>
+                                <option>sac</option>
+                                <option>caisse</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-inter font-medium text-gray-700 mb-2">Photos du produit</label>
+                        <div class="border border-dashed border-gray-300 !rounded-button p-6 text-center">
+                            <i class="ri-image-add-line text-gray-400 text-3xl mb-2"></i>
+                            <div class="font-roboto text-gray-600 text-sm mb-2">Glissez vos photos ici ou cliquez pour
+                                parcourir</div>
+                            <button type="button"
+                                class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap">
+                                Choisir des fichiers
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
+                        <button type="button" onclick="closeProductModal()"
+                            class="px-6 py-3 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter whitespace-nowrap">
+                            Annuler
+                        </button>
+                        <button type="submit"
+                            class="px-6 py-3 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter whitespace-nowrap">
+                            Ajouter le produit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

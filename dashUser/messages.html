@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class=" bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Tableau de Bord</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20farmer%20portrait%2C%20confident%20male%20agriculturist%2C%20smiling%20farmer%20in%20agricultural%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile001&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Producteur</div>
+                    </div>
+                </div>
+            </div>
+        </div>        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+                <a href="tableauDeBord.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Vue d'ensemble</a>
+                <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+                <a href="paiement.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Paiements</a>
+                <a href="messages.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Messages</a>
+                <a href="produit.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mes Produits</a>
+                <a href="formalites.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Formalités</a>
+        </div>        <div class="grid md:grid-cols-4 gap-8 h-auto md:h-96">
+            <div class="bg-white rounded-xl shadow-sm">
+                <div class="p-4 border-b border-gray-200"><h3 class="font-inter font-semibold text-gray-900">Messages</h3></div>
+                <div class="overflow-y-auto h-80">
+                    <div class="conversation-item p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer active bg-primary text-white" onclick="selectConversation(this)">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20portrait%2C%20confident%20female%20agricultural%20entrepreneur%2C%20smiling%20professional%20headshot&width=100&height=100&seq=contact001&orientation=squarish" alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div class="flex-1">
+                                <div class="font-roboto text-sm font-medium">Fatou Diallo</div>
+                                <div class="font-roboto text-xs truncate opacity-80">Intéressée par vos tomates...</div>
+                            </div>
+                            <div class="text-xs opacity-70">14:30</div>
+                        </div>
+                    </div>
+                    <div class="conversation-item p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer" onclick="selectConversation(this)">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20male%20entrepreneur%20portrait%2C%20confident%20businessman%20in%20agricultural%20sector%2C%20professional%20headshot&width=100&height=100&seq=contact002&orientation=squarish" alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div class="flex-1">
+                                <div class="font-roboto text-gray-900 text-sm font-medium">Ibrahim Sarr</div>
+                                <div class="font-roboto text-gray-500 text-xs truncate">Commande de 500kg...</div>
+                            </div>
+                            <div class="text-xs text-gray-400">12:15</div>
+                        </div>
+                    </div>
+                    <div class="conversation-item p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer" onclick="selectConversation(this)">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20female%20agricultural%20specialist%20portrait%2C%20confident%20woman%20in%20agriculture%2C%20professional%20headshot&width=100&height=100&seq=contact003&orientation=squarish" alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                            <div class="flex-1">
+                                <div class="font-roboto text-gray-900 text-sm font-medium">Aïssa Ndiaye</div>
+                                <div class="font-roboto text-gray-500 text-xs truncate">Formation disponible...</div>
+                            </div>
+                            <div class="text-xs text-gray-400">Hier</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-3 bg-white rounded-xl shadow-sm flex flex-col mt-6 md:mt-0">
+                <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20portrait%2C%20confident%20female%20agricultural%20entrepreneur%2C%20smiling%20professional%20headshot&width=100&height=100&seq=contact004&orientation=squarish" alt="Contact" class="w-10 h-10 rounded-full object-cover object-top">
+                        <div><div class="font-inter font-semibold text-gray-900">Fatou Diallo</div><div class="font-roboto text-green-600 text-xs">En ligne</div></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"><i class="ri-phone-line"></i></button>
+                        <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"><i class="ri-video-line"></i></button>
+                    </div>
+                </div>
+                <div class="flex-1 p-4 overflow-y-auto" id="chat-messages">
+                    <div class="space-y-4">
+                        <div class="flex justify-start"><div class="max-w-xs bg-gray-100 rounded-lg px-4 py-2"><div class="font-roboto text-gray-900 text-sm">Bonjour Amadou, j'ai vu vos tomates sur la plateforme. Sont-elles encore disponibles ?</div><div class="font-roboto text-gray-500 text-xs mt-1">14:25</div></div></div>
+                        <div class="flex justify-end"><div class="max-w-xs bg-primary text-white rounded-lg px-4 py-2"><div class="font-roboto text-white text-sm">Bonjour Fatou ! Oui, j'ai encore 500kg de tomates fraîches disponibles.</div><div class="font-roboto text-green-200 text-xs mt-1">14:27</div></div></div>
+                        <div class="flex justify-start"><div class="max-w-xs bg-gray-100 rounded-lg px-4 py-2"><div class="font-roboto text-gray-900 text-sm">Parfait ! Quel est votre prix au kilo ? Et pouvez-vous livrer à Dakar ?</div><div class="font-roboto text-gray-500 text-xs mt-1">14:28</div></div></div>
+                        <div class="flex justify-end"><div class="max-w-xs bg-primary text-white rounded-lg px-4 py-2"><div class="font-roboto text-white text-sm">Le prix est de 800 FCFA/kg. Pour la livraison à Dakar, c'est possible avec un supplément de 15,000 FCFA.</div><div class="font-roboto text-green-200 text-xs mt-1">14:30</div></div></div>
+                    </div>
+                </div>
+                <div class="p-4 border-t border-gray-200">
+                    <div class="flex items-center space-x-4">
+                        <button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"><i class="ri-attachment-line"></i></button>
+                        <input type="text" placeholder="Tapez votre message..." class="flex-1 px-4 py-2 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
+                        <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap"><i class="ri-send-plane-line"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div><script>
+    function selectConversation(element) {
+        document.querySelectorAll('.conversation-item').forEach(item => {
+            item.classList.remove('active', 'bg-primary', 'text-white');
+        });
+        element.classList.add('active', 'bg-primary', 'text-white');
+    }
+</script>    </div>
+</section>
+</body>
+</html>
+
+
+

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme National de Développement des Agropoles du Sénégal</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2E7D32',
+secondary: '#66BB6A'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+},
+fontFamily: {
+'inter': ['Inter', 'sans-serif'],
+'poppins': ['Poppins', 'sans-serif'],
+'roboto': ['Roboto', 'sans-serif']
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+</style>
+</head>
+<body>
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="text-primary font-poppins font-bold text-xl">
+                        Programme National Agropoles
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <button onclick="showHomePage()"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Accueil</button>
+                    <button onclick="showPage('apropos-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">À propos</button>
+                    <button onclick="showPage('services-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Services</button>
+                    <button onclick="showPage('annuaire-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Annuaire</button>
+                    <button onclick="showPage('actualites-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Actualités</button>
+                    <button onclick="showPage('contact-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Contact</button>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showPage('connexion-page')"
+                        class="px-4 py-2 border border-primary text-primary font-inter font-medium !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                        Se connecter
+                    </button>
+                    <button onclick="showPage('inscription-page')"
+                        class="px-4 py-2 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
+                        S'inscrire
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- News Page -->
+    <section id="actualites-page" class="pt-36 py-20 bg-white ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-poppins font-bold text-primary mb-6">Actualités & Informations</h1>
+                <p class="text-xl font-roboto text-gray-600 max-w-4xl mx-auto">
+                    Restez informé des dernières nouvelles, événements et développements du secteur agricole sénégalais
+                    et du programme des agropoles.
+                </p>
+            </div>
+
+            <!-- Featured Article -->
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-xl overflow-hidden mb-16">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="p-12 text-white">
+                        <span
+                            class="px-4 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium mb-4 inline-block">À
+                            la Une</span>
+                        <h2 class="text-3xl font-poppins font-bold mb-4">Lancement du Programme de Modernisation
+                            Agricole 2024-2030</h2>
+                        <p class="text-green-100 mb-6 leading-relaxed">
+                            Le gouvernement du Sénégal annonce un investissement de 150 milliards FCFA pour moderniser
+                            l'agriculture nationale et développer les agropoles dans toutes les régions du pays.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-green-100 text-sm">18 mars 2024</span>
+                            <button
+                                class="px-6 py-3 bg-white text-primary font-inter font-medium !rounded-button hover:bg-gray-100 transition-colors whitespace-nowrap">
+                                Lire l'article
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=Senegal%20agricultural%20modernization%20project%20launch%2C%20government%20officials%20and%20farmers%2C%20modern%20farming%20equipment%20ceremony%2C%20professional%20event%20photography%2C%20bright%20natural%20lighting%2C%20official%20ceremony%20setting&width=600&height=400&seq=featured001&orientation=landscape"
+                            alt="Article principal" class="w-full h-full object-cover object-top">
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Categories and Filter -->
+            <div class="flex flex-wrap items-center justify-between mb-12">
+                <div class="flex flex-wrap gap-4 mb-4 md:mb-0">
+                    <button
+                        class="px-4 py-2 bg-primary text-white !rounded-button font-inter text-sm hover:bg-green-800 transition-colors whitespace-nowrap"
+                        onclick="filterNews('all')">
+                        Toutes les actualités
+                    </button>
+                    <button
+                        class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button font-inter text-sm hover:bg-gray-50 transition-colors whitespace-nowrap"
+                        onclick="filterNews('agropoles')">
+                        Agropoles
+                    </button>
+                    <button
+                        class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button font-inter text-sm hover:bg-gray-50 transition-colors whitespace-nowrap"
+                        onclick="filterNews('formation')">
+                        Formations
+                    </button>
+                    <button
+                        class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button font-inter text-sm hover:bg-gray-50 transition-colors whitespace-nowrap"
+                        onclick="filterNews('technologie')">
+                        Technologies
+                    </button>
+                    <button
+                        class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button font-inter text-sm hover:bg-gray-50 transition-colors whitespace-nowrap"
+                        onclick="filterNews('marche')">
+                        Marchés
+                    </button>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Rechercher un article..."
+                        class="px-4 py-2 pr-12 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
+                    <div
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center">
+                        <i class="ri-search-line text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="news-grid">
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    data-category="agropoles">
+                    <img src="https://readdy.ai/api/search-image?query=New%20agropole%20construction%20site%2C%20modern%20agricultural%20infrastructure%20development%2C%20construction%20machinery%20and%20workers%2C%20professional%20construction%20photography%2C%20Senegal%20agricultural%20development%20project&width=400&height=250&seq=news004&orientation=landscape"
+                        alt="Agropole" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-secondary bg-opacity-20 text-secondary text-xs font-medium rounded-full">Agropoles</span>
+                            <span class="text-xs text-gray-500">16 mars 2024</span>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-3 line-clamp-2">
+                            Inauguration du nouvel agropole de Kaffrine : un hub agricole de 500 hectares
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-4 line-clamp-3">
+                            Le ministre de l'Agriculture a inauguré le nouvel agropole de Kaffrine, qui permettra de
+                            structurer la filière arachide dans la région...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="ri-eye-line text-gray-400 text-sm mr-1"></i>
+                                <span class="text-xs text-gray-500">1,234 vues</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Lire plus →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    data-category="formation">
+                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20training%20workshop%2C%20farmers%20learning%20digital%20tools%2C%20group%20training%20session%2C%20educational%20technology%20in%20agriculture%2C%20professional%20training%20environment&width=400&height=250&seq=news005&orientation=landscape"
+                        alt="Formation" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Formation</span>
+                            <span class="text-xs text-gray-500">14 mars 2024</span>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-3 line-clamp-2">
+                            500 agriculteurs formés aux outils digitaux dans la région de Thiès
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-4 line-clamp-3">
+                            Programme intensif de formation aux nouvelles technologies agricoles organisé par l'agropole
+                            de Thiès en partenariat avec l'ISRA...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="ri-eye-line text-gray-400 text-sm mr-1"></i>
+                                <span class="text-xs text-gray-500">892 vues</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Lire plus →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    data-category="technologie">
+                    <img src="https://readdy.ai/api/search-image?query=Digital%20agriculture%20platform%2C%20mobile%20app%20interface%20for%20farmers%2C%20agricultural%20technology%20innovation%2C%20modern%20farming%20digital%20solutions%2C%20professional%20tech%20photography&width=400&height=250&seq=news006&orientation=landscape"
+                        alt="Technologie" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Technologie</span>
+                            <span class="text-xs text-gray-500">12 mars 2024</span>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-3 line-clamp-2">
+                            Nouvelle application mobile pour la vente directe des produits agricoles
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-4 line-clamp-3">
+                            Lancement officiel de l'application "Agro-Direct" qui permet aux producteurs de vendre leurs
+                            récoltes directement aux consommateurs...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="ri-eye-line text-gray-400 text-sm mr-1"></i>
+                                <span class="text-xs text-gray-500">2,156 vues</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Lire plus →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    data-category="marche">
+                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20market%20prices%20display%2C%20commodity%20trading%2C%20market%20analysis%20charts%2C%20agricultural%20economics%2C%20professional%20market%20environment&width=400&height=250&seq=news007&orientation=landscape"
+                        alt="Marché" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">Marchés</span>
+                            <span class="text-xs text-gray-500">10 mars 2024</span>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-3 line-clamp-2">
+                            Hausse des prix des céréales : impact sur les producteurs sénégalais
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-4 line-clamp-3">
+                            Analyse de l'évolution des prix des céréales sur les marchés internationaux et ses
+                            répercussions sur l'économie agricole locale...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="ri-eye-line text-gray-400 text-sm mr-1"></i>
+                                <span class="text-xs text-gray-500">1,567 vues</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Lire plus →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    data-category="agropoles">
+                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20cooperative%20meeting%2C%20farmers%20discussion%20group%2C%20rural%20development%20program%2C%20community%20agricultural%20development%2C%20professional%20meeting%20photography&width=400&height=250&seq=news008&orientation=landscape"
+                        alt="Coopérative" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-secondary bg-opacity-20 text-secondary text-xs font-medium rounded-full">Agropoles</span>
+                            <span class="text-xs text-gray-500">8 mars 2024</span>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-3 line-clamp-2">
+                            Création de 15 nouvelles coopératives agricoles dans l'agropole de Kolda
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-4 line-clamp-3">
+                            L'agropole de Kolda poursuit son développement avec la création de nouvelles structures
+                            coopératives spécialisées dans l'anacarde...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="ri-eye-line text-gray-400 text-sm mr-1"></i>
+                                <span class="text-xs text-gray-500">743 vues</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Lire plus →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    data-category="formation">
+                    <img src="https://readdy.ai/api/search-image?query=Young%20agricultural%20entrepreneurs%2C%20startup%20incubator%20program%2C%20agricultural%20innovation%20hub%2C%20business%20development%20training%2C%20professional%20entrepreneurship%20environment&width=400&height=250&seq=news009&orientation=landscape"
+                        alt="Entrepreneuriat" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Formation</span>
+                            <span class="text-xs text-gray-500">6 mars 2024</span>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-3 line-clamp-2">
+                            Programme d'incubation pour 50 startups agro-tech sénégalaises
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-4 line-clamp-3">
+                            Lancement du premier incubateur dédié aux innovations technologiques agricoles avec un
+                            financement de 2 milliards FCFA...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="ri-eye-line text-gray-400 text-sm mr-1"></i>
+                                <span class="text-xs text-gray-500">1,892 vues</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Lire plus →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="bg-gray-50 rounded-xl p-12 text-center">
+                <h3 class="text-3xl font-poppins font-semibold text-primary mb-4">Restez Informé</h3>
+                <p class="font-roboto text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Recevez chaque semaine les dernières actualités du secteur agricole et des agropoles directement
+                    dans votre boîte email.
+                </p>
+                <div class="flex max-w-md mx-auto">
+                    <input type="email" placeholder="Votre adresse email..."
+                        class="flex-1 px-4 py-3 border border-gray-300 rounded-l-button text-sm focus:outline-none focus:border-secondary">
+                    <button
+                        class="px-6 py-3 bg-primary text-white font-inter font-medium rounded-r-button hover:bg-green-800 transition-colors whitespace-nowrap">
+                        S'abonner
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Programme Agropoles</h3>
+                    <p class="font-roboto text-green-100 text-sm mb-4">
+                        Plateforme nationale de développement des agropoles du Sénégal pour un écosystème agricole
+                        moderne et connecté.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-facebook-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-twitter-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-linkedin-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Services</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Accompagnement technique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Place de marché</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guichet unique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Formation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Agropoles</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Diamniadio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sédhiou</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Matam</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Kolda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Support</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Centre d'aide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg-green-900 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <div class="font-roboto text-green-100 text-sm">
+                        © 2024 Programme National de Développement des Agropoles du Sénégal. Tous droits réservés.
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-government-line text-white"></i>
+                        </div>
+                        <span class="font-roboto text-green-100 text-sm">Gouvernement du Sénégal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

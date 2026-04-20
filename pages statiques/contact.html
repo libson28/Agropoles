@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme National de Développement des Agropoles du Sénégal</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2E7D32',
+secondary: '#66BB6A'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+},
+fontFamily: {
+'inter': ['Inter', 'sans-serif'],
+'poppins': ['Poppins', 'sans-serif'],
+'roboto': ['Roboto', 'sans-serif']
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+</style>
+</head>
+<body>
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="text-primary font-poppins font-bold text-xl">
+                        Programme National Agropoles
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <button onclick="showHomePage()"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Accueil</button>
+                    <button onclick="showPage('apropos-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">À propos</button>
+                    <button onclick="showPage('services-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Services</button>
+                    <button onclick="showPage('annuaire-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Annuaire</button>
+                    <button onclick="showPage('actualites-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Actualités</button>
+                    <button onclick="showPage('contact-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Contact</button>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showPage('connexion-page')"
+                        class="px-4 py-2 border border-primary text-primary font-inter font-medium !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                        Se connecter
+                    </button>
+                    <button onclick="showPage('inscription-page')"
+                        class="px-4 py-2 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
+                        S'inscrire
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <!-- Contact Page -->
+    <section id="contact-page" class="pt-36 py-20 bg-white ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-poppins font-bold text-primary mb-6">Contactez-nous</h1>
+                <p class="text-xl font-roboto text-gray-600 max-w-4xl mx-auto">
+                    Notre équipe est à votre disposition pour répondre à toutes vos questions et vous accompagner dans
+                    vos projets agricoles.
+                </p>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="text-center p-8 bg-gray-50 rounded-xl">
+                    <div
+                        class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mx-auto mb-6">
+                        <i class="ri-phone-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-inter font-semibold text-gray-900 mb-3">Appelez-nous</h3>
+                    <p class="font-roboto text-gray-600 mb-4">Du lundi au vendredi de 8h à 17h</p>
+                    <div class="space-y-2">
+                        <p class="font-roboto font-medium text-primary">+221 33 823 45 67</p>
+                        <p class="font-roboto font-medium text-primary">+221 77 123 45 67</p>
+                    </div>
+                </div>
+                <div class="text-center p-8 bg-gray-50 rounded-xl">
+                    <div
+                        class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mx-auto mb-6">
+                        <i class="ri-mail-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-inter font-semibold text-gray-900 mb-3">Écrivez-nous</h3>
+                    <p class="font-roboto text-gray-600 mb-4">Nous vous répondons sous 24h</p>
+                    <div class="space-y-2">
+                        <p class="font-roboto font-medium text-primary">contact@agropoles.sn</p>
+                        <p class="font-roboto font-medium text-primary">support@agropoles.sn</p>
+                    </div>
+                </div>
+                <div class="text-center p-8 bg-gray-50 rounded-xl">
+                    <div
+                        class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mx-auto mb-6">
+                        <i class="ri-map-pin-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-inter font-semibold text-gray-900 mb-3">Visitez-nous</h3>
+                    <p class="font-roboto text-gray-600 mb-4">Rendez-vous dans nos bureaux</p>
+                    <p class="font-roboto font-medium text-primary">Ministère de l'Agriculture<br>Avenue Président
+                        Lamine Guèye<br>Dakar, Sénégal</p>
+                </div>
+            </div>
+
+            <!-- Contact Form and Info -->
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-gray-50 rounded-xl p-8">
+                    <h3 class="text-2xl font-poppins font-semibold text-primary mb-6">Envoyez-nous un message</h3>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-inter font-medium text-gray-700 mb-2">Prénom *</label>
+                                <input type="text" name="prenom" required
+                                    class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                            </div>
+                            <div>
+                                <label class="block font-inter font-medium text-gray-700 mb-2">Nom *</label>
+                                <input type="text" name="nom" required
+                                    class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" name="email" required
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Téléphone</label>
+                            <input type="tel" name="telephone"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Sujet *</label>
+                            <select name="sujet" required
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                <option value="">Choisissez un sujet</option>
+                                <option value="information">Demande d'information</option>
+                                <option value="inscription">Inscription à la plateforme</option>
+                                <option value="partenariat">Partenariat</option>
+                                <option value="support">Support technique</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Message *</label>
+                            <textarea name="message" required rows="5" maxlength="500"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm resize-none"></textarea>
+                            <div class="text-right text-xs text-gray-500 mt-1">
+                                <span id="message-count">0</span>/500 caractères
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="w-full px-6 py-3 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-poppins font-semibold text-primary mb-6">Informations pratiques</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-inter font-semibold text-gray-900 mb-3">Horaires d'ouverture</h4>
+                                <div class="space-y-2 font-roboto text-gray-600">
+                                    <div class="flex justify-between">
+                                        <span>Lundi - Vendredi</span>
+                                        <span>8h00 - 17h00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Samedi</span>
+                                        <span>8h00 - 12h00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Dimanche</span>
+                                        <span>Fermé</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="font-inter font-semibold text-gray-900 mb-3">Bureaux régionaux</h4>
+                                <div class="space-y-3 font-roboto text-gray-600 text-sm">
+                                    <div>
+                                        <div class="font-medium text-gray-900">Thiès</div>
+                                        <div>Agropole de Thiès, Route de Tivaouane</div>
+                                        <div class="text-primary">+221 33 951 23 45</div>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Saint-Louis</div>
+                                        <div>Zone industrielle, Route de Rosso</div>
+                                        <div class="text-primary">+221 33 961 34 56</div>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Kolda</div>
+                                        <div>Quartier Sikilo, Avenue Abdoulaye Wade</div>
+                                        <div class="text-primary">+221 33 996 45 67</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="font-inter font-semibold text-gray-900 mb-3">Suivez-nous</h4>
+                                <div class="flex space-x-4">
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center bg-primary rounded-full hover:bg-green-800 transition-colors cursor-pointer">
+                                        <i class="ri-facebook-line text-white"></i>
+                                    </div>
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center bg-primary rounded-full hover:bg-green-800 transition-colors cursor-pointer">
+                                        <i class="ri-twitter-line text-white"></i>
+                                    </div>
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center bg-primary rounded-full hover:bg-green-800 transition-colors cursor-pointer">
+                                        <i class="ri-linkedin-line text-white"></i>
+                                    </div>
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center bg-primary rounded-full hover:bg-green-800 transition-colors cursor-pointer">
+                                        <i class="ri-youtube-line text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="mt-20">
+                    <h3 class="text-3xl font-poppins font-semibold text-primary mb-12 text-center">Questions Fréquentes
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="faq-item">
+                                <button
+                                    class="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                    onclick="toggleFaq(this)">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-inter font-medium text-gray-900">Comment s'inscrire sur la
+                                            plateforme ?</h4>
+                                        <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                                    </div>
+                                    <div class="faq-answer mt-3 font-roboto text-gray-600 text-sm hidden">
+                                        L'inscription est gratuite et simple. Cliquez sur "S'inscrire", remplissez le
+                                        formulaire avec vos informations et choisissez votre type de profil (producteur,
+                                        transformateur, etc.). Vous recevrez un email de confirmation.
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="faq-item">
+                                <button
+                                    class="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                    onclick="toggleFaq(this)">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-inter font-medium text-gray-900">Quels sont les services
+                                            gratuits ?</h4>
+                                        <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                                    </div>
+                                    <div class="faq-answer mt-3 font-roboto text-gray-600 text-sm hidden">
+                                        L'inscription, la consultation de l'annuaire, l'accès aux formations de base et
+                                        les informations de marché sont entièrement gratuits. Certains services avancés
+                                        peuvent nécessiter un abonnement.
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="faq-item">
+                                <button
+                                    class="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                    onclick="toggleFaq(this)">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-inter font-medium text-gray-900">Comment vendre mes produits ?
+                                        </h4>
+                                        <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                                    </div>
+                                    <div class="faq-answer mt-3 font-roboto text-gray-600 text-sm hidden">
+                                        Après inscription, accédez à la place de marché, créez votre catalogue produits
+                                        avec photos et descriptions. Les acheteurs pourront vous contacter directement
+                                        pour négocier.
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="faq-item">
+                                <button
+                                    class="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                    onclick="toggleFaq(this)">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-inter font-medium text-gray-900">Puis-je obtenir un financement
+                                            ?</h4>
+                                        <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                                    </div>
+                                    <div class="faq-answer mt-3 font-roboto text-gray-600 text-sm hidden">
+                                        Nous facilitons l'accès au financement en vous aidant à monter vos dossiers et
+                                        en vous mettant en relation avec nos partenaires financiers (banques,
+                                        micro-finance, bailleurs).
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="faq-item">
+                                <button
+                                    class="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                    onclick="toggleFaq(this)">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-inter font-medium text-gray-900">Y a-t-il des formations
+                                            disponibles ?</h4>
+                                        <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                                    </div>
+                                    <div class="faq-answer mt-3 font-roboto text-gray-600 text-sm hidden">
+                                        Oui, nous proposons des formations régulières sur les techniques agricoles, la
+                                        gestion d'entreprise, l'utilisation des technologies et bien d'autres sujets
+                                        utiles aux agriculteurs.
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="faq-item">
+                                <button
+                                    class="w-full text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                    onclick="toggleFaq(this)">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-inter font-medium text-gray-900">Comment contacter le support ?
+                                        </h4>
+                                        <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                                    </div>
+                                    <div class="faq-answer mt-3 font-roboto text-gray-600 text-sm hidden">
+                                        Utilisez le formulaire de contact, appelez-nous aux numéros indiqués, ou envoyez
+                                        un email à support@agropoles.sn. Notre équipe répond sous 24h maximum.
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+     <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Programme Agropoles</h3>
+                    <p class="font-roboto text-green-100 text-sm mb-4">
+                        Plateforme nationale de développement des agropoles du Sénégal pour un écosystème agricole
+                        moderne et connecté.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-facebook-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-twitter-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-linkedin-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Services</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Accompagnement technique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Place de marché</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guichet unique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Formation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Agropoles</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Diamniadio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sédhiou</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Matam</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Kolda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Support</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Centre d'aide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg-green-900 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <div class="font-roboto text-green-100 text-sm">
+                        © 2024 Programme National de Développement des Agropoles du Sénégal. Tous droits réservés.
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-government-line text-white"></i>
+                        </div>
+                        <span class="font-roboto text-green-100 text-sm">Gouvernement du Sénégal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

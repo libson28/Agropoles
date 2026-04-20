@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Acheteur - Agropoles</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="font-roboto bg-white">
+    <section class="pt-16 bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-3xl font-poppins font-bold text-primary">Dashboard Acheteur</h1>
+                    <p class="font-roboto text-gray-600 mt-1">Bonjour Marième, suivez vos achats et vos fournisseurs</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-notification-line text-xl"></i>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20buyer%20portrait%2C%20confident%20female%20food%20purchasing%20manager%2C%20professional%20headshot&width=100&height=100&seq=buyer-profile001&orientation=squarish"
+                            alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                        <div>
+                            <div class="font-inter font-medium text-gray-900">Marième Ndiaye</div>
+                            <div class="font-roboto text-sm text-gray-600">Acheteuse</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+                <a href="tableauDeBord.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Vue
+                    d'ensemble</a>
+                <a href="profil.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon
+                    Profil</a>
+                <a href="commandes.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mes
+                    Commandes</a>
+                <a href="paiement.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Paiements</a>
+                <a href="messages.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Messages</a>
+                <a href="favoris.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Favoris</a>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg">
+                            <i class="ri-shopping-basket-line text-primary text-xl"></i>
+                        </div>
+                        <span class="text-sm font-roboto text-green-600 bg-green-50 px-2 py-1 rounded">+5%</span>
+                    </div>
+                    <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">48</div>
+                    <div class="font-roboto text-gray-600 text-sm">Commandes ce mois</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg">
+                            <i class="ri-money-dollar-circle-line text-blue-600 text-xl"></i>
+                        </div>
+                        <span class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">Budget</span>
+                    </div>
+                    <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">3,8M FCFA</div>
+                    <div class="font-roboto text-gray-600 text-sm">Achats cumulés</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg">
+                            <i class="ri-truck-line text-orange-600 text-xl"></i>
+                        </div>
+                        <span class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">7 en
+                            cours</span>
+                    </div>
+                    <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">12</div>
+                    <div class="font-roboto text-gray-600 text-sm">Livraisons suivies</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg">
+                            <i class="ri-heart-line text-purple-600 text-xl"></i>
+                        </div>
+                        <span class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">Produits</span>
+                    </div>
+                    <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">26</div>
+                    <div class="font-roboto text-gray-600 text-sm">Articles favoris</div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Évolution des Achats</h3>
+                    <div id="purchase-chart" class="h-64"></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Répartition des Dépenses</h3>
+                    <div id="expense-chart" class="h-64"></div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-inter font-semibold text-gray-900">Commandes Récentes</h3>
+                        <a href="commandes.html"
+                            class="text-primary font-inter text-sm hover:text-green-800 transition-colors">Voir tout</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div>
+                                <div class="font-roboto text-gray-900 text-sm font-medium">#CMD-ACH-208</div>
+                                <div class="font-roboto text-gray-500 text-xs mt-1">Tomates, oignons, salade</div>
+                            </div>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">En
+                                livraison</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div>
+                                <div class="font-roboto text-gray-900 text-sm font-medium">#CMD-ACH-207</div>
+                                <div class="font-roboto text-gray-500 text-xs mt-1">Mangues fraîches</div>
+                            </div>
+                            <span
+                                class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Livrée</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div>
+                                <div class="font-roboto text-gray-900 text-sm font-medium">#CMD-ACH-206</div>
+                                <div class="font-roboto text-gray-500 text-xs mt-1">Pommes de terre</div>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Confirmée</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-inter font-semibold text-gray-900">Fournisseurs Recommandés</h3>
+                        <a href="favoris.html"
+                            class="text-primary font-inter text-sm hover:text-green-800 transition-colors">Voir mes
+                            favoris</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://readdy.ai/api/search-image?query=African%20farmer%20portrait%20professional%20headshot%20smiling&width=100&height=100&seq=buyer-supplier001&orientation=squarish"
+                                    alt="Fournisseur" class="w-12 h-12 rounded-full object-cover object-top">
+                                <div>
+                                    <div class="font-roboto text-gray-900 text-sm font-medium">Ferme Niayes Plus</div>
+                                    <div class="font-roboto text-gray-500 text-xs">Légumes frais • Dakar</div>
+                                </div>
+                            </div>
+                            <span class="font-roboto text-sm text-primary font-medium">4.9/5</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://readdy.ai/api/search-image?query=African%20woman%20agriculture%20entrepreneur%20portrait&width=100&height=100&seq=buyer-supplier002&orientation=squarish"
+                                    alt="Fournisseur" class="w-12 h-12 rounded-full object-cover object-top">
+                                <div>
+                                    <div class="font-roboto text-gray-900 text-sm font-medium">Verger Casamance</div>
+                                    <div class="font-roboto text-gray-500 text-xs">Fruits • Ziguinchor</div>
+                                </div>
+                            </div>
+                            <span class="font-roboto text-sm text-primary font-medium">4.8/5</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://readdy.ai/api/search-image?query=African%20male%20food%20supplier%20portrait&width=100&height=100&seq=buyer-supplier003&orientation=squarish"
+                                    alt="Fournisseur" class="w-12 h-12 rounded-full object-cover object-top">
+                                <div>
+                                    <div class="font-roboto text-gray-900 text-sm font-medium">Agro Vallée Nord</div>
+                                    <div class="font-roboto text-gray-500 text-xs">Céréales • Saint-Louis</div>
+                                </div>
+                            </div>
+                            <span class="font-roboto text-sm text-primary font-medium">4.7/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function initBuyerCharts() {
+            if (typeof echarts === 'undefined') return;
+
+            const purchaseChartEl = document.getElementById('purchase-chart');
+            const expenseChartEl = document.getElementById('expense-chart');
+
+            if (purchaseChartEl) {
+                const purchaseChart = echarts.init(purchaseChartEl);
+                purchaseChart.setOption({
+                    animation: false,
+                    grid: { top: 20, right: 20, bottom: 40, left: 50 },
+                    xAxis: { type: 'category', data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'] },
+                    yAxis: { type: 'value' },
+                    series: [{
+                        type: 'line',
+                        smooth: true,
+                        data: [380000, 520000, 610000, 700000, 760000, 830000],
+                        showSymbol: false,
+                        lineStyle: { color: '#2E7D32', width: 3 },
+                        itemStyle: { color: '#2E7D32' },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0, y: 0, x2: 0, y2: 1,
+                                colorStops: [
+                                    { offset: 0, color: 'rgba(46, 125, 50, 0.25)' },
+                                    { offset: 1, color: 'rgba(46, 125, 50, 0.04)' }
+                                ]
+                            }
+                        }
+                    }]
+                });
+                window.addEventListener('resize', () => purchaseChart.resize());
+            }
+
+            if (expenseChartEl) {
+                const expenseChart = echarts.init(expenseChartEl);
+                expenseChart.setOption({
+                    animation: false,
+                    series: [{
+                        type: 'pie',
+                        radius: ['42%', '70%'],
+                        data: [
+                            { value: 42, name: 'Légumes', itemStyle: { color: '#57B5E7' } },
+                            { value: 28, name: 'Fruits', itemStyle: { color: '#8DD3C7' } },
+                            { value: 18, name: 'Céréales', itemStyle: { color: '#FBBF72' } },
+                            { value: 12, name: 'Autres', itemStyle: { color: '#FC8D62' } }
+                        ],
+                        label: { show: true, formatter: '{b}: {c}%' }
+                    }]
+                });
+                window.addEventListener('resize', () => expenseChart.resize());
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initBuyerCharts);
+    </script>
+</body>
+
+</html>

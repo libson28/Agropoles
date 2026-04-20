@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme National de Développement des Agropoles du Sénégal</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2E7D32',
+secondary: '#66BB6A'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+},
+fontFamily: {
+'inter': ['Inter', 'sans-serif'],
+'poppins': ['Poppins', 'sans-serif'],
+'roboto': ['Roboto', 'sans-serif']
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+</style>
+</head>
+<body>
+   <!-- Register Page -->
+    <section id="inscription-page" class="pt-16 py-20 bg-gray-50 ">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-poppins font-bold text-primary mb-2">Créer un compte</h1>
+                    <p class="font-roboto text-gray-600">Rejoignez la communauté des agropoles</p>
+                </div>
+
+                <!-- User Type Selection -->
+                <div class="mb-8">
+                    <h3 class="font-inter font-semibold text-gray-900 mb-4">Type de profil</h3>
+                    <div class="grid md:grid-cols-3 gap-4" id="user-type-selection">
+                        <button type="button"
+                            class="user-type-btn p-4 border border-gray-300 !rounded-button text-center hover:border-secondary transition-colors"
+                            data-type="producteur">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mx-auto mb-3">
+                                <i class="ri-plant-line text-secondary text-xl"></i>
+                            </div>
+                            <div class="font-inter font-medium text-gray-900 text-sm">Producteur</div>
+                            <div class="font-roboto text-gray-600 text-xs mt-1">Agriculteur, éleveur</div>
+                        </button>
+                        <button type="button"
+                            class="user-type-btn p-4 border border-gray-300 !rounded-button text-center hover:border-secondary transition-colors"
+                            data-type="transformateur">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mx-auto mb-3">
+                                <i class="ri-settings-line text-secondary text-xl"></i>
+                            </div>
+                            <div class="font-inter font-medium text-gray-900 text-sm">Transformateur</div>
+                            <div class="font-roboto text-gray-600 text-xs mt-1">Agro-industrie</div>
+                        </button>
+                        <button type="button"
+                            class="user-type-btn p-4 border border-gray-300 !rounded-button text-center hover:border-secondary transition-colors"
+                            data-type="acheteur">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mx-auto mb-3">
+                                <i class="ri-shopping-cart-line text-secondary text-xl"></i>
+                            </div>
+                            <div class="font-inter font-medium text-gray-900 text-sm">Acheteur</div>
+                            <div class="font-roboto text-gray-600 text-xs mt-1">Distributeur, détaillant</div>
+                        </button>
+                    </div>
+                </div>
+
+                <form id="register-form" class="space-y-6">
+                    <input type="hidden" name="user_type" id="selected-user-type">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Prénom *</label>
+                            <input type="text" name="prenom" required
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Nom *</label>
+                            <input type="text" name="nom" required
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-inter font-medium text-gray-700 mb-2">Email *</label>
+                        <input type="email" name="email" required
+                            class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                    </div>
+                    <div>
+                        <label class="block font-inter font-medium text-gray-700 mb-2">Téléphone *</label>
+                        <input type="tel" name="telephone" required
+                            class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Région *</label>
+                            <select name="region" required
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8">
+                                <option value="">Choisissez votre région</option>
+                                <option value="dakar">Dakar</option>
+                                <option value="thies">Thiès</option>
+                                <option value="saint-louis">Saint-Louis</option>
+                                <option value="diourbel">Diourbel</option>
+                                <option value="fatick">Fatick</option>
+                                <option value="kaolack">Kaolack</option>
+                                <option value="kolda">Kolda</option>
+                                <option value="sedhiou">Sédhiou</option>
+                                <option value="tambacounda">Tambacounda</option>
+                                <option value="kedougou">Kédougou</option>
+                                <option value="matam">Matam</option>
+                                <option value="louga">Louga</option>
+                                <option value="kaffrine">Kaffrine</option>
+                                <option value="ziguinchor">Ziguinchor</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-inter font-medium text-gray-700 mb-2">Ville</label>
+                            <input type="text" name="ville"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-inter font-medium text-gray-700 mb-2">Mot de passe *</label>
+                        <div class="relative">
+                            <input type="password" name="password" required
+                                class="w-full px-4 py-3 pr-12 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm"
+                                id="register-password">
+                            <button type="button"
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center"
+                                onclick="togglePassword('register-password', this)">
+                                <i class="ri-eye-off-line text-gray-400"></i>
+                            </button>
+                        </div>
+                        <div class="text-xs font-roboto text-gray-500 mt-1">
+                            Au moins 8 caractères avec une majuscule et un chiffre
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-inter font-medium text-gray-700 mb-2">Confirmer le mot de passe
+                            *</label>
+                        <div class="relative">
+                            <input type="password" name="confirm_password" required
+                                class="w-full px-4 py-3 pr-12 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm"
+                                id="confirm-password">
+                            <button type="button"
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center"
+                                onclick="togglePassword('confirm-password', this)">
+                                <i class="ri-eye-off-line text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <label class="flex items-start">
+                            <input type="checkbox" name="terms" required
+                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary mt-1">
+                            <span class="ml-3 font-roboto text-sm text-gray-600">
+                                J'accepte les <button type="button"
+                                    class="text-primary hover:text-green-800 transition-colors">conditions
+                                    d'utilisation</button> et la <button type="button"
+                                    class="text-primary hover:text-green-800 transition-colors">politique de
+                                    confidentialité</button>
+                            </span>
+                        </label>
+                        <label class="flex items-start">
+                            <input type="checkbox" name="newsletter"
+                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary mt-1">
+                            <span class="ml-3 font-roboto text-sm text-gray-600">
+                                Je souhaite recevoir les actualités et offres par email
+                            </span>
+                        </label>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-6 py-3 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
+                        Créer mon compte
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center">
+                    <p class="font-roboto text-gray-600">
+                        Vous avez déjà un compte ?
+                        <button 
+                            class="text-primary font-medium hover:text-green-800 transition-colors ml-1">
+                            Se connecter
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+<script id="auth-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const userTypeButtons = document.querySelectorAll('.user-type-btn');
+            const selectedUserTypeInput = document.getElementById('selected-user-type');
+
+            userTypeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    userTypeButtons.forEach(btn => {
+                        btn.classList.remove('border-primary', 'bg-primary', 'bg-opacity-10');
+                        btn.classList.add('border-gray-300');
+                    });
+
+                    this.classList.remove('border-gray-300');
+                    this.classList.add('border-primary', 'bg-primary', 'bg-opacity-10');
+
+                    if (selectedUserTypeInput) {
+                        selectedUserTypeInput.value = this.dataset.type;
+                    }
+                });
+            });
+
+            const messageTextarea = document.querySelector('textarea[name="message"]');
+            const messageCount = document.getElementById('message-count');
+            if (messageTextarea && messageCount) {
+                messageTextarea.addEventListener('input', function () {
+                    const length = this.value.length;
+                    messageCount.textContent = length;
+
+                    if (length > 500) {
+                        this.value = this.value.substring(0, 500);
+                        messageCount.textContent = '500';
+                    }
+                });
+            }
+
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                    successMessage.textContent = 'Connexion réussie !';
+                    document.body.appendChild(successMessage);
+                    setTimeout(() => {
+                        document.body.removeChild(successMessage);
+                        showHomePage();
+                    }, 2000);
+                });
+            }
+
+            const registerForm = document.getElementById('register-form');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const userType = selectedUserTypeInput ? selectedUserTypeInput.value : '';
+                    if (!userType) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                        errorMessage.textContent = 'Veuillez sélectionner un type de profil';
+                        document.body.appendChild(errorMessage);
+                        setTimeout(() => {
+                            document.body.removeChild(errorMessage);
+                        }, 3000);
+                        return;
+                    }
+
+                    const password = this.querySelector('[name="password"]').value;
+                    const confirmPassword = this.querySelector('[name="confirm_password"]').value;
+
+                    if (password !== confirmPassword) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                        errorMessage.textContent = 'Les mots de passe ne correspondent pas';
+                        document.body.appendChild(errorMessage);
+                        setTimeout(() => {
+                            document.body.removeChild(errorMessage);
+                        }, 3000);
+                        return;
+                    }
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                    successMessage.textContent = 'Compte créé avec succès !';
+                    document.body.appendChild(successMessage);
+                    setTimeout(() => {
+                        document.body.removeChild(successMessage);
+                        showPage('connexion-page');
+                    }, 2000);
+                });
+            }
+
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const inputs = this.querySelectorAll('input[required], textarea[required], select[required]');
+                    let isValid = true;
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.classList.add('border-red-500');
+                        } else {
+                            input.classList.remove('border-red-500');
+                        }
+                    });
+                    if (isValid) {
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                        successMessage.textContent = 'Votre message a été envoyé avec succès !';
+                        document.body.appendChild(successMessage);
+                        setTimeout(() => {
+                            document.body.removeChild(successMessage);
+                        }, 3000);
+                        this.reset();
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

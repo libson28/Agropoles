@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Acheteur - Agropoles</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#2E7D32', secondary: '#66BB6A' },
+                    borderRadius: { 'button': '8px' },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-roboto bg-white">
+    <section class="pt-16 bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-3xl font-poppins font-bold text-primary">Dashboard Acheteur</h1>
+                    <p class="font-roboto text-gray-600 mt-1">Bonjour Marième, gérez votre profil et vos préférences</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20buyer%20portrait%2C%20confident%20female%20food%20purchasing%20manager%2C%20professional%20headshot&width=100&height=100&seq=buyer-profile001&orientation=squarish"
+                        alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Marième Ndiaye</div>
+                        <div class="font-roboto text-sm text-gray-600">Acheteuse</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+                <a href="tableauDeBord.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Vue
+                    d'ensemble</a>
+                <a href="profil.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Mon
+                    Profil</a>
+                <a href="commandes.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mes
+                    Commandes</a>
+                <a href="paiement.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Paiements</a>
+                <a href="messages.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Messages</a>
+                <a href="favoris.html"
+                    class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Favoris</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-2 space-y-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Informations de l'entreprise</h3>
+                        <form class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-inter font-medium text-gray-700 mb-2">Prénom</label>
+                                    <input type="text" value="Marième"
+                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
+                                </div>
+                                <div>
+                                    <label class="block font-inter font-medium text-gray-700 mb-2">Nom</label>
+                                    <input type="text" value="Ndiaye"
+                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-inter font-medium text-gray-700 mb-2">Entreprise</label>
+                                <input type="text" value="Saveurs Teranga Distribution"
+                                    class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-inter font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" value="mariene@teranga.sn"
+                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
+                                </div>
+                                <div>
+                                    <label class="block font-inter font-medium text-gray-700 mb-2">Téléphone</label>
+                                    <input type="tel" value="+221 77 555 11 22"
+                                        class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-inter font-medium text-gray-700 mb-2">Adresse de livraison</label>
+                                <textarea rows="4"
+                                    class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm resize-none focus:outline-none focus:border-secondary">Zone industrielle, Dakar, Sénégal</textarea>
+                            </div>
+                            <button type="submit"
+                                class="px-6 py-3 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">Mettre
+                                à jour</button>
+                        </form>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Préférences d'achat</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-inter font-medium text-gray-900 mb-2">Produits suivis</div>
+                                <div class="font-roboto text-sm text-gray-600">Légumes frais, fruits bio, céréales locales</div>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-inter font-medium text-gray-900 mb-2">Régions privilégiées</div>
+                                <div class="font-roboto text-sm text-gray-600">Dakar, Thiès, Saint-Louis, Ziguinchor</div>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-inter font-medium text-gray-900 mb-2">Volume moyen</div>
+                                <div class="font-roboto text-sm text-gray-600">500 kg à 2 tonnes par commande</div>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-inter font-medium text-gray-900 mb-2">Fréquence</div>
+                                <div class="font-roboto text-sm text-gray-600">Approvisionnement hebdomadaire</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%20buyer%20portrait%2C%20confident%20female%20food%20purchasing%20manager%2C%20professional%20headshot&width=200&height=200&seq=buyer-profile002&orientation=squarish"
+                            alt="Photo" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover object-top">
+                        <h4 class="font-inter font-semibold text-gray-900 mb-2">Marième Ndiaye</h4>
+                        <div class="flex items-center justify-center space-x-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">Acheteuse</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Vérifiée</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-600">
+                            <div><i class="ri-store-2-line mr-2"></i>Saveurs Teranga Distribution</div>
+                            <div><i class="ri-map-pin-line mr-2"></i>Dakar, Sénégal</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h4 class="font-inter font-semibold text-gray-900 mb-4">Sécurité</h4>
+                        <div class="space-y-5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-roboto text-sm text-gray-700">Authentification à deux facteurs</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:w-5 after:h-5 after:bg-white after:rounded-full after:transition-all peer-checked:after:translate-x-full">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-roboto text-sm text-gray-700">Notifications email</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:w-5 after:h-5 after:bg-white after:rounded-full after:transition-all peer-checked:after:translate-x-full">
+                                    </div>
+                                </label>
+                            </div>
+                            <button
+                                class="w-full px-4 py-3 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap">Changer
+                                le mot de passe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

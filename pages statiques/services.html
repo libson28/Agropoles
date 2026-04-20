@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme National de Développement des Agropoles du Sénégal</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2E7D32',
+secondary: '#66BB6A'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+},
+fontFamily: {
+'inter': ['Inter', 'sans-serif'],
+'poppins': ['Poppins', 'sans-serif'],
+'roboto': ['Roboto', 'sans-serif']
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+</style>
+</head>
+<body>
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="text-primary font-poppins font-bold text-xl">
+                        Programme National Agropoles
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <button onclick="showHomePage()"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Accueil</button>
+                    <button onclick="showPage('apropos-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">À propos</button>
+                    <button onclick="showPage('services-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Services</button>
+                    <button onclick="showPage('annuaire-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Annuaire</button>
+                    <button onclick="showPage('actualites-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Actualités</button>
+                    <button onclick="showPage('contact-page')"
+                        class="font-inter text-gray-700 hover:text-primary transition-colors">Contact</button>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showPage('connexion-page')"
+                        class="px-4 py-2 border border-primary text-primary font-inter font-medium !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                        Se connecter
+                    </button>
+                    <button onclick="showPage('inscription-page')"
+                        class="px-4 py-2 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
+                        S'inscrire
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <!-- Services Page -->
+    <section id="services-page" class="pt-36 py-20 bg-white ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-poppins font-bold text-primary mb-6">Nos Services</h1>
+                <p class="text-xl font-roboto text-gray-600 max-w-4xl mx-auto">
+                    Découvrez notre gamme complète de services conçus pour accompagner tous les acteurs de l'écosystème
+                    agricole sénégalais dans leur développement et leur modernisation.
+                </p>
+            </div>
+            <!-- Service Categories -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-xl text-white">
+                    <div class="w-16 h-16 flex items-center justify-center bg-white bg-opacity-20 rounded-lg mb-6">
+                        <i class="ri-plant-line text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-poppins font-semibold mb-4">Accompagnement Technique</h3>
+                    <p class="font-roboto mb-6">
+                        Expertise et conseil personnalisé pour optimiser vos pratiques agricoles et améliorer votre
+                        productivité.
+                    </p>
+                    <ul class="space-y-2 font-roboto text-sm">
+                        <li>• Diagnostic et audit agricole</li>
+                        <li>• Formation aux bonnes pratiques</li>
+                        <li>• Conseil en mécanisation</li>
+                        <li>• Assistance technique terrain</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
+                        <i class="ri-store-line text-secondary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-poppins font-semibold text-primary mb-4">Place de Marché Digitale</h3>
+                    <p class="font-roboto text-gray-600 mb-6">
+                        Plateforme de mise en relation directe entre tous les acteurs de la chaîne de valeur agricole.
+                    </p>
+                    <ul class="space-y-2 font-roboto text-sm text-gray-600">
+                        <li>• Vente directe producteur-acheteur</li>
+                        <li>• Catalogue produits certifiés</li>
+                        <li>• Système de notation et avis</li>
+                        <li>• Outils de négociation intégrés</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
+                        <i class="ri-government-line text-secondary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-poppins font-semibold text-primary mb-4">Guichet Unique</h3>
+                    <p class="font-roboto text-gray-600 mb-6">
+                        Simplification des démarches administratives et réglementaires pour tous vos projets agricoles.
+                    </p>
+                    <ul class="space-y-2 font-roboto text-sm text-gray-600">
+                        <li>• Dossiers de financement</li>
+                        <li>• Autorisations et licences</li>
+                        <li>• Certification qualité</li>
+                        <li>• Déclarations fiscales</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
+                        <i class="ri-graduation-cap-line text-secondary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-poppins font-semibold text-primary mb-4">Formation & Renforcement</h3>
+                    <p class="font-roboto text-gray-600 mb-6">
+                        Programmes de formation adaptés aux besoins spécifiques de chaque acteur de l'écosystème.
+                    </p>
+                    <ul class="space-y-2 font-roboto text-sm text-gray-600">
+                        <li>• Formations techniques</li>
+                        <li>• Gestion d'entreprise agricole</li>
+                        <li>• Utilisation des TIC</li>
+                        <li>• Certification professionnelle</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
+                        <i class="ri-money-dollar-circle-line text-secondary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-poppins font-semibold text-primary mb-4">Facilitation Financière</h3>
+                    <p class="font-roboto text-gray-600 mb-6">
+                        Accompagnement dans l'accès au financement et aux opportunités d'investissement.
+                    </p>
+                    <ul class="space-y-2 font-roboto text-sm text-gray-600">
+                        <li>• Montage de dossiers de crédit</li>
+                        <li>• Mise en relation avec bailleurs</li>
+                        <li>• Suivi des financements</li>
+                        <li>• Conseil en investissement</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
+                        <i class="ri-line-chart-line text-secondary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-poppins font-semibold text-primary mb-4">Études & Analyses</h3>
+                    <p class="font-roboto text-gray-600 mb-6">
+                        Services d'analyse de marché et d'étude de faisabilité pour éclairer vos décisions stratégiques.
+                    </p>
+                    <ul class="space-y-2 font-roboto text-sm text-gray-600">
+                        <li>• Études de marché sectorielles</li>
+                        <li>• Analyses de compétitivité</li>
+                        <li>• Veille technologique</li>
+                        <li>• Prospective agricole</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Service Process -->
+            <div class="bg-gray-50 rounded-xl p-12 mb-20">
+                <h2 class="text-4xl font-poppins font-semibold text-primary mb-12 text-center">Comment Ça Marche</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-2xl">1</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Inscription</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Créez votre compte et complétez votre profil selon
+                            votre activité</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-2xl">2</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Diagnostic</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Nos experts analysent vos besoins et vous orientent
+                            vers les services adaptés</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-2xl">3</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Accompagnement</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Bénéficiez d'un accompagnement personnalisé tout au
+                            long de votre projet</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-poppins font-bold text-2xl">4</span>
+                        </div>
+                        <h4 class="font-inter font-semibold text-gray-900 mb-3">Suivi</h4>
+                        <p class="font-roboto text-gray-600 text-sm">Suivi continu de vos performances et ajustement des
+                            stratégies</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Success Stories -->
+            <div>
+                <h2 class="text-4xl font-poppins font-semibold text-primary mb-12 text-center">Témoignages</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <img src="https://readdy.ai/api/search-image?query=Happy%20African%20farmer%20portrait%2C%20successful%20agricultural%20entrepreneur%2C%20smiling%20confident%20male%20farmer%2C%20professional%20agricultural%20setting%2C%20positive%20expression&width=100&height=100&seq=testimonial001&orientation=squarish"
+                                alt="Témoignage" class="w-16 h-16 rounded-full object-cover object-top mr-4">
+                            <div>
+                                <h4 class="font-inter font-semibold text-gray-900">Ibrahima Sarr</h4>
+                                <p class="font-roboto text-gray-600 text-sm">Producteur de tomates, Région de
+                                    Saint-Louis</p>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-700 italic mb-4">
+                            "Grâce à l'accompagnement technique reçu, j'ai pu augmenter ma production de 40% en une
+                            seule saison. La plateforme m'a également permis de trouver de nouveaux acheteurs pour mes
+                            tomates."
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businesswoman%2C%20agricultural%20processing%20entrepreneur%2C%20confident%20female%20business%20owner%2C%20modern%20agricultural%20business%20setting&width=100&height=100&seq=testimonial002&orientation=squarish"
+                                alt="Témoignage" class="w-16 h-16 rounded-full object-cover object-top mr-4">
+                            <div>
+                                <h4 class="font-inter font-semibold text-gray-900">Aïssatou Diallo</h4>
+                                <p class="font-roboto text-gray-600 text-sm">Transformatrice de fruits, Région de Kolda
+                                </p>
+                            </div>
+                        </div>
+                        <p class="font-roboto text-gray-700 italic mb-4">
+                            "Le guichet unique m'a fait gagner un temps précieux dans mes démarches administratives. En
+                            2 semaines, j'ai obtenu toutes les autorisations pour mon unité de transformation."
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Programme Agropoles</h3>
+                    <p class="font-roboto text-green-100 text-sm mb-4">
+                        Plateforme nationale de développement des agropoles du Sénégal pour un écosystème agricole
+                        moderne et connecté.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-facebook-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-twitter-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-linkedin-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Services</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Accompagnement technique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Place de marché</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guichet unique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Formation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Agropoles</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Diamniadio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sédhiou</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Matam</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Kolda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Support</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Centre d'aide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg-green-900 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <div class="font-roboto text-green-100 text-sm">
+                        © 2024 Programme National de Développement des Agropoles du Sénégal. Tous droits réservés.
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-government-line text-white"></i>
+                        </div>
+                        <span class="font-roboto text-green-100 text-sm">Gouvernement du Sénégal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

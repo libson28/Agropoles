@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class=" bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Tableau de Bord</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20farmer%20portrait%2C%20confident%20male%20agriculturist%2C%20smiling%20farmer%20in%20agricultural%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile001&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Producteur</div>
+                    </div>
+                </div>
+            </div>
+        </div>        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+                <a href="tableauDeBord.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Vue d'ensemble</a>
+                <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+                <a href="paiement.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Paiements</a>
+                <a href="messages.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Messages</a>
+                <a href="produit.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Mes Produits</a>
+                <a href="formalites.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Formalités</a>
+        </div>        <div class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-poppins font-semibold text-primary">Mes Produits</h2>
+                    <p class="font-roboto text-gray-600 mt-1">Gérez vos produits et vos ventes</p>
+                </div>
+                <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap" onclick="openProductModal()"><i class="ri-add-line mr-2"></i>Ajouter un produit</button>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <img src="https://readdy.ai/api/search-image?query=Fresh%20red%20tomatoes%2C%20high%20quality%20organic%20tomatoes%2C%20bright%20red%20ripe%20tomatoes%20on%20white%20background%2C%20professional%20product%20photography&width=300&height=200&seq=product001&orientation=landscape" alt="Tomates" class="w-full h-32 object-cover object-top rounded-lg mb-4">
+                    <div class="flex items-center justify-between mb-2"><h4 class="font-inter font-semibold text-gray-900">Tomates fraîches</h4><span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">En stock</span></div>
+                    <p class="font-roboto text-gray-600 text-sm mb-3">Tomates biologiques de qualité supérieure</p>
+                    <div class="flex items-center justify-between mb-4"><div><div class="font-poppins font-bold text-primary">800 FCFA/kg</div><div class="font-roboto text-gray-500 text-sm">Stock: 500 kg</div></div></div>
+                    <div class="flex space-x-2"><button class="flex-1 px-3 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap">Modifier</button><button class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">Voir détails</button></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <img src="https://readdy.ai/api/search-image?query=Fresh%20white%20onions%2C%20organic%20onions%20pile%2C%20quality%20onions%20on%20white%20background%2C%20professional%20vegetable%20photography&width=300&height=200&seq=product002&orientation=landscape" alt="Oignons" class="w-full h-32 object-cover object-top rounded-lg mb-4">
+                    <div class="flex items-center justify-between mb-2"><h4 class="font-inter font-semibold text-gray-900">Oignons blancs</h4><span class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">Stock faible</span></div>
+                    <p class="font-roboto text-gray-600 text-sm mb-3">Oignons de la vallée du fleuve Sénégal</p>
+                    <div class="flex items-center justify-between mb-4"><div><div class="font-poppins font-bold text-primary">650 FCFA/kg</div><div class="font-roboto text-gray-500 text-sm">Stock: 80 kg</div></div></div>
+                    <div class="flex space-x-2"><button class="flex-1 px-3 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap">Modifier</button><button class="flex-1 px-3 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap">Voir détails</button></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <img src="https://readdy.ai/api/search-image?query=Fresh%20green%20lettuce%2C%20organic%20lettuce%20leaves%2C%20salad%20vegetables%20on%20white%20background%2C%20professional%20vegetable%20photography&width=300&height=200&seq=product003&orientation=landscape" alt="Salade" class="w-full h-32 object-cover object-top rounded-lg mb-4">
+                    <div class="flex items-center justify-between mb-2"><h4 class="font-inter font-semibold text-gray-900">Salade verte</h4><span class="px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full">Épuisé</span></div>
+                    <p class="font-roboto text-gray-600 text-sm mb-3">Salade fraîche cultivée localement</p>
+                    <div class="flex items-center justify-between mb-4"><div><div class="font-poppins font-bold text-gray-400">400 FCFA/kg</div><div class="font-roboto text-gray-500 text-sm">Stock: 0 kg</div></div></div>
+                    <div class="flex space-x-2"><button class="flex-1 px-3 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap">Modifier</button><button class="flex-1 px-3 py-2 bg-gray-300 text-gray-500 !rounded-button cursor-not-allowed font-inter text-sm whitespace-nowrap">Réapprovisionner</button></div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Commandes Récentes</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="text-left font-inter font-medium text-gray-700 pb-3">Commande</th>
+                                <th class="text-left font-inter font-medium text-gray-700 pb-3">Client</th>
+                                <th class="text-left font-inter font-medium text-gray-700 pb-3">Produits</th>
+                                <th class="text-left font-inter font-medium text-gray-700 pb-3">Montant</th>
+                                <th class="text-left font-inter font-medium text-gray-700 pb-3">Statut</th>
+                                <th class="text-left font-inter font-medium text-gray-700 pb-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4"><div class="font-roboto text-gray-900 font-medium">#CMD-2024-156</div><div class="font-roboto text-gray-500 text-sm">18 mars 2024</div></td>
+                                <td class="py-4"><div class="font-roboto text-gray-900">Fatou Diallo</div><div class="font-roboto text-gray-500 text-sm">Restaurant Teranga</div></td>
+                                <td class="py-4"><div class="font-roboto text-gray-900">Tomates × 200kg</div><div class="font-roboto text-gray-500 text-sm">Oignons × 50kg</div></td>
+                                <td class="py-4"><div class="font-roboto text-gray-900 font-medium">192,500 FCFA</div></td>
+                                <td class="py-4"><span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Livrée</span></td>
+                                <td class="py-4"><button class="text-primary hover:text-green-800 transition-colors font-inter text-sm">Voir détails</button></td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4"><div class="font-roboto text-gray-900 font-medium">#CMD-2024-155</div><div class="font-roboto text-gray-500 text-sm">16 mars 2024</div></td>
+                                <td class="py-4"><div class="font-roboto text-gray-900">Ibrahim Sarr</div><div class="font-roboto text-gray-500 text-sm">Marché Sandaga</div></td>
+                                <td class="py-4"><div class="font-roboto text-gray-900">Tomates × 300kg</div></td>
+                                <td class="py-4"><div class="font-roboto text-gray-900 font-medium">240,000 FCFA</div></td>
+                                <td class="py-4"><span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">En cours</span></td>
+                                <td class="py-4"><button class="text-primary hover:text-green-800 transition-colors font-inter text-sm">Suivre</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-inter font-semibold text-gray-900">Ajouter un Produit</h3>
+                        <button onclick="closeProductModal()" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"><i class="ri-close-line"></i></button>
+                    </div>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div><label class="block font-inter font-medium text-gray-700 mb-2">Nom du produit</label><input type="text" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-2">Catégorie</label><select class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8"><option>Choisir une catégorie</option><option>Légumes</option><option>Fruits</option><option>Céréales</option><option>Tubercules</option></select></div>
+                        </div>
+                        <div><label class="block font-inter font-medium text-gray-700 mb-2">Description</label><textarea rows="4" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm resize-none"></textarea></div>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div><label class="block font-inter font-medium text-gray-700 mb-2">Prix (FCFA/kg)</label><input type="number" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-2">Quantité (kg)</label><input type="number" class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-2">Unité</label><select class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm pr-8"><option>kg</option><option>pièce</option><option>sac</option><option>caisse</option></select></div>
+                        </div>
+                        <div><label class="block font-inter font-medium text-gray-700 mb-2">Photos du produit</label><div class="border border-dashed border-gray-300 !rounded-button p-6 text-center"><i class="ri-image-add-line text-gray-400 text-3xl mb-2"></i><div class="font-roboto text-gray-600 text-sm mb-2">Glissez vos photos ici ou cliquez pour parcourir</div><button type="button" class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter text-sm whitespace-nowrap">Choisir des fichiers</button></div></div>
+                        <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200"><button type="button" onclick="closeProductModal()" class="px-6 py-3 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors font-inter whitespace-nowrap">Annuler</button><button type="submit" class="px-6 py-3 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter whitespace-nowrap">Ajouter le produit</button></div>
+                    </form>
+                </div>
+            </div>
+        </div><script>
+    function openProductModal() {
+        document.getElementById('product-modal').classList.remove('hidden');
+    }
+    function closeProductModal() {
+        document.getElementById('product-modal').classList.add('hidden');
+    }
+</script>    </div>
+</section>
+</body>
+</html>
+
+
+
