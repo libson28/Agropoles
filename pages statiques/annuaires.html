@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme National de Développement des Agropoles du Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="font-roboto bg-white">
+ 
+    <section id="annuaire-page" class="pt-16 py-20 bg-gray-50 ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-poppins font-bold text-primary mb-6">Annuaire des Acteurs</h1>
+                <p class="text-xl font-roboto text-gray-600 max-w-4xl mx-auto">
+                    Trouvez et connectez-vous avec tous les acteurs de l'écosystème agricole sénégalais : producteurs,
+                    transformateurs, distributeurs, fournisseurs et institutions.
+                </p>
+            </div>
+            <!-- Search and Filters -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
+                <div class="grid md:grid-cols-4 gap-6 mb-6">
+                    <div class="relative">
+                        <input type="text" placeholder="Rechercher un acteur..."
+                            class="w-full px-4 py-3 pr-12 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary"
+                            id="search-input">
+                        <div
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center">
+                            <i class="ri-search-line text-gray-400"></i>
+                        </div>
+                    </div>
+                    <select
+                        class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                        id="category-filter">
+                        <option value="">Toutes les catégories</option>
+                        <option value="producteur">Producteurs</option>
+                        <option value="transformateur">Transformateurs</option>
+                        <option value="distributeur">Distributeurs</option>
+                        <option value="fournisseur">Fournisseurs</option>
+                        <option value="institution">Institutions</option>
+                    </select>
+                    <select
+                        class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                        id="region-filter">
+                        <option value="">Toutes les régions</option>
+                        <option value="dakar">Dakar</option>
+                        <option value="thies">Thiès</option>
+                        <option value="saint-louis">Saint-Louis</option>
+                        <option value="kolda">Kolda</option>
+                        <option value="sedhiou">Sédhiou</option>
+                        <option value="matam">Matam</option>
+                    </select>
+                    <select
+                        class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8"
+                        id="sector-filter">
+                        <option value="">Tous les secteurs</option>
+                        <option value="cereales">Céréales</option>
+                        <option value="maraichage">Maraîchage</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="elevage">Élevage</option>
+                        <option value="peche">Pêche</option>
+                    </select>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="text-sm font-roboto text-gray-600">
+                        <span id="results-count">847</span> acteurs trouvés
+                    </div>
+                    <div class="flex space-x-2">
+                        <button
+                            class="px-4 py-2 bg-primary text-white !rounded-button font-inter text-sm hover:bg-green-800 transition-colors whitespace-nowrap"
+                            id="grid-view">
+                            <i class="ri-grid-line mr-2"></i>Grille
+                        </button>
+                        <button
+                            class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button font-inter text-sm hover:bg-gray-50 transition-colors whitespace-nowrap"
+                            id="list-view">
+                            <i class="ri-list-check mr-2"></i>Liste
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Directory Grid -->
+            <div id="directory-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://readdy.ai/api/search-image?query=Modern%20agricultural%20farm%2C%20vegetable%20garden%20with%20greenhouse%2C%20organized%20crop%20rows%2C%20professional%20farming%20operation%2C%20bright%20natural%20lighting%2C%20sustainable%20agriculture%20practices&width=400&height=200&seq=farm001&orientation=landscape"
+                        alt="Ferme" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-secondary bg-opacity-20 text-secondary text-xs font-medium rounded-full">Producteur</span>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.8</span>
+                            </div>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-2">Ferme Bio Sénégal</h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Production biologique de légumes et fruits.
+                            Spécialisé dans le maraîchage durable.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            <span>Région de Thiès</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Tomates</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Oignons</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Contacter →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://readdy.ai/api/search-image?query=Food%20processing%20facility%2C%20fruit%20juice%20production%20line%2C%20modern%20agricultural%20transformation%20equipment%2C%20clean%20industrial%20setting%2C%20professional%20food%20manufacturing&width=400&height=200&seq=processing001&orientation=landscape"
+                        alt="Transformation" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Transformateur</span>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.6</span>
+                            </div>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-2">Agro-Transform Plus</h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Transformation de fruits tropicaux en jus,
+                            confitures et produits dérivés certifiés.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            <span>Région de Kolda</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Mangues</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Anacarde</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Contacter →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20supply%20store%2C%20farming%20equipment%20and%20seeds%20display%2C%20agricultural%20inputs%20warehouse%2C%20professional%20agricultural%20retail%20setting&width=400&height=200&seq=supply001&orientation=landscape"
+                        alt="Fournisseur" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">Fournisseur</span>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.9</span>
+                            </div>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-2">Agro-Inputs Sénégal</h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Fourniture d'intrants agricoles de qualité :
+                            semences, engrais, équipements de protection.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            <span>Région de Dakar</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Semences</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Engrais</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Contacter →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://readdy.ai/api/search-image?query=Modern%20rice%20farm%2C%20organized%20paddy%20fields%2C%20irrigation%20system%2C%20professional%20rice%20cultivation%2C%20agricultural%20machinery%20in%20rice%20field&width=400&height=200&seq=rice001&orientation=landscape"
+                        alt="Riziculture" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-secondary bg-opacity-20 text-secondary text-xs font-medium rounded-full">Producteur</span>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.7</span>
+                            </div>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-2">Coopérative Rizicole du Fleuve
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Production de riz de qualité dans la vallée du
+                            fleuve Sénégal. 200 membres actifs.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            <span>Région de Saint-Louis</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Riz blanc</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Riz étuvé</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Contacter →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20distribution%20center%2C%20fresh%20produce%20market%2C%20vegetables%20and%20fruits%20distribution%20warehouse%2C%20professional%20agricultural%20logistics&width=400&height=200&seq=distribution001&orientation=landscape"
+                        alt="Distribution" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Distributeur</span>
+                            <div class="flex items-center">
+                                <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">4.5</span>
+                            </div>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-2">Fresh Market Distribution</h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Distribution de produits frais vers les
+                            supermarchés et restaurants de la région dakaroise.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            <span>Région de Dakar</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Légumes</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Fruits</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Contacter →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20research%20institute%2C%20modern%20laboratory%2C%20agricultural%20scientists%20working%2C%20professional%20research%20facility%2C%20agricultural%20innovation%20center&width=400&height=200&seq=research001&orientation=landscape"
+                        alt="Institution" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Institution</span>
+                            <div class="flex items-center">
+                                <i class="ri-verified-badge-fill text-secondary text-sm"></i>
+                                <span class="font-roboto text-sm text-gray-600 ml-1">Certifié</span>
+                            </div>
+                        </div>
+                        <h3 class="font-inter font-semibold text-gray-900 text-lg mb-2">Institut de Recherche Agricole
+                        </h3>
+                        <p class="font-roboto text-gray-600 text-sm mb-3">Recherche et développement en agriculture
+                            tropicale. Formation et appui conseil aux producteurs.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            <span>Région de Thiès</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Recherche</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Formation</span>
+                            </div>
+                            <button
+                                class="text-primary font-inter font-medium text-sm hover:text-green-800 transition-colors">
+                                Contacter →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <div class="flex justify-center items-center space-x-4 mt-12">
+                <button
+                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    <i class="ri-arrow-left-line mr-2"></i>Précédent
+                </button>
+                <div class="flex space-x-2">
+                    <button class="w-10 h-10 bg-primary text-white !rounded-button font-medium">1</button>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">2</button>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">3</button>
+                    <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
+                    <button
+                        class="w-10 h-10 border border-gray-300 text-gray-600 !rounded-button font-medium hover:bg-gray-50 transition-colors">15</button>
+                </div>
+                <button
+                    class="px-4 py-2 border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
+                    Suivant<i class="ri-arrow-right-line ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+   
+    <!-- Key Figures Section -->
+    <section class="py-20 bg-gradient-to-r from-primary to-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-user-line text-secondary text-2xl"></i>
+                    </div>
+                    <div class="text-4xl font-poppins font-bold text-primary mb-2">15,000+</div>
+                    <div class="font-roboto font-medium text-gray-700">Agriculteurs inscrits</div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-building-line text-secondary text-2xl"></i>
+                    </div>
+                    <div class="text-4xl font-poppins font-bold text-primary mb-2">8</div>
+                    <div class="font-roboto font-medium text-gray-700">Agropoles actifs</div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-truck-line text-secondary text-2xl"></i>
+                    </div>
+                    <div class="text-4xl font-poppins font-bold text-primary mb-2">2,500</div>
+                    <div class="font-roboto font-medium text-gray-700">Transactions mensuelles</div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-money-dollar-circle-line text-secondary text-2xl"></i>
+                    </div>
+                    <div class="text-4xl font-poppins font-bold text-primary mb-2">45M</div>
+                    <div class="font-roboto font-medium text-gray-700">FCFA d'investissements</div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Programme Agropoles</h3>
+                    <p class="font-roboto text-green-100 text-sm mb-4">
+                        Plateforme nationale de développement des agropoles du Sénégal pour un écosystème agricole
+                        moderne et connecté.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-facebook-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-twitter-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i
+                                class="ri-linkedin-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Services</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Accompagnement technique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Place de marché</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guichet unique</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Formation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Agropoles</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Diamniadio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sédhiou</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Matam</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Kolda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-inter font-semibold text-white mb-4">Support</h3>
+                    <ul class="space-y-2 font-roboto text-green-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Centre d'aide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg-green-900 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <div class="font-roboto text-green-100 text-sm">
+                        © 2024 Programme National de Développement des Agropoles du Sénégal. Tous droits réservés.
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-government-line text-white"></i>
+                        </div>
+                        <span class="font-roboto text-green-100 text-sm">Gouvernement du Sénégal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+</body>
+
+</html>
