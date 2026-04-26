@@ -1,21 +1,22 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programme National de Développement des Agropoles du Sénégal</title>
+<title>Agropole Sénégal - Plateforme Agricole Moderne</title>
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
 <script>
 tailwind.config = {
 theme: {
 extend: {
 colors: {
-primary: '#2E7D32',
-secondary: '#66BB6A'
+primary: '#10B981',
+secondary: '#F59E0B'
 },
 borderRadius: {
 'none': '0px',
@@ -30,9 +31,7 @@ DEFAULT: '8px',
 'button': '8px'
 },
 fontFamily: {
-'inter': ['Inter', 'sans-serif'],
-'poppins': ['Poppins', 'sans-serif'],
-'roboto': ['Roboto', 'sans-serif']
+'inter': ['Inter', 'sans-serif']
 }
 }
 }
@@ -42,536 +41,592 @@ fontFamily: {
 :where([class^="ri-"])::before {
 content: "\f3c2";
 }
+.parallax-bg {
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.gradient-overlay {
+background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(249, 250, 251, 1) 100%);
+}
+.card-hover {
+transition: all 0.3s ease;
+}
+.card-hover:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+.timeline-line {
+background: linear-gradient(180deg, #10B981 0%, #F59E0B 100%);
+}
+.floating-animation {
+animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-20px); }
+}
+.fade-in {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.8s ease;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
 </style>
 </head>
-<body>
-    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="text-primary font-poppins font-bold text-xl">
-                        Programme National Agropoles
-                    </div>
-                </div>
-                <nav class="hidden md:flex items-center space-x-8">
-                    <button onclick="showHomePage()"
-                        class="font-inter text-gray-700 hover:text-primary transition-colors">Accueil</button>
-                    <button onclick="showPage('apropos-page')"
-                        class="font-inter text-gray-700 hover:text-primary transition-colors">À propos</button>
-                    <button onclick="showPage('services-page')"
-                        class="font-inter text-gray-700 hover:text-primary transition-colors">Services</button>
-                    <button onclick="showPage('annuaire-page')"
-                        class="font-inter text-gray-700 hover:text-primary transition-colors">Annuaire</button>
-                    <button onclick="showPage('actualites-page')"
-                        class="font-inter text-gray-700 hover:text-primary transition-colors">Actualités</button>
-                    <button onclick="showPage('contact-page')"
-                        class="font-inter text-gray-700 hover:text-primary transition-colors">Contact</button>
-                </nav>
-                <div class="flex items-center space-x-4">
-                    <button onclick="showPage('connexion-page')"
-                        class="px-4 py-2 border border-primary text-primary font-inter font-medium !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
-                        Se connecter
-                    </button>
-                    <button onclick="showPage('inscription-page')"
-                        class="px-4 py-2 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
-                        S'inscrire
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="pt-16 bg-gray-50 relative overflow-hidden"
-        style="background-image: url('https://readdy.ai/api/search-image?query=Modern%20agricultural%20landscape%20with%20green%20fields%2C%20farmers%20working%20with%20technology%2C%20digital%20agriculture%20concept%2C%20clean%20minimalist%20background%2C%20professional%20photography%20style%2C%20bright%20natural%20lighting%2C%20sustainable%20farming%20practices%2C%20Senegal%20agricultural%20setting&width=1920&height=800&seq=hero001&orientation=landscape'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-white bg-opacity-80"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="w-full flex items-center justify-between">
-                <div class="w-1/2 pr-12">
-                    <h1 class="text-5xl font-poppins font-bold text-primary mb-6 leading-tight">
-                        Plateforme Nationale des Agropoles du Sénégal
-                    </h1>
-                    <p class="text-xl font-roboto text-gray-600 mb-8 leading-relaxed">
-                        Le guichet unique digital qui connecte agriculteurs, transformateurs, acheteurs et institutions
-                        pour développer l'écosystème agro-industriel sénégalais.
-                    </p>
-                    <div class="flex space-x-4 mb-8">
-                        <button
-                            class="px-6 py-3 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
-                            Découvrir nos services
-                        </button>
-                        <button
-                            class="px-6 py-3 bg-secondary text-white font-inter font-medium !rounded-button hover:bg-green-500 transition-colors whitespace-nowrap">
-                            Rejoindre la plateforme
-                        </button>
-                    </div>
-                    <div class="relative">
-                        <input type="text" placeholder="Rechercher un service, un produit, un partenaire..."
-                            class="w-full px-4 py-3 pr-12 border border-secondary !rounded-button text-sm focus:outline-none focus:border-primary">
-                        <div
-                            class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center">
-                            <i class="ri-search-line text-secondary"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-     <!-- Services Section -->
-    <section id="services" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-poppins font-semibold text-primary mb-4">Nos Services</h2>
-                <p class="text-lg font-roboto text-gray-600 max-w-3xl mx-auto">
-                    Une gamme complète de services pour accompagner votre développement dans l'écosystème agricole
-                    sénégalais
-                </p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
-                        <i class="ri-plant-line text-secondary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-inter font-semibold text-primary mb-4">Accompagnement Technique</h3>
-                    <p class="font-roboto text-gray-600 mb-6">
-                        Services d'expertise, formation et conseil technique pour optimiser votre production agricole et
-                        vos processus de transformation.
-                    </p>
-                    <button class="text-primary font-inter font-medium hover:text-green-800 transition-colors"
-                        onclick="showPage('services-page')">
-                        En savoir plus →
-                    </button>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
-                        <i class="ri-store-line text-secondary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-inter font-semibold text-primary mb-4">Place de Marché</h3>
-                    <p class="font-roboto text-gray-600 mb-6">
-                        Plateforme de mise en relation directe entre producteurs, transformateurs et acheteurs pour
-                        faciliter les échanges commerciaux.
-                    </p>
-                    <button class="text-primary font-inter font-medium hover:text-green-800 transition-colors"
-                        onclick="showPage('services-page')">
-                        En savoir plus →
-                    </button>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 flex items-center justify-center bg-secondary bg-opacity-20 rounded-lg mb-6">
-                        <i class="ri-government-line text-secondary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-inter font-semibold text-primary mb-4">Guichet Unique</h3>
-                    <p class="font-roboto text-gray-600 mb-6">
-                        Centralisation des démarches administratives, financières et réglementaires pour simplifier vos
-                        procédures.
-                    </p>
-                    <button class="text-primary font-inter font-medium hover:text-green-800 transition-colors"
-                        onclick="showPage('services-page')">
-                        En savoir plus →
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-       <!-- Key Figures Section -->
-    <section class="py-20 bg-gradient-to-r from-primary to-secondary">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <i class="ri-user-line text-secondary text-2xl"></i>
-                    </div>
-                    <div class="text-4xl font-poppins font-bold text-primary mb-2">15,000+</div>
-                    <div class="font-roboto font-medium text-gray-700">Agriculteurs inscrits</div>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <i class="ri-building-line text-secondary text-2xl"></i>
-                    </div>
-                    <div class="text-4xl font-poppins font-bold text-primary mb-2">8</div>
-                    <div class="font-roboto font-medium text-gray-700">Agropoles actifs</div>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <i class="ri-truck-line text-secondary text-2xl"></i>
-                    </div>
-                    <div class="text-4xl font-poppins font-bold text-primary mb-2">2,500</div>
-                    <div class="font-roboto font-medium text-gray-700">Transactions mensuelles</div>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <i class="ri-money-dollar-circle-line text-secondary text-2xl"></i>
-                    </div>
-                    <div class="text-4xl font-poppins font-bold text-primary mb-2">45M</div>
-                    <div class="font-roboto font-medium text-gray-700">FCFA d'investissements</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-      <!-- Agropoles Map Section -->
-    <section id="apropos" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-poppins font-semibold text-primary mb-4">Carte des Agropoles</h2>
-                <p class="text-lg font-roboto text-gray-600 max-w-3xl mx-auto">
-                    Découvrez la répartition géographique des agropoles à travers le territoire sénégalais
-                </p>
-            </div>
-            <div class="flex gap-8">
-                <div class="flex-1">
-                    <div class="bg-gray-100 rounded-lg h-96 relative overflow-hidden"
-                        style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;">
-                        <div class="absolute top-4 left-4 bg-white p-2 rounded shadow">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-3 h-3 bg-primary rounded-full"></div>
-                                <span class="text-sm font-roboto">Agropole actif</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-80">
-                    <h3 class="text-xl font-inter font-semibold text-primary mb-6">Liste des Agropoles</h3>
-                    <div class="space-y-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-inter font-medium text-gray-900">Agropole de Diamniadio</h4>
-                                <span
-                                    class="px-2 py-1 bg-secondary text-white text-xs font-medium rounded-full">Actif</span>
-                            </div>
-                            <p class="text-sm font-roboto text-gray-600">Région de Dakar - Cultures maraîchères</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-inter font-medium text-gray-900">Agropole de Sédhiou</h4>
-                                <span
-                                    class="px-2 py-1 bg-secondary text-white text-xs font-medium rounded-full">Actif</span>
-                            </div>
-                            <p class="text-sm font-roboto text-gray-600">Région de Sédhiou - Riz et fruits</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-inter font-medium text-gray-900">Agropole de Kolda</h4>
-                                <span class="px-2 py-1 bg-gray-300 text-gray-700 text-xs font-medium rounded-full">En
-                                    développement</span>
-                            </div>
-                            <p class="text-sm font-roboto text-gray-600">Région de Kolda - Anacarde et mangue</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-inter font-medium text-gray-900">Agropole de Matam</h4>
-                                <span
-                                    class="px-2 py-1 bg-secondary text-white text-xs font-medium rounded-full">Actif</span>
-                            </div>
-                            <p class="text-sm font-roboto text-gray-600">Région de Matam - Oignon et tomate</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- News Section -->
-    <section id="actualites" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-poppins font-semibold text-primary mb-4">Actualités</h2>
-                <p class="text-lg font-roboto text-gray-600 max-w-3xl mx-auto">
-                    Restez informé des dernières nouvelles du secteur agricole et des agropoles
-                </p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=Modern%20agricultural%20technology%2C%20smart%20farming%20equipment%2C%20digital%20agriculture%20innovation%2C%20professional%20farming%20scene%2C%20bright%20natural%20lighting%2C%20Senegal%20agricultural%20context%2C%20sustainable%20farming%20practices&width=400&height=250&seq=news001&orientation=landscape"
-                        alt="Actualité" class="w-full h-48 object-cover object-top">
-                    <div class="p-6">
-                        <h3 class="text-lg font-inter font-medium text-gray-900 mb-3">
-                            Lancement du programme de digitalisation agricole 2024
-                        </h3>
-                        <p class="font-roboto text-gray-600 text-sm mb-4">
-                            Le ministère de l'Agriculture annonce le déploiement de nouvelles technologies pour
-                            moderniser les pratiques agricoles...
-                        </p>
-                        <div class="text-xs font-roboto text-gray-500">15 mars 2024</div>
-                    </div>
-                </article>
-                <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20marketplace%2C%20farmers%20selling%20products%2C%20fresh%20vegetables%20and%20fruits%20display%2C%20market%20scene%2C%20vibrant%20colors%2C%20professional%20photography%2C%20Senegal%20local%20market%20atmosphere&width=400&height=250&seq=news002&orientation=landscape"
-                        alt="Actualité" class="w-full h-48 object-cover object-top">
-                    <div class="p-6">
-                        <h3 class="text-lg font-inter font-medium text-gray-900 mb-3">
-                            Record de transactions sur la place de marché digitale
-                        </h3>
-                        <p class="font-roboto text-gray-600 text-sm mb-4">
-                            Plus de 500 transactions réalisées ce mois-ci entre producteurs et acheteurs via la
-                            plateforme...
-                        </p>
-                        <div class="text-xs font-roboto text-gray-500">12 mars 2024</div>
-                    </div>
-                </article>
-                <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=Agricultural%20training%20session%2C%20farmers%20learning%20new%20techniques%2C%20educational%20workshop%2C%20group%20of%20people%20in%20agricultural%20setting%2C%20professional%20development%2C%20Senegal%20farming%20community&width=400&height=250&seq=news003&orientation=landscape"
-                        alt="Actualité" class="w-full h-48 object-cover object-top">
-                    <div class="p-6">
-                        <h3 class="text-lg font-inter font-medium text-gray-900 mb-3">
-                            Formation de 200 agriculteurs aux nouvelles techniques
-                        </h3>
-                        <p class="font-roboto text-gray-600 text-sm mb-4">
-                            Programme de renforcement des capacités organisé dans les régions de Thiès et Saint-Louis...
-                        </p>
-                        <div class="text-xs font-roboto text-gray-500">8 mars 2024</div>
-                    </div>
-                </article>
-            </div>
-            <div class="text-center">
-                <button
-                    class="px-6 py-3 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
-                    Voir toutes les actualités
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- Partners Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-poppins font-semibold text-primary mb-4">Nos Partenaires</h2>
-                <p class="text-lg font-roboto text-gray-600 max-w-3xl mx-auto">
-                    Un écosystème de partenaires engagés pour le développement agricole du Sénégal
-                </p>
-            </div>
-            <div class="space-y-12">
-                <div>
-                    <h3 class="text-lg font-inter font-medium text-gray-900 mb-6 text-center">Institutions
-                        Gouvernementales</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-government-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">Ministère Agriculture</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-building-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">ANIDA</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-shield-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">DPV</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-flask-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">ISRA</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-lg font-inter font-medium text-gray-900 mb-6 text-center">Partenaires Financiers
-                    </h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-bank-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">Banque Mondiale</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-global-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">BAD</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-hand-heart-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">FIDA</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <div class="w-8 h-8 flex items-center justify-center mr-3">
-                                <i class="ri-flag-line text-gray-400 text-2xl"></i>
-                            </div>
-                            <span class="font-roboto text-sm text-gray-600">Coopération UE</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-poppins font-semibold text-primary mb-4">Contactez-nous</h2>
-                <p class="text-lg font-roboto text-gray-600 max-w-3xl mx-auto">
-                    Une question ? Un projet ? Notre équipe est là pour vous accompagner
-                </p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <form class="space-y-6">
-                        <div>
-                            <label class="block font-inter font-medium text-gray-700 mb-2">Nom complet</label>
-                            <input type="text"
-                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                        </div>
-                        <div>
-                            <label class="block font-inter font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email"
-                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                        </div>
-                        <div>
-                            <label class="block font-inter font-medium text-gray-700 mb-2">Téléphone</label>
-                            <input type="tel"
-                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm">
-                        </div>
-                        <div>
-                            <label class="block font-inter font-medium text-gray-700 mb-2">Message</label>
-                            <textarea rows="5"
-                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:outline-none focus:border-secondary text-sm resize-none"></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full px-6 py-3 bg-primary text-white font-inter font-medium !rounded-button hover:bg-green-800 transition-colors whitespace-nowrap">
-                            Envoyer le message
-                        </button>
-                    </form>
-                </div>
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-xl font-inter font-semibold text-primary mb-6">Informations de contact</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-6 h-6 flex items-center justify-center mr-4 mt-1">
-                                    <i class="ri-map-pin-line text-secondary"></i>
-                                </div>
-                                <div>
-                                    <div class="font-roboto font-medium text-gray-900">Adresse</div>
-                                    <div class="font-roboto text-gray-600">Ministère de l'Agriculture, Dakar, Sénégal
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-6 h-6 flex items-center justify-center mr-4 mt-1">
-                                    <i class="ri-phone-line text-secondary"></i>
-                                </div>
-                                <div>
-                                    <div class="font-roboto font-medium text-gray-900">Téléphone</div>
-                                    <div class="font-roboto text-gray-600">+221 33 823 45 67</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-6 h-6 flex items-center justify-center mr-4 mt-1">
-                                    <i class="ri-mail-line text-secondary"></i>
-                                </div>
-                                <div>
-                                    <div class="font-roboto font-medium text-gray-900">Email</div>
-                                    <div class="font-roboto text-gray-600">contact@agropoles.sn</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-inter font-medium text-gray-900 mb-4">Horaires d'ouverture</h4>
-                        <div class="space-y-2 font-roboto text-gray-600">
-                            <div>Lundi - Vendredi : 8h00 - 17h00</div>
-                            <div>Samedi : 8h00 - 12h00</div>
-                            <div>Dimanche : Fermé</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-     <!-- Footer -->
-    <footer class="bg-primary text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="font-inter font-semibold text-white mb-4">Programme Agropoles</h3>
-                    <p class="font-roboto text-green-100 text-sm mb-4">
-                        Plateforme nationale de développement des agropoles du Sénégal pour un écosystème agricole
-                        moderne et connecté.
-                    </p>
-                    <div class="flex space-x-4">
-                        <div class="w-8 h-8 flex items-center justify-center">
-                            <i
-                                class="ri-facebook-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
-                        </div>
-                        <div class="w-8 h-8 flex items-center justify-center">
-                            <i
-                                class="ri-twitter-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
-                        </div>
-                        <div class="w-8 h-8 flex items-center justify-center">
-                            <i
-                                class="ri-linkedin-line text-white hover:text-secondary transition-colors cursor-pointer"></i>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="font-inter font-semibold text-white mb-4">Services</h3>
-                    <ul class="space-y-2 font-roboto text-green-100">
-                        <li><a href="#" class="hover:text-white transition-colors">Accompagnement technique</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Place de marché</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Guichet unique</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Formation</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-inter font-semibold text-white mb-4">Agropoles</h3>
-                    <ul class="space-y-2 font-roboto text-green-100">
-                        <li><a href="#" class="hover:text-white transition-colors">Diamniadio</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Sédhiou</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Matam</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Kolda</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-inter font-semibold text-white mb-4">Support</h3>
-                    <ul class="space-y-2 font-roboto text-green-100">
-                        <li><a href="#" class="hover:text-white transition-colors">Centre d'aide</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="bg-green-900 py-4">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between">
-                    <div class="font-roboto text-green-100 text-sm">
-                        © 2024 Programme National de Développement des Agropoles du Sénégal. Tous droits réservés.
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-6 h-6 flex items-center justify-center">
-                            <i class="ri-government-line text-white"></i>
-                        </div>
-                        <span class="font-roboto text-green-100 text-sm">Gouvernement du Sénégal</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+<body class="font-inter bg-gray-50">
+<nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<i class="ri-plant-line text-white text-lg"></i>
+</div>
+<span class="font-['Pacifico'] text-xl text-gray-900">Agropole</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a href="#about" class="text-gray-600 hover:text-primary transition-colors">À propos</a>
+<a href="#services" class="text-gray-600 hover:text-primary transition-colors">Services</a>
+<a href="#vision" class="text-gray-600 hover:text-primary transition-colors">Vision</a>
+<button class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+S'inscrire
+</button>
+</div>
+<button class="md:hidden w-8 h-8 flex items-center justify-center">
+<i class="ri-menu-line text-gray-600"></i>
+</button>
+</div>
+</div>
+</nav>
+<section class="relative min-h-screen flex items-center overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=Dynamic%20aerial%20view%20of%20thriving%20Senegalese%20agricultural%20community%2C%20modern%20technology%20meeting%20traditional%20farming%2C%20smartphones%20and%20digital%20devices%20in%20farmers%20hands%2C%20vibrant%20green%20crops%2C%20solar%20panels%2C%20irrigation%20systems%2C%20hope%20and%20prosperity%2C%20bright%20sunlight%2C%20empowering%20scene%2C%20digital%20transformation%2C%20connection%20and%20progress%2C%20cinematic%20wide%20angle%20photography&width=1920&height=1080&seq=hero-agro-2&orientation=landscape');">
+<div class="absolute inset-0 gradient-overlay"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+<div class="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+<div class="text-center lg:text-left">
+<h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+L'avenir de l'agriculture
+<span class="text-primary block">au Sénégal</span>
+</h1>
+<p class="text-xl text-gray-600 mb-8 leading-relaxed">
+Rejoignez la première plateforme digitale qui connecte les agriculteurs sénégalais aux marchés, services et opportunités modernes pour transformer votre activité agricole.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+<button class="bg-primary text-white px-8 py-4 !rounded-button hover:bg-primary/90 transition-all transform hover:scale-105 whitespace-nowrap text-lg font-semibold">
+S'inscrire gratuitement
+</button>
+<button class="bg-white/90 text-gray-900 px-8 py-4 !rounded-button hover:bg-white transition-all border border-gray-200 whitespace-nowrap text-lg">
+Découvrir nos services
+</button>
+</div>
+</div>
+<div class="floating-animation hidden lg:block">
+<div class="relative">
+<div class="w-96 h-96 bg-white/20 rounded-full blur-3xl absolute top-10 left-10"></div>
+<div class="w-64 h-64 bg-primary/20 rounded-full blur-2xl absolute bottom-0 right-0"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="fade-in">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Frustrated%20Senegalese%20farmer%20looking%20at%20wilted%20crops%2C%20drought%20effects%2C%20empty%20marketplace%20stalls%2C%20concerned%20expression%2C%20traditional%20farming%20tools%20scattered%20around%2C%20harsh%20sunlight%2C%20dusty%20soil%2C%20isolated%20rural%20setting%2C%20documentary%20photography%20style%2C%20emotional%20storytelling%2C%20challenges%20of%20traditional%20agriculture%2C%20need%20for%20modern%20solutions&width=600&height=400&seq=about-problem-2&orientation=landscape"
+alt="Défis agricoles" class="w-full h-80 object-cover rounded-2xl">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-2xl"></div>
+</div>
+</div>
+<div class="fade-in">
+<div class="mb-8">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mr-4">
+<i class="ri-error-warning-line text-red-600 text-xl"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900">Le Problème</h3>
+</div>
+<p class="text-gray-600 leading-relaxed">
+Les agriculteurs sénégalais font face à de nombreux défis : accès limité aux marchés, manque d'informations sur les prix, difficultés administratives et isolement des services modernes.
+</p>
+</div>
+<div>
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
+<i class="ri-lightbulb-line text-primary text-xl"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900">Notre Solution</h3>
+</div>
+<p class="text-gray-600 leading-relaxed mb-6">
+Agropole connecte les agriculteurs à un écosystème digital complet : marchés en ligne, services administratifs, formations, logistique et accompagnement personnalisé.
+</p>
+<div class="flex items-center space-x-6">
+<div class="text-center">
+<div class="text-3xl font-bold text-primary">500+</div>
+<div class="text-sm text-gray-600">Agriculteurs</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-primary">50+</div>
+<div class="text-sm text-gray-600">Partenaires</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-primary">15</div>
+<div class="text-sm text-gray-600">Régions</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Nos Objectifs</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+Transformer l'agriculture sénégalaise en connectant tradition et innovation pour un avenir prospère
+</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-white p-8 rounded-2xl card-hover fade-in">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+<i class="ri-money-dollar-circle-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Améliorer les Revenus</h3>
+<p class="text-gray-600">Augmenter les profits des agriculteurs grâce à l'accès direct aux marchés et aux meilleurs prix.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl card-hover fade-in">
+<div class="w-16 h-16 bg-secondary/10 rounded-xl flex items-center justify-center mb-6">
+<i class="ri-service-line text-secondary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Faciliter l'Accès</h3>
+<p class="text-gray-600">Simplifier l'accès aux services financiers, administratifs et techniques essentiels.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl card-hover fade-in">
+<div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+<i class="ri-graduation-cap-line text-blue-600 text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Former et Éduquer</h3>
+<p class="text-gray-600">Proposer des formations modernes pour améliorer les techniques agricoles.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl card-hover fade-in">
+<div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+<i class="ri-global-line text-purple-600 text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Moderniser</h3>
+<p class="text-gray-600">Intégrer les technologies digitales dans les pratiques agricoles traditionnelles.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="services" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Nos Services</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+Une gamme complète de services pour accompagner votre réussite agricole
+</p>
+</div>
+<div class="grid lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="flex flex-col md:flex-row items-center gap-8 fade-in">
+<div class="md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=Senegalese%20farmer%20using%20tablet%20to%20complete%20digital%20paperwork%2C%20official%20government%20documents%20on%20screen%2C%20modern%20office%20setting%2C%20professional%20assistance%2C%20digital%20transformation%20of%20bureaucracy%2C%20simplified%20processes%2C%20relief%20and%20satisfaction%20expression%2C%20clean%20bright%20environment%2C%20technology%20empowerment%2C%20administrative%20efficiency&width=500&height=300&seq=service-admin-2&orientation=landscape"
+alt="Services administratifs" class="w-full h-64 object-cover rounded-2xl">
+</div>
+<div class="md:w-1/2">
+<div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+<i class="ri-file-text-line text-blue-600 text-xl"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Services Administratifs</h3>
+<p class="text-gray-600 mb-4">Simplification des démarches administratives, aide aux déclarations et gestion des documents officiels.</p>
+<ul class="space-y-2 text-gray-600">
+<li class="flex items-center"><i class="ri-check-line text-primary mr-2"></i> Déclarations fiscales</li>
+<li class="flex items-center"><i class="ri-check-line text-primary mr-2"></i> Certificats d'origine</li>
+<li class="flex items-center"><i class="ri-check-line text-primary mr-2"></i> Licences d'exportation</li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row-reverse items-center gap-8 fade-in">
+<div class="md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=Digital%20marketplace%20interface%20showing%20agricultural%20products%2C%20modern%20e-commerce%20platform%2C%20African%20farmers%20selling%20crops%20online%2C%20colorful%20vegetables%20and%20grains%20display%2C%20clean%20user%20interface%2C%20contemporary%20design&width=500&height=300&seq=service-market-1&orientation=landscape"
+alt="Marketplace agricole" class="w-full h-64 object-cover rounded-2xl">
+</div>
+<div class="md:w-1/2">
+<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+<i class="ri-store-line text-primary text-xl"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Marketplace Agricole</h3>
+<p class="text-gray-600 mb-4">Plateforme de vente en ligne connectant directement producteurs et acheteurs pour des transactions transparentes.</p>
+<ul class="space-y-2 text-gray-600">
+<li class="flex items-center"><i class="ri-check-line text-primary mr-2"></i> Prix en temps réel</li>
+<li class="flex items-center"><i class="ri-check-line text-primary mr-2"></i> Paiements sécurisés</li>
+<li class="flex items-center"><i class="ri-check-line text-primary mr-2"></i> Géolocalisation</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-gray-50 p-6 rounded-2xl fade-in">
+<div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
+<i class="ri-team-line text-secondary text-xl"></i>
+</div>
+<h4 class="text-lg font-bold text-gray-900 mb-2">Mise en Relation</h4>
+<p class="text-gray-600 text-sm">Connexion avec experts, fournisseurs et partenaires commerciaux.</p>
+</div>
+<div class="bg-gray-50 p-6 rounded-2xl fade-in">
+<div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+<i class="ri-truck-line text-purple-600 text-xl"></i>
+</div>
+<h4 class="text-lg font-bold text-gray-900 mb-2">Logistique</h4>
+<p class="text-gray-600 text-sm">Solutions de transport et stockage adaptées aux produits agricoles.</p>
+</div>
+<div class="bg-gray-50 p-6 rounded-2xl fade-in">
+<div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+<i class="ri-user-heart-line text-green-600 text-xl"></i>
+</div>
+<h4 class="text-lg font-bold text-gray-900 mb-2">Accompagnement</h4>
+<p class="text-gray-600 text-sm">Support personnalisé et conseils d'experts pour votre développement.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-gray-50">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Comment ça marche</h2>
+<p class="text-xl text-gray-600">
+Rejoignez Agropole en 4 étapes simples
+</p>
+</div>
+<div class="relative">
+<div class="absolute left-8 top-16 bottom-16 w-1 timeline-line rounded-full hidden md:block"></div>
+<div class="space-y-12">
+<div class="flex items-start gap-6 fade-in">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl relative z-10">
+1
+</div>
+<div class="flex-1 pt-2">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Inscription Gratuite</h3>
+<p class="text-gray-600">Créez votre compte en quelques minutes avec vos informations de base et votre profil agricole.</p>
+</div>
+<div class="hidden lg:block w-32 h-20">
+<img src="https://readdy.ai/api/search-image?query=Simple%20registration%20form%20on%20mobile%20phone%2C%20clean%20user%20interface%2C%20African%20person%20holding%20smartphone%2C%20modern%20app%20design%2C%20bright%20lighting%2C%20minimalist%20composition&width=200&height=120&seq=step-1&orientation=landscape"
+alt="Inscription" class="w-full h-full object-cover rounded-lg">
+</div>
+</div>
+<div class="flex items-start gap-6 fade-in">
+<div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-xl relative z-10">
+2
+</div>
+<div class="flex-1 pt-2">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Profil Complet</h3>
+<p class="text-gray-600">Renseignez vos cultures, votre localisation et vos besoins pour personnaliser votre expérience.</p>
+</div>
+<div class="hidden lg:block w-32 h-20">
+<img src="https://readdy.ai/api/search-image?query=User%20profile%20setup%20screen%20showing%20agricultural%20information%2C%20crop%20selection%20interface%2C%20location%20mapping%2C%20modern%20app%20design%2C%20clean%20layout&width=200&height=120&seq=step-2&orientation=landscape"
+alt="Profil" class="w-full h-full object-cover rounded-lg">
+</div>
+</div>
+<div class="flex items-start gap-6 fade-in">
+<div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl relative z-10">
+3
+</div>
+<div class="flex-1 pt-2">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Exploration</h3>
+<p class="text-gray-600">Découvrez les services disponibles, explorez le marketplace et connectez-vous avec la communauté.</p>
+</div>
+<div class="hidden lg:block w-32 h-20">
+<img src="https://readdy.ai/api/search-image?query=Digital%20marketplace%20exploration%2C%20agricultural%20products%20browsing%2C%20modern%20interface%20design%2C%20African%20user%20navigating%20platform%2C%20colorful%20product%20displays&width=200&height=120&seq=step-3&orientation=landscape"
+alt="Exploration" class="w-full h-full object-cover rounded-lg">
+</div>
+</div>
+<div class="flex items-start gap-6 fade-in">
+<div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl relative z-10">
+4
+</div>
+<div class="flex-1 pt-2">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Développement</h3>
+<p class="text-gray-600">Utilisez nos outils pour vendre, acheter, apprendre et faire croître votre activité agricole.</p>
+</div>
+<div class="hidden lg:block w-32 h-20">
+<img src="https://readdy.ai/api/search-image?query=Agricultural%20business%20growth%20visualization%2C%20success%20metrics%20dashboard%2C%20African%20farmer%20celebrating%20success%2C%20modern%20analytics%20interface%2C%20positive%20growth%20indicators&width=200&height=120&seq=step-4&orientation=landscape"
+alt="Développement" class="w-full h-full object-cover rounded-lg">
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="vision" class="py-32 parallax-bg relative" style="background-image: url('https://readdy.ai/api/search-image?query=Panoramic%20view%20of%20modern%20Senegalese%20agricultural%20landscape%2C%20vast%20green%20fields%20stretching%20to%20horizon%2C%20sustainable%20farming%20practices%2C%20golden%20hour%20lighting%2C%20peaceful%20rural%20scenery%2C%20wide%20angle%20photography%2C%20cinematic%20quality&width=1920&height=800&seq=vision-bg-1&orientation=landscape');">
+<div class="absolute inset-0 bg-gray-900/70"></div>
+<div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<div class="fade-in">
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Notre Vision</h2>
+<p class="text-xl text-gray-200 leading-relaxed mb-8">
+Faire du Sénégal un leader africain de l'agriculture moderne et durable, où chaque agriculteur a accès aux outils, marchés et connaissances nécessaires pour prospérer dans l'économie digitale.
+</p>
+<div class="grid md:grid-cols-3 gap-8 mt-12">
+<div class="text-center">
+<div class="text-4xl font-bold text-primary mb-2">2030</div>
+<div class="text-gray-200">Agriculture 100% connectée</div>
+</div>
+<div class="text-center">
+<div class="text-4xl font-bold text-secondary mb-2">50K</div>
+<div class="text-gray-200">Agriculteurs accompagnés</div>
+</div>
+<div class="text-center">
+<div class="text-4xl font-bold text-blue-400 mb-2">+200%</div>
+<div class="text-gray-200">Revenus moyens</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Vos Bénéfices</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+Découvrez comment Agropole transforme concrètement votre activité agricole
+</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="text-center p-6 fade-in">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-time-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Gain de Temps</h3>
+<p class="text-gray-600">Automatisation des tâches administratives et accès rapide aux informations essentielles.</p>
+</div>
+<div class="text-center p-6 fade-in">
+<div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-global-line text-secondary text-2xl"></i>
+</div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Accès aux Marchés</h3>
+<p class="text-gray-600">Connexion directe avec acheteurs locaux et internationaux pour maximiser vos ventes.</p>
+</div>
+<div class="text-center p-6 fade-in">
+<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-shield-check-line text-blue-600 text-2xl"></i>
+</div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Sécurité</h3>
+<p class="text-gray-600">Transactions sécurisées et protection de vos données personnelles et commerciales.</p>
+</div>
+<div class="text-center p-6 fade-in">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-line-chart-line text-green-600 text-2xl"></i>
+</div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Croissance</h3>
+<p class="text-gray-600">Outils d'analyse pour optimiser vos rendements et développer votre activité.</p>
+</div>
+<div class="text-center p-6 fade-in">
+<div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-graduation-cap-line text-purple-600 text-2xl"></i>
+</div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Formation</h3>
+<p class="text-gray-600">Accès à des formations continues pour améliorer vos techniques et connaissances.</p>
+</div>
+<div class="text-center p-6 fade-in">
+<div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-heart-line text-red-600 text-2xl"></i>
+</div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Communauté</h3>
+<p class="text-gray-600">Rejoignez une communauté d'agriculteurs partageant expériences et conseils.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-gradient-to-r from-primary to-secondary">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<div class="fade-in">
+<h2 class="text-4xl font-bold text-white mb-6">Prêt à transformer votre agriculture ?</h2>
+<p class="text-xl text-white/90 mb-8 leading-relaxed">
+Rejoignez dès aujourd'hui les centaines d'agriculteurs qui ont déjà choisi Agropole pour développer leur activité et augmenter leurs revenus.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+<button class="bg-white text-primary px-8 py-4 !rounded-button hover:bg-gray-50 transition-all transform hover:scale-105 whitespace-nowrap text-lg font-semibold">
+Commencer maintenant
+</button>
+<button class="bg-transparent border-2 border-white text-white px-8 py-4 !rounded-button hover:bg-white hover:text-primary transition-all whitespace-nowrap text-lg">
+Planifier une démo
+</button>
+</div>
+<div class="flex items-center justify-center space-x-8 text-white/80">
+<div class="flex items-center">
+<i class="ri-check-line mr-2"></i>
+<span>Inscription gratuite</span>
+</div>
+<div class="flex items-center">
+<i class="ri-check-line mr-2"></i>
+<span>Support 24/7</span>
+</div>
+<div class="flex items-center">
+<i class="ri-check-line mr-2"></i>
+<span>Sans engagement</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-gray-900 text-white py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<div class="flex items-center space-x-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<i class="ri-plant-line text-white"></i>
+</div>
+<span class="font-['Pacifico'] text-xl">Agropole</span>
+</div>
+<p class="text-gray-400 mb-6 leading-relaxed">
+La plateforme qui connecte l'agriculture sénégalaise au monde moderne pour un avenir prospère et durable.
+</p>
+<div class="flex space-x-4">
+<div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-facebook-fill"></i>
+</div>
+<div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</div>
+<div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</div>
+<div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-instagram-fill"></i>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Services</h4>
+<ul class="space-y-3 text-gray-400">
+<li><a href="#" class="hover:text-primary transition-colors">Marketplace Agricole</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Services Administratifs</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Logistique</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Formation</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Accompagnement</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">À propos</h4>
+<ul class="space-y-3 text-gray-400">
+<li><a href="#" class="hover:text-primary transition-colors">Notre Mission</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Équipe</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Partenaires</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Actualités</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Carrières</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Contact</h4>
+<div class="space-y-4 text-gray-400">
+<div class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>Dakar, Sénégal</span>
+</div>
+<div class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-phone-line"></i>
+</div>
+<span>+221 77 123 45 67</span>
+</div>
+<div class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-mail-line"></i>
+</div>
+<span>contact@agropole.sn</span>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 mb-4 md:mb-0">
+© 2026 Agropole Sénégal. Tous droits réservés.
+</p>
+<div class="flex space-x-6 text-gray-400">
+<a href="#" class="hover:text-primary transition-colors">Politique de confidentialité</a>
+<a href="#" class="hover:text-primary transition-colors">Conditions d'utilisation</a>
+<a href="#" class="hover:text-primary transition-colors">Mentions légales</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script id="scroll-animations">
+document.addEventListener('DOMContentLoaded', function() {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+const observer = new IntersectionObserver(function(entries) {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+}
+});
+}, observerOptions);
+document.querySelectorAll('.fade-in').forEach(el => {
+observer.observe(el);
+});
+});
+</script>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+});
+</script>
+<script id="mobile-menu">
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('[class*="ri-menu-line"]').parentElement;
+let isMenuOpen = false;
+menuButton.addEventListener('click', function() {
+const nav = this.closest('nav');
+const navContent = nav.querySelector('.hidden.md\\:flex');
+if (!isMenuOpen) {
+const mobileMenu = document.createElement('div');
+mobileMenu.className = 'md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg';
+mobileMenu.innerHTML = `
+<div class="px-4 py-6 space-y-4">
+<a href="#about" class="block text-gray-600 hover:text-primary transition-colors py-2">À propos</a>
+<a href="#services" class="block text-gray-600 hover:text-primary transition-colors py-2">Services</a>
+<a href="#vision" class="block text-gray-600 hover:text-primary transition-colors py-2">Vision</a>
+<button class="w-full bg-primary text-white px-6 py-3 !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+S'inscrire
+</button>
+</div>
+`;
+nav.appendChild(mobileMenu);
+this.querySelector('i').className = 'ri-close-line text-gray-600';
+isMenuOpen = true;
+} else {
+const mobileMenu = nav.querySelector('.md\\:hidden');
+if (mobileMenu) {
+mobileMenu.remove();
+}
+this.querySelector('i').className = 'ri-menu-line text-gray-600';
+isMenuOpen = false;
+}
+});
+});
+</script>
 </body>
 </html>

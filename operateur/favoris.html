@@ -4,7 +4,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgropoleHub - Dashboard Opérateur - Produits</title>
+    <title>AgropoleHub - Dashboard Opérateur - Mes Favoris</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,14 +40,12 @@
         }
     </script>
     <style>
-        /* Correction des icônes Remix Icon */
         [class^="ri-"], [class*=" ri-"] {
             font-family: 'remixicon' !important;
             font-style: normal;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /* S'assurer que le conteneur flex fonctionne correctement */
         .flex-container {
             display: flex;
             gap: 1.5rem;
@@ -55,11 +53,11 @@
         }
         .sidebar-fixed {
             flex-shrink: 0;
-            width: 16rem; /* 256px = w-64 */
+            width: 16rem;
         }
         .content-flex {
             flex: 1;
-            min-width: 0; /* Évite le débordement sur mobile */
+            min-width: 0;
         }
         @media (max-width: 768px) {
             .flex-container {
@@ -69,6 +67,12 @@
                 width: 100%;
             }
         }
+        .heart-active {
+            color: #ef4444;
+        }
+        .heart-active i {
+            color: #ef4444;
+        }
     </style>
 </head>
 <body class="font-roboto bg-gray-50">
@@ -76,8 +80,8 @@
         <!-- En-tête -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
             <div>
-                <h1 class="text-3xl font-poppins font-bold text-primary">Produits</h1>
-                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Mes Favoris</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, retrouvez ici vos produits préférés</p>
             </div>
             <div class="flex items-center space-x-4">
                 <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
@@ -97,7 +101,8 @@
         <!-- Navigation par onglets -->
         <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
             <a href="accueil.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Accueil</a>
-            <a href="produits.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Produits</a>
+            <a href="produits.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Produits</a>
+            <a href="favoris.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Favoris</a>
             <a href="commandes.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Commandes</a>
             <a href="logistique.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Logistique</a>
             <a href="documents.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Documents</a>
@@ -105,92 +110,42 @@
             <a href="profil.html" class="px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
         </div>
 
-        <!-- Contenu principal avec sidebar et produits alignés horizontalement -->
+        <!-- Contenu principal avec sidebar et favoris alignés horizontalement -->
         <div class="flex-container">
-            <!-- Sidebar des filtres - largeur fixe -->
-            <div class="sidebar-fixed bg-white rounded-xl shadow-sm p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Filtres</h3>
-                
-                <!-- Recherche -->
-                <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Rechercher</label>
-                    <div class="relative">
-                        <input type="text" placeholder="Rechercher un produit..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="ri-search-line text-gray-400"></i>
-                        </div>
-                    </div>
-                </div>
+         
 
-                <!-- Type de produit -->
-                <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Type de produit</label>
-                    <div class="space-y-2">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Céréales</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Légumes</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Fruits</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Épices</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Localisation -->
-                 <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Région</label>
-                    <div class="space-y-2">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Dakar </span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Thies</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Kaolack</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            <span class="ml-2 text-sm text-gray-600">Ziguinchor</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section produits - prend le reste de l'espace -->
+            <!-- Section favoris -->
             <div class="content-flex">
                 <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
-                    <h2 class="text-2xl font-bold text-gray-900">Catalogue Produits</h2>
-                    <div class="flex items-center space-x-4">
-                        <span class="text-sm text-gray-500">156 produits trouvés</span>
-                        <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-primary">
-                            <option>Trier par pertinence</option>
-                            <option>Prix croissant</option>
-                            <option>Prix décroissant</option>
-                            <option>Plus récent</option>
-                        </select>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-2xl font-bold text-gray-900">Mes Produits Favoris</h2>
+                        <span class="bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full">8 favoris</span>
                     </div>
+                   
                 </div>
 
-                <!-- Grille de produits - responsive -->
+                <!-- Message si aucun favori (optionnel, affiché uniquement si liste vide) -->
+                <!-- 
+                <div class="bg-white rounded-xl shadow-sm p-12 text-center">
+                    <i class="ri-heart-line text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Aucun favori pour le moment</h3>
+                    <p class="text-gray-500 mb-6">Ajoutez des produits à vos favoris pour les retrouver facilement ici.</p>
+                    <a href="produits.html" class="inline-block bg-primary text-white px-6 py-2 rounded-lg rounded-button">Découvrir les produits</a>
+                </div>
+                -->
+
+                <!-- Grille des favoris -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    <!-- Produit 1 -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Favori 1 - Tomates -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative">
+                        <button class="absolute top-3 right-3 z-10 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform heart-active">
+                            <i class="ri-heart-3-fill text-red-500 text-lg"></i>
+                        </button>
                         <img src="https://readdy.ai/api/search-image?query=fresh%20red%20tomatoes%20in%20wooden%20crate%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-tomato&orientation=landscape" alt="Tomates" class="w-full h-48 object-cover">
                         <div class="p-4">
-                            <h3 class="font-semibold text-gray-900 mb-1">Tomates fraîches Bio</h3>
+                            <div class="flex items-start justify-between">
+                                <h3 class="font-semibold text-gray-900 mb-1">Tomates fraîches Bio</h3>
+                            </div>
                             <p class="text-sm text-gray-600 mb-2 flex items-center">
                                 <i class="ri-map-pin-line text-gray-400 mr-1"></i>
                                 Kaolack - Ferme Diallo
@@ -199,14 +154,22 @@
                                 <span class="text-lg font-bold text-primary">450 FCFA/kg</span>
                                 <span class="text-sm text-gray-500">200kg disponible</span>
                             </div>
-                            <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
-                                Voir détails
-                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
+                                    Voir détails
+                                </button>
+                                <button class="p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors rounded-button" title="Partager">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Produit 2 -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Favori 2 - Oignons -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative">
+                        <button class="absolute top-3 right-3 z-10 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform heart-active">
+                            <i class="ri-heart-3-fill text-red-500 text-lg"></i>
+                        </button>
                         <img src="https://readdy.ai/api/search-image?query=fresh%20green%20onions%20scallions%20in%20bundle%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-onion&orientation=landscape" alt="Oignons" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="font-semibold text-gray-900 mb-1">Oignons verts premium</h3>
@@ -218,33 +181,22 @@
                                 <span class="text-lg font-bold text-primary">320 FCFA/kg</span>
                                 <span class="text-sm text-gray-500">500kg disponible</span>
                             </div>
-                            <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
-                                Voir détails
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produit 3 -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                        <img src="https://readdy.ai/api/search-image?query=fresh%20millet%20grains%20in%20burlap%20sack%20traditional%20african%20grain%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=200&seq=product-millet&orientation=landscape" alt="Mil" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-semibold text-gray-900 mb-1">Mil décortiqué traditionnel</h3>
-                            <p class="text-sm text-gray-600 mb-2 flex items-center">
-                                <i class="ri-map-pin-line text-gray-400 mr-1"></i>
-                                Tambacounda - Groupement Femmes
-                            </p>
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-lg font-bold text-primary">280 FCFA/kg</span>
-                                <span class="text-sm text-gray-500">1000kg disponible</span>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
+                                    Voir détails
+                                </button>
+                                <button class="p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors rounded-button">
+                                    <i class="ri-share-line"></i>
+                                </button>
                             </div>
-                            <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
-                                Voir détails
-                            </button>
                         </div>
                     </div>
 
-                    <!-- Produit 4 -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Favori 3 - Mangues -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative">
+                        <button class="absolute top-3 right-3 z-10 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform heart-active">
+                            <i class="ri-heart-3-fill text-red-500 text-lg"></i>
+                        </button>
                         <img src="https://readdy.ai/api/search-image?query=fresh%20mangoes%20in%20wooden%20crate%20ripe%20yellow%20tropical%20fruit%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-mango&orientation=landscape" alt="Mangues" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="font-semibold text-gray-900 mb-1">Mangues Kent export</h3>
@@ -256,33 +208,22 @@
                                 <span class="text-lg font-bold text-primary">600 FCFA/kg</span>
                                 <span class="text-sm text-gray-500">300kg disponible</span>
                             </div>
-                            <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
-                                Voir détails
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produit 5 -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                        <img src="https://readdy.ai/api/search-image?query=fresh%20peanuts%20groundnuts%20in%20shell%20african%20agriculture%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=200&seq=product-peanut&orientation=landscape" alt="Arachides" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-semibold text-gray-900 mb-1">Arachides coques qualité export</h3>
-                            <p class="text-sm text-gray-600 mb-2 flex items-center">
-                                <i class="ri-map-pin-line text-gray-400 mr-1"></i>
-                                Fatick - Producteur Seck
-                            </p>
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-lg font-bold text-primary">380 FCFA/kg</span>
-                                <span class="text-sm text-gray-500">2000kg disponible</span>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
+                                    Voir détails
+                                </button>
+                                <button class="p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors rounded-button">
+                                    <i class="ri-share-line"></i>
+                                </button>
                             </div>
-                            <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
-                                Voir détails
-                            </button>
                         </div>
                     </div>
 
-                    <!-- Produit 6 -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <!-- Favori 4 - Riz -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative">
+                        <button class="absolute top-3 right-3 z-10 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform heart-active">
+                            <i class="ri-heart-3-fill text-red-500 text-lg"></i>
+                        </button>
                         <img src="https://readdy.ai/api/search-image?query=fresh%20white%20rice%20grains%20in%20bowl%20premium%20quality%20cereal%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-rice&orientation=landscape" alt="Riz" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="font-semibold text-gray-900 mb-1">Riz parfumé de la vallée</h3>
@@ -294,9 +235,68 @@
                                 <span class="text-lg font-bold text-primary">520 FCFA/kg</span>
                                 <span class="text-sm text-gray-500">800kg disponible</span>
                             </div>
-                            <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
-                                Voir détails
-                            </button>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
+                                    Voir détails
+                                </button>
+                                <button class="p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors rounded-button">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favori 5 - Arachides -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative">
+                        <button class="absolute top-3 right-3 z-10 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform heart-active">
+                            <i class="ri-heart-3-fill text-red-500 text-lg"></i>
+                        </button>
+                        <img src="https://readdy.ai/api/search-image?query=fresh%20peanuts%20groundnuts%20in%20shell%20african%20agriculture%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=200&seq=product-peanut&orientation=landscape" alt="Arachides" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-900 mb-1">Arachides coques qualité export</h3>
+                            <p class="text-sm text-gray-600 mb-2 flex items-center">
+                                <i class="ri-map-pin-line text-gray-400 mr-1"></i>
+                                Fatick - Producteur Seck
+                            </p>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-lg font-bold text-primary">380 FCFA/kg</span>
+                                <span class="text-sm text-gray-500">2000kg disponible</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
+                                    Voir détails
+                                </button>
+                                <button class="p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors rounded-button">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favori 6 - Mil -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative">
+                        <button class="absolute top-3 right-3 z-10 bg-white rounded-full p-2 shadow-md hover:scale-110 transition-transform heart-active">
+                            <i class="ri-heart-3-fill text-red-500 text-lg"></i>
+                        </button>
+                        <img src="https://readdy.ai/api/search-image?query=fresh%20millet%20grains%20in%20burlap%20sack%20traditional%20african%20grain%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=200&seq=product-millet&orientation=landscape" alt="Mil" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-900 mb-1">Mil décortiqué traditionnel</h3>
+                            <p class="text-sm text-gray-600 mb-2 flex items-center">
+                                <i class="ri-map-pin-line text-gray-400 mr-1"></i>
+                                Tambacounda - Groupement Femmes
+                            </p>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-lg font-bold text-primary">280 FCFA/kg</span>
+                                <span class="text-sm text-gray-500">1000kg disponible</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors rounded-button">
+                                    Voir détails
+                                </button>
+                                <button class="p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors rounded-button">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
