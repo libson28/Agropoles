@@ -254,15 +254,19 @@
                         </a>
                         <a href="#" onclick="switchAdminTab('workflows', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-flow-chart text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Workflows</span>
+                            <span class="font-inter font-medium text-base">Validation & Circuits</span>
                         </a>
-                        <a href="#" onclick="switchAdminTab('content', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                        <a href="contenu.html" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-file-copy-line text-xl mr-3"></i>
                             <span class="font-inter font-medium text-base">Gestion Contenu</span>
                         </a>
+                        <a href="marketplace.html" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-store-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Marketplace</span>
+                        </a>
                         <a href="#" onclick="switchAdminTab('analytics', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-bar-chart-2-line text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Analytics</span>
+                            <span class="font-inter font-medium text-base">Reporting</span>
                         </a>
                         <a href="#" onclick="switchAdminTab('settings', event); return false;" class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-settings-3-line text-xl mr-3"></i>
@@ -311,7 +315,7 @@
                         <div class="flex flex-wrap items-center justify-between gap-4">
                             <div>
                                 <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Formalités</h2>
-                                <p class="font-roboto text-gray-600 mt-1">Suivi des demandes de documents et certifications des utilisateurs</p>
+                                <p class="font-roboto text-gray-600 mt-1">Contrôle des dossiers, commentaires, compléments et décisions finales multi-acteurs</p>
                             </div>
                             <button class="px-4 py-2 border border-primary text-primary !rounded-button hover:bg-primary hover:text-white transition-colors font-inter text-sm cursor-pointer" onclick="exportFormalitesData()">
                                 <i class="ri-download-line mr-2"></i>Exporter
@@ -325,7 +329,7 @@
                                     <span class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">Nouvelles</span>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">24</div>
-                                <div class="font-roboto text-gray-600 text-sm">Demandes en attente</div>
+                                <div class="font-roboto text-gray-600 text-sm">Dossiers en attente</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
                                 <div class="flex items-center justify-between mb-4">
@@ -333,7 +337,7 @@
                                     <span class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">En cours</span>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">18</div>
-                                <div class="font-roboto text-gray-600 text-sm">Mises en étude</div>
+                                <div class="font-roboto text-gray-600 text-sm">Analyses techniques</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
                                 <div class="flex items-center justify-between mb-4">
@@ -341,7 +345,7 @@
                                     <span class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">Validées</span>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">156</div>
-                                <div class="font-roboto text-gray-600 text-sm">Demandes acceptées</div>
+                                <div class="font-roboto text-gray-600 text-sm">Décisions validées</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
                                 <div class="flex items-center justify-between mb-4">
@@ -349,7 +353,7 @@
                                     <span class="text-sm font-roboto text-red-600 bg-red-50 px-2 py-1 rounded">Rejetées</span>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">12</div>
-                                <div class="font-roboto text-gray-600 text-sm">Demandes refusées</div>
+                                <div class="font-roboto text-gray-600 text-sm">Dossiers rejetés</div>
                             </div>
                         </div>
 
@@ -395,9 +399,9 @@
 
                 <div id="admin-overview" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-dashboard-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Vue d'ensemble</h3></div></div>
                 <div id="admin-users" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-user-settings-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Gestion Utilisateurs</h3></div></div>
-                <div id="admin-workflows" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-flow-chart text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Workflows</h3></div></div>
-                <div id="admin-content" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-file-copy-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Gestion Contenu</h3></div></div>
-                <div id="admin-analytics" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-bar-chart-2-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Analytics</h3></div></div>
+                <div id="admin-workflows" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-flow-chart text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Validation & Circuits</h3></div></div>
+                <div id="admin-content" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-file-copy-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Marketplace</h3></div></div>
+                <div id="admin-analytics" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-bar-chart-2-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Reporting</h3></div></div>
                 <div id="admin-settings" class="admin-tab-content hidden-tab"><div class="bg-white p-8 rounded-xl text-center"><i class="ri-settings-3-line text-5xl text-primary/50"></i><h3 class="text-xl font-semibold mt-4">Paramètres</h3></div></div>
             </div>
         </main>

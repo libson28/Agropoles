@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agropole Sénégal - Tableau de Bord Agriculteur</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#4CAF50'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="w-full h-24 bg-cover bg-center bg-no-repeat"
+        style="background-image: url(`../dashUser/pattern.png`);">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-primary mb-2">Tableau de Bord</h1>
+                <p class="text-gray-600">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-6 h-6 flex items-center justify-center relative">
+                    <i class="ri-notification-3-line text-gray-600 ri-lg"></i>
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold">AS</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-gray-900">Amadou Sy</span>
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-gray-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600">Producteur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="mb-8">
+            <div class="flex flex-wrap gap-2">
+                <button class="bg-primary text-white px-3 py-2 text-sm !rounded-button whitespace-nowrap"
+                    data-page="dashboard">Vue d'ensemble</button>
+                <button class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap"
+                    data-page="crops">Suivi des cultures</button>
+                <button class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap"
+                    data-page="market">Opportunités</button>
+                <button class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap"
+                    data-page="services">Services & prestataires</button>
+                <button class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap"
+                    data-page="admin">Demandes administratives</button>
+                <button class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap"
+                    data-page="formations">Formations</button>
+                <button class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap"
+                    data-page="sales">Mes ventes</button>
+                <button class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap"
+                    data-page="profile">Mon profil</button>
+            </div>
+        </nav>
+        <div id="page-content">
+            <div id="dashboard-page" class="page-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-shopping-basket-line text-secondary ri-lg"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold">+12%</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">2,450 kg</div>
+                        <div class="text-gray-600 text-sm">Production ce mois</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-coins-line text-secondary ri-lg"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold">+8%</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">1,2M FCFA</div>
+                        <div class="text-gray-600 text-sm">Revenus ce mois</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-shopping-cart-line text-blue-600 ri-lg"></i>
+                            </div>
+                            <span class="text-blue-600 text-sm font-semibold">15 actives</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">23</div>
+                        <div class="text-gray-600 text-sm">Commandes totales</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-star-line text-orange-500 ri-lg"></i>
+                            </div>
+                            <span class="text-orange-500 text-sm font-semibold">4.8/5</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">92%</div>
+                        <div class="text-gray-600 text-sm">Satisfaction client</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Évolution de la Production</h3>
+                        <div id="productionChart" class="h-64"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Répartition des Ventes</h3>
+                        <div id="salesChart" class="h-64"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Activités Récentes</h3>
+                            <a href="#" class="text-primary text-sm hover:underline">Voir tout</a>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="ri-check-line text-green-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Commande #CMD-2024-156 livrée</p>
+                                    <p class="text-xs text-gray-500">Il y a 2 heures</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="ri-message-3-line text-blue-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Nouveau message de Fatou Diallo</p>
+                                    <p class="text-xs text-gray-500">Il y a 4 heures</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                                    <i class="ri-money-dollar-circle-line text-orange-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Paiement de 450,000 FCFA reçu</p>
+                                    <p class="text-xs text-gray-500">Hier à 16:30</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i class="ri-shopping-cart-2-line text-purple-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Nouvelle commande de 200kg de tomates
+                                    </p>
+                                    <p class="text-xs text-gray-500">Hier à 14:20</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
+                            <a href="#" class="text-primary text-sm hover:underline">Marquer comme lues</a>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                                    <i class="ri-information-line text-blue-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Formation disponible</p>
+                                    <p class="text-xs text-gray-600 mt-1">Nouvelle session de formation sur les
+                                        techniques de conservation disponible</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                    <i class="ri-money-dollar-circle-line text-green-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Opportunité de financement</p>
+                                    <p class="text-xs text-gray-600 mt-1">Nouveau programme de crédit agricole à taux
+                                        préférentiel disponible</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-orange-50 rounded-lg">
+                                <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                                    <i class="ri-alert-line text-orange-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Rappel de paiement</p>
+                                    <p class="text-xs text-gray-600 mt-1">Facture #FAC-2024-089 échue dans 3 jours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <button
+                        class="bg-primary text-white px-8 py-3 !rounded-button font-semibold hover:bg-primary/90 whitespace-nowrap">
+                        Faire une demande
+                    </button>
+                </div>
+            </div>
+            <div id="crops-page" class="page-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-plant-line text-secondary ri-lg"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold">3 parcelles</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">2.5 ha</div>
+                        <div class="text-gray-600 text-sm">Surface cultivée</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-seedling-line text-blue-600 ri-lg"></i>
+                            </div>
+                            <span class="text-blue-600 text-sm font-semibold">En cours</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">4</div>
+                        <div class="text-gray-600 text-sm">Cultures actives</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-calendar-event-line text-yellow-600 ri-lg"></i>
+                            </div>
+                            <span class="text-yellow-600 text-sm font-semibold">15 jours</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">3</div>
+                        <div class="text-gray-600 text-sm">Récoltes prévues</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-alert-line text-red-600 ri-lg"></i>
+                            </div>
+                            <span class="text-red-600 text-sm font-semibold">Urgent</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">2</div>
+                        <div class="text-gray-600 text-sm">Actions requises</div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900">Mes Parcelles</h3>
+                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium whitespace-nowrap">
+                            <i class="ri-add-line mr-2"></i>Ajouter parcelle
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="border rounded-lg p-4">
+                            <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=green%20tomato%20field%20with%20healthy%20plants%20growing%20in%20rows%2C%20agricultural%20cultivation%2C%20natural%20lighting%2C%20modern%20farming%20techniques&width=300&height=200&seq=tomato-field&orientation=landscape');">
+                            </div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-gray-900">Parcelle A - Tomates</h4>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Croissance</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">0.8 ha • Semis : 15 mars 2024</p>
+                            <p class="text-sm text-gray-600 mb-4">Récolte prévue : 20 juin 2024</p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex-1 bg-gray-100 text-gray-700 px-3 py-2 !rounded-button text-sm whitespace-nowrap">Arroser</button>
+                                <button
+                                    class="flex-1 bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=onion%20field%20with%20green%20shoots%20emerging%20from%20soil%2C%20organized%20agricultural%20rows%2C%20bright%20daylight%2C%20healthy%20crop%20development&width=300&height=200&seq=onion-field&orientation=landscape');">
+                            </div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-gray-900">Parcelle B - Oignons</h4>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Maturation</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">1.2 ha • Semis : 10 février 2024</p>
+                            <p class="text-sm text-gray-600 mb-4">Récolte prévue : 15 mai 2024</p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex-1 bg-gray-100 text-gray-700 px-3 py-2 !rounded-button text-sm whitespace-nowrap">Fertiliser</button>
+                                <button
+                                    class="flex-1 bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                                style="background-image: url('https://readdy.ai/api/search-image?query=lettuce%20field%20with%20fresh%20green%20leafy%20vegetables%20in%20neat%20rows%2C%20modern%20agricultural%20setup%2C%20natural%20sunlight&width=300&height=200&seq=lettuce-field&orientation=landscape');">
+                            </div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-gray-900">Parcelle C - Salade</h4>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Récolte</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">0.5 ha • Semis : 5 avril 2024</p>
+                            <p class="text-sm text-gray-600 mb-4">Récolte : Maintenant</p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex-1 bg-orange-500 text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Récolter</button>
+                                <button
+                                    class="flex-1 bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Calendrier des Tâches</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
+                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                    <i class="ri-alert-line text-red-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Arrosage urgent - Parcelle A</p>
+                                    <p class="text-xs text-gray-600">Prévu aujourd'hui à 6h00</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-yellow-50 rounded-lg">
+                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                    <i class="ri-plant-line text-yellow-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Fertilisation - Parcelle B</p>
+                                    <p class="text-xs text-gray-600">Demain à 8h00</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="ri-scissors-line text-green-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Récolte - Parcelle C</p>
+                                    <p class="text-xs text-gray-600">Dans 3 jours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Météo & Conseils</h3>
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-8 h-8 flex items-center justify-center">
+                                    <i class="ri-sun-line text-yellow-500 ri-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">25°C - Ensoleillé</p>
+                                    <p class="text-sm text-gray-600">Conditions idéales pour l'arrosage</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 border-l-4 border-green-500 bg-green-50">
+                                <p class="text-sm font-medium text-gray-900">💡 Conseil du jour</p>
+                                <p class="text-sm text-gray-600">Arrosez tôt le matin pour éviter l'évaporation</p>
+                            </div>
+                            <div class="p-3 border-l-4 border-yellow-500 bg-yellow-50">
+                                <p class="text-sm font-medium text-gray-900">⚠️ Attention</p>
+                                <p class="text-sm text-gray-600">Risque de pluie dans 2 jours, ajustez l'arrosage</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="market-page" class="page-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-line-chart-line text-secondary ri-lg"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold">+5%</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">850 FCFA</div>
+                        <div class="text-gray-600 text-sm">Prix tomate/kg</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-shopping-bag-line text-blue-600 ri-lg"></i>
+                            </div>
+                            <span class="text-blue-600 text-sm font-semibold">12 offres</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">45</div>
+                        <div class="text-gray-600 text-sm">Demandes actives</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-truck-line text-yellow-600 ri-lg"></i>
+                            </div>
+                            <span class="text-yellow-600 text-sm font-semibold">En cours</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">8</div>
+                        <div class="text-gray-600 text-sm">Livraisons</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-medal-line text-purple-600 ri-lg"></i>
+                            </div>
+                            <span class="text-purple-600 text-sm font-semibold">Top vendeur</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">4.9</div>
+                        <div class="text-gray-600 text-sm">Note moyenne</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="lg:col-span-2">
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900">Opportunités de Vente</h3>
+                                <button
+                                    class="bg-primary text-white px-4 py-2 !rounded-button font-medium whitespace-nowrap">
+                                    <i class="ri-add-line mr-2"></i>Publier offre
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="border rounded-lg p-4">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div>
+                                            <h4 class="font-semibold text-gray-900">Restaurant Le Baobab cherche tomates
+                                            </h4>
+                                            <p class="text-sm text-gray-600">200 kg • Prix : 900 FCFA/kg</p>
+                                        </div>
+                                        <span
+                                            class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Nouveau</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Livraison souhaitée : Marché Sandaga, Dakar •
+                                        Dans 3 jours</p>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="bg-primary text-white px-4 py-2 !rounded-button text-sm whitespace-nowrap">Répondre</button>
+                                        <button
+                                            class="bg-gray-100 text-gray-700 px-4 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                                    </div>
+                                </div>
+                                <div class="border rounded-lg p-4">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div>
+                                            <h4 class="font-semibold text-gray-900">Coopérative Thiaroye - Oignons</h4>
+                                            <p class="text-sm text-gray-600">500 kg • Prix : 650 FCFA/kg</p>
+                                        </div>
+                                        <span
+                                            class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Urgent</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Livraison : Rufisque • Demain</p>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="bg-primary text-white px-4 py-2 !rounded-button text-sm whitespace-nowrap">Répondre</button>
+                                        <button
+                                            class="bg-gray-100 text-gray-700 px-4 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                                    </div>
+                                </div>
+                                <div class="border rounded-lg p-4">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div>
+                                            <h4 class="font-semibold text-gray-900">Supermarché Auchan - Légumes variés
+                                            </h4>
+                                            <p class="text-sm text-gray-600">300 kg • Prix négociable</p>
+                                        </div>
+                                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Contrat</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Livraison hebdomadaire • Almadies</p>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="bg-primary text-white px-4 py-2 !rounded-button text-sm whitespace-nowrap">Répondre</button>
+                                        <button
+                                            class="bg-gray-100 text-gray-700 px-4 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Prix du Marché</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <i class="ri-plant-line text-red-600"></i>
+                                        </div>
+                                        <span class="text-sm font-medium">Tomates</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold text-gray-900">850 FCFA</p>
+                                        <p class="text-xs text-green-600">+5%</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <i class="ri-plant-line text-purple-600"></i>
+                                        </div>
+                                        <span class="text-sm font-medium">Oignons</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold text-gray-900">650 FCFA</p>
+                                        <p class="text-xs text-red-600">-2%</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="ri-plant-line text-green-600"></i>
+                                        </div>
+                                        <span class="text-sm font-medium">Salade</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-semibold text-gray-900">400 FCFA</p>
+                                        <p class="text-xs text-gray-600">0%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Mes Offres</h3>
+                            <div class="space-y-3">
+                                <div class="p-3 border rounded-lg">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-sm font-medium">Tomates - 100kg</span>
+                                        <span
+                                            class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Active</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">3 intéressés</p>
+                                </div>
+                                <div class="p-3 border rounded-lg">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-sm font-medium">Oignons - 250kg</span>
+                                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Vendu</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Livré hier</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="services-page" class="page-content hidden">
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-6">Catégories de Services</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category active"
+                            data-category="all">
+                            <div
+                                class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="ri-apps-line text-primary ri-lg"></i>
+                            </div>
+                            <span class="text-sm font-medium">Tous</span>
+                        </button>
+                        <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category"
+                            data-category="equipment">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="ri-tools-line text-blue-600 ri-lg"></i>
+                            </div>
+                            <span class="text-sm font-medium">Équipements</span>
+                        </button>
+                        <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category"
+                            data-category="transport">
+                            <div
+                                class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="ri-truck-line text-yellow-600 ri-lg"></i>
+                            </div>
+                            <span class="text-sm font-medium">Transport</span>
+                        </button>
+                        <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category"
+                            data-category="expertise">
+                            <div
+                                class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="ri-user-star-line text-green-600 ri-lg"></i>
+                            </div>
+                            <span class="text-sm font-medium">Expertise</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="services-list">
+                    <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="equipment">
+                        <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=modern%20agricultural%20tractor%20working%20in%20green%20field%2C%20farming%20machinery%2C%20professional%20equipment%20for%20crop%20cultivation&width=300&height=200&seq=tractor-service&orientation=landscape');">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Location Tracteur</h4>
+                                <p class="text-sm text-gray-600">Moustapha Gaye</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-star-fill text-yellow-500"></i>
+                                </div>
+                                <span class="text-sm">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Tracteur moderne avec charrues • Disponible 7j/7</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-primary">15,000 FCFA/jour</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Disponible</span>
+                        </div>
+                        <button
+                            class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Réserver</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="transport">
+                        <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=delivery%20truck%20loaded%20with%20fresh%20vegetables%20and%20fruits%2C%20agricultural%20transport%20service%2C%20professional%20logistics&width=300&height=200&seq=transport-service&orientation=landscape');">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Transport de Récoltes</h4>
+                                <p class="text-sm text-gray-600">Transport Ndoye</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-star-fill text-yellow-500"></i>
+                                </div>
+                                <span class="text-sm">4.6</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Camion réfrigéré • Livraison Dakar et banlieue</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-primary">200 FCFA/km</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Disponible</span>
+                        </div>
+                        <button
+                            class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Réserver</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="expertise">
+                        <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=agricultural%20expert%20examining%20crops%20in%20field%2C%20professional%20consultation%2C%20agronomy%20specialist%20working%20with%20farmer&width=300&height=200&seq=expert-service&orientation=landscape');">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Consultation Agronomique</h4>
+                                <p class="text-sm text-gray-600">Dr. Awa Seck</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-star-fill text-yellow-500"></i>
+                                </div>
+                                <span class="text-sm">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Ingénieur agronome • Conseils personnalisés</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-primary">25,000 FCFA/visite</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Expert</span>
+                        </div>
+                        <button
+                            class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Consulter</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="equipment">
+                        <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=irrigation%20system%20spraying%20water%20over%20green%20vegetable%20field%2C%20modern%20agricultural%20watering%20equipment&width=300&height=200&seq=irrigation-service&orientation=landscape');">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Système d'Irrigation</h4>
+                                <p class="text-sm text-gray-600">Irrigation Services Plus</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-star-fill text-yellow-500"></i>
+                                </div>
+                                <span class="text-sm">4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Installation et maintenance • Goutte-à-goutte</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-primary">50,000 FCFA/ha</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Installation</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Demander
+                            devis</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="transport">
+                        <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=small%20delivery%20van%20for%20agricultural%20products%2C%20local%20transport%20service%2C%20efficient%20cargo%20vehicle&width=300&height=200&seq=local-transport&orientation=landscape');">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Livraison Locale</h4>
+                                <p class="text-sm text-gray-600">Express Mbao</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-star-fill text-yellow-500"></i>
+                                </div>
+                                <span class="text-sm">4.3</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Livraison rapide • Marchés locaux</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-primary">5,000 FCFA/course</span>
+                            <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Rapide</span>
+                        </div>
+                        <button
+                            class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Commander</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="expertise">
+                        <div class="h-32 bg-cover bg-center rounded-lg mb-4"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=agricultural%20laboratory%20testing%20soil%20and%20plant%20samples%2C%20scientific%20analysis%20for%20crop%20optimization&width=300&height=200&seq=lab-analysis&orientation=landscape');">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Analyse de Sol</h4>
+                                <p class="text-sm text-gray-600">Laboratoire Agri-Test</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-star-fill text-yellow-500"></i>
+                                </div>
+                                <span class="text-sm">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Analyse complète • Recommandations incluses</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-primary">35,000 FCFA/échantillon</span>
+                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Certifié</span>
+                        </div>
+                        <button
+                            class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Programmer</button>
+                    </div>
+                </div>
+            </div>
+            <div id="admin-page" class="page-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-file-list-3-line text-blue-600 ri-lg"></i>
+                            </div>
+                            <span class="text-blue-600 text-sm font-semibold">En cours</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">3</div>
+                        <div class="text-gray-600 text-sm">Demandes actives</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-checkbox-circle-line text-green-600 ri-lg"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold">Approuvées</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">12</div>
+                        <div class="text-gray-600 text-sm">Demandes validées</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-time-line text-yellow-600 ri-lg"></i>
+                            </div>
+                            <span class="text-yellow-600 text-sm font-semibold">5 jours</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">7</div>
+                        <div class="text-gray-600 text-sm">Délai moyen</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-award-line text-purple-600 ri-lg"></i>
+                            </div>
+                            <span class="text-purple-600 text-sm font-semibold">Actives</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">5</div>
+                        <div class="text-gray-600 text-sm">Certifications</div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900">Gestion des Formalités Administratives</h3>
+                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium whitespace-nowrap">
+                            <i class="ri-add-line mr-2"></i>Nouvelle demande
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-file-text-line text-blue-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Autorisation FRA</h4>
+                            <p class="text-sm text-gray-600">Demande d'autorisation de foncier rural agricole</p>
+                        </div>
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-money-dollar-circle-line text-orange-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Demande de Financement</h4>
+                            <p class="text-sm text-gray-600">Crédit agricole et microfinancement</p>
+                        </div>
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-shield-check-line text-green-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Certification Bio</h4>
+                            <p class="text-sm text-gray-600">Obtenir la certification agriculture biologique</p>
+                        </div>
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-truck-line text-yellow-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Licence Transport</h4>
+                            <p class="text-sm text-gray-600">Autorisation de transport de produits agricoles</p>
+                        </div>
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-water-flash-line text-red-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Autorisation Forage</h4>
+                            <p class="text-sm text-gray-600">Permis pour création de puits ou forage</p>
+                        </div>
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-seedling-line text-purple-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Permis de Production</h4>
+                            <p class="text-sm text-gray-600">Autorisation de cultiver des variétés spécifiques</p>
+                        </div>
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-home-office-line text-indigo-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Foncier Agricole</h4>
+                            <p class="text-sm text-gray-600">Demande d'attribution de terrain agricole</p>
+                        </div>
+                        <div class="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-3">
+                                <i class="ri-bank-card-line text-pink-600 ri-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Subvention</h4>
+                            <p class="text-sm text-gray-600">Demande d'aide financière agricole</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Mes Demandes</h3>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Certification Bio - Parcelle A</h4>
+                                        <p class="text-sm text-gray-600">Demande #CERT-2024-089</p>
+                                    </div>
+                                    <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">En
+                                        révision</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">Soumise le 15 avril 2024 • Délai estimé : 3
+                                    semaines</p>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="bg-gray-100 text-gray-700 px-3 py-2 !rounded-button text-sm whitespace-nowrap">Suivre</button>
+                                    <button
+                                        class="bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Documents</button>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Autorisation Forage</h4>
+                                        <p class="text-sm text-gray-600">Demande #FOR-2024-156</p>
+                                    </div>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Approuvée</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">Approuvée le 10 avril 2024</p>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="bg-green-600 text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Télécharger</button>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Demande de Financement - Équipement</h4>
+                                        <p class="text-sm text-gray-600">Demande #FIN-2024-203</p>
+                                    </div>
+                                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">En
+                                        évaluation</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">Crédit de 2,5M FCFA • Soumise le 18 avril 2024</p>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="bg-gray-100 text-gray-700 px-3 py-2 !rounded-button text-sm whitespace-nowrap">Suivre</button>
+                                    <button
+                                        class="bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Documents</button>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Subvention Équipement</h4>
+                                        <p class="text-sm text-gray-600">Demande #SUB-2024-189</p>
+                                    </div>
+                                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Nouvelle</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">Soumise le 20 avril 2024</p>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="bg-gray-100 text-gray-700 px-3 py-2 !rounded-button text-sm whitespace-nowrap">Modifier</button>
+                                    <button
+                                        class="bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Compléter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Guide des Démarches</h3>
+                        <div class="space-y-4">
+                            <div class="p-3 border-l-4 border-blue-500 bg-blue-50">
+                                <h4 class="font-medium text-gray-900 mb-1">📋 Dépôt de documents</h4>
+                                <p class="text-sm text-gray-600">Rassemblez tous les documents requis et soumettez en
+                                    ligne</p>
+                            </div>
+                            <div class="p-3 border-l-4 border-orange-500 bg-orange-50">
+                                <h4 class="font-medium text-gray-900 mb-1">✅ Validation des dossiers</h4>
+                                <p class="text-sm text-gray-600">Vérification automatique et validation par les services
+                                    compétents</p>
+                            </div>
+                            <div class="p-3 border-l-4 border-green-500 bg-green-50">
+                                <h4 class="font-medium text-gray-900 mb-1">🔍 Suivi des procédures</h4>
+                                <p class="text-sm text-gray-600">Consultez l'état d'avancement de vos dossiers en temps
+                                    réel</p>
+                            </div>
+                            <div class="p-3 border-l-4 border-purple-500 bg-purple-50">
+                                <h4 class="font-medium text-gray-900 mb-1">📞 Assistance technique</h4>
+                                <p class="text-sm text-gray-600">Support disponible 8h-17h du lundi au vendredi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="profile-page" class="page-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-center mb-6">
+                            <div
+                                class="w-24 h-24 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-white text-2xl font-bold">AS</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900">Amadou Sy</h3>
+                            <p class="text-sm text-gray-600">Producteur agricole</p>
+                            <p class="text-sm text-gray-500">Membre depuis mars 2023</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Note moyenne</span>
+                                <div class="flex items-center gap-1">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-star-fill text-yellow-500"></i>
+                                    </div>
+                                    <span class="text-sm font-semibold">4.8/5</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Ventes réalisées</span>
+                                <span class="text-sm font-semibold">156</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Superficie totale</span>
+                                <span class="text-sm font-semibold">2.5 ha</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 !rounded-button mt-4 whitespace-nowrap">
+                            Modifier photo
+                        </button>
+                    </div>
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Informations Personnelles</h3>
+                            <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
+                                    <input type="text" value="Amadou"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
+                                    <input type="text" value="Sy"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" value="amadou.sy@email.com"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                                    <input type="tel" value="+221 77 123 45 67"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Région</label>
+                                    <div class="relative">
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm pr-8">
+                                            <option>Dakar</option>
+                                            <option>Thiès</option>
+                                            <option>Saint-Louis</option>
+                                            <option>Kaolack</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
+                                    <textarea rows="2"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm resize-none">Mbao, Route de Rufisque, Dakar, Sénégal</textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Informations Agricoles</h3>
+                            <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Type
+                                        d'exploitation</label>
+                                    <div class="relative">
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm pr-8">
+                                            <option>Maraîchage</option>
+                                            <option>Céréales</option>
+                                            <option>Arboriculture</option>
+                                            <option>Élevage</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Années
+                                        d'expérience</label>
+                                    <input type="number" value="12"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Spécialités</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Tomates</span>
+                                        <span
+                                            class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Oignons</span>
+                                        <span
+                                            class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Salade</span>
+                                        <button
+                                            class="px-3 py-1 border border-gray-300 text-gray-600 text-sm rounded-full hover:bg-gray-50">
+                                            <i class="ri-add-line mr-1"></i>Ajouter
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Certification</label>
+                                    <div class="relative">
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm pr-8">
+                                            <option>Agriculture biologique</option>
+                                            <option>Conventionnelle</option>
+                                            <option>Raisonnée</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Capacité de
+                                        production</label>
+                                    <input type="text" value="2500 kg/mois"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Paramètres de Notification</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-900">Nouvelles commandes</h4>
+                                        <p class="text-xs text-gray-600">Recevoir des notifications pour les nouvelles
+                                            demandes</p>
+                                    </div>
+                                    <div class="relative inline-block w-10 align-middle select-none">
+                                        <input type="checkbox" checked
+                                            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                        <label
+                                            class="toggle-label block overflow-hidden h-6 rounded-full bg-primary cursor-pointer"></label>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-900">Prix du marché</h4>
+                                        <p class="text-xs text-gray-600">Alertes sur les variations de prix</p>
+                                    </div>
+                                    <div class="relative inline-block w-10 align-middle select-none">
+                                        <input type="checkbox" checked
+                                            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                        <label
+                                            class="toggle-label block overflow-hidden h-6 rounded-full bg-primary cursor-pointer"></label>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-900">Conseils agricoles</h4>
+                                        <p class="text-xs text-gray-600">Recommandations et bonnes pratiques</p>
+                                    </div>
+                                    <div class="relative inline-block w-10 align-middle select-none">
+                                        <input type="checkbox"
+                                            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                        <label
+                                            class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <button
+                                class="flex-1 bg-primary text-white py-3 !rounded-button font-semibold whitespace-nowrap">
+                                Sauvegarder
+                            </button>
+                            <button
+                                class="flex-1 bg-gray-100 text-gray-700 py-3 !rounded-button font-semibold whitespace-nowrap">
+                                Annuler
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="messages-page" class="page-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1 bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Conversations</h3>
+                            <button class="text-primary text-sm font-medium whitespace-nowrap">Nouveau</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-4 border border-primary/20 bg-green-50 rounded-lg">
+                                <div class="flex items-center justify-between mb-1">
+                                    <p class="font-medium text-gray-900">Fatou Diallo</p>
+                                    <span class="text-xs text-gray-500">10:24</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Je confirme la commande de 300 kg pour vendredi.</p>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <div class="flex items-center justify-between mb-1">
+                                    <p class="font-medium text-gray-900">Coopérative Thiès Nord</p>
+                                    <span class="text-xs text-gray-500">Hier</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Pouvez-vous envoyer votre disponibilité pour l'oignon ?</p>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <div class="flex items-center justify-between mb-1">
+                                    <p class="font-medium text-gray-900">Service logistique Baobab</p>
+                                    <span class="text-xs text-gray-500">Hier</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Votre camion frigorifique est confirmé pour demain.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Discussion avec Fatou Diallo</h3>
+                                <p class="text-sm text-gray-500">Acheteuse - Dakar</p>
+                            </div>
+                            <button class="bg-gray-100 text-gray-700 px-4 py-2 !rounded-button text-sm whitespace-nowrap">Voir profil</button>
+                        </div>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-start">
+                                <div class="max-w-md bg-gray-100 text-gray-800 px-4 py-3 rounded-lg">
+                                    Bonjour Amadou, je cherche 300 kg de tomates bien calibrées pour vendredi.
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="max-w-md bg-primary text-white px-4 py-3 rounded-lg">
+                                    Bonjour Fatou, c'est possible. Je peux préparer le lot et confirmer le prix aujourd'hui.
+                                </div>
+                            </div>
+                            <div class="flex justify-start">
+                                <div class="max-w-md bg-gray-100 text-gray-800 px-4 py-3 rounded-lg">
+                                    Parfait. Envoyez-moi aussi les conditions de livraison.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <input type="text" placeholder="Écrire un message..."
+                                class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-sm">
+                            <button class="bg-primary text-white px-5 py-3 !rounded-button whitespace-nowrap">
+                                <i class="ri-send-plane-line mr-2"></i>Envoyer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="formations-page" class="page-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-graduation-cap-line text-blue-600 ri-lg"></i>
+                            </div>
+                            <span class="text-blue-600 text-sm font-semibold">3 nouvelles</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">12</div>
+                        <div class="text-gray-600 text-sm">Formations disponibles</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-award-line text-green-600 ri-lg"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold">2 validées</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">5</div>
+                        <div class="text-gray-600 text-sm">Certificats obtenus</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-time-line text-orange-600 ri-lg"></i>
+                            </div>
+                            <span class="text-orange-600 text-sm font-semibold">Cette semaine</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-1">8 h</div>
+                        <div class="text-gray-600 text-sm">Temps de formation</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Sessions recommandées</h3>
+                            <button class="text-primary text-sm hover:underline">Tout voir</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Conservation post-récolte</h4>
+                                    <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">En ligne</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">Réduire les pertes et améliorer la qualité avant livraison.</p>
+                                <button class="bg-primary text-white px-4 py-2 !rounded-button text-sm whitespace-nowrap">S'inscrire</button>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Utilisation des intrants</h4>
+                                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Présentiel</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">Bonnes pratiques pour engrais, semences et protection des cultures.</p>
+                                <button class="bg-primary text-white px-4 py-2 !rounded-button text-sm whitespace-nowrap">Réserver</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Mon parcours</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-900">Traçabilité des produits</p>
+                                    <p class="text-sm text-gray-600">Complété le 12 avril 2026</p>
+                                </div>
+                                <span class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full">Validé</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-900">Gestion de l'irrigation</p>
+                                    <p class="text-sm text-gray-600">Début prévu le 28 avril 2026</p>
+                                </div>
+                                <span class="text-sm bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">À venir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sales-page" class="page-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-2xl font-bold text-gray-900 mb-1">156</div>
+                        <div class="text-gray-600 text-sm">Ventes réalisées</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-2xl font-bold text-gray-900 mb-1">18.4M FCFA</div>
+                        <div class="text-gray-600 text-sm">Chiffre d'affaires</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-2xl font-bold text-gray-900 mb-1">92%</div>
+                        <div class="text-gray-600 text-sm">Taux de livraison</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-2xl font-bold text-gray-900 mb-1">4.8/5</div>
+                        <div class="text-gray-600 text-sm">Satisfaction acheteurs</div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Historique des ventes</h3>
+                        <button class="bg-primary text-white px-4 py-2 !rounded-button text-sm whitespace-nowrap">Exporter</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">Référence</th>
+                                    <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">Produit</th>
+                                    <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">Acheteur</th>
+                                    <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">Montant</th>
+                                    <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 text-sm text-gray-900">VTE-2026-021</td>
+                                    <td class="px-4 py-3 text-sm text-gray-900">Tomates</td>
+                                    <td class="px-4 py-3 text-sm text-gray-600">Fatou Diallo</td>
+                                    <td class="px-4 py-3 text-sm text-gray-900">270 000 FCFA</td>
+                                    <td class="px-4 py-3"><span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Payé</span></td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 text-sm text-gray-900">VTE-2026-020</td>
+                                    <td class="px-4 py-3 text-sm text-gray-900">Oignons</td>
+                                    <td class="px-4 py-3 text-sm text-gray-600">Restaurant Le Baobab</td>
+                                    <td class="px-4 py-3 text-sm text-gray-900">325 000 FCFA</td>
+                                    <td class="px-4 py-3"><span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Livré</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm text-gray-900">VTE-2026-019</td>
+                                    <td class="px-4 py-3 text-sm text-gray-900">Salade</td>
+                                    <td class="px-4 py-3 text-sm text-gray-600">Coopérative Thiès Nord</td>
+                                    <td class="px-4 py-3 text-sm text-gray-900">120 000 FCFA</td>
+                                    <td class="px-4 py-3"><span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">En attente</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="production-chart">
+        document.addEventListener('DOMContentLoaded', function () {
+            const productionChart = echarts.init(document.getElementById('productionChart'));
+            const productionOption = {
+                animation: false,
+                grid: {
+                    top: 0,
+                    right: 0,
+                    bottom: 20,
+                    left: 40
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'],
+                    axisLine: { show: false },
+                    axisTick: { show: false }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine: { show: false },
+                    axisTick: { show: false },
+                    splitLine: { show: false }
+                },
+                series: [{
+                    data: [1200, 1400, 1800, 2200, 2100, 2450],
+                    type: 'line',
+                    smooth: true,
+                    symbol: 'none',
+                    lineStyle: {
+                        color: 'rgba(46, 125, 50, 1)',
+                        width: 3
+                    },
+                    areaStyle: {
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0, color: 'rgba(141, 211, 199, 0.3)'
+                            }, {
+                                offset: 1, color: 'rgba(141, 211, 199, 0.05)'
+                            }]
+                        }
+                    }
+                }]
+            };
+            productionChart.setOption(productionOption);
+        });
+    </script>
+    <script id="sales-chart">
+        document.addEventListener('DOMContentLoaded', function () {
+            const salesChart = echarts.init(document.getElementById('salesChart'));
+            const salesOption = {
+                animation: false,
+                series: [{
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    center: ['50%', '50%'],
+                    data: [
+                        { value: 45, name: 'Tomates', itemStyle: { color: 'rgba(87, 181, 231, 1)' } },
+                        { value: 30, name: 'Oignons', itemStyle: { color: 'rgba(141, 211, 199, 1)' } },
+                        { value: 15, name: 'Salade', itemStyle: { color: 'rgba(251, 191, 114, 1)' } },
+                        { value: 10, name: 'Autres', itemStyle: { color: 'rgba(252, 141, 98, 1)' } }
+                    ],
+                    label: {
+                        show: true,
+                        position: 'outside',
+                        formatter: '{b}: {c}%',
+                        color: '#1f2937'
+                    },
+                    itemStyle: {
+                        borderRadius: 4
+                    }
+                }]
+            };
+            salesChart.setOption(salesOption);
+        });
+    </script>
+    <script id="navigation-handler">
+        document.addEventListener('DOMContentLoaded', function () {
+            const navButtons = document.querySelectorAll('nav button');
+            const pages = document.querySelectorAll('.page-content');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetPage = this.dataset.page;
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('text-gray-600', 'hover:bg-gray-100');
+                    });
+                    this.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                    this.classList.add('bg-primary', 'text-white');
+                    pages.forEach(page => {
+                        page.classList.add('hidden');
+                    });
+                    document.getElementById(targetPage + '-page').classList.remove('hidden');
+                });
+            });
+            const serviceCategories = document.querySelectorAll('.service-category');
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCategories.forEach(category => {
+                category.addEventListener('click', function () {
+                    serviceCategories.forEach(cat => {
+                        cat.classList.remove('active');
+                        cat.style.backgroundColor = '';
+                        cat.style.borderColor = '';
+                    });
+                    this.classList.add('active');
+                    this.style.backgroundColor = '#f0f9ff';
+                    this.style.borderColor = '#2E7D32';
+                    const targetCategory = this.dataset.category;
+                    serviceCards.forEach(card => {
+                        if (targetCategory === 'all' || card.dataset.category === targetCategory) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            const toggles = document.querySelectorAll('.toggle-checkbox');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function () {
+                    const label = this.nextElementSibling;
+                    if (this.checked) {
+                        label.style.backgroundColor = '#2E7D32';
+                        this.style.transform = 'translateX(100%)';
+                    } else {
+                        label.style.backgroundColor = '#d1d5db';
+                        this.style.transform = 'translateX(0%)';
+                    }
+                });
+            });
+            document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+                if (toggle.checked) {
+                    toggle.style.transform = 'translateX(100%)';
+                }
+            });
+        });
+    </script>
+    <style>
+        .toggle-checkbox {
+            transition: all 0.3s ease;
+        }
+
+        .toggle-label {
+            transition: all 0.3s ease;
+        }
+
+        .service-category.active {
+            background-color: #f0f9ff;
+            border-color: #2E7D32;
+        }
+    </style>
+</body>
+
+</html>

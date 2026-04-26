@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agropole Sénégal - Suivi des Cultures</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#4CAF50'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="w-full h-24 bg-cover bg-center bg-no-repeat" style="background-image: url('../dashUser/pattern.png');">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-primary mb-2">Suivi des Cultures</h1>
+                <p class="text-gray-600">Gérez vos parcelles et vos cultures</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-6 h-6 flex items-center justify-center relative">
+                    <i class="ri-notification-3-line text-gray-600 ri-lg"></i>
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold">AS</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-gray-900">Amadou Sy</span>
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-gray-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600">Producteur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="mb-8">
+            <div class="flex flex-wrap gap-2">
+                <a href="tableauDeBord.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Vue d'ensemble</a>
+                <a href="admin.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Demandes administratives</a>
+                <a href="cultures.html" class="bg-primary text-white px-3 py-2 text-sm !rounded-button whitespace-nowrap">Suivi des cultures</a>
+                <a href="marche.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Opportunités</a>
+                <a href="services.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Services & prestations</a>
+                <a href="ventes.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Mes ventes</a>
+                <a href="formations.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Formations</a>
+                <a href="profil.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Annuaire</a>
+            </div>
+        </nav>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="ri-plant-line text-secondary ri-lg"></i>
+                    </div>
+                    <span class="text-green-600 text-sm font-semibold">3 parcelles</span>
+                </div>
+                <div class="text-2xl font-bold text-gray-900 mb-1">2.5 ha</div>
+                <div class="text-gray-600 text-sm">Surface cultivée</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="ri-seedling-line text-blue-600 ri-lg"></i>
+                    </div>
+                    <span class="text-blue-600 text-sm font-semibold">En cours</span>
+                </div>
+                <div class="text-2xl font-bold text-gray-900 mb-1">4</div>
+                <div class="text-gray-600 text-sm">Cultures actives</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <i class="ri-calendar-event-line text-yellow-600 ri-lg"></i>
+                    </div>
+                    <span class="text-yellow-600 text-sm font-semibold">15 jours</span>
+                </div>
+                <div class="text-2xl font-bold text-gray-900 mb-1">3</div>
+                <div class="text-gray-600 text-sm">Récoltes prévues</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                        <i class="ri-alert-line text-red-600 ri-lg"></i>
+                    </div>
+                    <span class="text-red-600 text-sm font-semibold">Urgent</span>
+                </div>
+                <div class="text-2xl font-bold text-gray-900 mb-1">2</div>
+                <div class="text-gray-600 text-sm">Actions requises</div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-semibold text-gray-900">Mes Parcelles</h3>
+                <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium whitespace-nowrap">
+                    <i class="ri-add-line mr-2"></i>Ajouter parcelle
+                </button>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="border rounded-lg p-4">
+                    <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=green%20tomato%20field%20with%20healthy%20plants%20growing%20in%20rows%2C%20agricultural%20cultivation%2C%20natural%20lighting%2C%20modern%20farming%20techniques&width=300&height=200&seq=tomato-field&orientation=landscape');">
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-semibold text-gray-900">Parcelle A - Tomates</h4>
+                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Croissance</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">0.8 ha • Semis : 15 mars 2024</p>
+                    <p class="text-sm text-gray-600 mb-4">Récolte prévue : 20 juin 2024</p>
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-gray-100 text-gray-700 px-3 py-2 !rounded-button text-sm whitespace-nowrap">Arroser</button>
+                        <button class="flex-1 bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                    </div>
+                </div>
+                <div class="border rounded-lg p-4">
+                    <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=onion%20field%20with%20green%20shoots%20emerging%20from%20soil%2C%20organized%20agricultural%20rows%2C%20bright%20daylight%2C%20healthy%20crop%20development&width=300&height=200&seq=onion-field&orientation=landscape');">
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-semibold text-gray-900">Parcelle B - Oignons</h4>
+                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Maturation</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">1.2 ha • Semis : 10 février 2024</p>
+                    <p class="text-sm text-gray-600 mb-4">Récolte prévue : 15 mai 2024</p>
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-gray-100 text-gray-700 px-3 py-2 !rounded-button text-sm whitespace-nowrap">Fertiliser</button>
+                        <button class="flex-1 bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                    </div>
+                </div>
+                <div class="border rounded-lg p-4">
+                    <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=lettuce%20field%20with%20fresh%20green%20leafy%20vegetables%20in%20neat%20rows%2C%20modern%20agricultural%20setup%2C%20natural%20sunlight&width=300&height=200&seq=lettuce-field&orientation=landscape');">
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-semibold text-gray-900">Parcelle C - Salade</h4>
+                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Récolte</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">0.5 ha • Semis : 5 avril 2024</p>
+                    <p class="text-sm text-gray-600 mb-4">Récolte : Maintenant</p>
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-orange-500 text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Récolter</button>
+                        <button class="flex-1 bg-primary text-white px-3 py-2 !rounded-button text-sm whitespace-nowrap">Détails</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Calendrier des Tâches</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
+                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                            <i class="ri-alert-line text-red-600"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">Arrosage urgent - Parcelle A</p>
+                            <p class="text-xs text-gray-600">Prévu aujourd'hui à 6h00</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-yellow-50 rounded-lg">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                            <i class="ri-plant-line text-yellow-600"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">Fertilisation - Parcelle B</p>
+                            <p class="text-xs text-gray-600">Demain à 8h00</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="ri-scissors-line text-green-600"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">Récolte - Parcelle C</p>
+                            <p class="text-xs text-gray-600">Dans 3 jours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Météo & Conseils</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-sun-line text-yellow-500 ri-lg"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">25°C - Ensoleillé</p>
+                            <p class="text-sm text-gray-600">Conditions idéales pour l'arrosage</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-3 border-l-4 border-green-500 bg-green-50">
+                        <p class="text-sm font-medium text-gray-900">💡 Conseil du jour</p>
+                        <p class="text-sm text-gray-600">Arrosez tôt le matin pour éviter l'évaporation</p>
+                    </div>
+                    <div class="p-3 border-l-4 border-yellow-500 bg-yellow-50">
+                        <p class="text-sm font-medium text-gray-900">⚠️ Attention</p>
+                        <p class="text-sm text-gray-600">Risque de pluie dans 2 jours, ajustez l'arrosage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

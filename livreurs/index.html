@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livreur | Tableau de Bord - Agropoles Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* custom smooth transitions */
+        .tab-transition {
+            transition: all 0.2s ease;
+        }
+        .modal-transition {
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        .status-badge {
+            transition: all 0.15s ease;
+        }
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+    </style>
+</head>
+<body class="font-roboto bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Pattern header (same style as reference) -->
+        <div class="pattern h-[110px] w-full bg-gradient-to-r from-primary/10 to-secondary/10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 -mt-6">
+            <!-- Header with Profile -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
+                <div>
+                    <h1 class="text-3xl font-poppins font-bold text-primary">Tableau de Bord Livreur</h1>
+                    <p class="font-roboto text-gray-600 mt-1">Gérez vos livraisons, suivez vos tournées et restez connecté</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-notification-line text-xl"></i>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <div class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 p-2 rounded-lg transition-colors" id="profileDropdownBtn">
+                        <img src="https://readdy.ai/api/search-image?query=Delivery%20rider%20portrait%20smiling%20african%20man%20casual%20wear%20warehouse%20background%20professional%20portrait&width=100&height=100&seq=livreur_profile&orientation=squarish" alt="Profil Livreur" class="w-10 h-10 rounded-full object-cover object-top border-2 border-primary/20">
+                        <div class="hidden sm:block">
+                            <div class="font-inter font-medium text-gray-900">Moussa Diallo</div>
+                            <div class="font-roboto text-sm text-gray-600">Livreur · Agropoles</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation (Livreur specific) -->
+            <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+                <button class="dashboard-tab px-4 py-2 rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap" data-tab="livraisons">Livraisons actives</button>
+                <button class="dashboard-tab px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap" data-tab="historique">Historique</button>
+                <button class="dashboard-tab px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap" data-tab="dashboard">Tableau de bord</button>
+                <button class="dashboard-tab px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap" data-tab="profil">Mon profil</button>
+                <button class="dashboard-tab px-4 py-2 rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap" data-tab="tarifs">Mes tarifs</button>
+            </div>
+
+            <!-- Dynamic Content Sections -->
+            <div id="livraisons-section" class="tab-content space-y-8">
+                <!-- Active deliveries (cards) -->
+                <div class="flex items-center justify-between flex-wrap gap-3">
+                    <h2 class="text-2xl font-poppins font-semibold text-primary">Livraisons assignées</h2>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full font-medium"><i class="ri-truck-line mr-1"></i> 3 en cours</span>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Livraison Card 1 -->
+                    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-primary card-hover">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <span class="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">#LIV-2403-01</span>
+                                <h3 class="font-poppins font-semibold text-gray-900 mt-1">Tomates fraîches · 250 kg</h3>
+                            </div>
+                            <span class="status-badge px-2 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">En cours</span>
+                        </div>
+                        <div class="space-y-3 mt-3">
+                            <div class="flex items-start gap-2 text-gray-600">
+                                <i class="ri-map-pin-line text-primary mt-0.5"></i>
+                                <div><span class="font-medium">Départ: </span>Zone Agro North, Saint-Louis</div>
+                            </div>
+                            <div class="flex items-start gap-2 text-gray-600">
+                                <i class="ri-flag-line text-primary mt-0.5"></i>
+                                <div><span class="font-medium">Destination: </span>Marché Central, Dakar · Entrepôt B12</div>
+                            </div>
+                            <div class="flex items-start gap-2 text-gray-600">
+                                <i class="ri-box-3-line text-primary mt-0.5"></i>
+                                <div><span class="font-medium">État colis: </span>Emballé, température contrôlée · fragile</div>
+                            </div>
+                            <div class="flex items-start gap-2 text-gray-600">
+                                <i class="ri-calendar-todo-line text-primary mt-0.5"></i>
+                                <div><span class="font-medium">Livraison prévue: </span>25 mars 2025 · 14h30</div>
+                            </div>
+                        </div>
+                        <div class="mt-5 flex gap-2">
+                            <button class="flex-1 bg-primary text-white rounded-button py-2 text-sm font-inter hover:bg-green-800 transition"><i class="ri-road-map-line mr-1"></i> Démarrer tournée</button>
+                            <button class="px-3 py-2 border border-gray-300 rounded-button text-gray-700 hover:bg-gray-50"><i class="ri-phone-line"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Livraison Card 2 -->
+                    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-amber-500 card-hover">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <span class="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">#LIV-2403-02</span>
+                                <h3 class="font-poppins font-semibold text-gray-900 mt-1">Oignons blancs · 500 kg</h3>
+                            </div>
+                            <span class="status-badge px-2 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">En attente</span>
+                        </div>
+                        <div class="space-y-3 mt-3">
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-map-pin-line text-primary mt-0.5"></i><div><span class="font-medium">Départ: </span>Zone Agro Sud, Kaolack</div></div>
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-flag-line text-primary mt-0.5"></i><div><span class="font-medium">Destination: </span>Usine de transformation, Thiès · Quai 3</div></div>
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-box-3-line text-primary mt-0.5"></i><div><span class="font-medium">État colis: </span>Sacs de jute, produits secs, empilables</div></div>
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-calendar-todo-line text-primary mt-0.5"></i><div><span class="font-medium">Livraison prévue: </span>26 mars 2025 · 09h00</div></div>
+                        </div>
+                        <div class="mt-5 flex gap-2">
+                            <button class="flex-1 bg-primary text-white rounded-button py-2 text-sm font-inter hover:bg-green-800 transition">Prendre en charge</button>
+                            <button class="px-3 py-2 border border-gray-300 rounded-button text-gray-700 hover:bg-gray-50"><i class="ri-chat-3-line"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Livraison Card 3 -->
+                    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-purple-500 card-hover">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <span class="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">#LIV-2403-03</span>
+                                <h3 class="font-poppins font-semibold text-gray-900 mt-1">Salade et aromates · 80 kg</h3>
+                            </div>
+                            <span class="status-badge px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Prête à charger</span>
+                        </div>
+                        <div class="space-y-3 mt-3">
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-map-pin-line text-primary mt-0.5"></i><div><span class="font-medium">Départ: </span>Coopérative Agricole, Mboro</div></div>
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-flag-line text-primary mt-0.5"></i><div><span class="font-medium">Destination: </span>Restaurant La Terrasse, Dakar Plateau</div></div>
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-box-3-line text-primary mt-0.5"></i><div><span class="font-medium">État colis: </span>Frais, emballage isotherme, livraison express</div></div>
+                            <div class="flex items-start gap-2 text-gray-600"><i class="ri-calendar-todo-line text-primary mt-0.5"></i><div><span class="font-medium">Livraison prévue: </span>25 mars 2025 · 10h30</div></div>
+                        </div>
+                        <div class="mt-5 flex gap-2">
+                            <button class="flex-1 bg-primary text-white rounded-button py-2 text-sm font-inter hover:bg-green-800 transition">Marquer prise en charge</button>
+                            <button class="px-3 py-2 border border-gray-300 rounded-button text-gray-700 hover:bg-gray-50"><i class="ri-information-line"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Info : map / status recap -->
+                <div class="bg-white p-5 rounded-xl shadow-sm">
+                    <h3 class="font-inter font-semibold text-gray-800 mb-3">📦 Suivi en temps réel des colis actifs</h3>
+                    <div class="flex flex-wrap gap-4 justify-between items-center">
+                        <div class="flex gap-6">
+                            <div><span class="text-2xl font-bold text-primary">2</span> <span class="text-gray-500 text-sm">Livraisons en transit</span></div>
+                            <div><span class="text-2xl font-bold text-amber-500">1</span> <span class="text-gray-500 text-sm">En attente de prise en charge</span></div>
+                            <div><span class="text-2xl font-bold text-green-600">178 km</span> <span class="text-gray-500 text-sm">Parcours estimé aujourd'hui</span></div>
+                        </div>
+                        <button class="px-4 py-2 bg-gray-100 text-primary rounded-button text-sm font-inter hover:bg-gray-200"><i class="ri-map-2-line mr-1"></i> Voir sur la carte</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historique Section -->
+            <div id="historique-section" class="tab-content hidden space-y-8">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-poppins font-semibold text-primary mb-4">Historique des livraisons</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead class="border-b border-gray-200">
+                                <tr>
+                                    <th class="text-left py-3 font-inter font-medium text-gray-700">N° Livraison</th>
+                                    <th class="text-left py-3 font-inter font-medium text-gray-700">Destination</th>
+                                    <th class="text-left py-3 font-inter font-medium text-gray-700">Date</th>
+                                    <th class="text-left py-3 font-inter font-medium text-gray-700">Statut</th>
+                                    <th class="text-left py-3 font-inter font-medium text-gray-700">Gain (FCFA)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50"><td class="py-3 font-roboto">#LIV-2402-12</td><td>Dakar, Plateau</td><td>10 mars 2025</td><td><span class="bg-green-100 text-green-700 px-2 py-1 text-xs rounded-full">Livré</span></td><td class="font-medium">12 500 FCFA</td></tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50"><td class="py-3 font-roboto">#LIV-2402-09</td><td>Thiès, zone industrielle</td><td>5 mars 2025</td><td><span class="bg-green-100 text-green-700 px-2 py-1 text-xs rounded-full">Livré</span></td><td class="font-medium">9 800 FCFA</td></tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50"><td class="py-3 font-roboto">#LIV-2402-04</td><td>Saint-Louis, péage</td><td>28 fév. 2025</td><td><span class="bg-gray-200 text-gray-700 px-2 py-1 text-xs rounded-full">Annulé</span></td><td class="font-medium">—</td></tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50"><td class="py-3 font-roboto">#LIV-2401-45</td><td>Mbour, marché central</td><td>20 fév. 2025</td><td><span class="bg-green-100 text-green-700 px-2 py-1 text-xs rounded-full">Livré</span></td><td class="font-medium">14 200 FCFA</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-6 text-center"><button class="text-primary hover:underline text-sm">Charger plus d'historique →</button></div>
+                </div>
+            </div>
+
+            <!-- Tableau de bord (statistiques & KPIs) -->
+            <div id="dashboard-section" class="tab-content hidden space-y-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-5 rounded-xl shadow-sm text-center"><i class="ri-truck-line text-3xl text-primary mb-2 block"></i><div class="text-2xl font-bold text-gray-800">47</div><div class="text-gray-500 text-sm">Livraisons totales</div></div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm text-center"><i class="ri-checkbox-circle-line text-3xl text-green-600 mb-2 block"></i><div class="text-2xl font-bold text-gray-800">43</div><div class="text-gray-500 text-sm">Livraisons réussies</div></div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm text-center"><i class="ri-star-smile-line text-3xl text-amber-500 mb-2 block"></i><div class="text-2xl font-bold text-gray-800">4.85 ★</div><div class="text-gray-500 text-sm">Note moyenne</div></div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm text-center"><i class="ri-money-euro-circle-line text-3xl text-primary mb-2 block"></i><div class="text-2xl font-bold text-gray-800">358 400</div><div class="text-gray-500 text-sm">Gains totaux (FCFA)</div></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm"><h3 class="font-poppins font-semibold mb-3">Performance mensuelle</h3><div class="h-32 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400"><i class="ri-bar-chart-line mr-2"></i> Graphique d'activité (simulé)</div><div class="mt-4 text-sm text-gray-500">✓ Meilleur mois : Mars 2025 (18 livraisons)</div></div>
+            </div>
+
+            <!-- Mon Profil (modifiable) -->
+            <div id="profil-section" class="tab-content hidden space-y-8">
+                <div class="bg-white rounded-xl shadow-sm p-6 max-w-3xl">
+                    <h2 class="text-2xl font-poppins font-semibold text-primary mb-6">Mon profil professionnel</h2>
+                    <form id="profileForm" class="space-y-5">
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div><label class="block font-inter font-medium text-gray-700 mb-1">Nom complet</label><input type="text" value="Moussa Diallo" class="w-full border border-gray-300 rounded-button px-4 py-2.5 focus:outline-primary"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-1">Téléphone</label><input type="tel" value="+221 77 123 45 67" class="w-full border border-gray-300 rounded-button px-4 py-2.5 focus:outline-primary"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-1">Email</label><input type="email" value="moussa.diallo@agropoles.sn" class="w-full border border-gray-300 rounded-button px-4 py-2.5 focus:outline-primary"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-1">Véhicule</label><input type="text" value="Camionnette réfrigérée - Mitsubishi" class="w-full border border-gray-300 rounded-button px-4 py-2.5 focus:outline-primary"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-1">Zone de livraison principale</label><input type="text" value="Dakar, Thiès, Saint-Louis" class="w-full border border-gray-300 rounded-button px-4 py-2.5 focus:outline-primary"></div>
+                            <div><label class="block font-inter font-medium text-gray-700 mb-1">Disponibilité</label><select class="w-full border rounded-button px-4 py-2.5"><option>Pleine disponibilité</option><option>Uniquement matin</option><option>Sur rendez-vous</option></select></div>
+                        </div>
+                        <div><label class="block font-inter font-medium text-gray-700 mb-1">Adresse / Base opérationnelle</label><input type="text" value="Parc logistique Agropole, Rufisque" class="w-full border border-gray-300 rounded-button px-4 py-2.5"></div>
+                        <div class="flex justify-end gap-3 pt-3"><button type="button" id="saveProfileBtn" class="bg-primary text-white px-6 py-2 rounded-button hover:bg-green-800">Enregistrer les modifications</button></div>
+                    </form>
+                    <div id="profileToast" class="hidden mt-3 text-green-600 text-sm bg-green-50 p-2 rounded text-center">✅ Profil mis à jour avec succès</div>
+                </div>
+            </div>
+
+            <!-- Tarifs modifiables -->
+            <div id="tarifs-section" class="tab-content hidden space-y-8">
+                <div class="bg-white rounded-xl shadow-sm p-6 max-w-3xl">
+                    <h2 class="text-2xl font-poppins font-semibold text-primary mb-2">Mes tarifs de livraison</h2>
+                    <p class="text-gray-500 text-sm mb-6">Ajustez vos prix selon la distance, le poids ou le type de produit</p>
+                    <form id="ratesForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div><label class="block font-medium text-gray-700">Tarif de base (0-30 km)</label><div class="flex items-center gap-2"><span class="text-gray-600">FCFA</span><input type="number" value="12500" class="w-full border rounded-button px-3 py-2"> <span>/livraison</span></div></div>
+                            <div><label class="block font-medium text-gray-700">Tarif longue distance (30-100 km)</label><input type="number" value="18500" class="w-full border rounded-button px-3 py-2"><span class="text-xs text-gray-500">+ supplément carburant</span></div>
+                            <div><label class="block font-medium text-gray-700">Frais par kg supplémentaire (au-delà 100kg)</label><input type="number" value="45" class="w-full border rounded-button px-3 py-2"><span class="text-xs">FCFA/kg</span></div>
+                            <div><label class="block font-medium text-gray-700">Service express (moins de 4h)</label><input type="number" value="7500" class="w-full border rounded-button px-3 py-2"><span class="text-xs">FCFA majoration</span></div>
+                        </div>
+                        <div class="border-t pt-4 flex justify-end gap-3"><button type="button" id="saveRatesBtn" class="bg-primary text-white px-6 py-2 rounded-button hover:bg-green-800">Mettre à jour les tarifs</button></div>
+                    </form>
+                    <div id="ratesToast" class="hidden mt-3 text-green-600 text-sm bg-green-50 p-2 rounded text-center">💰 Tarifs modifiés avec succès</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching logic
+        const tabs = document.querySelectorAll('.dashboard-tab');
+        const contents = {
+            livraisons: document.getElementById('livraisons-section'),
+            historique: document.getElementById('historique-section'),
+            dashboard: document.getElementById('dashboard-section'),
+            profil: document.getElementById('profil-section'),
+            tarifs: document.getElementById('tarifs-section')
+        };
+
+        function activateTab(tabId) {
+            Object.keys(contents).forEach(id => {
+                if(contents[id]) contents[id].classList.add('hidden');
+            });
+            if(contents[tabId]) contents[tabId].classList.remove('hidden');
+            tabs.forEach(btn => {
+                const btnTab = btn.getAttribute('data-tab');
+                if(btnTab === tabId) {
+                    btn.classList.remove('text-gray-600', 'hover:bg-gray-50');
+                    btn.classList.add('bg-primary', 'text-white');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('text-gray-600', 'hover:bg-gray-50');
+                }
+            });
+        }
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                if(tabId) activateTab(tabId);
+            });
+        });
+        // Default active livraisons
+        activateTab('livraisons');
+
+        // Profile modification simulation
+        const saveProfileBtn = document.getElementById('saveProfileBtn');
+        const profileToast = document.getElementById('profileToast');
+        if(saveProfileBtn) {
+            saveProfileBtn.addEventListener('click', () => {
+                profileToast.classList.remove('hidden');
+                setTimeout(() => { profileToast.classList.add('hidden'); }, 2000);
+            });
+        }
+
+        // Tarifs modification toast
+        const saveRatesBtn = document.getElementById('saveRatesBtn');
+        const ratesToast = document.getElementById('ratesToast');
+        if(saveRatesBtn) {
+            saveRatesBtn.addEventListener('click', () => {
+                ratesToast.classList.remove('hidden');
+                setTimeout(() => { ratesToast.classList.add('hidden'); }, 2000);
+            });
+        }
+
+        // Simple dynamic interaction for "Démarrer tournée" / "Prendre en charge"
+        const actionButtons = document.querySelectorAll('.bg-primary.text-white.rounded-button');
+        actionButtons.forEach(btn => {
+            if(btn.innerText.includes('Démarrer') || btn.innerText.includes('Prendre')) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('✅ Mission démarrée ! Le client a été notifié. Suivez votre itinéraire sur la carte.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -147,17 +147,22 @@
                         <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-flow-chart text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Workflows</span>
+                            <span class="font-inter font-medium text-base">Validation & Circuits</span>
                         </a>
-                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                        <a href="contenu.html" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-file-copy-line text-xl mr-3"></i>
                             <span class="font-inter font-medium text-base">Gestion Contenu</span>
                         </a>
+                        <a href="marketplace.html" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-store-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Marketplace</span>
+                        </a>
                         <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-bar-chart-2-line text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Analytics</span>
+                            <span class="font-inter font-medium text-base">Reporting</span>
                         </a>
                         <a href="#" onclick="switchAdminTab('settings', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
@@ -215,10 +220,10 @@
                         <div class="flex flex-wrap items-center justify-between gap-4">
                             <div>
                                 <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Utilisateurs</h2>
-                                <p class="font-roboto text-gray-600 mt-1">Modération des comptes, rôles et permissions</p>
+                                <p class="font-roboto text-gray-600 mt-1">Comptes, validation KYC, activation et affectation des rôles de la plateforme</p>
                             </div>
                             <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="openCreateUserModal()">
-                                <i class="ri-user-add-line mr-2"></i>Nouvel utilisateur
+                                <i class="ri-user-add-line mr-2"></i>Créer un compte
                             </button>
                         </div>
 
@@ -229,7 +234,7 @@
                                     <i class="ri-user-line text-green-600 text-xl"></i>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">8,456</div>
-                                <div class="font-roboto text-gray-600 text-sm">Producteurs</div>
+                                <div class="font-roboto text-gray-600 text-sm">Agriculteurs</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                 <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg mx-auto mb-4">
@@ -243,21 +248,21 @@
                                     <i class="ri-settings-line text-purple-600 text-xl"></i>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">1,247</div>
-                                <div class="font-roboto text-gray-600 text-sm">Transformateurs</div>
+                                <div class="font-roboto text-gray-600 text-sm">Prestataires</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                 <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg mx-auto mb-4">
                                     <i class="ri-tools-line text-orange-600 text-xl"></i>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">567</div>
-                                <div class="font-roboto text-gray-600 text-sm">Prestataires</div>
+                                <div class="font-roboto text-gray-600 text-sm">Techniques service</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                 <div class="w-12 h-12 flex items-center justify-center bg-red-100 rounded-lg mx-auto mb-4">
                                     <i class="ri-shield-user-line text-red-600 text-xl"></i>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">89</div>
-                                <div class="font-roboto text-gray-600 text-sm">Administrateurs</div>
+                                <div class="font-roboto text-gray-600 text-sm">KYC à valider</div>
                             </div>
                         </div>
 
@@ -272,18 +277,18 @@
                                 </div>
                                 <select class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8" id="role-filter">
                                     <option value="">Tous les rôles</option>
-                                    <option value="producteur">Producteurs</option>
+                                    <option value="agriculteur">Agriculteurs</option>
                                     <option value="acheteur">Acheteurs</option>
-                                    <option value="transformateur">Transformateurs</option>
                                     <option value="prestataire">Prestataires</option>
-                                    <option value="admin">Administrateurs</option>
+                                    <option value="technique">Technique de service</option>
+                                    <option value="admin">Administrateur</option>
                                 </select>
                                 <select class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8" id="status-filter">
                                     <option value="">Tous les statuts</option>
                                     <option value="active">Actifs</option>
                                     <option value="inactive">Inactifs</option>
                                     <option value="suspended">Suspendus</option>
-                                    <option value="pending">En attente</option>
+                                    <option value="pending">En validation KYC</option>
                                 </select>
                                 <select class="px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:border-secondary pr-8" id="region-filter-admin">
                                     <option value="">Toutes les régions</option>
@@ -302,7 +307,7 @@
                                         <i class="ri-download-line mr-2"></i>Exporter
                                     </button>
                                     <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer">
-                                        <i class="ri-mail-send-line mr-2"></i>Email groupé
+                                        <i class="ri-shield-check-line mr-2"></i>Lancer validation
                                     </button>
                                 </div>
                             </div>
@@ -318,11 +323,12 @@
                                                 <input type="checkbox" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
                                             </th>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Utilisateur</th>
-                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Rôle</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Type</th>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Statut</th>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Région</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Documents</th>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Inscription</th>
-                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Dernière activité</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Rôle plateforme</th>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Actions</th>
                                         </tr>
                                     </thead>
@@ -342,7 +348,7 @@
                                              </div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Producteur</span>
+                                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Agriculteur</span>
                                              </div>
                                              <td class="px-6 py-4">
                                                 <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
@@ -351,10 +357,13 @@
                                                 <div class="font-roboto text-gray-900">Saint-Louis</div>
                                              </div>
                                              <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">KYC complet</div>
+                                             </div>
+                                             <td class="px-6 py-4">
                                                 <div class="font-roboto text-gray-900">15 mars 2023</div>
                                              </div>
                                              <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">Il y a 2h</div>
+                                                <div class="font-roboto text-gray-900">Exploitant vérifié</div>
                                              </div>
                                              <td class="px-6 py-4">
                                                 <div class="flex space-x-2">
@@ -383,16 +392,19 @@
                                                 <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">Acheteur</span>
                                              </div>
                                              <td class="px-6 py-4">
-                                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
+                                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm font-medium rounded-full">En validation</span>
                                              </div>
                                              <td class="px-6 py-4">
                                                 <div class="font-roboto text-gray-900">Dakar</div>
                                              </div>
                                              <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">2 / 3 pièces</div>
+                                             </div>
+                                             <td class="px-6 py-4">
                                                 <div class="font-roboto text-gray-900">28 jan 2024</div>
                                              </div>
                                              <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">Il y a 5h</div>
+                                                <div class="font-roboto text-gray-900">Acheteur institutionnel</div>
                                              </div>
                                              <td class="px-6 py-4">
                                                 <div class="flex space-x-2">
@@ -418,7 +430,7 @@
                                                 </div>
                                              </div>
                                              <td class="px-6 py-4">
-                                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">Transformateur</span>
+                                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">Prestataire</span>
                                              </div>
                                              <td class="px-6 py-4">
                                                 <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm font-medium rounded-full">Suspendu</span>
@@ -427,10 +439,13 @@
                                                 <div class="font-roboto text-gray-900">Thiès</div>
                                              </div>
                                              <td class="px-6 py-4">
+                                                <div class="font-roboto text-gray-900">Dossier expiré</div>
+                                             </div>
+                                             <td class="px-6 py-4">
                                                 <div class="font-roboto text-gray-900">12 nov 2023</div>
                                              </div>
                                              <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">Il y a 3j</div>
+                                                <div class="font-roboto text-gray-900">Prestataire logistique</div>
                                              </div>
                                              <td class="px-6 py-4">
                                                 <div class="flex space-x-2">
@@ -477,22 +492,22 @@
                 <div id="admin-workflows" class="admin-tab-content hidden-tab">
                     <div class="bg-white p-8 rounded-xl shadow-sm text-center">
                         <i class="ri-flow-chart text-5xl text-primary/50 mb-4 inline-block"></i>
-                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Workflows</h3>
-                        <p class="text-gray-500 mt-2">Supervision et configuration des processus métier.</p>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Validation & Circuits</h3>
+                        <p class="text-gray-500 mt-2">Parcours de validation multi-acteurs des formalités.</p>
                     </div>
                 </div>
                 <div id="admin-content" class="admin-tab-content hidden-tab">
                     <div class="bg-white p-8 rounded-xl shadow-sm text-center">
                         <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
-                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
-                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Marketplace</h3>
+                        <p class="text-gray-500 mt-2">Produits, catégories, transactions et litiges.</p>
                     </div>
                 </div>
                 <div id="admin-analytics" class="admin-tab-content hidden-tab">
                     <div class="bg-white p-8 rounded-xl shadow-sm text-center">
                         <i class="ri-bar-chart-2-line text-5xl text-primary/50 mb-4 inline-block"></i>
-                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Analytics</h3>
-                        <p class="text-gray-500 mt-2">Statistiques détaillées et KPIs de la plateforme.</p>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Reporting</h3>
+                        <p class="text-gray-500 mt-2">KPI utilisateurs, formalités, marketplace et paiements.</p>
                     </div>
                 </div>
                 <div id="admin-settings" class="admin-tab-content hidden-tab">

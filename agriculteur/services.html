@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agropole Sénégal - Services & Prestataires</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#4CAF50'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+        .service-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .service-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        .service-category.active { background-color: #f0f9ff; border-color: #2E7D32; }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="w-full h-24 bg-cover bg-center bg-no-repeat" style="background-image: url('../dashUser/pattern.png');">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-primary mb-2">Services & Prestataires</h1>
+                <p class="text-gray-600">Trouvez les services dont vous avez besoin</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-6 h-6 flex items-center justify-center relative">
+                    <i class="ri-notification-3-line text-gray-600 ri-lg"></i>
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold">AS</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-gray-900">Amadou Sy</span>
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-gray-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600">Producteur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="mb-8">
+            <div class="flex flex-wrap gap-2">
+                <a href="tableauDeBord.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Vue d'ensemble</a>
+                <a href="admin.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Demandes administratives</a>
+                <a href="cultures.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Suivi des cultures</a>
+                <a href="marche.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Opportunités</a>
+                <a href="services.html" class="bg-primary text-white px-3 py-2 text-sm !rounded-button whitespace-nowrap">Services & prestations</a>
+                <a href="ventes.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Mes ventes</a>
+                <a href="formations.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Formations</a>
+                <a href="profil.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Annuaire</a>
+            </div>
+        </nav>
+        <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 mb-6">Catégories de Services</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category active" data-category="all">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <i class="ri-apps-line text-primary ri-lg"></i>
+                    </div>
+                    <span class="text-sm font-medium">Tous</span>
+                </button>
+                <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category" data-category="equipment">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <i class="ri-tools-line text-blue-600 ri-lg"></i>
+                    </div>
+                    <span class="text-sm font-medium">Équipements</span>
+                </button>
+                <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category" data-category="transport">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <i class="ri-truck-line text-yellow-600 ri-lg"></i>
+                    </div>
+                    <span class="text-sm font-medium">Transport</span>
+                </button>
+                <button class="p-4 border rounded-lg hover:bg-gray-50 text-center service-category" data-category="expertise">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <i class="ri-user-star-line text-green-600 ri-lg"></i>
+                    </div>
+                    <span class="text-sm font-medium">Expertise</span>
+                </button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="services-list">
+            <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="equipment">
+                <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20agricultural%20tractor%20working%20in%20green%20field%2C%20farming%20machinery%2C%20professional%20equipment%20for%20crop%20cultivation&width=300&height=200&seq=tractor-service&orientation=landscape');">
+                </div>
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Location Tracteur</h4>
+                        <p class="text-sm text-gray-600">Moustapha Gaye</p>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-star-fill text-yellow-500"></i>
+                        </div>
+                        <span class="text-sm">4.8</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Tracteur moderne avec charrues • Disponible 7j/7</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-primary">15,000 FCFA/jour</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Disponible</span>
+                </div>
+                <button class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Réserver</button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="transport">
+                <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=delivery%20truck%20loaded%20with%20fresh%20vegetables%20and%20fruits%2C%20agricultural%20transport%20service%2C%20professional%20logistics&width=300&height=200&seq=transport-service&orientation=landscape');">
+                </div>
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Transport de Récoltes</h4>
+                        <p class="text-sm text-gray-600">Transport Ndoye</p>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-star-fill text-yellow-500"></i>
+                        </div>
+                        <span class="text-sm">4.6</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Camion réfrigéré • Livraison Dakar et banlieue</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-primary">200 FCFA/km</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Disponible</span>
+                </div>
+                <button class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Réserver</button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="expertise">
+                <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=agricultural%20expert%20examining%20crops%20in%20field%2C%20professional%20consultation%2C%20agronomy%20specialist%20working%20with%20farmer&width=300&height=200&seq=expert-service&orientation=landscape');">
+                </div>
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Consultation Agronomique</h4>
+                        <p class="text-sm text-gray-600">Dr. Awa Seck</p>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-star-fill text-yellow-500"></i>
+                        </div>
+                        <span class="text-sm">5.0</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Ingénieur agronome • Conseils personnalisés</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-primary">25,000 FCFA/visite</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Expert</span>
+                </div>
+                <button class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Consulter</button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="equipment">
+                <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=irrigation%20system%20spraying%20water%20over%20green%20vegetable%20field%2C%20modern%20agricultural%20watering%20equipment&width=300&height=200&seq=irrigation-service&orientation=landscape');">
+                </div>
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Système d'Irrigation</h4>
+                        <p class="text-sm text-gray-600">Irrigation Services Plus</p>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-star-fill text-yellow-500"></i>
+                        </div>
+                        <span class="text-sm">4.7</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Installation et maintenance • Goutte-à-goutte</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-primary">50,000 FCFA/ha</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Installation</span>
+                </div>
+                <button class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Demander devis</button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="transport">
+                <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=small%20delivery%20van%20for%20agricultural%20products%2C%20local%20transport%20service%2C%20efficient%20cargo%20vehicle&width=300&height=200&seq=local-transport&orientation=landscape');">
+                </div>
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Livraison Locale</h4>
+                        <p class="text-sm text-gray-600">Express Mbao</p>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-star-fill text-yellow-500"></i>
+                        </div>
+                        <span class="text-sm">4.3</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Livraison rapide • Marchés locaux</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-primary">5,000 FCFA/course</span>
+                    <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Rapide</span>
+                </div>
+                <button class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Commander</button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm service-card" data-category="expertise">
+                <div class="h-32 bg-cover bg-center rounded-lg mb-4" style="background-image: url('https://readdy.ai/api/search-image?query=agricultural%20laboratory%20testing%20soil%20and%20plant%20samples%2C%20scientific%20analysis%20for%20crop%20optimization&width=300&height=200&seq=lab-analysis&orientation=landscape');">
+                </div>
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h4 class="font-semibold text-gray-900">Analyse de Sol</h4>
+                        <p class="text-sm text-gray-600">Laboratoire Agri-Test</p>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-star-fill text-yellow-500"></i>
+                        </div>
+                        <span class="text-sm">4.9</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">Analyse complète • Recommandations incluses</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-primary">35,000 FCFA/échantillon</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Certifié</span>
+                </div>
+                <button class="w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap">Programmer</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.service-category').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.service-category').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.category;
+                document.querySelectorAll('.service-card').forEach(card => {
+                    card.style.display = cat === 'all' || card.dataset.category === cat ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

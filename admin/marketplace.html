@@ -5,7 +5,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme National de Développement des Agropoles du Sénégal - Gestion Contenu</title>
+    <title>Programme National de Développement des Agropoles du Sénégal - Marketplace</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,12 +191,12 @@
                                 class="font-inter font-medium text-base">Validation & Circuits</span>
                         </a>
                         <a href="contenu.html"
-                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
+                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-file-copy-line text-xl mr-3"></i><span
                                 class="font-inter font-medium text-base">Gestion Contenu</span>
                         </a>
                         <a href="marketplace.html"
-                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
                             <i class="ri-store-2-line text-xl mr-3"></i><span
                                 class="font-inter font-medium text-base">Marketplace</span>
                         </a>
@@ -247,32 +247,32 @@
                     </div>
                 </div>
 
-                        <!-- TAB CONTENT: Gestion Contenu avec sous-onglets -->
+                        <!-- TAB CONTENT: Marketplace avec sous-onglets -->
                 <div id="admin-content" class="admin-tab-content">
                     <div class="space-y-6">
                         <!-- Sous-onglets navigation -->
                         <div class="flex space-x-2 border-b border-gray-200">
                             <button onclick="switchContentSubtab('articles', event)"
-                                class="content-subtab-btn px-6 py-3 font-inter text-sm font-medium rounded-t-lg transition-all bg-primary text-white">Articles</button>
+                                class="content-subtab-btn px-6 py-3 font-inter text-sm font-medium rounded-t-lg transition-all bg-primary text-white">Produits</button>
                             <button onclick="switchContentSubtab('categories', event)"
                                 class="content-subtab-btn px-6 py-3 font-inter text-sm font-medium rounded-t-lg transition-all text-gray-600 hover:bg-gray-100">Catégories
-                                d'articles</button>
+                                marché</button>
                             <button onclick="switchContentSubtab('productions', event)"
-                                class="content-subtab-btn px-6 py-3 font-inter text-sm font-medium rounded-t-lg transition-all text-gray-600 hover:bg-gray-100">Types
-                                de contenu</button>
+                                class="content-subtab-btn px-6 py-3 font-inter text-sm font-medium rounded-t-lg transition-all text-gray-600 hover:bg-gray-100">Transactions
+                                & litiges</button>
                         </div>
 
                         <!-- SOUS-TAB 1: ARTICLES (existant) -->
                         <div id="content-articles" class="content-subtab active-subtab">
                             <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                                 <div>
-                                    <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Actualités
+                                    <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Produits
                                     </h2>
-                                    <p class="font-roboto text-gray-600">CRUD des actualités publiées par l'administration</p>
+                                    <p class="font-roboto text-gray-600">Validation des publications, conformité et mise en ligne marketplace</p>
                                 </div>
                                 <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-800 transition"
-                                    onclick="openCreateArticleModal()"><i class="ri-article-line mr-2"></i>Nouvelle
-                                    actualité</button>
+                                    onclick="openCreateArticleModal()"><i class="ri-shopping-bag-line mr-2"></i>Nouveau
+                                    produit</button>
                             </div>
                             <div class="grid md:grid-cols-4 gap-6 mb-6">
                                 <div class="bg-white p-6 rounded-xl shadow-sm text-center">
@@ -281,7 +281,7 @@
                                         <i class="ri-article-line text-blue-600 text-xl"></i>
                                     </div>
                                     <div class="text-2xl font-bold text-gray-900">156</div>
-                                    <div class="text-gray-600">Articles publiés</div>
+                                    <div class="text-gray-600">Produits validés</div>
                                 </div>
                                 <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                     <div
@@ -289,7 +289,7 @@
                                         <i class="ri-draft-line text-orange-600 text-xl"></i>
                                     </div>
                                     <div class="text-2xl font-bold text-gray-900">23</div>
-                                    <div class="text-gray-600">Brouillons</div>
+                                    <div class="text-gray-600">En modération</div>
                                 </div>
                                 <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                     <div
@@ -297,7 +297,7 @@
                                         <i class="ri-eye-line text-green-600 text-xl"></i>
                                     </div>
                                     <div class="text-2xl font-bold text-gray-900">45.2K</div>
-                                    <div class="text-gray-600">Lectures ce mois</div>
+                                    <div class="text-gray-600">Vues catalogue</div>
                                 </div>
                                 <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                     <div
@@ -305,7 +305,7 @@
                                         <i class="ri-message-line text-purple-600 text-xl"></i>
                                     </div>
                                     <div class="text-2xl font-bold text-gray-900">892</div>
-                                    <div class="text-gray-600">Partages</div>
+                                    <div class="text-gray-600">Signalements</div>
                                 </div>
                             </div>
                             <div class="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -313,7 +313,7 @@
                                     <table class="w-full">
                                         <thead class="bg-gray-50">
                                             <tr>
-                                                <th class="text-left px-6 py-4">Titre</th>
+                                                <th class="text-left px-6 py-4">Produit</th>
                                                 <th class="text-left px-6 py-4">Catégorie</th>
                                                 <th class="text-left px-6 py-4">Statut</th>
                                                 <th class="text-left px-6 py-4">Publication</th>
@@ -322,12 +322,12 @@
                                         </thead>
                                         <tbody>
                                             <tr class="border-b">
-                                                <td class="px-6 py-4 font-medium">Lancement du programme de digitalisation agricole</td>
+                                                <td class="px-6 py-4 font-medium">Mangue Kent premium - lot export</td>
                                                 <td class="px-6 py-4"><span
-                                                        class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Actualités</span>
+                                                        class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Fruits</span>
                                                 </td>
                                                 <td class="px-6 py-4"><span
-                                                        class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Publié</span>
+                                                        class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Validé</span>
                                                 </td>
                                                 <td class="px-6 py-4">18 avril 2026</td>
                                                 <td class="px-6 py-4">
@@ -341,12 +341,12 @@
                                                 </td>
                                             </tr>
                                             <tr class="border-b">
-                                                <td class="px-6 py-4 font-medium">500 agriculteurs formés aux outils de traçabilité</td>
+                                                <td class="px-6 py-4 font-medium">Service logistique froid Dakar - Thiès</td>
                                                 <td class="px-6 py-4"><span
-                                                        class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Formations</span>
+                                                        class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Services</span>
                                                 </td>
                                                 <td class="px-6 py-4"><span
-                                                        class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">Brouillon</span>
+                                                        class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">À vérifier</span>
                                                 </td>
                                                 <td class="px-6 py-4">14 avril 2026</td>
                                                 <td class="px-6 py-4">
@@ -369,9 +369,9 @@
                         <div id="content-categories" class="content-subtab">
                             <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                                 <div>
-                                    <h2 class="text-2xl font-poppins font-semibold text-primary">Catégories d'articles
+                                    <h2 class="text-2xl font-poppins font-semibold text-primary">Catégories marketplace
                                     </h2>
-                                    <p class="font-roboto text-gray-600">Gestion des rubriques éditoriales</p>
+                                    <p class="font-roboto text-gray-600">Structuration des familles de produits et services</p>
                                 </div>
                                 <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-800 transition"
                                     onclick="openCategoryModal()"><i class="ri-add-line mr-2"></i>Nouvelle
@@ -384,15 +384,15 @@
                                             <th class="text-left px-6 py-4">Nom</th>
                                             <th class="text-left px-6 py-4">Slug</th>
                                             <th class="text-left px-6 py-4">Description</th>
-                                            <th class="text-left px-6 py-4">Articles liés</th>
+                                            <th class="text-left px-6 py-4">Produits liés</th>
                                             <th class="text-left px-6 py-4">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="categories-list">
                                         <tr class="border-b">
-                                            <td class="px-6 py-4 font-medium">Actualités</td>
-                                            <td class="px-6 py-4 text-gray-600">actualites</td>
-                                            <td class="px-6 py-4 text-gray-600">Nouvelles du programme et annonces officielles</td>
+                                            <td class="px-6 py-4 font-medium">Produits frais</td>
+                                            <td class="px-6 py-4 text-gray-600">produits-frais</td>
+                                            <td class="px-6 py-4 text-gray-600">Fruits, légumes et denrées périssables</td>
                                             <td class="px-6 py-4">24</td>
                                             <td class="px-6 py-4">
                                                 <div class="flex space-x-2"><button class="text-blue-600"
@@ -403,9 +403,9 @@
                                             </td>
                                         </tr>
                                         <tr class="border-b">
-                                            <td class="px-6 py-4 font-medium">Formations</td>
-                                            <td class="px-6 py-4 text-gray-600">formations</td>
-                                            <td class="px-6 py-4 text-gray-600">Sessions de formation, ateliers et accompagnement</td>
+                                            <td class="px-6 py-4 font-medium">Services</td>
+                                            <td class="px-6 py-4 text-gray-600">services</td>
+                                            <td class="px-6 py-4 text-gray-600">Transport, stockage, maintenance, expertise</td>
                                             <td class="px-6 py-4">18</td>
                                             <td class="px-6 py-4">
                                                 <div class="flex space-x-2"><button class="text-blue-600"
@@ -416,9 +416,9 @@
                                             </td>
                                         </tr>
                                         <tr class="border-b">
-                                            <td class="px-6 py-4 font-medium">Conseils techniques</td>
-                                            <td class="px-6 py-4 text-gray-600">conseils-techniques</td>
-                                            <td class="px-6 py-4 text-gray-600">Guides pratiques et recommandations métier</td>
+                                            <td class="px-6 py-4 font-medium">Transformation</td>
+                                            <td class="px-6 py-4 text-gray-600">transformation</td>
+                                            <td class="px-6 py-4 text-gray-600">Produits transformés et semi-transformés</td>
                                             <td class="px-6 py-4">12</td>
                                             <td class="px-6 py-4">
                                                 <div class="flex space-x-2"><button class="text-blue-600"
@@ -433,96 +433,96 @@
                             </div>
                         </div>
 
-                        <!-- SOUS-TAB 3: TYPES DE CONTENU -->
+                        <!-- SOUS-TAB 3: TRANSACTIONS & LITIGES -->
                         <div id="content-productions" class="content-subtab">
                             <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                                 <div>
-                                    <h2 class="text-2xl font-poppins font-semibold text-primary">Types de contenu
+                                    <h2 class="text-2xl font-poppins font-semibold text-primary">Transactions & Litiges
                                     </h2>
-                                    <p class="font-roboto text-gray-600">Organisation des formats éditoriaux publiés par l'admin</p>
+                                    <p class="font-roboto text-gray-600">Suivi des ventes, remboursements, fraudes et conflits vendeur/acheteur</p>
                                 </div>
                                 <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-800 transition"
-                                    onclick="openProductionModal()"><i class="ri-add-line mr-2"></i>Nouveau
-                                    type</button>
+                                    onclick="openProductionModal()"><i class="ri-refund-2-line mr-2"></i>Ouvrir
+                                    un dossier</button>
                             </div>
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="bg-white rounded-xl shadow-sm p-6">
-                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Formats institutionnels</h3>
+                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Transactions récentes</h3>
                                     <div id="fruits-list" class="space-y-2">
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Communiqué</span>
+                                            <span>TRX-2026-1042 - Mangues export - 480 000 FCFA</span>
                                             <div><button class="text-blue-600 mr-2"
-                                                    onclick="editProduction('communique')"><i
+                                                    onclick="editProduction('trx-1042')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
-                                                    onclick="deleteProduction('communique')"><i
+                                                    onclick="deleteProduction('trx-1042')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Note d'information</span>
+                                            <span>TRX-2026-1031 - Service logistique - 95 000 FCFA</span>
                                             <div><button class="text-blue-600 mr-2"
-                                                    onclick="editProduction('note-information')"><i
+                                                    onclick="editProduction('trx-1031')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
-                                                    onclick="deleteProduction('note-information')"><i
+                                                    onclick="deleteProduction('trx-1031')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Annonce officielle</span>
+                                            <span>TRX-2026-1024 - Riz local - 210 000 FCFA</span>
                                             <div><button class="text-blue-600 mr-2"
-                                                    onclick="editProduction('annonce-officielle')"><i
+                                                    onclick="editProduction('trx-1024')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
-                                                    onclick="deleteProduction('annonce-officielle')"><i
+                                                    onclick="deleteProduction('trx-1024')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="bg-white rounded-xl shadow-sm p-6">
-                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Formats pédagogiques</h3>
+                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Litiges en cours</h3>
                                     <div id="legumes-list" class="space-y-2">
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Guide pratique</span>
+                                            <span>Produit non conforme - vendeur / acheteur</span>
                                             <div><button class="text-blue-600 mr-2"
-                                                    onclick="editProduction('guide-pratique')"><i
+                                                    onclick="editProduction('litige-produit')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
-                                                    onclick="deleteProduction('guide-pratique')"><i
+                                                    onclick="deleteProduction('litige-produit')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Compte rendu d'atelier</span>
+                                            <span>Retard de livraison - transporteur</span>
                                             <div><button class="text-blue-600 mr-2"
-                                                    onclick="editProduction('compte-rendu')"><i
+                                                    onclick="editProduction('litige-retard')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
-                                                    onclick="deleteProduction('compte-rendu')"><i
+                                                    onclick="deleteProduction('litige-retard')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Conseil saisonnier</span>
+                                            <span>Suspicion de fraude paiement</span>
                                             <div><button class="text-blue-600 mr-2"
-                                                    onclick="editProduction('conseil-saisonnier')"><i
+                                                    onclick="editProduction('litige-fraude')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
-                                                    onclick="deleteProduction('conseil-saisonnier')"><i
+                                                    onclick="deleteProduction('litige-fraude')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="bg-white rounded-xl shadow-sm p-6">
-                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Formats multimédias</h3>
+                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Remboursements</h3>
                                     <div id="cereales-list" class="space-y-2">
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Galerie photo</span>
+                                            <span>RMB-2026-014 - en attente de validation</span>
                                             <div><button class="text-blue-600 mr-2" onclick="editProduction('riz')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
                                                     onclick="deleteProduction('riz')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Vidéo témoignage</span>
+                                            <span>RMB-2026-009 - remboursé partiellement</span>
                                             <div><button class="text-blue-600 mr-2" onclick="editProduction('mil')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
                                                     onclick="deleteProduction('mil')"><i
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Infographie</span>
+                                            <span>RMB-2026-004 - refusé après contrôle</span>
                                             <div><button class="text-blue-600 mr-2" onclick="editProduction('mais')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
                                                     onclick="deleteProduction('mais')"><i
@@ -531,10 +531,10 @@
                                     </div>
                                 </div>
                                 <div class="bg-white rounded-xl shadow-sm p-6">
-                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Formats spéciaux</h3>
+                                    <h3 class="font-poppins font-semibold text-lg text-primary mb-4">Cas sensibles</h3>
                                     <div id="autres-list" class="space-y-2">
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Publication urgente</span>
+                                            <span>Produit interdit signalé par modération</span>
                                             <div><button class="text-blue-600 mr-2"
                                                     onclick="editProduction('arachide')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
@@ -542,7 +542,7 @@
                                                         class="ri-delete-bin-line"></i></button></div>
                                         </div>
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                            <span>Message d'alerte</span>
+                                            <span>Compte vendeur sous revue fraude</span>
                                             <div><button class="text-blue-600 mr-2" onclick="editProduction('coton')"><i
                                                         class="ri-edit-line"></i></button><button class="text-red-600"
                                                     onclick="deleteProduction('coton')"><i
@@ -623,26 +623,26 @@
         </div>
     </div>
 
-    <!-- MODAL Type de contenu -->
+    <!-- MODAL Production -->
     <div id="production-modal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'production-modal')">
         <div class="modal-container bg-white rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
             <div class="bg-primary px-6 py-4 flex justify-between items-center">
-                <h3 class="text-white font-poppins font-semibold" id="production-modal-title">Nouveau type de contenu
+                <h3 class="text-white font-poppins font-semibold" id="production-modal-title">Nouveau type marketplace
                 </h3><button onclick="closeModal('production-modal')" class="text-white hover:text-gray-200"><i
                         class="ri-close-line text-2xl"></i></button>
             </div>
             <div class="p-6">
-                <div class="mb-4"><label class="block font-medium text-gray-700 mb-2">Nom du type</label><input
+                <div class="mb-4"><label class="block font-medium text-gray-700 mb-2">Nom de l'élément</label><input
                         type="text" id="production-name"
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary"
-                        placeholder="Ex: Communiqué, Guide, Infographie"></div>
-                <div class="mb-4"><label class="block font-medium text-gray-700 mb-2">Famille</label><select
+                        placeholder="Ex: Mangue, Riz, Tomate"></div>
+                <div class="mb-4"><label class="block font-medium text-gray-700 mb-2">Catégorie</label><select
                         id="production-category"
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary">
-                        <option value="institutionnel">Institutionnel</option>
-                        <option value="pedagogique">Pédagogique</option>
-                        <option value="multimedia">Multimédia</option>
-                        <option value="special">Spécial</option>
+                        <option value="fruits">🍎 Fruits</option>
+                        <option value="legumes">🥬 Légumes</option>
+                        <option value="cereales">🌾 Céréales</option>
+                        <option value="autres">🌿 Autres</option>
                     </select></div>
                 <div class="flex justify-end space-x-3"><button onclick="closeModal('production-modal')"
                         class="px-4 py-2 border rounded-lg text-gray-700">Annuler</button><button
@@ -685,10 +685,10 @@
         }
 
         function handleLogout(event) { event.preventDefault(); if (confirm('Déconnexion ?')) alert('Déconnecté'); }
-        function viewArticle(id) { alert('Aperçu article ' + id); }
-        function editArticle(id) { alert('Modification article ' + id); }
-        function deleteArticle(id) { if (confirm('Supprimer ?')) alert('Article supprimé'); }
-        function openCreateArticleModal() { alert('Créer un article'); }
+        function viewArticle(id) { alert('Aperçu produit ' + id); }
+        function editArticle(id) { alert('Modification produit ' + id); }
+        function deleteArticle(id) { if (confirm('Supprimer ?')) alert('Élément supprimé'); }
+        function openCreateArticleModal() { alert('Créer un produit'); }
 
         // CATEGORIES CRUD
         function openCategoryModal(categoryId = null) {
@@ -721,14 +721,14 @@
             if (production) {
                 currentEditProduction = production;
                 currentEditProductionCategory = category;
-                document.getElementById('production-modal-title').innerText = 'Modifier le type de contenu';
+                document.getElementById('production-modal-title').innerText = 'Modifier le type marketplace';
                 document.getElementById('production-name').value = production;
                 document.getElementById('production-category').value = category;
             } else {
                 currentEditProduction = null;
-                document.getElementById('production-modal-title').innerText = 'Nouveau type de contenu';
+                document.getElementById('production-modal-title').innerText = 'Nouveau type marketplace';
                 document.getElementById('production-name').value = '';
-                document.getElementById('production-category').value = 'institutionnel';
+                document.getElementById('production-category').value = 'fruits';
             }
             document.getElementById('production-modal').classList.add('active');
         }
@@ -736,7 +736,7 @@
             const name = document.getElementById('production-name').value;
             const category = document.getElementById('production-category').value;
             if (!name) { alert('Veuillez saisir un nom'); return; }
-            alert(currentEditProduction ? 'Type de contenu modifié !' : 'Type de contenu créé !');
+            alert(currentEditProduction ? 'Élément marketplace modifié !' : 'Élément marketplace créé !');
             closeModal('production-modal');
             // Pour démo, on recharge la page pour voir les changements simulés
             location.reload();

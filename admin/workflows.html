@@ -5,7 +5,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme National de Développement des Agropoles du Sénégal - Workflows</title>
+    <title>Programme National de Développement des Agropoles du Sénégal - Validation & Circuits</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,17 +147,22 @@
                         <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
                             <i class="ri-flow-chart text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Workflows</span>
+                            <span class="font-inter font-medium text-base">Validation & Circuits</span>
                         </a>
-                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                        <a href="contenu.html" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-file-copy-line text-xl mr-3"></i>
                             <span class="font-inter font-medium text-base">Gestion Contenu</span>
                         </a>
+                        <a href="marketplace.html" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-store-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Marketplace</span>
+                        </a>
                         <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-bar-chart-2-line text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Analytics</span>
+                            <span class="font-inter font-medium text-base">Reporting</span>
                         </a>
                         <a href="#" onclick="switchAdminTab('settings', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
@@ -208,35 +213,35 @@
                     </div>
                 </div>
 
-                <!-- TAB CONTENT: Workflows (active par défaut sur cette page) -->
+                <!-- TAB CONTENT: Validation & Circuits (active par défaut sur cette page) -->
                 <div id="admin-workflows" class="admin-tab-content">
                     <div class="space-y-8">
-                        <!-- Workflows Header -->
+                        <!-- Validation Header -->
                         <div class="flex flex-wrap items-center justify-between gap-4">
                             <div>
-                                <h2 class="text-2xl font-poppins font-semibold text-primary">Gestion des Workflows</h2>
-                                <p class="font-roboto text-gray-600 mt-1">Configuration des processus de validation des formalités</p>
+                                <h2 class="text-2xl font-poppins font-semibold text-primary">Validation & Circuits</h2>
+                                <p class="font-roboto text-gray-600 mt-1">Pilotage des parcours multi-acteurs entre administration, technique de service et autorité</p>
                             </div>
                             <button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-green-800 transition-colors font-inter text-sm whitespace-nowrap cursor-pointer" onclick="openCreateWorkflowModal()">
-                                <i class="ri-flow-chart mr-2"></i>Nouveau workflow
+                                <i class="ri-flow-chart mr-2"></i>Nouveau circuit
                             </button>
                         </div>
 
-                        <!-- Workflows Overview -->
+                        <!-- Circuits Overview -->
                         <div class="grid md:grid-cols-4 gap-6">
                             <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                 <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg mx-auto mb-4">
                                     <i class="ri-flow-chart text-blue-600 text-xl"></i>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">12</div>
-                                <div class="font-roboto text-gray-600 text-sm">Workflows actifs</div>
+                                <div class="font-roboto text-gray-600 text-sm">Circuits actifs</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                 <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg mx-auto mb-4">
                                     <i class="ri-check-double-line text-green-600 text-xl"></i>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,456</div>
-                                <div class="font-roboto text-gray-600 text-sm">Processus traités</div>
+                                <div class="font-roboto text-gray-600 text-sm">Dossiers traités</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm text-center">
                                 <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg mx-auto mb-4">
@@ -250,15 +255,15 @@
                                     <i class="ri-percent-line text-purple-600 text-xl"></i>
                                 </div>
                                 <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">94%</div>
-                                <div class="font-roboto text-gray-600 text-sm">Taux de succès</div>
+                                <div class="font-roboto text-gray-600 text-sm">Taux de validation</div>
                             </div>
                         </div>
 
-                        <!-- Workflows List -->
+                        <!-- Circuits List -->
                         <div class="grid md:grid-cols-2 gap-8">
                             <div class="bg-white rounded-xl shadow-sm p-6">
                                 <div class="flex items-center justify-between mb-6">
-                                    <h3 class="text-lg font-inter font-semibold text-gray-900">Certificats Phytosanitaires</h3>
+                                    <h3 class="text-lg font-inter font-semibold text-gray-900">FRA & certificats prioritaires</h3>
                                     <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
                                 </div>
                                 <div class="space-y-4 mb-6">
@@ -267,36 +272,36 @@
                                             <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
                                                 <span class="text-blue-600 font-medium text-sm">1</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Réception dossier</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Dépôt du dossier</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Automatique</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Usager</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
                                                 <span class="text-blue-600 font-medium text-sm">2</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Vérification documents</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Vérification administrative</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Agent DPV</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Administration</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
                                                 <span class="text-blue-600 font-medium text-sm">3</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Inspection terrain</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Analyse technique et retours</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Inspecteur</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Technique service</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
                                                 <span class="text-blue-600 font-medium text-sm">4</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Validation finale</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Décision finale</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Superviseur</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Autorité</span>
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between mb-6">
@@ -306,7 +311,7 @@
                                     </div>
                                     <div class="text-sm">
                                         <div class="font-roboto text-gray-600">Coût:</div>
-                                        <div class="font-roboto text-primary font-medium">15,000 FCFA</div>
+                                        <div class="font-roboto text-primary font-medium">Traitement réglementé</div>
                                     </div>
                                 </div>
                                 <div class="flex space-x-3">
@@ -321,7 +326,7 @@
 
                             <div class="bg-white rounded-xl shadow-sm p-6">
                                 <div class="flex items-center justify-between mb-6">
-                                    <h3 class="text-lg font-inter font-semibold text-gray-900">Agréments Transformation</h3>
+                                    <h3 class="text-lg font-inter font-semibold text-gray-900">Agréments & autorisations</h3>
                                     <span class="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">Actif</span>
                                 </div>
                                 <div class="space-y-4 mb-6">
@@ -330,36 +335,36 @@
                                             <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
                                                 <span class="text-purple-600 font-medium text-sm">1</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Dépôt demande</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Soumission de la demande</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Demandeur</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Usager</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
                                                 <span class="text-purple-600 font-medium text-sm">2</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Étude technique</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Contrôle administratif</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Ingénieur</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Administration</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
                                                 <span class="text-purple-600 font-medium text-sm">3</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Visite site</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Analyse terrain et compléments</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Commission</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Technique service</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full">
                                                 <span class="text-purple-600 font-medium text-sm">4</span>
                                             </div>
-                                            <span class="font-roboto text-gray-700 text-sm">Délivrance agrément</span>
+                                            <span class="font-roboto text-gray-700 text-sm">Validation et délivrance</span>
                                         </div>
-                                        <span class="font-roboto text-gray-500 text-xs">Directeur</span>
+                                        <span class="font-roboto text-gray-500 text-xs">Autorité</span>
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between mb-6">
@@ -369,7 +374,7 @@
                                     </div>
                                     <div class="text-sm">
                                         <div class="font-roboto text-gray-600">Coût:</div>
-                                        <div class="font-roboto text-primary font-medium">50,000 FCFA</div>
+                                        <div class="font-roboto text-primary font-medium">Contrôle renforcé</div>
                                     </div>
                                 </div>
                                 <div class="flex space-x-3">
@@ -385,7 +390,7 @@
 
                         <!-- Workflow Performance -->
                         <div class="bg-white rounded-xl shadow-sm p-6">
-                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Performance des Workflows</h3>
+                            <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Performance des circuits de validation</h3>
                             <div id="workflow-performance-chart" class="h-64"></div>
                         </div>
                     </div>
@@ -409,15 +414,15 @@
                 <div id="admin-content" class="admin-tab-content hidden-tab">
                     <div class="bg-white p-8 rounded-xl shadow-sm text-center">
                         <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
-                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
-                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Marketplace</h3>
+                        <p class="text-gray-500 mt-2">Produits, catégories, transactions et litiges.</p>
                     </div>
                 </div>
                 <div id="admin-analytics" class="admin-tab-content hidden-tab">
                     <div class="bg-white p-8 rounded-xl shadow-sm text-center">
                         <i class="ri-bar-chart-2-line text-5xl text-primary/50 mb-4 inline-block"></i>
-                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Analytics</h3>
-                        <p class="text-gray-500 mt-2">Statistiques détaillées et KPIs de la plateforme.</p>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Reporting</h3>
+                        <p class="text-gray-500 mt-2">KPI utilisateurs, formalités, marketplace et paiements.</p>
                     </div>
                 </div>
                 <div id="admin-settings" class="admin-tab-content hidden-tab">
@@ -445,11 +450,11 @@
                 tooltip: { trigger: 'axis' },
                 legend: { bottom: 0, data: ['Temps moyen (jours)', 'Taux de validation (%)'] },
                 grid: { top: 20, right: 20, bottom: 50, left: 50 },
-                xAxis: { type: 'category', data: ['Phyto', 'Agrément', 'Licence', 'Transport'] },
+                xAxis: { type: 'category', data: ['FRA', 'Certificats', 'Agréments', 'Licences'] },
                 yAxis: [{ type: 'value', name: 'Jours' }, { type: 'value', name: 'Pourcentage (%)' }],
                 series: [
-                    { name: 'Temps moyen (jours)', type: 'bar', data: [6, 12, 9, 4], itemStyle: { color: '#2E7D32', borderRadius: [6, 6, 0, 0] } },
-                    { name: 'Taux de validation (%)', type: 'line', smooth: true, data: [92, 84, 88, 96], yAxisIndex: 1, showSymbol: false, lineStyle: { color: '#57B5E7', width: 3 }, itemStyle: { color: '#57B5E7' } }
+                    { name: 'Temps moyen (jours)', type: 'bar', data: [6, 8, 12, 9], itemStyle: { color: '#2E7D32', borderRadius: [6, 6, 0, 0] } },
+                    { name: 'Taux de validation (%)', type: 'line', smooth: true, data: [91, 94, 86, 88], yAxisIndex: 1, showSymbol: false, lineStyle: { color: '#57B5E7', width: 3 }, itemStyle: { color: '#57B5E7' } }
                 ]
             });
             window.addEventListener('resize', () => workflowPerformanceChart.resize());

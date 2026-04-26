@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agropole Sénégal - Tableau de Bord Agriculteur</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#4CAF50'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+    <script>
+        // Redirect to dashboard immediately
+        window.location.href = 'tableauDeBord.html';
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="w-full h-24 bg-cover bg-center bg-no-repeat" style="background-image: url('../dashUser/pattern.png');">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-primary mb-2">Tableau de Bord</h1>
+                <p class="text-gray-600">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-6 h-6 flex items-center justify-center relative">
+                    <i class="ri-notification-3-line text-gray-600 ri-lg"></i>
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold">AS</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-gray-900">Amadou Sy</span>
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-gray-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600">Producteur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="mb-8">
+            <div class="flex flex-wrap gap-2">
+                <a href="tableauDeBord.html" class="bg-primary text-white px-3 py-2 text-sm !rounded-button whitespace-nowrap">Vue d'ensemble</a>
+                <a href="admin.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Demandes administratives</a>
+                <a href="cultures.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Suivi des cultures</a>
+                <a href="marche.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Opportunités</a>
+                <a href="services.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Services & prestations</a>
+                <a href="ventes.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Mes ventes</a>
+                <a href="formations.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Formations</a>
+                <a href="profil.html" class="text-gray-600 px-3 py-2 text-sm !rounded-button hover:bg-gray-100 whitespace-nowrap">Annuaire</a>
+            </div>
+        </nav>
+        <div class="text-center py-20">
+            <div class="animate-spin text-primary text-6xl mb-4 mx-auto w-16 h-16">
+                <i class="ri-loader-5-line"></i>
+            </div>
+            <p class="text-gray-600">Redirection vers le tableau de bord...</p>
+        </div>
+    </div>
+</body>
+</html>

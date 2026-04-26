@@ -5,7 +5,7 @@
     <script src="https://static.readdy.ai/static/e.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme National de Développement des Agropoles du Sénégal - Analytics</title>
+    <title>Programme National de Développement des Agropoles du Sénégal - Reporting</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -148,17 +148,22 @@
                         <a href="#" onclick="switchAdminTab('workflows', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-flow-chart text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Workflows</span>
+                            <span class="font-inter font-medium text-base">Validation & Circuits</span>
                         </a>
-                        <a href="#" onclick="switchAdminTab('content', event); return false;" 
+                        <a href="contenu.html" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
                             <i class="ri-file-copy-line text-xl mr-3"></i>
                             <span class="font-inter font-medium text-base">Gestion Contenu</span>
                         </a>
+                        <a href="marketplace.html" 
+                           class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                            <i class="ri-store-2-line text-xl mr-3"></i>
+                            <span class="font-inter font-medium text-base">Marketplace</span>
+                        </a>
                         <a href="#" onclick="switchAdminTab('analytics', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 group bg-primary text-white shadow-sm">
                             <i class="ri-bar-chart-2-line text-xl mr-3"></i>
-                            <span class="font-inter font-medium text-base">Analytics</span>
+                            <span class="font-inter font-medium text-base">Reporting</span>
                         </a>
                         <a href="#" onclick="switchAdminTab('settings', event); return false;" 
                            class="admin-sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-50">
@@ -209,15 +214,14 @@
                     </div>
                 </div>
 
-                <!-- TAB CONTENT: Analytics (active par défaut sur cette page) -->
+                <!-- TAB CONTENT: Reporting (active par défaut sur cette page) -->
                 <div id="admin-analytics" class="admin-tab-content">
                     <div class="space-y-8">
-                        <!-- Analytics Header -->
+                        <!-- Reporting Header -->
                         <div class="flex flex-wrap items-center justify-between gap-4">
                             <div>
-                                <h2 class="text-2xl font-poppins font-semibold text-primary">Analytics & Reporting</h2>
-                                <p class="font-roboto text-gray-600 mt-1">Statistiques globales de la production et des
-                                    revenus nationaux</p>
+                                <h2 class="text-2xl font-poppins font-semibold text-primary">Reporting & Statistiques</h2>
+                                <p class="font-roboto text-gray-600 mt-1">Pilotage global des utilisateurs, formalités, marketplace et paiements</p>
                             </div>
                             <div class="flex flex-wrap gap-3">
                                 <select
@@ -233,7 +237,7 @@
                             </div>
                         </div>
 
-                        <!-- National Production Overview -->
+                        <!-- Reporting Overview -->
                         <div class="grid md:grid-cols-4 gap-6">
                             <div class="bg-white p-6 rounded-xl shadow-sm">
                                 <div class="flex items-center justify-between mb-4">
@@ -242,8 +246,8 @@
                                     </div>
                                     <span class="text-sm font-roboto text-green-600 bg-green-50 px-2 py-1 rounded">+12.5%</span>
                                 </div>
-                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">487,000T</div>
-                                <div class="font-roboto text-gray-600 text-sm">Production totale</div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">15,847</div>
+                                <div class="font-roboto text-gray-600 text-sm">Utilisateurs inscrits</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
                                 <div class="flex items-center justify-between mb-4">
@@ -252,8 +256,8 @@
                                     </div>
                                     <span class="text-sm font-roboto text-blue-600 bg-blue-50 px-2 py-1 rounded">+8.2%</span>
                                 </div>
-                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">156Md</div>
-                                <div class="font-roboto text-gray-600 text-sm">Revenus agricoles (FCFA)</div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">2,456</div>
+                                <div class="font-roboto text-gray-600 text-sm">Formalités traitées</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
                                 <div class="flex items-center justify-between mb-4">
@@ -262,8 +266,8 @@
                                     </div>
                                     <span class="text-sm font-roboto text-purple-600 bg-purple-50 px-2 py-1 rounded">+15.8%</span>
                                 </div>
-                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">28Md</div>
-                                <div class="font-roboto text-gray-600 text-sm">Exportations (FCFA)</div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">18,945</div>
+                                <div class="font-roboto text-gray-600 text-sm">Transactions marketplace</div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
                                 <div class="flex items-center justify-between mb-4">
@@ -272,19 +276,19 @@
                                     </div>
                                     <span class="text-sm font-roboto text-orange-600 bg-orange-50 px-2 py-1 rounded">+3.4%</span>
                                 </div>
-                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">89,500</div>
-                                <div class="font-roboto text-gray-600 text-sm">Emplois créés</div>
+                                <div class="text-2xl font-poppins font-bold text-gray-900 mb-1">156M</div>
+                                <div class="font-roboto text-gray-600 text-sm">Chiffre d'affaires (FCFA)</div>
                             </div>
                         </div>
 
                         <!-- Charts Grid -->
                         <div class="grid md:grid-cols-2 gap-8">
                             <div class="bg-white p-6 rounded-xl shadow-sm">
-                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Production par Filière</h3>
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Répartition par module</h3>
                                 <div id="production-by-sector-chart" class="h-64"></div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
-                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Évolution des Revenus</h3>
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Évolution des paiements</h3>
                                 <div id="revenue-evolution-chart" class="h-64"></div>
                             </div>
                         </div>
@@ -297,9 +301,9 @@
                                     <thead class="bg-gray-50">
                                         <tr>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Région</th>
-                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Production (T)</th>
-                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Revenus (M FCFA)</th>
-                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Producteurs</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Utilisateurs actifs</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Dossiers traités</th>
+                                            <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Produits actifs</th>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Évolution</th>
                                             <th class="text-left font-inter font-medium text-gray-700 px-6 py-4">Performance</th>
                                         </tr>
@@ -310,13 +314,13 @@
                                                 <div class="font-roboto text-gray-900 font-medium">Saint-Louis</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">78,540</div>
+                                                <div class="font-roboto text-gray-900">3,240</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">23,450</div>
+                                                <div class="font-roboto text-gray-900">524</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">2,456</div>
+                                                <div class="font-roboto text-gray-900">386</div>
                                             </td>
                                             <td class="px-6 py-4">
                                                 <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">+15.2%</span>
@@ -335,13 +339,13 @@
                                                 <div class="font-roboto text-gray-900 font-medium">Thiès</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">65,230</div>
+                                                <div class="font-roboto text-gray-900">2,860</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">19,580</div>
+                                                <div class="font-roboto text-gray-900">418</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">1,892</div>
+                                                <div class="font-roboto text-gray-900">291</div>
                                             </td>
                                             <td class="px-6 py-4">
                                                 <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">+12.8%</span>
@@ -360,13 +364,13 @@
                                                 <div class="font-roboto text-gray-900 font-medium">Kolda</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">45,680</div>
+                                                <div class="font-roboto text-gray-900">1,980</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">15,230</div>
+                                                <div class="font-roboto text-gray-900">276</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">1,234</div>
+                                                <div class="font-roboto text-gray-900">158</div>
                                             </td>
                                             <td class="px-6 py-4">
                                                 <span class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">+8.5%</span>
@@ -385,13 +389,13 @@
                                                 <div class="font-roboto text-gray-900 font-medium">Dakar</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">32,450</div>
+                                                <div class="font-roboto text-gray-900">1,420</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">12,890</div>
+                                                <div class="font-roboto text-gray-900">198</div>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <div class="font-roboto text-gray-900">856</div>
+                                                <div class="font-roboto text-gray-900">124</div>
                                             </td>
                                             <td class="px-6 py-4">
                                                 <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">+5.2%</span>
@@ -413,28 +417,28 @@
                         <!-- Platform Metrics -->
                         <div class="grid md:grid-cols-3 gap-8">
                             <div class="bg-white p-6 rounded-xl shadow-sm">
-                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Métriques Plateforme</h3>
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Utilisateurs</h3>
                                 <div class="space-y-4">
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Sessions mensuelles</span>
-                                        <span class="font-roboto text-gray-900 font-medium">125,400</span>
+                                        <span class="font-roboto text-gray-600">Nouvelles inscriptions</span>
+                                        <span class="font-roboto text-gray-900 font-medium">1,284</span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Pages vues</span>
-                                        <span class="font-roboto text-gray-900 font-medium">456,780</span>
+                                        <span class="font-roboto text-gray-600">Utilisateurs actifs</span>
+                                        <span class="font-roboto text-gray-900 font-medium">9,642</span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Durée moyenne</span>
-                                        <span class="font-roboto text-gray-900 font-medium">8min 32s</span>
+                                        <span class="font-roboto text-gray-600">Comptes vérifiés</span>
+                                        <span class="font-roboto text-gray-900 font-medium">87%</span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Taux de rebond</span>
-                                        <span class="font-roboto text-gray-900 font-medium">24.5%</span>
+                                        <span class="font-roboto text-gray-600">Comptes suspendus</span>
+                                        <span class="font-roboto text-gray-900 font-medium">214</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
-                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Transactions</h3>
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Paiements</h3>
                                 <div class="space-y-4">
                                     <div class="flex items-center justify-between">
                                         <span class="font-roboto text-gray-600">Volume mensuel</span>
@@ -445,7 +449,7 @@
                                         <span class="font-roboto text-gray-900 font-medium">25,780 FCFA</span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Taux de succès</span>
+                                        <span class="font-roboto text-gray-600">Transactions réussies</span>
                                         <span class="font-roboto text-gray-900 font-medium">96.8%</span>
                                     </div>
                                     <div class="flex items-center justify-between">
@@ -455,23 +459,23 @@
                                 </div>
                             </div>
                             <div class="bg-white p-6 rounded-xl shadow-sm">
-                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Services Publics</h3>
+                                <h3 class="text-lg font-inter font-semibold text-gray-900 mb-6">Formalités & Marketplace</h3>
                                 <div class="space-y-4">
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Dossiers traités</span>
+                                        <span class="font-roboto text-gray-600">Demandes totales</span>
                                         <span class="font-roboto text-gray-900 font-medium">2,456</span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Délai moyen</span>
+                                        <span class="font-roboto text-gray-600">Délai moyen de traitement</span>
                                         <span class="font-roboto text-gray-900 font-medium">4.2 jours</span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Satisfaction</span>
-                                        <span class="font-roboto text-gray-900 font-medium">94%</span>
+                                        <span class="font-roboto text-gray-600">Produits actifs</span>
+                                        <span class="font-roboto text-gray-900 font-medium">1,126</span>
                                     </div>
                                     <div class="flex items-center justify-between">
-                                        <span class="font-roboto text-gray-600">Taxes collectées</span>
-                                        <span class="font-roboto text-gray-900 font-medium">145M FCFA</span>
+                                        <span class="font-roboto text-gray-600">Litiges ouverts</span>
+                                        <span class="font-roboto text-gray-900 font-medium">38</span>
                                     </div>
                                 </div>
                             </div>
@@ -497,15 +501,15 @@
                 <div id="admin-workflows" class="admin-tab-content hidden-tab">
                     <div class="bg-white p-8 rounded-xl shadow-sm text-center">
                         <i class="ri-flow-chart text-5xl text-primary/50 mb-4 inline-block"></i>
-                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Workflows</h3>
-                        <p class="text-gray-500 mt-2">Supervision et configuration des processus métier.</p>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Validation & Circuits</h3>
+                        <p class="text-gray-500 mt-2">Parcours de validation multi-acteurs des formalités.</p>
                     </div>
                 </div>
                 <div id="admin-content" class="admin-tab-content hidden-tab">
                     <div class="bg-white p-8 rounded-xl shadow-sm text-center">
                         <i class="ri-file-copy-line text-5xl text-primary/50 mb-4 inline-block"></i>
-                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Gestion Contenu</h3>
-                        <p class="text-gray-500 mt-2">Articles, médias et ressources éditoriales.</p>
+                        <h3 class="text-xl font-poppins font-semibold text-gray-800">Marketplace</h3>
+                        <p class="text-gray-500 mt-2">Produits, catégories, transactions et litiges.</p>
                     </div>
                 </div>
                 <div id="admin-settings" class="admin-tab-content hidden-tab">
@@ -521,7 +525,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
     <script>
-        // Initialize ECharts for Analytics page
+        // Initialize ECharts for Reporting page
         function initAnalyticsCharts() {
             if (typeof echarts === 'undefined') return;
             
@@ -533,12 +537,12 @@
                 sectorChart.setOption({
                     animation: false,
                     tooltip: { trigger: 'axis' },
-                    legend: { orient: 'vertical', left: 'left', data: ['Production (T)'] },
-                    xAxis: { type: 'category', data: ['Arachide', 'Millet', 'Maïs', 'Riz', 'Maraîchage'] },
-                    yAxis: { type: 'value', name: 'Tonnes' },
+                    legend: { orient: 'vertical', left: 'left', data: ['Volume'] },
+                    xAxis: { type: 'category', data: ['Utilisateurs', 'Formalités', 'Produits', 'Paiements', 'Litiges'] },
+                    yAxis: { type: 'value', name: 'Unités' },
                     series: [{
                         type: 'bar',
-                        data: [125000, 98000, 87000, 112000, 65000],
+                        data: [15847, 2456, 1126, 18945, 38],
                         itemStyle: { color: '#2E7D32', borderRadius: [8, 8, 0, 0] }
                     }]
                 });
@@ -550,12 +554,12 @@
                 revenueChart.setOption({
                     animation: false,
                     tooltip: { trigger: 'axis' },
-                    xAxis: { type: 'category', data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'] },
-                    yAxis: { type: 'value', name: 'Milliards FCFA' },
+                    xAxis: { type: 'category', data: ['Nov', 'Déc', 'Jan', 'Fév', 'Mar', 'Avr'] },
+                    yAxis: { type: 'value', name: 'Millions FCFA' },
                     series: [{
                         type: 'line',
                         smooth: true,
-                        data: [12.4, 13.8, 14.2, 15.6, 16.8, 18.2],
+                        data: [98, 106, 112, 124, 138, 156],
                         lineStyle: { color: '#66BB6A', width: 3 },
                         areaStyle: { color: 'rgba(102, 187, 106, 0.1)' }
                     }]
