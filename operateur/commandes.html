@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgropoleHub - Dashboard Opérateur - Commandes</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class="bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Commandes</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businessman%20portrait%2C%20confident%20male%20executive%2C%20smiling%20professional%20in%20business%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile-operator&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Opérateur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+            <a href="accueil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Accueil</a>
+            <a href="produits.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Produits</a>
+            <a href="commandes.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Commandes</a>
+            <a href="logistique.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Logistique</a>
+            <a href="documents.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Documents</a>
+            <a href="marketplace.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Marketplace</a>
+            <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+        </div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-gray-900">Mes Commandes</h2>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+<i class="ri-add-line mr-2"></i>
+Nouvelle commande
+</button>
+</div>
+<!-- Filtres par statut -->
+<div class="flex space-x-4 mb-6">
+<button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium !rounded-button whitespace-nowrap">
+Toutes (24)
+</button>
+<button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 !rounded-button whitespace-nowrap">
+En cours (12)
+</button>
+<button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 !rounded-button whitespace-nowrap">
+Livrées (10)
+</button>
+<button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 !rounded-button whitespace-nowrap">
+Annulées (2)
+</button>
+</div>
+<!-- Tableau des commandes -->
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Commande</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produit</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fournisseur</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantité</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prix total</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#CMD-2024-156</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<img class="h-10 w-10 rounded-lg object-cover object-top" src="https://readdy.ai/api/search-image?query=fresh%20red%20tomatoes%20in%20wooden%20crate%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=100&height=100&seq=order-tomato&orientation=squarish" alt="">
+<div class="ml-3">
+<div class="text-sm font-medium text-gray-900">Tomates fraîches</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ferme Diallo</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150kg</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">67 500 FCFA</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+Livré
+</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">15 Mars 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+<button class="text-primary hover:text-primary-dark mr-3 !rounded-button whitespace-nowrap">Voir</button>
+<button class="text-gray-600 hover:text-gray-900 !rounded-button whitespace-nowrap">Télécharger</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#CMD-2024-157</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<img class="h-10 w-10 rounded-lg object-cover object-top" src="https://readdy.ai/api/search-image?query=fresh%20green%20onions%20scallions%20in%20bundle%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=100&height=100&seq=order-onion&orientation=squarish" alt="">
+<div class="ml-3">
+<div class="text-sm font-medium text-gray-900">Oignons verts</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Coopérative Fouta</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">200kg</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">64 000 FCFA</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+En cours
+</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">18 Mars 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+<button class="text-primary hover:text-primary-dark mr-3 !rounded-button whitespace-nowrap">Voir</button>
+<button class="text-orange-600 hover:text-orange-800 !rounded-button whitespace-nowrap">Livraison</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#CMD-2024-158</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<img class="h-10 w-10 rounded-lg object-cover object-top" src="https://readdy.ai/api/search-image?query=fresh%20mangoes%20in%20wooden%20crate%20ripe%20yellow%20tropical%20fruit%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=100&height=100&seq=order-mango&orientation=squarish" alt="">
+<div class="ml-3">
+<div class="text-sm font-medium text-gray-900">Mangues Kent</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Plantation Casamance</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">300kg</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">180 000 FCFA</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+Préparation
+</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">20 Mars 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+<button class="text-primary hover:text-primary-dark mr-3 !rounded-button whitespace-nowrap">Voir</button>
+<button class="text-gray-400 cursor-not-allowed !rounded-button whitespace-nowrap">Attente</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body>
+</html>

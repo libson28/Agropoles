@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgropoleHub - Dashboard Opérateur - Marketplace</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class="bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Marketplace</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businessman%20portrait%2C%20confident%20male%20executive%2C%20smiling%20professional%20in%20business%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile-operator&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Opérateur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+            <a href="accueil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Accueil</a>
+            <a href="produits.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Produits</a>
+            <a href="commandes.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Commandes</a>
+            <a href="logistique.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Logistique</a>
+            <a href="documents.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Documents</a>
+            <a href="marketplace.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Marketplace</a>
+            <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+        </div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-gray-900">Marketplace International</h2>
+<div class="flex space-x-3">
+<button class="border border-primary text-primary px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary hover:text-white !rounded-button whitespace-nowrap">
+Vendre mes produits
+</button>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Explorer les opportunités
+</button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-8">
+<!-- Opportunités d'export -->
+<div class="col-span-2 space-y-6">
+<h3 class="text-lg font-semibold text-gray-900">Opportunités d'Export</h3>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+<span class="text-lg">🇪🇺</span>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">Union Européenne - Mangues Bio</h4>
+<p class="text-sm text-gray-600">Demande de 50 tonnes de mangues biologiques certifiées</p>
+</div>
+</div>
+<span class="px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Urgent</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4">
+<div>
+<span class="text-sm text-gray-600">Prix proposé</span>
+<div class="text-lg font-bold text-primary">1 200 FCFA/kg</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Quantité</span>
+<div class="text-lg font-bold text-gray-900">50 tonnes</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Livraison</span>
+<div class="text-sm font-medium text-gray-900">Port de Dakar</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Date limite</span>
+<div class="text-sm font-medium text-gray-900">30 Avril 2024</div>
+</div>
+</div>
+<div class="flex space-x-3">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Soumettre une offre
+</button>
+<button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 !rounded-button whitespace-nowrap">
+Plus d'infos
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+<span class="text-lg">🇺🇸</span>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">États-Unis - Arachides Premium</h4>
+<p class="text-sm text-gray-600">Recherche fournisseur d'arachides décortiquées qualité export</p>
+</div>
+</div>
+<span class="px-3 py-1 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">Nouveau</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4">
+<div>
+<span class="text-sm text-gray-600">Prix proposé</span>
+<div class="text-lg font-bold text-primary">850 FCFA/kg</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Quantité</span>
+<div class="text-lg font-bold text-gray-900">200 tonnes</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Livraison</span>
+<div class="text-sm font-medium text-gray-900">FOB Dakar</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Date limite</span>
+<div class="text-sm font-medium text-gray-900">15 Mai 2024</div>
+</div>
+</div>
+<div class="flex space-x-3">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Soumettre une offre
+</button>
+<button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 !rounded-button whitespace-nowrap">
+Plus d'infos
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+<span class="text-lg">🇲🇦</span>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">Maroc - Mil et Céréales</h4>
+<p class="text-sm text-gray-600">Commande régulière de mil décortiqué et fonio</p>
+</div>
+</div>
+<span class="px-3 py-1 text-sm font-medium text-purple-800 bg-purple-100 rounded-full">Contrat long terme</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4">
+<div>
+<span class="text-sm text-gray-600">Prix proposé</span>
+<div class="text-lg font-bold text-primary">420 FCFA/kg</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Quantité</span>
+<div class="text-lg font-bold text-gray-900">100 tonnes/mois</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Livraison</span>
+<div class="text-sm font-medium text-gray-900">Casablanca</div>
+</div>
+<div>
+<span class="text-sm text-gray-600">Durée</span>
+<div class="text-sm font-medium text-gray-900">12 mois</div>
+</div>
+</div>
+<div class="flex space-x-3">
+<button class="flex-1 bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Soumettre une offre
+</button>
+<button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 !rounded-button whitespace-nowrap">
+Plus d'infos
+</button>
+</div>
+</div>
+</div>
+<!-- Sidebar informations -->
+<div class="space-y-6">
+<div class="bg-white rounded-xl shadow-sm p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Mes Performances Export</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Offres soumises</span>
+<span class="text-lg font-bold text-gray-900">23</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Contrats signés</span>
+<span class="text-lg font-bold text-green-600">8</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Volume exporté</span>
+<span class="text-lg font-bold text-gray-900">45,2T</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">CA export</span>
+<span class="text-lg font-bold text-primary">12,8M FCFA</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Tendances Marché</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+<div>
+<div class="text-sm font-medium text-gray-900">Mangues Bio</div>
+<div class="text-xs text-gray-600">Europe</div>
+</div>
+<div class="text-sm font-bold text-green-600">↗ +15%</div>
+</div>
+<div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+<div>
+<div class="text-sm font-medium text-gray-900">Arachides</div>
+<div class="text-xs text-gray-600">USA</div>
+</div>
+<div class="text-sm font-bold text-blue-600">↗ +8%</div>
+</div>
+<div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+<div>
+<div class="text-sm font-medium text-gray-900">Céréales</div>
+<div class="text-xs text-gray-600">Afrique du Nord</div>
+</div>
+<div class="text-sm font-bold text-yellow-600">→ Stable</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Documents Requis</h3>
+<div class="space-y-2">
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-check-line text-green-600 mr-2"></i>
+Certificat phytosanitaire
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-check-line text-green-600 mr-2"></i>
+Certificat d'origine
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-close-line text-red-600 mr-2"></i>
+Certificat bio (requis pour UE)
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-check-line text-green-600 mr-2"></i>
+Licence d'exportation
+</div>
+</div>
+<a href="documents.html" class="w-full mt-4 text-primary text-sm font-medium hover:text-primary-dark !rounded-button whitespace-nowrap inline-block">
+Gérer mes documents →
+</a>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>

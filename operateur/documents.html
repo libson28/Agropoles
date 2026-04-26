@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgropoleHub - Dashboard Opérateur - Documents</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class="bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Documents</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businessman%20portrait%2C%20confident%20male%20executive%2C%20smiling%20professional%20in%20business%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile-operator&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Opérateur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+            <a href="accueil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Accueil</a>
+            <a href="produits.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Produits</a>
+            <a href="commandes.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Commandes</a>
+            <a href="logistique.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Logistique</a>
+            <a href="documents.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Documents</a>
+            <a href="marketplace.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Marketplace</a>
+            <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+        </div>
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-gray-900">Demandes Administratives</h2>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+<i class="ri-add-line mr-2"></i>
+Nouvelle demande
+</button>
+</div>
+<!-- Filtres par type -->
+<div class="flex space-x-4 mb-6">
+<button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium !rounded-button whitespace-nowrap">
+Toutes (8)
+</button>
+<button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 !rounded-button whitespace-nowrap">
+Autorisations (3)
+</button>
+<button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 !rounded-button whitespace-nowrap">
+Certificats (4)
+</button>
+<button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 !rounded-button whitespace-nowrap">
+Agréments (1)
+</button>
+</div>
+<!-- Liste des demandes -->
+<div class="space-y-4">
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="font-semibold text-gray-900 mb-2">Certificat Phytosanitaire - Mangues Kent</h3>
+<p class="text-sm text-gray-600 mb-3">Demande de certificat pour l'exportation de 5 tonnes de mangues vers l'Union Européenne</p>
+<div class="flex items-center space-x-4 text-sm text-gray-500">
+<span>Demande #DOC-2024-012</span>
+<span>•</span>
+<span>Soumise le 18 Mars 2024</span>
+</div>
+</div>
+<span class="px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Validé</span>
+</div>
+<div class="flex items-center space-x-4">
+<a href="#" class="text-primary hover:text-primary-dark text-sm font-medium !rounded-button whitespace-nowrap">
+<i class="ri-eye-line mr-1"></i>
+Voir détails
+</a>
+<a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium !rounded-button whitespace-nowrap">
+<i class="ri-download-line mr-1"></i>
+Télécharger
+</a>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="font-semibold text-gray-900 mb-2">Autorisation de Mise sur le Marché - Produits Transformés</h3>
+<p class="text-sm text-gray-600 mb-3">Autorisation pour la commercialisation de pâte d'arachide et huile d'arachide raffinée</p>
+<div class="flex items-center space-x-4 text-sm text-gray-500">
+<span>Demande #DOC-2024-013</span>
+<span>•</span>
+<span>Soumise le 20 Mars 2024</span>
+</div>
+</div>
+<span class="px-3 py-1 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">En cours</span>
+</div>
+<div class="flex items-center space-x-4">
+<a href="#" class="text-primary hover:text-primary-dark text-sm font-medium !rounded-button whitespace-nowrap">
+<i class="ri-eye-line mr-1"></i>
+Voir détails
+</a>
+<a href="#" class="text-orange-600 hover:text-orange-800 text-sm font-medium !rounded-button whitespace-nowrap">
+<i class="ri-edit-line mr-1"></i>
+Modifier
+</a>
+</div>
+<div class="mt-4 p-3 bg-blue-50 rounded-lg">
+<div class="flex items-start space-x-2">
+<i class="ri-information-line text-blue-600 mt-0.5"></i>
+<div class="text-sm text-blue-800">
+<strong>Mise à jour:</strong> Documents complémentaires requis. Veuillez fournir l'analyse microbiologique des produits.
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="font-semibold text-gray-900 mb-2">Certificat d'Origine - Arachides</h3>
+<p class="text-sm text-gray-600 mb-3">Certificat d'origine pour l'exportation de 10 tonnes d'arachides vers le Maroc</p>
+<div class="flex items-center space-x-4 text-sm text-gray-500">
+<span>Demande #DOC-2024-014</span>
+<span>•</span>
+<span>Soumise le 22 Mars 2024</span>
+</div>
+</div>
+<span class="px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Rejeté</span>
+</div>
+<div class="flex items-center space-x-4">
+<a href="#" class="text-primary hover:text-primary-dark text-sm font-medium !rounded-button whitespace-nowrap">
+<i class="ri-eye-line mr-1"></i>
+Voir détails
+</a>
+<a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium !rounded-button whitespace-nowrap">
+<i class="ri-refresh-line mr-1"></i>
+Resubmettre
+</a>
+</div>
+<div class="mt-4 p-3 bg-red-50 rounded-lg">
+<div class="flex items-start space-x-2">
+<i class="ri-error-warning-line text-red-600 mt-0.5"></i>
+<div class="text-sm text-red-800">
+<strong>Motif de rejet:</strong> Les documents fournis ne correspondent pas aux exigences sanitaires du pays de destination.
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>

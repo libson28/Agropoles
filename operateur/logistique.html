@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgropoleHub - Dashboard Opérateur - Logistique</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class="bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Logistique</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businessman%20portrait%2C%20confident%20male%20executive%2C%20smiling%20professional%20in%20business%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile-operator&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Opérateur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+            <a href="accueil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Accueil</a>
+            <a href="produits.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Produits</a>
+            <a href="commandes.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Commandes</a>
+            <a href="logistique.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Logistique</a>
+            <a href="documents.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Documents</a>
+            <a href="marketplace.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Marketplace</a>
+            <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+        </div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-gray-900">Logistique & Transport</h2>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+<i class="ri-add-line mr-2"></i>
+Demander une livraison
+</button>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<!-- Liste des transporteurs -->
+<div class="space-y-6">
+<h3 class="text-lg font-semibold text-gray-900">Transporteurs Disponibles</h3>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+<i class="ri-truck-line text-blue-600 text-lg"></i>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">Transport Dakar Express</h4>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span>4.8 (127 avis)</span>
+</div>
+</div>
+</div>
+<span class="text-sm text-green-600 bg-green-50 px-2 py-1 rounded-full">Disponible</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Capacité</span>
+<span class="text-sm font-medium text-gray-900">Jusqu'à 5 tonnes</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Zones couvertes</span>
+<span class="text-sm font-medium text-gray-900">Dakar, Thiès, Kaolack</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Type de véhicule</span>
+<span class="text-sm font-medium text-gray-900">Camion frigorifique</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Tarif moyen</span>
+<span class="text-sm font-medium text-gray-900">25 FCFA/kg/km</span>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Demander un devis
+</button>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+<i class="ri-truck-line text-green-600 text-lg"></i>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">Logistique Sénégal Plus</h4>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span>4.6 (89 avis)</span>
+</div>
+</div>
+</div>
+<span class="text-sm text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Occupé</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Capacité</span>
+<span class="text-sm font-medium text-gray-900">Jusqu'à 10 tonnes</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Zones couvertes</span>
+<span class="text-sm font-medium text-gray-900">Tout le Sénégal</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Type de véhicule</span>
+<span class="text-sm font-medium text-gray-900">Semi-remorque</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-600">Tarif moyen</span>
+<span class="text-sm font-medium text-gray-900">20 FCFA/kg/km</span>
+</div>
+</div>
+<button class="w-full bg-gray-200 text-gray-500 py-2 rounded-lg text-sm font-medium cursor-not-allowed !rounded-button whitespace-nowrap">
+Non disponible
+</button>
+</div>
+</div>
+<!-- Suivi des livraisons -->
+<div class="space-y-6">
+<h3 class="text-lg font-semibold text-gray-900">Suivi des Livraisons</h3>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-semibold text-gray-900">Livraison #LIV-2024-034</h4>
+<span class="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded-full">En route</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+<i class="ri-check-line text-green-600 text-sm"></i>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-900">Commande acceptée</div>
+<div class="text-xs text-gray-500">20 Mars 2024 - 09:30</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+<i class="ri-check-line text-green-600 text-sm"></i>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-900">Produits récupérés</div>
+<div class="text-xs text-gray-500">20 Mars 2024 - 14:15</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+<i class="ri-truck-line text-blue-600 text-sm"></i>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-900">En transport</div>
+<div class="text-xs text-gray-500">Arrivée prévue: 21 Mars 2024 - 10:00</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+<i class="ri-map-pin-line text-gray-400 text-sm"></i>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-400">Livraison</div>
+<div class="text-xs text-gray-400">En attente</div>
+</div>
+</div>
+</div>
+<div class="mt-4 p-3 bg-gray-50 rounded-lg">
+<div class="flex items-center space-x-2">
+<i class="ri-phone-line text-gray-600"></i>
+<span class="text-sm text-gray-600">Contact chauffeur: +221 77 123 45 67</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-6">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-semibold text-gray-900">Livraison #LIV-2024-035</h4>
+<span class="text-sm text-yellow-600 bg-yellow-50 px-2 py-1 rounded-full">En attente</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+<i class="ri-time-line text-blue-600 text-sm"></i>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-900">Demande soumise</div>
+<div class="text-xs text-gray-500">21 Mars 2024 - 08:45</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+<i class="ri-check-line text-gray-400 text-sm"></i>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-400">Confirmation transporteur</div>
+<div class="text-xs text-gray-400">En attente</div>
+</div>
+</div>
+</div>
+<div class="mt-4">
+<a href="#" class="text-sm text-primary hover:text-primary-dark !rounded-button whitespace-nowrap">Modifier la demande</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>

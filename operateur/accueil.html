@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgropoleHub - Dashboard Opérateur - Accueil</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class="bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="ChatGPT Image 26 avr. 2026, 18_18_14.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Accueil</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businessman%20portrait%2C%20confident%20male%20executive%2C%20smiling%20professional%20in%20business%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile-operator&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Opérateur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+            <a href="accueil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Accueil</a>
+            <a href="produits.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Produits</a>
+            <a href="commandes.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Commandes</a>
+            <a href="logistique.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Logistique</a>
+            <a href="documents.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Documents</a>
+            <a href="marketplace.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Marketplace</a>
+            <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+        </div>
+<!-- Métriques principales -->
+<div class="grid grid-cols-4 gap-6 mb-8">
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+<i class="ri-shopping-cart-line text-green-600"></i>
+</div>
+<span class="text-sm text-green-600 font-medium">+12%</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 mb-1">12</div>
+<div class="text-sm text-gray-600">Commandes en cours</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+<i class="ri-scales-3-line text-blue-600"></i>
+</div>
+<span class="text-sm text-green-600 font-medium">+8%</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 mb-1">2,8T</div>
+<div class="text-sm text-gray-600">Volume acheté ce mois</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+<i class="ri-truck-line text-orange-600"></i>
+</div>
+<span class="text-sm text-blue-600 font-medium">5 actives</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 mb-1">5</div>
+<div class="text-sm text-gray-600">Livraisons en attente</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+<i class="ri-money-dollar-circle-line text-yellow-600"></i>
+</div>
+<span class="text-sm text-green-600 font-medium">3,2M</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 mb-1">3,2M FCFA</div>
+<div class="text-sm text-gray-600">CA ce mois</div>
+</div>
+</div>
+<!-- Raccourcis et graphiques -->
+<div class="grid grid-cols-2 gap-8 mb-8">
+<!-- Raccourcis -->
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Actions Rapides</h3>
+<div class="grid grid-cols-2 gap-4">
+<button class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mb-3">
+<i class="ri-search-line text-primary"></i>
+</div>
+<div class="text-sm font-medium text-gray-900">Rechercher produits</div>
+</button>
+<a href="commandes.html" class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+<i class="ri-file-list-line text-blue-600"></i>
+</div>
+<div class="text-sm font-medium text-gray-900">Voir commandes</div>
+</a>
+<a href="logistique.html" class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
+<i class="ri-truck-line text-orange-600"></i>
+</div>
+<div class="text-sm font-medium text-gray-900">Demander livraison</div>
+</a>
+<a href="documents.html" class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+<i class="ri-file-text-line text-purple-600"></i>
+</div>
+<div class="text-sm font-medium text-gray-900">Mes documents</div>
+</a>
+</div>
+</div>
+<!-- Évolution des achats -->
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Évolution des Achats</h3>
+<div id="purchaseChart" style="height: 200px;"></div>
+</div>
+</div>
+<!-- Produits recommandés et activités -->
+<div class="grid grid-cols-3 gap-8">
+<!-- Produits recommandés -->
+<div class="col-span-2 bg-white p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-semibold text-gray-900">Produits Recommandés</h3>
+<a href="produits.html" class="text-sm text-primary hover:text-primary-dark whitespace-nowrap">Voir tout</a>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="border border-gray-200 rounded-lg p-4">
+<img src="https://readdy.ai/api/search-image?query=fresh%20red%20tomatoes%20in%20wooden%20crate%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=200&height=150&seq=tomato-1&orientation=landscape" alt="Tomates" class="w-full h-24 object-cover object-top rounded-lg mb-3">
+<h4 class="font-medium text-gray-900 text-sm mb-1">Tomates fraîches</h4>
+<p class="text-xs text-gray-500 mb-2">Kaolack</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-gray-900">450 FCFA/kg</span>
+<a href="produits.html" class="text-xs text-primary hover:text-primary-dark !rounded-button whitespace-nowrap">Voir détails</a>
+</div>
+</div>
+<div class="border border-gray-200 rounded-lg p-4">
+<img src="https://readdy.ai/api/search-image?query=fresh%20green%20onions%20scallions%20in%20bundle%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=200&height=150&seq=onion-1&orientation=landscape" alt="Oignons" class="w-full h-24 object-cover object-top rounded-lg mb-3">
+<h4 class="font-medium text-gray-900 text-sm mb-1">Oignons verts</h4>
+<p class="text-xs text-gray-500 mb-2">Saint-Louis</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-gray-900">320 FCFA/kg</span>
+<a href="produits.html" class="text-xs text-primary hover:text-primary-dark !rounded-button whitespace-nowrap">Voir détails</a>
+</div>
+</div>
+<div class="border border-gray-200 rounded-lg p-4">
+<img src="https://readdy.ai/api/search-image?query=fresh%20millet%20grains%20in%20burlap%20sack%20traditional%20african%20grain%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=200&height=150&seq=millet-1&orientation=landscape" alt="Mil" class="w-full h-24 object-cover object-top rounded-lg mb-3">
+<h4 class="font-medium text-gray-900 text-sm mb-1">Mil décortiqué</h4>
+<p class="text-xs text-gray-500 mb-2">Tambacounda</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-gray-900">280 FCFA/kg</span>
+<a href="produits.html" class="text-xs text-primary hover:text-primary-dark !rounded-button whitespace-nowrap">Voir détails</a>
+</div>
+</div>
+<div class="border border-gray-200 rounded-lg p-4">
+<img src="https://readdy.ai/api/search-image?query=fresh%20mangoes%20in%20wooden%20crate%20ripe%20yellow%20tropical%20fruit%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=200&height=150&seq=mango-1&orientation=landscape" alt="Mangues" class="w-full h-24 object-cover object-top rounded-lg mb-3">
+<h4 class="font-medium text-gray-900 text-sm mb-1">Mangues Kent</h4>
+<p class="text-xs text-gray-500 mb-2">Ziguinchor</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-gray-900">600 FCFA/kg</span>
+<a href="produits.html" class="text-xs text-primary hover:text-primary-dark !rounded-button whitespace-nowrap">Voir détails</a>
+</div>
+</div>
+<div class="border border-gray-200 rounded-lg p-4">
+<img src="https://readdy.ai/api/search-image?query=fresh%20peanuts%20groundnuts%20in%20shell%20african%20agriculture%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=200&height=150&seq=peanut-1&orientation=landscape" alt="Arachides" class="w-full h-24 object-cover object-top rounded-lg mb-3">
+<h4 class="font-medium text-gray-900 text-sm mb-1">Arachides coques</h4>
+<p class="text-xs text-gray-500 mb-2">Fatick</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-gray-900">380 FCFA/kg</span>
+<a href="produits.html" class="text-xs text-primary hover:text-primary-dark !rounded-button whitespace-nowrap">Voir détails</a>
+</div>
+</div>
+<div class="border border-gray-200 rounded-lg p-4">
+<img src="https://readdy.ai/api/search-image?query=fresh%20white%20rice%20grains%20in%20bowl%20premium%20quality%20cereal%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=200&height=150&seq=rice-1&orientation=landscape" alt="Riz" class="w-full h-24 object-cover object-top rounded-lg mb-3">
+<h4 class="font-medium text-gray-900 text-sm mb-1">Riz parfumé</h4>
+<p class="text-xs text-gray-500 mb-2">Podor</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-gray-900">520 FCFA/kg</span>
+<a href="produits.html" class="text-xs text-primary hover:text-primary-dark !rounded-button whitespace-nowrap">Voir détails</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Activités récentes et Notifications -->
+<div class="space-y-8">
+<!-- Activités récentes -->
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-gray-900">Activités Récentes</h3>
+<a href="#" class="text-sm text-primary hover:text-primary-dark whitespace-nowrap">Voir tout</a>
+</div>
+<div class="space-y-4">
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-check-line text-green-600 text-sm"></i>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900">Commande #CMD-2024-156 livrée</p>
+<p class="text-xs text-gray-500">Il y a 2 heures</p>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-message-line text-blue-600 text-sm"></i>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900">Nouveau message de Fatou Diallo</p>
+<p class="text-xs text-gray-500">Il y a 4 heures</p>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-money-dollar-circle-line text-orange-600 text-sm"></i>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900">Paiement de 450 000 FCFA reçu</p>
+<p class="text-xs text-gray-500">Hier à 16:30</p>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-shopping-cart-line text-purple-600 text-sm"></i>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900">Nouvelle commande de 200kg de tomates</p>
+<p class="text-xs text-gray-500">Hier à 14:20</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Notifications -->
+<div class="bg-white p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
+<a href="#" class="text-sm text-primary hover:text-primary-dark whitespace-nowrap">Marquer comme lues</a>
+</div>
+<div class="space-y-4">
+<div class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
+<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-information-line text-blue-600 text-sm"></i>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900">Certificat d'exportation approuvé</p>
+<p class="text-xs text-gray-600">Votre demande de certificat phytosanitaire a été validée</p>
+</div>
+</div>
+<div class="flex items-start space-x-3 p-3 bg-green-50 rounded-lg">
+<div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-money-dollar-circle-line text-green-600 text-sm"></i>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900">Opportunité de financement</p>
+<p class="text-xs text-gray-600">Nouveau programme de crédit agricole à taux préférentiel disponible</p>
+</div>
+</div>
+<div class="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg">
+<div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-alert-line text-yellow-600 text-sm"></i>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900">Rappel de paiement</p>
+<p class="text-xs text-gray-600">Facture #FAC-2024-089 échue dans 3 jours</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script id="chart-functionality">
+document.addEventListener('DOMContentLoaded', function() {
+const chartDom = document.getElementById('purchaseChart');
+const myChart = echarts.init(chartDom);
+const option = {
+animation: false,
+grid: {
+top: 0,
+left: 0,
+right: 0,
+bottom: 0,
+containLabel: true
+},
+xAxis: {
+type: 'category',
+data: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'],
+axisLine: { show: false },
+axisTick: { show: false },
+axisLabel: {
+color: '#6B7280',
+fontSize: 12
+}
+},
+yAxis: {
+type: 'value',
+show: false
+},
+series: [{
+data: [1200, 1800, 2200, 2400, 2100, 2500],
+type: 'line',
+smooth: true,
+symbol: 'none',
+lineStyle: {
+color: '#2E7D32',
+width: 3
+},
+areaStyle: {
+color: {
+type: 'linear',
+x: 0,
+y: 0,
+x2: 0,
+y2: 1,
+colorStops: [{
+offset: 0,
+color: 'rgba(46, 125, 50, 0.1)'
+}, {
+offset: 1,
+color: 'rgba(46, 125, 50, 0.01)'
+}]
+}
+}
+}],
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.9)',
+borderColor: '#E5E7EB',
+textStyle: {
+color: '#1F2937'
+}
+}
+};
+myChart.setOption(option);
+window.addEventListener('resize', function() {
+myChart.resize();
+});
+});
+</script>
+</body>
+</html>

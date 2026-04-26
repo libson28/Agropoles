@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgropoleHub - Dashboard Opérateur - Produits</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        secondary: '#66BB6A'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+<body class="font-roboto bg-white"><section class="bg-gray-50 min-h-screen">
+    <div class="pattern">
+        <img src="pattern.png" alt="" style="width: 100%; height: 110px; top:0;">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-poppins font-bold text-primary">Produits</h1>
+                <p class="font-roboto text-gray-600 mt-1">Bonjour Amadou, voici un aperçu de votre activité</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 text-gray-400 hover:text-primary transition-colors">
+                    <i class="ri-notification-line text-xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20businessman%20portrait%2C%20confident%20male%20executive%2C%20smiling%20professional%20in%20business%20setting%2C%20professional%20headshot%20photography&width=100&height=100&seq=profile-operator&orientation=squarish" alt="Profil" class="w-10 h-10 rounded-full object-cover object-top">
+                    <div>
+                        <div class="font-inter font-medium text-gray-900">Amadou Sy</div>
+                        <div class="font-roboto text-sm text-gray-600">Opérateur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex space-x-1 mb-8 bg-white rounded-lg p-1 shadow-sm overflow-x-auto">
+            <a href="accueil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Accueil</a>
+            <a href="produits.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium bg-primary text-white transition-colors whitespace-nowrap">Produits</a>
+            <a href="commandes.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Commandes</a>
+            <a href="logistique.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Logistique</a>
+            <a href="documents.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Documents</a>
+            <a href="marketplace.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Marketplace</a>
+            <a href="profil.html" class="dashboard-tab-btn px-4 py-2 !rounded-button font-inter text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">Mon Profil</a>
+        </div>
+<!-- Contenu principal flex -->
+<div class="flex gap-6">
+<!-- Filtres sidebar -->
+<div class="w-64 bg-white rounded-xl shadow-sm p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Filtres</h3>
+<!-- Recherche -->
+<div class="mb-6">
+<label class="block text-sm font-medium text-gray-700 mb-2">Rechercher</label>
+<div class="relative">
+<input type="text" placeholder="Rechercher un produit..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+</div>
+<!-- Type de produit -->
+<div class="mb-6">
+<label class="block text-sm font-medium text-gray-700 mb-2">Type de produit</label>
+<div class="space-y-2">
+<label class="flex items-center">
+<input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+<span class="ml-2 text-sm text-gray-600">Céréales</span>
+</label>
+<label class="flex items-center">
+<input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+<span class="ml-2 text-sm text-gray-600">Légumes</span>
+</label>
+<label class="flex items-center">
+<input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+<span class="ml-2 text-sm text-gray-600">Fruits</span>
+</label>
+<label class="flex items-center">
+<input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+<span class="ml-2 text-sm text-gray-600">Épices</span>
+</label>
+</div>
+</div>
+<!-- Localisation -->
+<div class="mb-6">
+<label class="block text-sm font-medium text-gray-700 mb-2">Région</label>
+<select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+<option>Toutes les régions</option>
+<option>Dakar</option>
+<option>Thiès</option>
+<option>Kaolack</option>
+<option>Saint-Louis</option>
+<option>Ziguinchor</option>
+</select>
+</div>
+</div>
+<!-- Liste des produits -->
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-gray-900">Catalogue Produits</h2>
+<div class="flex items-center space-x-4">
+<span class="text-sm text-gray-500">156 produits trouvés</span>
+<select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-primary">
+<option>Trier par pertinence</option>
+<option>Prix croissant</option>
+<option>Prix décroissant</option>
+<option>Plus récent</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6 mb-8">
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fresh%20red%20tomatoes%20in%20wooden%20crate%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-tomato&orientation=landscape" alt="Tomates" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-1">Tomates fraîches Bio</h3>
+<p class="text-sm text-gray-600 mb-2 flex items-center">
+<i class="ri-map-pin-line text-gray-400 mr-1"></i>
+Kaolack - Ferme Diallo
+</p>
+<div class="flex items-center justify-between mb-3">
+<span class="text-lg font-bold text-primary">450 FCFA/kg</span>
+<span class="text-sm text-gray-500">200kg disponible</span>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Voir détails
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fresh%20green%20onions%20scallions%20in%20bundle%20market%20display%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-onion&orientation=landscape" alt="Oignons" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-1">Oignons verts premium</h3>
+<p class="text-sm text-gray-600 mb-2 flex items-center">
+<i class="ri-map-pin-line text-gray-400 mr-1"></i>
+Saint-Louis - Coopérative Fouta
+</p>
+<div class="flex items-center justify-between mb-3">
+<span class="text-lg font-bold text-primary">320 FCFA/kg</span>
+<span class="text-sm text-gray-500">500kg disponible</span>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Voir détails
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fresh%20millet%20grains%20in%20burlap%20sack%20traditional%20african%20grain%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=200&seq=product-millet&orientation=landscape" alt="Mil" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-1">Mil décortiqué traditionnel</h3>
+<p class="text-sm text-gray-600 mb-2 flex items-center">
+<i class="ri-map-pin-line text-gray-400 mr-1"></i>
+Tambacounda - Groupement Femmes
+</p>
+<div class="flex items-center justify-between mb-3">
+<span class="text-lg font-bold text-primary">280 FCFA/kg</span>
+<span class="text-sm text-gray-500">1000kg disponible</span>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Voir détails
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fresh%20mangoes%20in%20wooden%20crate%20ripe%20yellow%20tropical%20fruit%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-mango&orientation=landscape" alt="Mangues" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-1">Mangues Kent export</h3>
+<p class="text-sm text-gray-600 mb-2 flex items-center">
+<i class="ri-map-pin-line text-gray-400 mr-1"></i>
+Ziguinchor - Plantation Casamance
+</p>
+<div class="flex items-center justify-between mb-3">
+<span class="text-lg font-bold text-primary">600 FCFA/kg</span>
+<span class="text-sm text-gray-500">300kg disponible</span>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Voir détails
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fresh%20peanuts%20groundnuts%20in%20shell%20african%20agriculture%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=200&seq=product-peanut&orientation=landscape" alt="Arachides" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-1">Arachides coques qualité export</h3>
+<p class="text-sm text-gray-600 mb-2 flex items-center">
+<i class="ri-map-pin-line text-gray-400 mr-1"></i>
+Fatick - Producteur Seck
+</p>
+<div class="flex items-center justify-between mb-3">
+<span class="text-lg font-bold text-primary">380 FCFA/kg</span>
+<span class="text-sm text-gray-500">2000kg disponible</span>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Voir détails
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fresh%20white%20rice%20grains%20in%20bowl%20premium%20quality%20cereal%20natural%20lighting%20clean%20white%20background%20high%20quality%20product%20photography%20african%20agriculture&width=300&height=200&seq=product-rice&orientation=landscape" alt="Riz" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-1">Riz parfumé de la vallée</h3>
+<p class="text-sm text-gray-600 mb-2 flex items-center">
+<i class="ri-map-pin-line text-gray-400 mr-1"></i>
+Podor - Rizerie Moderne
+</p>
+<div class="flex items-center justify-between mb-3">
+<span class="text-lg font-bold text-primary">520 FCFA/kg</span>
+<span class="text-sm text-gray-500">800kg disponible</span>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark !rounded-button whitespace-nowrap">
+Voir détails
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center space-x-2">
+<button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50 !rounded-button whitespace-nowrap">
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<button class="px-3 py-2 rounded-lg bg-primary text-white !rounded-button whitespace-nowrap">1</button>
+<button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50 !rounded-button whitespace-nowrap">2</button>
+<button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50 !rounded-button whitespace-nowrap">3</button>
+<button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50 !rounded-button whitespace-nowrap">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>
