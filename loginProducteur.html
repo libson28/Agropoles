@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACOA 2027 - Congrès Africain des Comptables | Dakar, Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D97706',
+                        secondary: '#059669'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+        .hero-bg {
+            background-image: url('https://readdy.ai/api/search-image?query=Beautiful%20panoramic%20view%20of%20Dakar%20city%20skyline%20with%20modern%20buildings%20and%20traditional%20architecture%2C%20warm%20golden%20hour%20lighting%2C%20African%20urban%20landscape%20with%20ocean%20view%2C%20professional%20photography%20style%2C%20clean%20composition%20with%20left%20side%20space%20for%20text%20overlay%2C%20vibrant%20colors%20representing%20African%20culture%20and%20modernity&width=1920&height=1080&seq=hero-dakar&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+           
+        }
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.9) 0%, rgba(217, 119, 6, 0.7) 50%, rgba(217, 119, 6, 0.3) 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="font-['Pacifico'] text-2xl text-primary">ACOA 2027</div>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-primary transition-colors">À propos</a>
+                    <a href="#program" class="text-gray-700 hover:text-primary transition-colors">Programme</a>
+                    <a href="#speakers" class="text-gray-700 hover:text-primary transition-colors">Intervenants</a>
+                    <a href="#partners" class="text-gray-700 hover:text-primary transition-colors">Partenaires</a>
+                    <a href="#practical" class="text-gray-700 hover:text-primary transition-colors">Infos pratiques</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="languageBtn" class="flex items-center space-x-1 text-gray-700 hover:text-primary">
+                            <span id="currentLang">FR</span>
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line"></i>
+                            </div>
+                        </button>
+                        <div id="languageMenu" class="hidden absolute right-0 mt-2 w-20 bg-white rounded shadow-lg">
+                            <a href="#" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100" data-lang="FR">FR</a>
+                            <a href="#" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100" data-lang="EN">EN</a>
+                            <a href="#" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100" data-lang="PT">PT</a>
+                        </div>
+                    </div>
+                    <button class="text-primary border border-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                        Accéder à mon espace
+                    </button>
+                    <button class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-orange-600 transition-colors whitespace-nowrap">
+                        S'inscrire
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-bg min-h-screen flex items-center relative">
+        <div class="gradient-overlay absolute inset-0"></div>
+        <div class="relative z-10 w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-2xl">
+                    <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                        Congrès Africain des Comptables 2027
+                    </h1>
+                    <p class="text-xl text-white mb-8 opacity-90">
+                        22-25 Juin 2027 • Dakar, Sénégal
+                    </p>
+                    <p class="text-lg text-white mb-10 opacity-80 leading-relaxed">
+                        Le rendez-vous majeur des professionnels de la comptabilité et de la finance en Afrique. Rejoignez-nous pour façonner l'avenir de notre profession sur le continent.
+                    </p>
+                    <button class="bg-white text-primary px-8 py-4 !rounded-button font-semibold text-lg hover:bg-gray-100 transition-colors whitespace-nowrap">
+                        S'inscrire maintenant
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20business%20conference%20with%20diverse%20accountants%20and%20finance%20professionals%20networking%2C%20modern%20conference%20hall%20setting%2C%20warm%20lighting%2C%20professional%20atmosphere%2C%20people%20in%20business%20attire%20discussing%20financial%20documents%20and%20charts%2C%20African%20cultural%20elements%20subtly%20integrated&width=600&height=400&seq=about-conference&orientation=landscape" 
+                         alt="Congrès ACOA" class="rounded-lg shadow-lg object-cover w-full h-80">
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">À propos d'ACOA 2027</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Le Congrès Africain des Comptables (ACOA), organisé tous les deux ans depuis 2011 sous l'égide de la Fédération Panafricaine des Comptables (PAFA), constitue un rendez-vous majeur pour les professionnels de la comptabilité et de la finance en Afrique.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Il favorise les échanges sur le rôle stratégique de la profession comptable dans le développement du continent. Cette édition 2027 est organisée par l'ONECCA-Sénégal.
+                    </p>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full mx-auto mb-3">
+                                <i class="ri-group-line text-xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900">Networking</h3>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 flex items-center justify-center bg-secondary text-white rounded-full mx-auto mb-3">
+                                <i class="ri-line-chart-line text-xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900">Développement</h3>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full mx-auto mb-3">
+                                <i class="ri-award-line text-xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900">Excellence</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Programme du Congrès</h2>
+                <p class="text-xl text-gray-600">Quatre journées d'échanges et de formation intensive</p>
+            </div>
+            
+            <div class="flex justify-center mb-10">
+                <div class="bg-white p-1 rounded-full shadow-sm">
+                    <button class="program-filter active px-6 py-2 rounded-full text-sm font-medium transition-colors" data-day="all">
+                        Tous les jours
+                    </button>
+                    <button class="program-filter px-6 py-2 rounded-full text-sm font-medium transition-colors" data-day="day1">
+                        Jour 1
+                    </button>
+                    <button class="program-filter px-6 py-2 rounded-full text-sm font-medium transition-colors" data-day="day2">
+                        Jour 2
+                    </button>
+                    <button class="program-filter px-6 py-2 rounded-full text-sm font-medium transition-colors" data-day="day3">
+                        Jour 3
+                    </button>
+                    <button class="program-filter px-6 py-2 rounded-full text-sm font-medium transition-colors" data-day="day4">
+                        Jour 4
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="programGrid">
+                <div class="program-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" data-day="day1">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full mr-3">
+                            <i class="ri-mic-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">22 Juin - 09:00</div>
+                            <div class="font-semibold text-gray-900">Cérémonie d'ouverture</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Discours inaugural et présentation des enjeux de la profession comptable en Afrique</p>
+                </div>
+
+                <div class="program-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" data-day="day1">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-secondary text-white rounded-full mr-3">
+                            <i class="ri-computer-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">22 Juin - 11:00</div>
+                            <div class="font-semibold text-gray-900">Digitalisation comptable</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Les outils numériques au service de la profession comptable moderne</p>
+                </div>
+
+                <div class="program-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" data-day="day2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full mr-3">
+                            <i class="ri-global-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">23 Juin - 09:30</div>
+                            <div class="font-semibold text-gray-900">Normes IFRS en Afrique</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Harmonisation des pratiques comptables sur le continent africain</p>
+                </div>
+
+                <div class="program-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" data-day="day2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-secondary text-white rounded-full mr-3">
+                            <i class="ri-shield-check-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">23 Juin - 14:00</div>
+                            <div class="font-semibold text-gray-900">Audit et gouvernance</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Renforcement de la transparence et de la confiance dans les entreprises</p>
+                </div>
+
+                <div class="program-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" data-day="day3">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full mr-3">
+                            <i class="ri-leaf-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">24 Juin - 10:00</div>
+                            <div class="font-semibold text-gray-900">Finance durable</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">L'impact environnemental et social dans la comptabilité moderne</p>
+                </div>
+
+                <div class="program-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow" data-day="day4">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-secondary text-white rounded-full mr-3">
+                            <i class="ri-handshake-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">25 Juin - 16:00</div>
+                            <div class="font-semibold text-gray-900">Cérémonie de clôture</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Synthèse des travaux et perspectives d'avenir pour la profession</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="speakers" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Nos Intervenants</h2>
+                <p class="text-xl text-gray-600">Des experts reconnus de la comptabilité africaine</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20female%20accountant%20executive%2C%20confident%20business%20portrait%2C%20modern%20office%20setting%2C%20professional%20business%20attire%2C%20warm%20lighting%2C%20corporate%20headshot%20style%2C%20finance%20industry%20leader%2C%20sophisticated%20and%20approachable%20expression&width=300&height=300&seq=speaker-1&orientation=squarish" 
+                         alt="Dr. Amina Kone" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover object-top group-hover:scale-105 transition-transform">
+                    <h3 class="font-semibold text-lg text-gray-900">Dr. Amina Koné</h3>
+                    <p class="text-gray-600">Présidente PAFA</p>
+                    <p class="text-sm text-gray-500 mt-1">Côte d'Ivoire</p>
+                </div>
+
+                <div class="text-center group">
+                    <img src="https://readdy.ai/api/search-image?query=Distinguished%20African%20male%20finance%20professional%2C%20senior%20executive%20portrait%2C%20modern%20business%20environment%2C%20formal%20business%20suit%2C%20professional%20lighting%2C%20corporate%20leadership%20style%2C%20experienced%20financial%20expert%2C%20confident%20and%20authoritative%20presence&width=300&height=300&seq=speaker-2&orientation=squarish" 
+                         alt="Prof. Moussa Diallo" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover object-top group-hover:scale-105 transition-transform">
+                    <h3 class="font-semibold text-lg text-gray-900">Prof. Moussa Diallo</h3>
+                    <p class="text-gray-600">Expert IFRS</p>
+                    <p class="text-sm text-gray-500 mt-1">Sénégal</p>
+                </div>
+
+                <div class="text-center group">
+                    <img src="https://readdy.ai/api/search-image?query=Professional%20African%20female%20audit%20partner%2C%20executive%20business%20portrait%2C%20contemporary%20office%20backdrop%2C%20elegant%20business%20attire%2C%20professional%20photography%20style%2C%20audit%20and%20governance%20expert%2C%20confident%20and%20professional%20demeanor&width=300&height=300&seq=speaker-3&orientation=squarish" 
+                         alt="Fatou Seck" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover object-top group-hover:scale-105 transition-transform">
+                    <h3 class="font-semibold text-lg text-gray-900">Fatou Seck</h3>
+                    <p class="text-gray-600">Associée Audit</p>
+                    <p class="text-sm text-gray-500 mt-1">Sénégal</p>
+                </div>
+
+                <div class="text-center group">
+                    <img src="https://readdy.ai/api/search-image?query=Accomplished%20African%20male%20technology%20consultant%2C%20modern%20business%20portrait%2C%20digital%20transformation%20expert%2C%20contemporary%20business%20setting%2C%20professional%20attire%2C%20tech-savvy%20finance%20professional%2C%20innovative%20and%20forward-thinking%20expression&width=300&height=300&seq=speaker-4&orientation=squarish" 
+                         alt="Jean-Baptiste Nkomo" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover object-top group-hover:scale-105 transition-transform">
+                    <h3 class="font-semibold text-lg text-gray-900">Jean-Baptiste Nkomo</h3>
+                    <p class="text-gray-600">Consultant Digital</p>
+                    <p class="text-sm text-gray-500 mt-1">Cameroun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="packages" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Rejoignez-nous à Dakar</h2>
+                <p class="text-xl text-gray-600">Choisissez le pack qui vous convient</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-secondary hover:shadow-md transition-shadow">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Early Bird</h3>
+                        <div class="text-4xl font-bold text-secondary mb-1">450€</div>
+                        <p class="text-gray-500">Jusqu'au 31 mars 2027</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-secondary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Accès à toutes les sessions</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-secondary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Pauses café et déjeuners</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-secondary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Kit participant</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-secondary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Certificat de participation</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-secondary text-white py-3 !rounded-button font-semibold hover:bg-green-700 transition-colors whitespace-nowrap">
+                        Choisir ce pack
+                    </button>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-primary transform scale-105 hover:shadow-lg transition-all">
+                    <div class="text-center mb-6">
+                        <div class="bg-primary text-white text-sm px-3 py-1 rounded-full inline-block mb-2">
+                            Recommandé
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Professionnel</h3>
+                        <div class="text-4xl font-bold text-primary mb-1">650€</div>
+                        <p class="text-gray-500">Tarif standard</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Accès à toutes les sessions</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Pauses café et déjeuners</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Kit participant premium</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Dîner de gala</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Accès VIP networking</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-primary text-white py-3 !rounded-button font-semibold hover:bg-orange-600 transition-colors whitespace-nowrap">
+                        Choisir ce pack
+                    </button>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-blue-500 hover:shadow-md transition-shadow">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Étudiant</h3>
+                        <div class="text-4xl font-bold text-blue-500 mb-1">150€</div>
+                        <p class="text-gray-500">Sur présentation de justificatif</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-blue-500 mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Accès sessions principales</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-blue-500 mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Pauses café</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-blue-500 mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Kit participant</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-blue-500 mr-3">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-600">Ateliers étudiants</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-blue-500 text-white py-3 !rounded-button font-semibold hover:bg-blue-600 transition-colors whitespace-nowrap">
+                        Choisir ce pack
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="practical" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Préparez votre venue</h2>
+                <p class="text-xl text-gray-600">Toutes les informations pratiques pour votre séjour à Dakar</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary text-white rounded-full mx-auto mb-4">
+                        <i class="ri-passport-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Visa</h3>
+                    <p class="text-gray-600 mb-4">
+                        Visa requis pour la plupart des nationalités. Délai de traitement : 15 jours ouvrables.
+                    </p>
+                    <button class="text-primary hover:text-orange-600 font-medium">
+                        En savoir plus
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-secondary text-white rounded-full mx-auto mb-4">
+                        <i class="ri-plane-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Vols</h3>
+                    <p class="text-gray-600 mb-4">
+                        Aéroport Blaise Diagne (DSS), à 50 km de Dakar. Navettes organisées disponibles.
+                    </p>
+                    <button class="text-primary hover:text-orange-600 font-medium">
+                        Réserver un vol
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary text-white rounded-full mx-auto mb-4">
+                        <i class="ri-hotel-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Hébergement</h3>
+                    <p class="text-gray-600 mb-4">
+                        Hôtels partenaires avec tarifs préférentiels. Réservations groupées disponibles.
+                    </p>
+                    <button class="text-primary hover:text-orange-600 font-medium">
+                        Voir les hôtels
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-secondary text-white rounded-full mx-auto mb-4">
+                        <i class="ri-money-euro-circle-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Tarifs</h3>
+                    <p class="text-gray-600 mb-4">
+                        Paiement en euros ou francs CFA. Facilités de paiement disponibles.
+                    </p>
+                    <button class="text-primary hover:text-orange-600 font-medium">
+                        Voir les tarifs
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Nos Partenaires</h2>
+                <p class="text-xl text-gray-600">Ils nous font confiance et soutiennent l'événement</p>
+            </div>
+            
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-center text-gray-800 mb-8">Partenaires Platine</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-16">
+                                <div class="w-8 h-8 flex items-center justify-center text-2xl text-gray-400">
+                                    <i class="ri-bank-line"></i>
+                                </div>
+                                <span class="ml-2 font-semibold text-gray-600">Banque Atlantique</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-16">
+                                <div class="w-8 h-8 flex items-center justify-center text-2xl text-gray-400">
+                                    <i class="ri-building-line"></i>
+                                </div>
+                                <span class="ml-2 font-semibold text-gray-600">KPMG Afrique</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-16">
+                                <div class="w-8 h-8 flex items-center justify-center text-2xl text-gray-400">
+                                    <i class="ri-global-line"></i>
+                                </div>
+                                <span class="ml-2 font-semibold text-gray-600">PwC Sénégal</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-16">
+                                <div class="w-8 h-8 flex items-center justify-center text-2xl text-gray-400">
+                                    <i class="ri-computer-line"></i>
+                                </div>
+                                <span class="ml-2 font-semibold text-gray-600">Sage Africa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-center text-gray-800 mb-6">Partenaires Or</h3>
+                    <div class="grid grid-cols-3 md:grid-cols-6 gap-6">
+                        <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-12">
+                                <div class="w-6 h-6 flex items-center justify-center text-lg text-gray-400">
+                                    <i class="ri-shield-check-line"></i>
+                                </div>
+                                <span class="ml-1 text-sm font-medium text-gray-600">EY</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-12">
+                                <div class="w-6 h-6 flex items-center justify-center text-lg text-gray-400">
+                                    <i class="ri-line-chart-line"></i>
+                                </div>
+                                <span class="ml-1 text-sm font-medium text-gray-600">Deloitte</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-12">
+                                <div class="w-6 h-6 flex items-center justify-center text-lg text-gray-400">
+                                    <i class="ri-calculator-line"></i>
+                                </div>
+                                <span class="ml-1 text-sm font-medium text-gray-600">Ciel</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-12">
+                                <div class="w-6 h-6 flex items-center justify-center text-lg text-gray-400">
+                                    <i class="ri-bank-card-line"></i>
+                                </div>
+                                <span class="ml-1 text-sm font-medium text-gray-600">Orange Money</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-12">
+                                <div class="w-6 h-6 flex items-center justify-center text-lg text-gray-400">
+                                    <i class="ri-smartphone-line"></i>
+                                </div>
+                                <span class="ml-1 text-sm font-medium text-gray-600">Wave</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
+                            <div class="flex items-center justify-center h-12">
+                                <div class="w-6 h-6 flex items-center justify-center text-lg text-gray-400">
+                                    <i class="ri-government-line"></i>
+                                </div>
+                                <span class="ml-1 text-sm font-medium text-gray-600">BCEAO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="font-['Pacifico'] text-2xl text-primary mb-4">ACOA 2027</div>
+                    <p class="text-gray-300 mb-4">
+                        Le rendez-vous majeur des professionnels de la comptabilité en Afrique.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full hover:bg-orange-600 transition-colors cursor-pointer">
+                            <i class="ri-facebook-fill"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full hover:bg-orange-600 transition-colors cursor-pointer">
+                            <i class="ri-twitter-fill"></i>
+                        </div>
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary rounded-full hover:bg-orange-600 transition-colors cursor-pointer">
+                            <i class="ri-linkedin-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">À propos</a></li>
+                        <li><a href="#program" class="text-gray-300 hover:text-white transition-colors">Programme</a></li>
+                        <li><a href="#speakers" class="text-gray-300 hover:text-white transition-colors">Intervenants</a></li>
+                        <li><a href="#partners" class="text-gray-300 hover:text-white transition-colors">Partenaires</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p>ONECCA-Sénégal</p>
+                        <p>Dakar, Sénégal</p>
+                        <p>+221 33 123 45 67</p>
+                        <p>info@acoa2027.sn</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Informations</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p>22-25 Juin 2027</p>
+                        <p>Dakar, Sénégal</p>
+                        <p>Événement présentiel</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2027 ACOA - Congrès Africain des Comptables. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="language-switcher">
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageBtn = document.getElementById('languageBtn');
+            const languageMenu = document.getElementById('languageMenu');
+            const currentLang = document.getElementById('currentLang');
+            
+            languageBtn.addEventListener('click', function() {
+                languageMenu.classList.toggle('hidden');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!languageBtn.contains(e.target)) {
+                    languageMenu.classList.add('hidden');
+                }
+            });
+            
+            const langLinks = document.querySelectorAll('[data-lang]');
+            langLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentLang.textContent = this.dataset.lang;
+                    languageMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+
+    <script id="program-filter">
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.program-filter');
+            const programCards = document.querySelectorAll('.program-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const day = this.dataset.day;
+                    
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('text-gray-600', 'hover:text-primary');
+                    });
+                    
+                    this.classList.add('active', 'bg-primary', 'text-white');
+                    this.classList.remove('text-gray-600', 'hover:text-primary');
+                    
+                    programCards.forEach(card => {
+                        if (day === 'all' || card.dataset.day === day) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            filterButtons[0].classList.add('bg-primary', 'text-white');
+        });
+    </script>
+
+    <script id="smooth-scroll">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
