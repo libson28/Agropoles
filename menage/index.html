@@ -1,0 +1,412 @@
+﻿
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tableau de Bord MÃ©nage - Agropole SÃ©nÃ©gal</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#22c55e',secondary:'#059669'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.hero-bg {
+background-image: url('https://readdy.ai/api/search-image?query=Beautiful%20agricultural%20landscape%20with%20green%20fields%20and%20crops%20in%20Senegal%2C%20rolling%20hills%2C%20traditional%20farming%2C%20lush%20vegetation%2C%20peaceful%20rural%20scenery%2C%20soft%20natural%20lighting%2C%20panoramic%20view&width=1200&height=200&seq=hero-bg&orientation=landscape');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<div class="hero-bg">
+<div class="bg-gradient-to-r from-white/95 via-white/90 to-transparent">
+<div class="px-8 py-6">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h1 class="text-3xl font-bold text-primary mb-2">Tableau de Bord MÃ©nage</h1>
+<p class="text-gray-600">Bonjour Fatou, dÃ©couvrez les meilleurs produits agricoles locaux</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-notification-3-line text-gray-600 text-lg"></i>
+</div>
+<div class="flex items-center gap-3 bg-white/80 rounded-lg px-4 py-2">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+<span class="text-white font-semibold">FS</span>
+</div>
+<div>
+<div class="font-semibold text-gray-800">Fatou Sall</div>
+<div class="text-sm text-gray-600">MÃ©nage</div>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line text-gray-600"></i>
+</div>
+</div>
+</div>
+</div>
+<nav class="flex gap-2">
+<a href="index.html" class="bg-primary text-white px-6 py-3 !rounded-button font-medium whitespace-nowrap">Accueil</a>
+<a href="catalogue.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Catalogue</a>
+<a href="commandes.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Mes Commandes</a>
+<a href="favoris.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Mes Favoris</a>
+<a href="livraisons.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Livraisons</a>
+<a href="messages.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Messages</a>
+<a href="profil.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Mon Profil</a>
+</nav>
+</div>
+</div>
+</div>
+<div class="px-8 py-8">
+<div class="grid grid-cols-4 gap-6 mb-12">
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+<i class="ri-shopping-cart-line text-green-600 text-xl"></i>
+</div>
+<span class="text-green-600 text-sm font-medium">+2 aujourd'hui</span>
+</div>
+<div class="text-3xl font-bold text-gray-900 mb-1">3</div>
+<div class="text-gray-600 text-sm">Produits dans le panier</div>
+</div>
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+<i class="ri-wallet-3-line text-blue-600 text-xl"></i>
+</div>
+<span class="text-blue-600 text-sm font-medium">Budget restant</span>
+</div>
+<div class="text-3xl font-bold text-gray-900 mb-1">75K FCFA</div>
+<div class="text-gray-600 text-sm">Budget mensuel</div>
+</div>
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+<i class="ri-file-list-3-line text-purple-600 text-xl"></i>
+</div>
+<span class="text-purple-600 text-sm font-medium">Ce mois-ci</span>
+</div>
+<div class="text-3xl font-bold text-gray-900 mb-1">12</div>
+<div class="text-gray-600 text-sm">Commandes totales</div>
+</div>
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+<i class="ri-star-line text-orange-600 text-xl"></i>
+</div>
+<span class="text-orange-600 text-sm font-medium">4.8/5</span>
+</div>
+<div class="text-3xl font-bold text-gray-900 mb-1">92%</div>
+<div class="text-gray-600 text-sm">Satisfaction vendeurs</div>
+</div>
+</div>
+<div class="mb-12">
+<h2 class="text-2xl font-bold text-gray-900 mb-6">Recherche Rapide</h2>
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+<div class="relative mb-4">
+<div class="w-6 h-6 absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center justify-center">
+<i class="ri-search-line text-gray-400 text-lg"></i>
+</div>
+<input type="text" placeholder="Rechercher des produits agricoles..." class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+</div>
+<div class="flex gap-3 flex-wrap">
+<button class="flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 !rounded-button font-medium whitespace-nowrap hover:bg-green-200">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-leaf-line"></i>
+</div>
+LÃ©gumes
+</button>
+<button class="flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 !rounded-button font-medium whitespace-nowrap hover:bg-orange-200">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-apple-line"></i>
+</div>
+Fruits
+</button>
+<button class="flex items-center gap-2 bg-yellow-100 text-yellow-700 px-4 py-2 !rounded-button font-medium whitespace-nowrap hover:bg-yellow-200">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-plant-line"></i>
+</div>
+CÃ©rÃ©ales
+</button>
+<button class="flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 !rounded-button font-medium whitespace-nowrap hover:bg-red-200">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-restaurant-line"></i>
+</div>
+Viande
+</button>
+<button class="flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 !rounded-button font-medium whitespace-nowrap hover:bg-blue-200">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-water-flash-line"></i>
+</div>
+Poisson
+</button>
+<button class="flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 !rounded-button font-medium whitespace-nowrap hover:bg-emerald-200">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-seedling-line"></i>
+</div>
+Bio
+</button>
+<button class="flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 !rounded-button font-medium whitespace-nowrap hover:bg-purple-200">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+Proche de moi
+</button>
+</div>
+</div>
+</div>
+<div class="mb-12">
+<h2 class="text-2xl font-bold text-gray-900 mb-6">Produits RecommandÃ©s pour Vous</h2>
+<div class="grid grid-cols-3 gap-6">
+<div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20ripe%20red%20tomatoes%20in%20a%20wicker%20basket%2C%20organic%20vegetables%2C%20clean%20white%20background%2C%20natural%20lighting%2C%20high%20quality%20produce%2C%20market%20fresh&width=300&height=200&seq=tomatoes&orientation=landscape')"></div>
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-2">Tomates FraÃ®ches Bio</h3>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-lg font-bold text-primary">2,500 FCFA/kg</span>
+<span class="text-sm text-gray-500 line-through">3,000 FCFA</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span>Mamadou Diallo</span>
+<span>â€¢</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>2.5 km</span>
+</div>
+<button class="w-full bg-primary text-white py-3 !rounded-button font-medium whitespace-nowrap hover:bg-secondary">Ajouter au Panier</button>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20green%20lettuce%20and%20leafy%20vegetables%20in%20wooden%20crate%2C%20organic%20salad%20greens%2C%20clean%20white%20background%2C%20natural%20lighting%2C%20farm%20fresh%20produce&width=300&height=200&seq=lettuce&orientation=landscape')"></div>
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-2">Salade Verte Locale</h3>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-lg font-bold text-primary">1,200 FCFA/botte</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span>AÃ¯ssatou Ba</span>
+<span>â€¢</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>1.8 km</span>
+</div>
+<button class="w-full bg-primary text-white py-3 !rounded-button font-medium whitespace-nowrap hover:bg-secondary">Ajouter au Panier</button>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20ripe%20bananas%20bunch%20hanging%2C%20tropical%20yellow%20bananas%2C%20clean%20white%20background%2C%20natural%20lighting%2C%20organic%20fruit%2C%20market%20quality&width=300&height=200&seq=bananas&orientation=landscape')"></div>
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-2">Bananes de Casamance</h3>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-lg font-bold text-primary">800 FCFA/rÃ©gime</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span>Ousmane Seck</span>
+<span>â€¢</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>3.2 km</span>
+</div>
+<button class="w-full bg-primary text-white py-3 !rounded-button font-medium whitespace-nowrap hover:bg-secondary">Ajouter au Panier</button>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20carrots%20with%20green%20tops%20in%20wooden%20basket%2C%20orange%20root%20vegetables%2C%20clean%20white%20background%2C%20natural%20lighting%2C%20organic%20produce%2C%20farm%20fresh&width=300&height=200&seq=carrots&orientation=landscape')"></div>
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-2">Carottes du Fouta</h3>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-lg font-bold text-primary">1,800 FCFA/kg</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span>Khadija Ndiaye</span>
+<span>â€¢</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>4.1 km</span>
+</div>
+<button class="w-full bg-primary text-white py-3 !rounded-button font-medium whitespace-nowrap hover:bg-secondary">Ajouter au Panier</button>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20white%20onions%20in%20mesh%20bag%2C%20bulb%20vegetables%2C%20clean%20white%20background%2C%20natural%20lighting%2C%20organic%20produce%2C%20market%20quality&width=300&height=200&seq=onions&orientation=landscape')"></div>
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-2">Oignons Blancs</h3>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-lg font-bold text-primary">1,500 FCFA/kg</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span>Ibrahima Fall</span>
+<span>â€¢</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>2.9 km</span>
+</div>
+<button class="w-full bg-primary text-white py-3 !rounded-button font-medium whitespace-nowrap hover:bg-secondary">Ajouter au Panier</button>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20mangoes%20in%20wicker%20basket%2C%20ripe%20yellow%20tropical%20fruit%2C%20clean%20white%20background%2C%20natural%20lighting%2C%20organic%20produce%2C%20market%20quality&width=300&height=200&seq=mangoes&orientation=landscape')"></div>
+<div class="p-4">
+<h3 class="font-semibold text-gray-900 mb-2">Mangues Kent</h3>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-lg font-bold text-primary">500 FCFA/piÃ¨ce</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-user-line"></i>
+</div>
+<span>Aminata TourÃ©</span>
+<span>â€¢</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>1.5 km</span>
+</div>
+<button class="w-full bg-primary text-white py-3 !rounded-button font-medium whitespace-nowrap hover:bg-secondary">Ajouter au Panier</button>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-12">
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-gray-900">Mes Commandes RÃ©centes</h3>
+<button class="text-primary hover:text-secondary font-medium">Voir tout</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+<i class="ri-check-line text-green-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Commande #CMD-2024-187 livrÃ©e</div>
+<div class="text-sm text-gray-600">Il y a 2 heures</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+<i class="ri-truck-line text-blue-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Livraison en cours - Tomates et carottes</div>
+<div class="text-sm text-gray-600">Il y a 4 heures</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+<i class="ri-time-line text-orange-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Commande en prÃ©paration</div>
+<div class="text-sm text-gray-600">Hier Ã  16:30</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+<i class="ri-shopping-bag-line text-purple-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Nouvelle commande de 5 kg de riz</div>
+<div class="text-sm text-gray-600">Hier Ã  14:20</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-gray-900">Notifications</h3>
+<button class="text-primary hover:text-secondary font-medium">Marquer comme lues</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+<i class="ri-price-tag-3-line text-blue-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Promotion spÃ©ciale disponible</div>
+<div class="text-sm text-gray-600">RÃ©duction de 20% sur les lÃ©gumes bio cette semaine</div>
+</div>
+</div>
+<div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+<i class="ri-truck-line text-green-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Commande prÃªte pour livraison</div>
+<div class="text-sm text-gray-600">Votre commande sera livrÃ©e demain matin</div>
+</div>
+</div>
+<div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+<i class="ri-user-add-line text-purple-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Nouveau vendeur dans votre zone</div>
+<div class="text-sm text-gray-600">DÃ©couvrez les produits de Moussa DramÃ©</div>
+</div>
+</div>
+<div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-lg">
+<div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+<i class="ri-alarm-warning-line text-yellow-600"></i>
+</div>
+<div class="flex-1">
+<div class="font-medium text-gray-900">Rappel de paiement</div>
+<div class="text-sm text-gray-600">Facture #FAC-2024-089 Ã©chue dans 3 jours</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-6">
+<a href="catalogue.html" class="bg-primary text-white p-6 !rounded-button font-semibold text-lg whitespace-nowrap hover:bg-secondary shadow-lg inline-flex items-center justify-center text-center">
+<div class="w-8 h-8 mx-auto mb-3 flex items-center justify-center">
+<i class="ri-shopping-cart-line text-2xl"></i>
+</div>
+Commander Maintenant
+</a>
+<a href="catalogue.html" class="bg-blue-600 text-white p-6 !rounded-button font-semibold text-lg whitespace-nowrap hover:bg-blue-700 shadow-lg inline-flex items-center justify-center text-center">
+<div class="w-8 h-8 mx-auto mb-3 flex items-center justify-center">
+<i class="ri-store-line text-2xl"></i>
+</div>
+Voir le Catalogue
+</a>
+<a href="messages.html" class="bg-orange-600 text-white p-6 !rounded-button font-semibold text-lg whitespace-nowrap hover:bg-orange-700 shadow-lg inline-flex items-center justify-center text-center">
+<div class="w-8 h-8 mx-auto mb-3 flex items-center justify-center">
+<i class="ri-message-3-line text-2xl"></i>
+</div>
+Mes Messages
+</a>
+<a href="livraisons.html" class="bg-purple-600 text-white p-6 !rounded-button font-semibold text-lg whitespace-nowrap hover:bg-purple-700 shadow-lg inline-flex items-center justify-center text-center">
+<div class="w-8 h-8 mx-auto mb-3 flex items-center justify-center">
+<i class="ri-truck-line text-2xl"></i>
+</div>
+Suivi Livraisons
+</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraisons - Agropole Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#22c55e',secondary:'#059669'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .hero-bg { background-image: url('https://readdy.ai/api/search-image?query=Beautiful%20agricultural%20landscape%20with%20green%20fields%20and%20crops%20in%20Senegal%2C%20rolling%20hills%2C%20traditional%20farming%2C%20lush%20vegetation%2C%20peaceful%20rural%20scenery%2C%20soft%20natural%20lighting%2C%20panoramic%20view&width=1200&height=200&seq=hero-bg&orientation=landscape');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="hero-bg">
+        <div class="bg-gradient-to-r from-white/95 via-white/90 to-transparent">
+            <div class="px-8 py-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-primary mb-2">Suivi des Livraisons</h1>
+                        <p class="text-gray-600">Visualisez l’avancement de vos livraisons et contactez le livreur si nécessaire.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-notification-3-line text-gray-600 text-lg"></i>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white/80 rounded-lg px-4 py-2">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                                <span class="text-white font-semibold">FS</span>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-800">Fatou Sall</div>
+                                <div class="text-sm text-gray-600">Ménage</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="flex gap-2">
+                    <a href="index.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Accueil</a>
+                    <a href="catalogue.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Catalogue</a>
+                    <a href="commandes.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Mes Commandes</a>
+                    <a href="favoris.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Mes Favoris</a>
+                    <a href="livraisons.html" class="bg-primary text-white px-6 py-3 !rounded-button font-medium whitespace-nowrap">Livraisons</a>
+                    <a href="messages.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Messages</a>
+                    <a href="profil.html" class="bg-white/80 text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-white">Mon Profil</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="px-8 py-8">
+        <div class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Suivi des Livraisons</h2>
+                <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium whitespace-nowrap">Actualiser</button>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-1">Livraison #LIV-2024-045</h3>
+                            <p class="text-sm text-gray-600">Commande #CMD-2024-186</p>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">En route</span>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="text-sm font-medium text-gray-900">Commande confirmée</span>
+                            <span class="text-xs text-gray-500">14 jan, 09:15</span>
+                        </div>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="text-sm font-medium text-gray-900">Produits préparés</span>
+                            <span class="text-xs text-gray-500">14 jan, 11:30</span>
+                        </div>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            <span class="text-sm font-medium text-blue-600">En route vers vous</span>
+                            <span class="text-xs text-gray-500">15 jan, 08:45</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                            <span class="text-sm text-gray-500">Livraison attendue</span>
+                            <span class="text-xs text-gray-500">15 jan, 10:00 - 12:00</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 flex items-center justify-center">
+                                <i class="ri-user-line text-gray-600"></i>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-900">Modou Sow</span>
+                                <span class="text-sm text-gray-600 ml-2">Livreur</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600">Téléphone : +221 77 123 45 67</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="flex-1 bg-primary text-white py-2 !rounded-button font-medium whitespace-nowrap">Suivre en temps réel</button>
+                        <button class="px-4 py-2 border border-gray-200 text-gray-600 !rounded-button font-medium whitespace-nowrap hover:bg-gray-50">Contacter livreur</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-1">Livraison #LIV-2024-044</h3>
+                            <p class="text-sm text-gray-600">Commande #CMD-2024-185</p>
+                        </div>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">Programmée</span>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="text-sm font-medium text-gray-900">Commande confirmée</span>
+                            <span class="text-xs text-gray-500">13 jan, 16:45</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                            <span class="text-sm font-medium text-orange-600">Préparation en cours</span>
+                            <span class="text-xs text-gray-500">Depuis 14 jan, 07:00</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                        <p class="text-sm text-gray-600">
+                            <strong>Adresse de livraison :</strong><br>
+                            Cité Keur Gorgui, Villa 123<br>
+                            Dakar, Sénégal
+                        </p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="flex-1 bg-orange-600 text-white py-2 !rounded-button font-medium whitespace-nowrap">Voir détails</button>
+                        <button class="px-4 py-2 border border-gray-200 text-gray-600 !rounded-button font-medium whitespace-nowrap hover:bg-gray-50">Modifier adresse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
